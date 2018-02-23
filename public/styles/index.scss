@@ -8,19 +8,25 @@
  */
 
 //Settings
+@import './settings/animation.scss';
 @import './settings/colors.scss';
 @import './settings/responsive.scss';
 @import './settings/typography.scss';
 
 //Tools
+@import './tools/prefix.scss';
 @import './tools/_box-shadow.scss';
+@import './tools/_flex.scss';
 @import './tools/_gradients.scss';
 @import './tools/_responsive.scss';
+@import './tools/_transform.scss';
 
 //Resets
 @import './../../node_modules/normalize.css/normalize.css';
 
 //Elements
+@import './elements/_all.scss';
+@import './elements/_a.scss';
 @import './elements/_body.scss';
 @import './elements/_button.scss';
 @import './elements/_headings.scss';
