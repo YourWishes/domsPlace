@@ -15,6 +15,14 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/fontawesome-free-solid'
 
+const NavLink = function(props) {
+  return (
+    <a href={props.to} className="c-navbar__link">
+      <span className="c-navbar__link-text">{props.children}</span>
+    </a>
+  )
+}
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +34,15 @@ class Navbar extends React.Component {
         <button type="button" className="c-navbar__menu-button">
           <FontAwesomeIcon icon={faBars} />
         </button>
-        This is my navbar11
+
+        <div className="c-navbar__logo">
+          This is my navbar11
+        </div>
+
+        <div className="c-navbar__links">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </div>
       </nav>
     )
   }
