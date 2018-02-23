@@ -9,3 +9,8 @@
 $s-font--stack-default: 'Nanum Gothic Coding', monospace;
 $s-font--stack-headings: 'Bitter', serif;
 $s-font--size--base: 16px;
+
+
+%s-font--navigation {
+  font-family: $s-font--stack-headings;
+}
