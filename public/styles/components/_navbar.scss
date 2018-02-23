@@ -3,26 +3,38 @@
  *    Styles for Navbar
  *
  *  Dependencies:
+ *    styles/settings/responsive.scss
  *    styles/tools/_box-shadow.scss
+ *    styles/tools/_responsive.scss
  *
  *  Version:
  *    1.0.0 - 2018/02/23
  */
 $c-navbar--z-index: 100;
 .c-navbar {
-  width: 90%;
   position: fixed;
-  top:3em;
+  top: 0;
   left: 0;
+  width: 100%;
   background: white;
   z-index: $c-navbar--z-index;
-  left: 1%;
-
-  @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
+}
+.c-navbar__menu-button {
+  font-size: 1.5em;
+  padding: 0.5em 0.75em;
 }
 
+@include t-media-query($s-xsmall-up) {
+  .c-navbar__menu-button {
+    font-size: 2em;
+  }
+}
 
-.c-navbar__menu-button {
-  font-size: 2em;
-  padding: 0.5em 0.75em;
+@include t-media-query($s-small-up) {
+  .c-navbar {
+    width: 90%;
+    top:3em;
+    left: 1%;
+    @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
+  }
 }
