@@ -12,6 +12,9 @@
 
 import React from 'react';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/fontawesome-free-solid'
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +23,10 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav className="c-navbar">
-        This is my navbar
+        <button type="button" className="c-navbar__menu-button">
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+        This is my navbar11
       </nav>
     )
   }

@@ -3,12 +3,26 @@
  *    Styles for Navbar
  *
  *  Dependencies:
+ *    styles/tools/_box-shadow.scss
  *
  *  Version:
  *    1.0.0 - 2018/02/23
  */
+$c-navbar--z-index: 100;
 .c-navbar {
-  width: 100%;
+  width: 90%;
   position: fixed;
-  
+  top:3em;
+  left: 0;
+  background: white;
+  z-index: $c-navbar--z-index;
+  left: 1%;
+
+  @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
+}
+
+
+.c-navbar__menu-button {
+  font-size: 2em;
+  padding: 0.5em 0.75em;
 }

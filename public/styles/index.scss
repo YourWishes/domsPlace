@@ -9,8 +9,11 @@
 
 //Settings
 @import './settings/colors.scss';
+@import './settings/responsive.scss';
+@import './settings/typography.scss';
 
 //Tools
+@import './tools/_box-shadow.scss';
 @import './tools/_gradients.scss';
 
 //Resets
@@ -18,6 +21,8 @@
 
 //Elements
 @import './elements/_body.scss';
+@import './elements/_button.scss';
+@import './elements/_headings.scss';
 @import './elements/_html.scss';
 
 //Objects
@@ -25,9 +30,11 @@
 //Components
 @import './components/_app.scss';
 @import './components/_header.scss';
+@import './components/_navbar.scss';
 
 //Utilities
 
 //Vendor
+@import './vendor/fonts.scss';
 
 //Trumps
