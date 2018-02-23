@@ -1,1 +1,33 @@
 @charset "UTF-8";
+/*
+ * domsPlace Styles
+ * Copyright 2018 Dominic "YouWish" Masters
+ *
+ * Version:
+ *    0.0.1 - 2018/02/23
+ */
+
+//Settings
+@import './settings/colors.scss';
+
+//Tools
+@import './tools/_gradients.scss';
+
+//Resets
+@import './../../node_modules/normalize.css/normalize.css';
+
+//Elements
+@import './elements/_body.scss';
+@import './elements/_html.scss';
+
+//Objects
+
+//Components
+@import './components/_app.scss';
+@import './components/_header.scss';
+
+//Utilities
+
+//Vendor
+
+//Trumps

@@ -1,0 +1,15 @@
+/*
+ *  Body
+ *    Base Body Seettings
+ *
+ *  Dependencies:
+ *    styles/settings/colors.scss - Used for colors
+ *    styles/tools/_gradients.scss - Used for background gradients.
+ *
+ *  Version:
+ *    1.0.0 - 2018/02/23
+ */
+body {
+  @include t-gradient-directional($s-color--background-bottom, $s-color--background-top, 45deg);
+  min-height: 100%;
+}
