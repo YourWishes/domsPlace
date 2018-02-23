@@ -3,27 +3,67 @@
  *    Styles for Navbar
  *
  *  Dependencies:
+ *    styles/settings/colors.scss
  *    styles/settings/responsive.scss
  *    styles/tools/_box-shadow.scss
+ *    styles/tools/_flex.scss
  *    styles/tools/_responsive.scss
+ *    styles/tools/_transform.scss
  *
  *  Version:
  *    1.0.0 - 2018/02/23
  */
 $c-navbar--z-index: 100;
+$c-navbar--link-border: $s-border--default;
+$c-navbar--background: white;
+
 .c-navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: white;
+  background: $c-navbar--background;
   z-index: $c-navbar--z-index;
+
+  @extend %t-flexbox;
 }
+
+//Menu Button
 .c-navbar__menu-button {
   font-size: 1.5em;
   padding: 0.5em 0.75em;
 }
 
+//Logo
+.c-navbar__logo {
+}
+
+//Links
+.c-navbar__links {
+  width: 100%;
+  text-align: right;
+}
+
+.c-navbar__link {
+  @extend %s-font--navigation;
+  height: 100%;
+
+  font-size: 1.2em;
+  padding: 0 1.5em;
+  display: inline-table;
+  background: $c-navbar--background;
+  transition: all 0.2s $s-animation--ease-out-curve;
+
+  &:hover {
+  }
+}
+
+.c-navbar__link-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+//Responsive queries
 @include t-media-query($s-xsmall-up) {
   .c-navbar__menu-button {
     font-size: 2em;
