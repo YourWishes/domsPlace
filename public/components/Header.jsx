@@ -9,8 +9,10 @@
  *  Version:
  *    1.0.0 - 2018/02/23
  */
- 
+
 import React from 'react';
+
+import Navbar from './navigation/Navbar';
 
 class Header extends React.Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className="c-header">
-        Lorem
+        <Navbar />
       </header>
     )
   }
