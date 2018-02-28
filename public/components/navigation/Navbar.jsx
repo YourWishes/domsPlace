@@ -35,9 +35,9 @@ class Navbar extends React.Component {
           <FontAwesomeIcon icon={faBars} />
         </button>
 
-        <div className="c-navbar__logo">
-          This is my navbar11
-        </div>
+        <a href="#" className="c-navbar__logo-container">
+          <img src={ require('./../../images/logo.svg') } className="c-navbar__logo" alt="domsPlace" />
+        </a>
 
         <div className="c-navbar__links">
           <NavLink to="/">Home</NavLink>

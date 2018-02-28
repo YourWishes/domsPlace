@@ -10,6 +10,7 @@
 //Settings
 @import './settings/animation.scss';
 @import './settings/colors.scss';
+@import './settings/layout.scss';
 @import './settings/responsive.scss';
 @import './settings/typography.scss';
 
@@ -38,6 +39,9 @@
 @import './components/_app.scss';
 @import './components/_header.scss';
 @import './components/_navbar.scss';
+@import './components/_page.scss';
+@import './components/_section.scss';
+@import './components/_section--style-poly.scss';
 
 //Utilities
 

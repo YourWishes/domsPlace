@@ -1,0 +1,22 @@
+/*
+ *  Section Body Style
+ *    Styles for body style section
+ *
+ *  Dependencies:
+ *    styles/settings/colors.scss
+ *    styles/settings/responsive.scss
+ *    styles/tools/_responsive.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/02/28
+ */
+.c-section--style-body {
+  background: $s-color--background-default;
+}
+
+@include t-media-query($s-small-up) {
+  .c-section--style-body {
+    margin-left: 4%;
+    @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
+  }
+}

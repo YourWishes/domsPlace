@@ -27,10 +27,12 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.6",
     "@fortawesome/react-fontawesome": "0.0.17",
     "express": "^4.16.2",
+    "file-loader": "^1.1.9",
     "mysql-promise": "^4.1.0",
     "normalize.css": "^8.0.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "three": "^0.90.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
