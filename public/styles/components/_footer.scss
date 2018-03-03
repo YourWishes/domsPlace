@@ -1,0 +1,58 @@
+/*
+ *  Footer
+ *    Styles for footer element
+ *
+ *  Dependencies:
+ *    styles/settings/responsive.scss
+ *    styles/tools/_flex.scss
+ *    styles/tools/_responsive.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/03/03
+ */
+$c-footer--text-color: black;
+$c-footer--background-color: white;
+
+.c-footer {
+  margin-top: 5em;
+  width: 100%;
+  background: $c-footer--background-color;
+  @extend %t-flexbox;
+  @include t-flex-wrap(wrap);
+}
+
+.c-footer__copyright {
+  color: $c-footer--text-color;
+}
+
+.c-footer__copyright,
+.c-footer__links {
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+}
+
+.c-footer__link {
+  display: block;
+}
+
+@include t-media-query($s-small-up) {
+  .c-footer {
+    @include t-flex-wrap(nowrap);
+  }
+
+  .c-footer__copyright {
+    text-align: left;
+  }
+
+  .c-footer__links {
+    text-align: right;
+  }
+
+  .c-footer__link {
+    display: inline;
+    + #{&}:before {
+      content: " | ";
+    }
+  }
+}

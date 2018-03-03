@@ -11,6 +11,7 @@
 //Fonts
 $s-color--text: black;
 $s-color--links: #FC78DE;
+$s-color--links-hover: lighten($s-color--links, 20%);
 
 //Backgrounds
 $s-color--background-default: white;

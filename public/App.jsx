@@ -12,6 +12,7 @@
 import React from 'react';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import IndexPage from './components/pages/IndexPage';
 
@@ -25,6 +26,7 @@ class App extends React.Component {
       <div className="c-app">
         <Header />
         <IndexPage />
+        <Footer />
       </div>
     )
   }

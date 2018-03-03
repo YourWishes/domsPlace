@@ -4,7 +4,7 @@
  * Copyright 2018 Dominic "YouWish" Masters
  *
  * Version:
- *    0.0.1 - 2018/02/23
+ *    0.0.1 - 2018/03/03
  */
 
 //Settings
@@ -32,15 +32,19 @@
 @import './elements/_button.scss';
 @import './elements/_headings.scss';
 @import './elements/_html.scss';
+@import './elements/_table.scss';
 
 //Objects
 
 //Components
 @import './components/_app.scss';
+@import './components/_footer.scss';
 @import './components/_header.scss';
+@import './components/_menu.scss';
 @import './components/_navbar.scss';
 @import './components/_page.scss';
 @import './components/_section.scss';
+@import './components/_section--style-body.scss';
 @import './components/_section--style-poly.scss';
 
 //Utilities

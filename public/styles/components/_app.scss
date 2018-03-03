@@ -7,9 +7,13 @@
  *  Version:
  *    1.0.0 - 2018/02/23
  */
+.c-app__wrapper {
+  min-height: 100vh;
+  width: 100%;
+}
 .c-app {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   overflow-x: hidden;
   position: relative;
 }

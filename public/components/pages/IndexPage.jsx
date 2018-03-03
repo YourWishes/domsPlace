@@ -22,7 +22,21 @@ class IndexPage extends React.Component {
       <Page>
         <Poly />
         <BodySection>
-          Lorem
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
+          <p>Lorem</p>
         </BodySection>
       </Page>
     )

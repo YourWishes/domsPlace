@@ -18,14 +18,3 @@
 .c-section--full-width {
   max-width: none;
 }
-
-.c-section--style-body {
-  background: $s-color--background-default;
-}
-
-@include t-media-query($s-small-up) {
-  .c-section--style-body {
-    margin-left: 4%;
-    @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
-  }
-}

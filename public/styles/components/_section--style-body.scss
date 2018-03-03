@@ -12,6 +12,7 @@
  */
 .c-section--style-body {
   background: $s-color--background-default;
+  padding: 1em;
 }
 
 @include t-media-query($s-small-up) {

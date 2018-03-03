@@ -12,3 +12,8 @@ a {
   text-decoration: none;
   color: $s-color--links
 }
+
+a:hover {
+  text-decoration: underline;
+  color: $s-color--links-hover;
+}
