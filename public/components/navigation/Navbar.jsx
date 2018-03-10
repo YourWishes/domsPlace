@@ -11,15 +11,14 @@
  */
 
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import Menu from './Menu';
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/fontawesome-free-solid'
-
-const NavLink = function(props) {
+const NavbarLink = function(props) {
   return (
-    <a href={props.to} className="c-navbar__link">
+    <NavLink exact to={props.to} className="c-navbar__link" activeClassName="active">
       <span className="c-navbar__link-text">{props.children}</span>
-    </a>
+    </NavLink>
   )
 }
 
@@ -31,17 +30,15 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav className="c-navbar">
-        <button type="button" className="c-navbar__menu-button">
-          <FontAwesomeIcon icon={faBars} />
-        </button>
+        <Menu open />
 
-        <a href="#" className="c-navbar__logo-container">
+        <Link to="/" className="c-navbar__logo-container">
           <img src={ require('./../../images/logo.svg') } className="c-navbar__logo" alt="domsPlace" />
-        </a>
+        </Link>
 
         <div className="c-navbar__links">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavbarLink exact to="/">Home</NavbarLink>
+          <NavbarLink to="/contact">Contact</NavbarLink>
         </div>
       </nav>
     )

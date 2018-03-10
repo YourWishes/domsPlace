@@ -3,10 +3,113 @@
  *    Styles for the menu
  *
  *  Dependencies:
+ *    styles/settings/animation.scss
+ *    styles/settings/responsive.scss
+ *    styles/tools/_mixin.absolute-centering.scss
  *
  *  Version:
- *    1.0.0 - 2018/03/01
+ *    1.0.0 - 2018/03/04
  */
-.c-menu {
+$c-menu--z-index: 1000;
+$c-menu--button--z-index: $c-menu--z-index + 10;
+$c-menu--list--z-index: $c-menu--z-index + 20;
+
+body.is-menu-open {
+  overflow: hidden;
+}
+
+.c-menu__wrapper {
   position: relative;
+}
+
+.c-menu__button {
+  font-size: 1.5em;
+  padding: 0.5em 0.75em;
+  position: relative;
+  z-index: $c-menu--button--z-index;
+}
+
+.c-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-left: 1px solid red;
+}
+
+.c-menu__fix {
+  position: relative;
+}
+
+.c-menu__container {
+  @extend %t-absolute-center-x-y;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  z-index: $c-menu--z-index;
+  background: white;
+  overflow: hidden;
+  transition:
+    width 0.2s $s-animation--ease-out-curve,
+    height 0.2s $s-animation--ease-out-curve,
+  ;
+
+  &.open {
+    width: 250vmax;
+    height: 250vmax;
+  }
+}
+
+.c-menu__body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: $c-menu--list--z-index;
+}
+
+.c-menu__groups {
+  @extend %t-flexbox;
+  @include t-flex-wrap(wrap);
+  /*position: absolute;
+  left: 2em;
+  top: -1.5em;*/
+  top: 0l;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+}
+
+.c-menu__group {
+  padding: 1em;
+  width: 100%;
+}
+
+.c-menu__group-title {
+
+}
+
+.c-menu__item {
+  display: block;
+}
+
+@include t-media-query($s-xsmall-up) {
+  .c-menu__button {
+    padding: 0.75em 1em;
+  }
+
+  .c-menu__group {
+    width: 50%;
+  }
+}
+
+@include t-media-query($s-medium-up) {
+  .c-menu__group {
+    width: (100% / 3);
+  }
+}
+
+@include t-media-query($s-large-up) {
+  .c-menu__group {
+    width: 25%;
+  }
 }

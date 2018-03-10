@@ -18,6 +18,7 @@
 @include t-media-query($s-small-up) {
   .c-section--style-body {
     margin-left: 4%;
+    width: 96%;
     @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
   }
 }

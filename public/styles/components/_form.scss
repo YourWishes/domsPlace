@@ -1,0 +1,35 @@
+/*
+ *  Form
+ *    Styles for form elements
+ *
+ *  Dependencies:
+ *
+ *  Version:
+ *    1.0.0 - 2018/03/07
+ */;
+ $c-form--shadow-offset: 5px;
+
+.c-form {
+}
+
+.c-form__label {
+  display: block;
+  padding-bottom: 0.25em;
+}
+
+.c-form__group {
+  margin-bottom: 1.5em;
+}
+
+//Form input
+.c-form-input {
+  width: 400px;
+  max-width: 100%;
+  border: $s-color--border--default;
+  padding: 0.5em;
+  @include t-box-shadow(-$c-form--shadow-offset, $c-form--shadow-offset, 0px, rgba(0, 0, 0, 0.5));
+}
+
+.c-form-input--multiline {
+  min-height: 10em;
+}

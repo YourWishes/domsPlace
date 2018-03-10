@@ -11,13 +11,14 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FooterLink = function(props) {
   return (
     <span className="c-footer__link">
-      <a href={props.to} className="c-footer__link-link">
+      <Link to={props.to} className="c-footer__link-link">
         {props.children}
-      </a>
+      </Link>
     </span>
   )
 }
@@ -30,16 +31,19 @@ class Footer extends React.Component {
   render() {
     let year = new Date().getFullYear();
     return (
-      <footer className="c-footer">
-        <span className="c-footer__copyright">
-          2012 ~ {year} | Dominic Masters.
-        </span>
+      <div className="c-footer__container">
+        <div className="c-footer__ghost"></div>
 
-        <nav className="c-footer__links">
-          <FooterLink to="/">Privacy Policy</FooterLink>
-          <FooterLink to="/">Contact Us</FooterLink>
-        </nav>
-      </footer>
+        <footer className="c-footer">
+          <span className="c-footer__copyright">
+            2012 ~ {year} | Dominic Masters.
+          </span>
+
+          <nav className="c-footer__links">
+            <FooterLink to="/">Privacy Policy</FooterLink>
+          </nav>
+        </footer>
+      </div>
     )
   }
 }

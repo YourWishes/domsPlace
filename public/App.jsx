@@ -10,11 +10,13 @@
  *    1.0.0 - 2018/02/23
  */
 import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 import IndexPage from './components/pages/IndexPage';
+import ContactPage from './components/pages/ContactPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,11 +25,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="c-app">
-        <Header />
-        <IndexPage />
-        <Footer />
-      </div>
+      <HashRouter>
+        <div className="c-app">
+            <Header />
+
+            <Switch>
+              <Route exact path="/" component={IndexPage} />
+              <Route path="/contact" component={ContactPage} />
+            </Switch>
+
+            <Footer />
+        </div>
+      </HashRouter>
     )
   }
 }

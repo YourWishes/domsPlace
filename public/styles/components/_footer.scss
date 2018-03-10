@@ -10,15 +10,21 @@
  *  Version:
  *    1.0.0 - 2018/03/03
  */
-$c-footer--text-color: black;
-$c-footer--background-color: white;
+$c-footer--text-color: $s-color--text;
+$c-footer--background-color: $s-color--background-default;
+
+.c-footer__ghost {
+  margin-top: 5em;
+  min-height: 3em;
+}
 
 .c-footer {
-  margin-top: 5em;
   width: 100%;
   background: $c-footer--background-color;
   @extend %t-flexbox;
   @include t-flex-wrap(wrap);
+  position: absolute;
+  bottom: 0;
 }
 
 .c-footer__copyright {

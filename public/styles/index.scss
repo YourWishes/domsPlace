@@ -22,6 +22,8 @@
 @import './tools/_responsive.scss';
 @import './tools/_transform.scss';
 
+@import './tools/_mixin.absolute-centering.scss';
+
 //Resets
 @import './../../node_modules/normalize.css/normalize.css';
 
@@ -35,17 +37,22 @@
 @import './elements/_table.scss';
 
 //Objects
+@import './objects/_button.scss';
 
 //Components
 @import './components/_app.scss';
 @import './components/_footer.scss';
+@import './components/_form.scss';
 @import './components/_header.scss';
 @import './components/_menu.scss';
 @import './components/_navbar.scss';
 @import './components/_page.scss';
+@import './components/_page--style-contact.scss';
 @import './components/_section.scss';
+@import './components/_section--style-blank-promo.scss';
 @import './components/_section--style-body.scss';
 @import './components/_section--style-poly.scss';
+@import './components/_section--style-three.scss';
 
 //Utilities
 

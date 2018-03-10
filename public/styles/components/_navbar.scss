@@ -14,8 +14,7 @@
  *    1.0.0 - 2018/02/23
  */
 $c-navbar--z-index: 100;
-$c-navbar--link-border: $s-border--default;
-$c-navbar--background: white;
+$c-navbar--background: $s-color--background-default;
 $c-navbar--link-offset: 5px;
 
 .c-navbar {
@@ -27,12 +26,6 @@ $c-navbar--link-offset: 5px;
   z-index: $c-navbar--z-index;
 
   @extend %t-flexbox;
-}
-
-//Menu Button
-.c-navbar__menu-button {
-  font-size: 1.5em;
-  padding: 0.5em 0.75em;
 }
 
 //Logo
@@ -51,27 +44,26 @@ $c-navbar--link-offset: 5px;
   width: 100%;
   text-align: right;
   display: none;
+  @include t-justify-content(flex-end);
 }
 
 .c-navbar__link {
   @extend %s-font--navigation;
-  height: 100%;
 
   font-size: 1.2em;
   padding: 0 1.5em;
-  display: inline-table;
+
+  @extend %t-inline-flex;
+  @include t-align-items(center);
+
+
+  &.active {
+    border-bottom: $s-thickness--border-thick solid $s-color--links;
+  }
 }
 
 .c-navbar__link-text {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-//Responsive queries
-@include t-media-query($s-xsmall-up) {
-  .c-navbar__menu-button {
-    font-size: 2em;
-  }
+  //vertical-align: middle;
 }
 
 @include t-media-query($s-small-up) {
@@ -83,12 +75,11 @@ $c-navbar--link-offset: 5px;
   }
 
   .c-navbar__links {
-    displaY: block;
+    @include t-flexbox;
   }
 
   .c-navbar__link {
-
-    background: white;
+    background: $s-color--background-default;
     transition: all 0.2s $s-animation--ease-out-curve;
     margin-left: $c-navbar--link-offset;
     @include t-translate(0em, 0em);
