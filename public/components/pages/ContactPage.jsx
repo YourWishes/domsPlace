@@ -17,6 +17,9 @@ import BodySection from './../sections/BodySection';
 
 import ContactForm from './../forms/ContactForm';
 
+import { connect } from 'react-redux';
+import Language from './../../language/Language';
+
 class ContactPage extends React.Component {
   constructor(props) {
     super(props);
@@ -27,10 +30,10 @@ class ContactPage extends React.Component {
       <Page>
         <PhoneSection />
         <BodySection>
-          <h1>Contact</h1>
+          <h1>{Language.get("contact.form.title")}</h1>
           <div className="c-page--style-container__split">
             <p className="c-page--style-container__split-part">
-              Want to get ahold of me and other lorem ipsum dolor?
+              {Language.get("contact.form.info")}
             </p>
             <ContactForm className="c-page--style-container__split-part" />
           </div>
@@ -40,4 +43,10 @@ class ContactPage extends React.Component {
   }
 }
 
-export default ContactPage;
+const mapStateToProps = function(state) {
+  return {
+    code: state.language.code
+  }
+}
+
+export default connect(mapStateToProps)(ContactPage);
