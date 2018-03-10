@@ -29,4 +29,7 @@
   .c-page--style-container__split {
     @include t-flex-wrap(nowrap);
   }
+  .c-page--style-container__split-part {
+    width: 50%;
+  }
 }
