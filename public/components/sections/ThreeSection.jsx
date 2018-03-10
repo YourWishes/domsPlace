@@ -21,8 +21,8 @@ class ThreeSection extends React.Component {
     this.camera = new THREE.PerspectiveCamera(17, window.innerWidth / window.innerHeight, 0.1, 1000 );
     this.isAlive = true;
 
-    this.render = new THREE.WebGLRenderer({canvas: this.refs.canvas, alpha: true});
-    this.render.setSize(window.innerWidth, window.innerHeight);
+    this.renderer = new THREE.WebGLRenderer({canvas: this.refs.canvas, alpha: true});
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.camera.position.z = 5;
 
@@ -61,20 +61,21 @@ class ThreeSection extends React.Component {
     let hfovRad = hfov * Math.PI / 180;
     let vfovRad = 2*Math.atan(Math.tan(hfovRad/2)*height/width);
 
-    this.render.setSize(width, height);
-    this.render.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
 
     this.camera.aspect = width / height;
     this.camera.fov = vfovRad * 180 / Math.PI;
     this.camera.updateProjectionMatrix();
-    requestAnimationFrame(this.onFrame.bind(this));
 
     if(typeof this.props.onRender !== typeof undefined) {
       this.props.onRender(diff);
     }
 
-    this.render.render(this.scene, this.camera);
+    this.renderer.render(this.scene, this.camera);
     this.lastTime = now;
+
+    requestAnimationFrame(this.onFrame.bind(this));
   }
 
   render() {
