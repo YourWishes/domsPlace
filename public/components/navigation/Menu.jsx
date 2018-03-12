@@ -14,7 +14,18 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { NavLink } from 'react-router-dom';
 import { faBars } from '@fortawesome/fontawesome-free-solid'
+import { connect } from 'react-redux';
+import Language from './../../language/Language';
 
+const MenuItems = {
+  "navbar.contact.title": {
+    "navbar.contact.about": "/about",
+    "navbar.contact.contact": "/contact"
+  },
+  "navbar.legal.title": {
+    "navbar.legal.privacy": "/privacy-policy"
+  }
+}
 
 const MenuGroup = function(props) {
   return (
@@ -27,7 +38,7 @@ const MenuGroup = function(props) {
 
 const MenuItem = function(props) {
   return (
-    <NavLink className="c-menu__item" to={props.to}>
+    <NavLink className="c-menu__item" to={props.to} onClick={props.onClick}>
       {props.children}
     </NavLink>
   )
@@ -48,6 +59,18 @@ class Menu extends React.Component {
     });
   }
 
+  openMenu() {
+    this.setState({
+      open: true
+    });
+  }
+
+  closeMenu() {
+    this.setState({
+      open: false
+    })
+  }
+
   render() {
     if(this.state.open) {
       document.body.classList.add('is-menu-open');
@@ -55,6 +78,23 @@ class Menu extends React.Component {
       document.body.classList.remove('is-menu-open');
     }
 
+    let menu = [];
+    let keys = Object.keys(MenuItems);
+    for(var i = 0; i < keys.length; i++) {
+      let k = keys[i];
+      let sKeys = Object.keys(MenuItems[k]);
+      let menuItems = [];
+      for(var x = 0; x < sKeys.length; x++) {
+        let sKey = sKeys[x];
+        console.log(sKey);
+        menuItems.push(<MenuItem to={MenuItems[k][sKey]} onClick={this.closeMenu.bind(this)}>{Language.get(sKey)}</MenuItem>)
+      }
+      menu.push(
+        <MenuGroup title={Language.get(k)}>
+          {menuItems}
+        </MenuGroup>
+      );
+    }
 
     return (
       <nav className="c-menu__wrapper open">
@@ -63,15 +103,7 @@ class Menu extends React.Component {
             <div className={"c-menu__container" + (this.state.open === true ? " open": "")}>
               <div className="c-menu__body">
                 <div className="c-menu__fix c-menu__groups">
-
-                  <MenuGroup title="Get in touch">
-                    <MenuItem to="/contact">Contact Me</MenuItem>
-                  </MenuGroup>
-
-                  <MenuGroup title="Legal Stuff">
-                    <MenuItem to="/privacy-policy">Privacy Policy</MenuItem>
-                  </MenuGroup>
-
+                  {menu}
                 </div>
               </div>
             </div>
@@ -86,4 +118,10 @@ class Menu extends React.Component {
   }
 }
 
-export default Menu;
+const mapStateToProps = function(state) {
+  return {
+    code: state.language.code
+  }
+}
+
+export default connect(mapStateToProps)(Menu);
