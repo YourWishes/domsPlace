@@ -1,24 +1,24 @@
 /*
- *  Index Page
- *    Homepage.
+ *  About Page
+ *    About that one lad.
  *
  *  Dependencies:
- *    styles/components/_page--style-index.scss
+ *    styles/components/_page--style-about.scss
  *
  *  Version:
- *    1.0.1 - 2018/03/01
+ *    1.0.0 - 2018/03/11
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Page from './../Page';
 import Poly from './../sections/Poly';
 import BodySection from './../sections/BodySection';
 import SplitSection from './../sections/SplitSection';
-import { connect } from 'react-redux';
 import Language from './../../language/Language';
 
-class IndexPage extends React.Component {
+class TestAboutPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -26,10 +26,7 @@ class IndexPage extends React.Component {
   render() {
     return (
       <Page>
-        <Poly />
-
-        <BodySection>
-        </BodySection>
+        About
       </Page>
     )
   }
@@ -41,4 +38,4 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(IndexPage);
+export default connect(mapStateToProps)(TestAboutPage);

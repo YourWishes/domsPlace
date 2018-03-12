@@ -40,7 +40,7 @@ class Footer extends React.Component {
           </span>
 
           <nav className="c-footer__links">
-            <FooterLink to="/">Privacy Policy</FooterLink>
+            <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
           </nav>
         </footer>
       </div>

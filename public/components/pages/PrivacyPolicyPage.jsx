@@ -1,24 +1,12 @@
-/*
- *  Index Page
- *    Homepage.
- *
- *  Dependencies:
- *    styles/components/_page--style-index.scss
- *
- *  Version:
- *    1.0.1 - 2018/03/01
- */
-
 import React from 'react';
 
 import Page from './../Page';
-import Poly from './../sections/Poly';
+import BlankPromo from './../sections/BlankPromo';
 import BodySection from './../sections/BodySection';
-import SplitSection from './../sections/SplitSection';
 import { connect } from 'react-redux';
 import Language from './../../language/Language';
 
-class IndexPage extends React.Component {
+class PrivacyPolicyPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -26,9 +14,10 @@ class IndexPage extends React.Component {
   render() {
     return (
       <Page>
-        <Poly />
-
+        <BlankPromo />
         <BodySection>
+          <h1>{Language.get("privacy.title")}</h1>
+          {Language.get("privacy.policy")}
         </BodySection>
       </Page>
     )
@@ -41,4 +30,4 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(IndexPage);
+export default connect(mapStateToProps)(PrivacyPolicyPage);

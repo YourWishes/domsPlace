@@ -11,6 +11,9 @@ import App from './App.jsx';
 import Styles from './styles/index.scss';
 import rootReducer from './reducers/rootReducer';
 
+require('./../common/Object');
+require('./../common/HTMLElement');
+
 //Create our store
 const store = createStore(rootReducer);
 const unsubscribe = store.subscribe(() => {
