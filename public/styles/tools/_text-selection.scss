@@ -1,0 +1,14 @@
+/*
+ *  Text Selection
+ *    Various text selection tools.
+ *
+ *  Dependencies:
+ *    styles/tools/prefix.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/02/23
+ */
+%no-select {
+  @include t-prefix-property(user-select, none, webkit khtml moz ms spec);
+  -webkit-touch-callout: none; /* iOS Safari */
+}
