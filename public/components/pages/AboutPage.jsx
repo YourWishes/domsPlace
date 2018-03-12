@@ -44,6 +44,7 @@ class AboutPage extends React.Component {
         <Poly />
 
         <SplitSection
+          leftClass="c-page--style-about__profile-container"
           left={ <img src={domsHead} className="c-page--style-about__profile" /> }
 
           right={ <p>{Language.get("about.descriptions.welcome")}</p> }
@@ -88,6 +89,19 @@ class AboutPage extends React.Component {
             <ProgrammingBox language="NodeCG" />
             <ProgrammingBox language="PhoneGap" />
             <ProgrammingBox language="Other" />
+          </div>
+
+
+          <h2 className="c-page--style-about__subheading">
+            { Language.get("about.titles.other")}
+          </h2>
+          <p>{ Language.get("about.descriptions.other")}</p>
+          <div className="c-page--style-about__language-container">
+            <ProgrammingBox language="Video" />
+            <ProgrammingBox language="Animation" />
+            <ProgrammingBox language="Graphics" />
+            <ProgrammingBox language="Networking" />
+            <ProgrammingBox language="Software" />
           </div>
 
 

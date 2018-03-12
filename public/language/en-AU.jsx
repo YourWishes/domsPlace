@@ -5,17 +5,23 @@ module.exports = {
     "titles": {
       "me": "About Me",
       "programming": "Programming",
-      "apis": "APIs, Libraries, Tools and Platforms"
+      "apis": "APIs, Libraries, Tools and Platforms",
+      "other": "Other Skills"
     },
     "descriptions": {
-      "welcome": "Hello! My name is Dominic \"YourWishes\" Masters, and welcome to my little place on the web!",
+      "welcome": "Hello! My name is Dominic \"YourWishes\" Masters, and welcome " +
+        "to my little place on the web!",
+
       "me": "I am a 23 year old programmer from Sydney, Australia. I have " +
         "been programming , and generally working with computers and other " +
         "technology for as long as I can remember.",
 
       "programming": "Programming is my passion, and I continue to develop my " +
         "skillset every day. I am fluent in many computing technologies and "+
-        "languages. Below are just some of the languages I'm fluent in."
+        "languages. Below are just some of the languages I'm fluent in.",
+
+      "other": "Beyond programming I have other skills in Computing Systems and " +
+        "media."
     },
 
 
@@ -148,7 +154,47 @@ module.exports = {
         "SourceMod, Twitter Bootstrap, Bukkit, BTC Markets, ITCSS, BEM, " +
         "ionic, PHPBB, Xenforo, WebSockets, Twitter, Facebook, Instagram, " +
         "eBay, PayPal & more."
-    }
+    },
+
+
+    "Video": {
+      "name": "Video Creation",
+      "description": "I have basic video editing and creation skills using software " +
+        "such as Adobe Premiere, Sony Vegas and Adobe After Effects. For Audio " +
+        "editing and creating I use software such as Adobe Audition and Audacity. " +
+        "I have been working on videos professionally and as a hobby since 2006."
+    },
+
+    "Animation": {
+      "name": "Animation",
+      "description": "I have done some animation since the early 2000's, and " +
+        "was my passion before programming. I have been working with various " +
+        "animation tools and software such as Macromedia/Adobe Flash, Cinema4D, " +
+        "3DS MAX 9 and Source FilmMaker."
+    },
+
+    "Graphics": {
+      "name": "Graphics",
+      "description": "I have used various tools for Graphics design and editing " +
+        "for many years, too many to name, my most commonly used tools are " +
+        "Photoshop, Illustrator, Paint.NET."
+    },
+
+    "Networking": {
+      "name": "Networking",
+      "description": "I have skills in networking and subnetting using the IPv4 " +
+        "protocol. I also have extensive experience in setting up and managing " +
+        "servers and domain registrations. Other networking tools I'm familiar with " +
+        "include Active Directory, Windows Deployment Services, VNC and TeamViewer."
+    },
+
+    "Software": {
+      "name": "Software Support",
+      "description": "I have experience in software support and general IT support " +
+        "both professionally and as a hobby. Everything from fixing emails, printers, " +
+        "software installation, diagnosis and more. I have worked with all major Operating Systems."
+    },
+
   },
 
   "contact": {
