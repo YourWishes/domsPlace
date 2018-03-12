@@ -3,10 +3,15 @@
  *    Styles for page elements
  *
  *  Dependencies:
+ *    styles/settings/colors.scss - Used for colors
+ *    styles/tools/_gradients.scss - Used for background gradients.
  *
  *  Version:
  *    1.0.0 - 2018/02/24
  */
 .c-page {
   min-height: 100%;
+  @include t-flex-grow(1);
+  @include t-gradient-directional($s-color--background-bottom, $s-color--background-top, 45deg);
+  padding-bottom: 5em;
 }

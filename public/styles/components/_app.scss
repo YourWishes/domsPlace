@@ -17,4 +17,8 @@
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+
+  @extend %t-flexbox;
+  @include t-flex-wrap(wrap);
+  @include t-flex-flow(column);
 }
