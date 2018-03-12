@@ -1,0 +1,196 @@
+$windowBG: #C0C0C0;
+$highlight: #0000BF;
+$disabled: #808080;
+
+$w95Font: 'MS PGothic', Verdana, Arial, Helvetica, sans-serif;
+$imageScale: 1;
+
+@mixin border95($thickness) {
+  border: (3px * $thickness) solid black;
+  border-image-source: url('./../images/95/'+($thickness * $imageScale)+'x/95window.png');
+  border-image-slice: 3 * $thickness;
+}
+
+@mixin button95($thickness) {
+  border: (2px * $thickness) solid black;
+  border-image-source: url('./../images/95/'+($thickness * $imageScale)+'x/95button.png');
+  border-image-slice: 2 * $thickness;
+  display: inline-block;
+  color: black;
+  background-image: url('./../images/95/'+($thickness * $imageScale)+'x/95button_icons.png');
+  background-color: $windowBG;
+  background-position: 0px 0px;
+  background-size: 48px*$thickness 20px*$thickness;
+
+  &:active {
+    border-image-source: url('./../images/95/'+($thickness * $imageScale)+'x/95button_inverted.png');
+  }
+
+  &.disabled {
+    background-position-y: 10px*$thickness;
+    &:active {
+      border-image-source: url('./../images/95/'+($thickness * $imageScale)+'x/95button.png');
+    }
+  }
+}
+
+@mixin frame95($thickness) {
+  border: (2px * $thickness) solid black;
+  border-image-source: url('./../images/95/'+($thickness * $imageScale)+'x/95frame.png');
+  border-image-slice: 2 * $thickness;
+}
+
+@mixin window95($scale) {
+  @extend %no-select;
+  @include border95($scale);
+  background: $windowBG;
+  font-family: $w95Font;
+  font-size: 12px*$scale;
+  display: inline-block;
+
+  > .load_me_stuff {
+    position: fixed;
+    left: -1000vmax;
+    top: -1000vmax;
+    border-image-source: url('./../images/95/'+($scale * $imageScale)+'x/95button_inverted.png');
+  }
+
+  > .title {
+    width: 100%;
+    color: white;
+    background: #000080;
+    padding: 2px * $scale;
+    font-weight: bold;
+    margin-bottom: 1px * $scale;
+
+    > .icon {
+
+    }
+
+    > .buttons {
+      height: 100%;
+      float: right;
+      font-size: 0;
+
+      > .btn {
+        @include button95($scale);
+        width: 16px*$scale;
+        height: 14px*$scale;
+        font-size: 12px*$scale;
+
+        &.close {
+          margin-left: 2px*$scale;
+          background-position-x: 0px*$scale;
+        }
+
+        &.help {
+          background-position-x: 36px*$scale;
+        }
+
+        &.minimize {
+          background-position-x: 24px*$scale;
+        }
+
+        &.maximize {
+          background-position-x: 12px*$scale;
+        }
+      }
+    }
+  }
+
+  > .context-menu {
+    width: 100%;
+    overflow: visible;
+
+    > .btn {
+      padding: (1px*$scale) (5px*$scale);
+      border: 1px*$scale solid transparent;
+      display: inline-block;
+      position: relative;
+
+      &::first-letter {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        border-bottom-color: #868686;
+        border-right-color: #868686;
+        border-top-color: #FFFFFF;
+        border-left-color: #FFFFFF;
+      }
+
+      &.active {
+        border-right-color: #FFFFFF;
+        border-bottom-color: #FFFFFF;
+        border-top-color: #868686;
+        border-left-color: #868686;
+
+        > .menu {
+          display: block;
+        }
+      }
+
+      &.disabled {
+        color: $disabled;
+        &:hover,.active {
+          border-right-color: transparent;
+          border-bottom-color: transparent;
+          border-top-color: transparent;
+          border-left-color: transparent;
+        }
+      }
+
+      > .menu {
+        @include border95($scale);
+        border-top-width: 2px*$scale;
+        position: absolute;
+        display: none;
+        background: $windowBG;
+        left: -1px*$scale;
+        margin-top: 2px*$scale;
+        width: auto;
+
+        > .menu-option {
+          padding-left: 22px*$scale;
+          padding-right: 22px*$scale;
+          padding-bottom: 3px*$scale;
+          padding-top: 1px*$scale;
+          white-space: nowrap;
+
+          &:hover {
+            background: $highlight;
+            color: white;
+          }
+
+          &:first-child {font-weight: bold;}
+
+          &::first-letter {
+            text-decoration: underline;
+          }
+
+          &.disabled {
+            color: $disabled;
+            &:hover {background: inherit;color: $disabled;}
+          }
+        }
+      }
+    }
+  }
+
+  &.inactive {
+    > .title {
+      background-color: $disabled;
+    }
+  }
+
+  > .textarea {
+    @include frame95($scale);
+    background: white;
+    color: black;
+    cursor: text;
+  }
+}
+
+.window {
+  @include window95(2);
+}
