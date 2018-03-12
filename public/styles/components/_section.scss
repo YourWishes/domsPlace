@@ -13,6 +13,8 @@
   width: 100%;
   display: block;
   max-width: $s-layout--page-max;
+  z-index: 1;
+  position:relative;
 }
 
 .c-section--full-width {

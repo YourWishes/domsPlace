@@ -25,7 +25,7 @@ class TestAboutPage extends React.Component {
 
   render() {
     return (
-      <Page>
+      <Page className="c-page--style-about">
         About
       </Page>
     )

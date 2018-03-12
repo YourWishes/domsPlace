@@ -87,10 +87,10 @@ class Menu extends React.Component {
       for(var x = 0; x < sKeys.length; x++) {
         let sKey = sKeys[x];
         console.log(sKey);
-        menuItems.push(<MenuItem to={MenuItems[k][sKey]} onClick={this.closeMenu.bind(this)}>{Language.get(sKey)}</MenuItem>)
+        menuItems.push(<MenuItem to={MenuItems[k][sKey]} onClick={this.closeMenu.bind(this)} key={x+"-"+i}>{Language.get(sKey)}</MenuItem>)
       }
       menu.push(
-        <MenuGroup title={Language.get(k)}>
+        <MenuGroup title={Language.get(k)} key={i}>
           {menuItems}
         </MenuGroup>
       );
