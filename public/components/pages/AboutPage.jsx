@@ -12,11 +12,13 @@
 import React from 'react';
 
 import Page from './../Page';
-import Poly from './../sections/Poly';
+import BlankPromo from './../sections/BlankPromo';
 import BodySection from './../sections/BodySection';
 import SplitSection from './../sections/SplitSection';
 import { connect } from 'react-redux';
 import Language from './../../language/Language';
+
+import Window95 from './../w95/Window95';
 
 import domsHead from './../../images/profile.png';
 
@@ -40,8 +42,8 @@ class AboutPage extends React.Component {
 
   render() {
     return (
-      <Page>
-        <Poly />
+      <Page className="c-page--style-about">
+        <BlankPromo />
 
         <SplitSection
           leftClass="c-page--style-about__profile-container"
@@ -49,7 +51,25 @@ class AboutPage extends React.Component {
 
           right={ <p>{Language.get("about.descriptions.welcome")}</p> }
           rightClass="c-page--style-about__blurb"
+          full
         />
+
+
+        <SplitSection
+          leftClass="c-page--style-about__window-container"
+          left={
+            <Window95 menu={[]} title={Language.get("about.titles.me")} className="c-page--style-about__window">
+              <div className="c-text-field c-page--style-about__window-text">
+                { Language.get("about.descriptions.me") }
+              </div>
+            </Window95>
+          }
+
+          rightClass="c-page--style-about__window-container"
+          right={ <div></div> }
+          full
+        />
+
 
         <BodySection>
           <h1>{Language.get("about.titles.me")}</h1>

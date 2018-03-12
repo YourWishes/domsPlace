@@ -52,13 +52,13 @@ class Window95 extends Component {
       menu = <ContextMenu menu={this.state.menu} />;
     }
 
-    let clss = "window ";
+    let clss = "c-window ";
     if(this.props.className) clss += this.props.className;
 
     return (
       <div className={clss}>
         <div className="load_me_stuff"></div>
-        <div className="title">
+        <div className="c-title-bar">
           {this.state.title}
           <div className="buttons">
             {btns}

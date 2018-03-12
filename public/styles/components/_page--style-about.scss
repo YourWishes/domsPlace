@@ -30,6 +30,24 @@
   max-width: 25em;
 }
 
+.c-page--style-about__blurb,
+.c-page--style-about__profile-container {
+  text-align: center;
+}
+
+
+.c-page--style-about__window {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+.c-page--style-about__window-text {
+  width: 100%;
+  resize: none;
+}
+
+
+/*
 .c-page--style-about__language-container {
   @extend %t-flexbox;
   @include t-flex-wrap(wrap);
@@ -48,9 +66,16 @@
 .c-page--style-about__subheading {
   margin-top: 4em;
 }
-
+*/
 @include t-media-query($s-small-up) {
-  .c-page--style-about__language {
+  .c-page--style-about__window-container {
     width: 50%;
   }
+  .c-page--style-about__window {
+    width: 50%;
+  }
+
+  /*.c-page--style-about__language {
+    width: 50%;
+  }*/
 }

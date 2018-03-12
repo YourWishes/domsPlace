@@ -1,0 +1,52 @@
+@mixin border95($thickness) {
+  border: (3px * $thickness) solid black;
+  border-image-source: url('./../images/95/'+($thickness * $w95ImageScale)+'x/95window.png');
+  border-image-slice: 3 * $thickness;
+}
+
+
+@mixin button95($thickness) {
+  border: (2px * $thickness) solid black;
+  border-image-source: url('./../images/95/'+($thickness * $w95ImageScale)+'x/95button.png');
+  border-image-slice: 2 * $thickness;
+  display: inline-block;
+  color: black;
+  background-image: url('./../images/95/'+($thickness * $w95ImageScale)+'x/95button_icons.png');
+  background-color: $w95WindowBG;
+  background-position: 0px 0px;
+  background-size: 48px*$thickness 20px*$thickness;
+
+  &:active {
+    border-image-source: url('./../images/95/'+($thickness * $w95ImageScale)+'x/95button_inverted.png');
+  }
+
+  &.disabled {
+    background-position-y: 10px*$thickness;
+    &:active {
+      border-image-source: url('./../images/95/'+($thickness * $w95ImageScale)+'x/95button.png');
+    }
+  }
+}
+
+@mixin frame95($thickness) {
+  border: (2px * $thickness) solid black;
+  border-image-source: url('./../images/95/'+($thickness * $w95ImageScale)+'x/95frame.png');
+  border-image-slice: 2 * $thickness;
+}
+
+
+@mixin window95($scale) {
+  @extend %no-select;
+  @include border95($scale);
+
+  background: $w95WindowBG;
+  font-family: $w95Font;
+  font-size: 12px*$scale;
+  display: inline-block;
+
+  &.inactive {
+    > .title {
+      background-color: $w95Disabled;
+    }
+  }
+}

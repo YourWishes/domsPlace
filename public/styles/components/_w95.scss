@@ -1,4 +1,11 @@
-$windowBG: #C0C0C0;
+@import './w95/settings.scss';
+@import './w95/_mixins.scss';
+
+@import './w95/_window.scss';
+@import './w95/_title-bar.scss';
+@import './w95/_text-field.scss';
+
+/*$windowBG: #C0C0C0;
 $highlight: #0000BF;
 $disabled: #808080;
 
@@ -194,3 +201,4 @@ $imageScale: 1;
 .window {
   @include window95(2);
 }
+*/
