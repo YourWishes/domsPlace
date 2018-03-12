@@ -13,17 +13,12 @@
 $c-footer--text-color: $s-color--text;
 $c-footer--background-color: $s-color--background-default;
 
-.c-footer__ghost {
-  min-height: 3em;
-}
 
 .c-footer {
   width: 100%;
   background: $c-footer--background-color;
   @extend %t-flexbox;
   @include t-flex-wrap(wrap);
-  position: absolute;
-  bottom: 0;
 }
 
 .c-footer__copyright {

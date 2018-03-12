@@ -31,19 +31,15 @@ class Footer extends React.Component {
   render() {
     let year = new Date().getFullYear();
     return (
-      <div className="c-footer__container">
-        <div className="c-footer__ghost"></div>
+      <footer className="c-footer">
+        <span className="c-footer__copyright">
+          2012 ~ {year} | Dominic Masters.
+        </span>
 
-        <footer className="c-footer">
-          <span className="c-footer__copyright">
-            2012 ~ {year} | Dominic Masters.
-          </span>
-
-          <nav className="c-footer__links">
-            <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
-          </nav>
-        </footer>
-      </div>
+        <nav className="c-footer__links">
+          <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
+        </nav>
+      </footer>
     )
   }
 }
