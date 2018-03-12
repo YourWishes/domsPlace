@@ -32,8 +32,10 @@
 @import './elements/_a.scss';
 @import './elements/_body.scss';
 @import './elements/_button.scss';
+@import './elements/_dt.scss';
 @import './elements/_headings.scss';
 @import './elements/_html.scss';
+@import './elements/_p.scss';
 @import './elements/_table.scss';
 
 //Objects
@@ -47,11 +49,14 @@
 @import './components/_menu.scss';
 @import './components/_navbar.scss';
 @import './components/_page.scss';
+@import './components/_page--style-about.scss';
 @import './components/_page--style-contact.scss';
+@import './components/_page--style-index.scss';
 @import './components/_section.scss';
 @import './components/_section--style-blank-promo.scss';
 @import './components/_section--style-body.scss';
 @import './components/_section--style-poly.scss';
+@import './components/_section--style-split.scss';
 @import './components/_section--style-three.scss';
 
 //Utilities

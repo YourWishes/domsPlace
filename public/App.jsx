@@ -16,6 +16,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import IndexPage from './components/pages/IndexPage';
+import AboutPage from './components/pages/AboutPage';
 import ContactPage from './components/pages/ContactPage';
 
 class App extends React.Component {
@@ -31,7 +32,8 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path="/" component={IndexPage} />
-              <Route path="/contact" component={ContactPage} />
+              <Route exact path="/about" component={AboutPage} />
+              <Route exact path="/contact" component={ContactPage} />
             </Switch>
 
             <Footer />

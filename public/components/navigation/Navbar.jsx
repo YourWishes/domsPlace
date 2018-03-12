@@ -38,6 +38,7 @@ class Navbar extends React.Component {
 
         <div className="c-navbar__links">
           <NavbarLink exact to="/">Home</NavbarLink>
+          <NavbarLink to="/about">About</NavbarLink>
           <NavbarLink to="/contact">Contact</NavbarLink>
         </div>
       </nav>

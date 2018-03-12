@@ -1,0 +1,34 @@
+/*
+ *  Section Style Split
+ *    Styles for split style section
+ *
+ *  Dependencies:
+ *    styles/settings/responsive.scss
+ *    styles/tools/_repsonsive.scss
+ *    styles/tools/_flex.scss
+ *    styles/components/_section.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/03/11
+ */
+.c-section--style-split {
+  @include t-flexbox();//Because we're winning a fight
+  @include t-flex-wrap(wrap);
+}
+
+.c-section--style-split__split-part {
+  width: 100%;
+}
+
+
+@include t-media-query($s-small-up) {
+  .c-section--style-split {
+    @include t-flex-wrap(nowrap);
+    @include t-justify-content(space-around);
+    @include t-align-items(center);
+  }
+
+  .c-section--style-split__split-part {
+    width: auto;
+  }
+}

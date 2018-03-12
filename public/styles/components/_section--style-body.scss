@@ -10,15 +10,17 @@
  *  Version:
  *    1.0.0 - 2018/02/28
  */
-.c-section--style-body {
+.c-section--style-body__inner {
   background: $s-color--background-default;
   padding: 1em;
 }
 
 @include t-media-query($s-small-up) {
   .c-section--style-body {
-    margin-left: 4%;
-    width: 96%;
+    padding-left: 4%;
+  }
+
+  .c-section--style-body__inner {
     @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
   }
 }
