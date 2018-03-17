@@ -19,7 +19,7 @@ class BodySection extends React.Component {
 
   render() {
     return (
-      <Section section="body">
+      <Section section="body" className={this.props.className}>
         <div className="c-section--style-body__inner">
           {this.props.children}
         </div>
