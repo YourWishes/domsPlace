@@ -59,7 +59,7 @@ class ContextMenu extends Component {
     }
 
     return (
-      <div className="context-menu">
+      <div className="c-context-menu">
         {contextButtons}
       </div>
     );

@@ -52,7 +52,7 @@ class ContextButton extends Component {
   }
 
   render() {
-    let cls = "btn";
+    let cls = "c-context-menu__btn";
 
     let options = [];
     if(this.props.data === "disabled") {
@@ -70,7 +70,7 @@ class ContextButton extends Component {
     let menu = <div></div>;
     if(options.length > 0) {
       menu = (
-        <div className="menu">
+        <div className="c-context-menu__menu">
           {options}
         </div>
       );

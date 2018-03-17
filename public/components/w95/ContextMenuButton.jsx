@@ -30,7 +30,7 @@ class ContextMenuButton extends Component {
   isDisabled() {return this.props.data === "disabled";}
 
   render() {
-    let cls = "menu-option";
+    let cls = "c-context-menu__menu-option";
 
     if(this.isDisabled()) cls += " disabled";
 
