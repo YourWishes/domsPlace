@@ -17,12 +17,14 @@ class Section extends React.Component {
   }
 
   render() {
-    let style = (this.props.section ?  "c-section--style-"+this.props.section : "");
-    let fullWidth = this.props.full ? "c-section--full-width" : "";
-    console.log(this.props);
+    let clazz = "c-section";
+
+    if(this.props.section) clazz += " c-section--style-"+this.props.section;
+    if(this.props.full) clazz += " c-section--full-width";
+    if(this.props.className) clazz += " " + this.props.className;
 
     return (
-      <section className={"c-section " + style + " " + fullWidth }>
+      <section className={ clazz }>
         { this.props.children }
       </section>
     )
