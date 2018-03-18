@@ -10,13 +10,28 @@
  *  Version:
  *    1.0.0 - 2018/03/11
  */
+
+//Body Section Margin
+.c-about-page__body-section {
+  margin-bottom: 3em;
+}
+
+//About Section
+.c-page--style-about__bio-section {
+  margin-bottom: 5em;
+}
+
 .c-page--style-about {
-  background: url('./../images/dotted_bg_yellow.png');
-  background-size: 16px 16px;
 }
 
 .c-page--style-about__profile-container {
-  margin-bottom: 5em;
+}
+
+.c-window--style-about {
+  max-width: 25em;
+  margin: 0 auto;
+  display: block;
+  width: 90%;
 }
 
 .c-page--style-about__profile {
@@ -27,15 +42,13 @@
 
 .c-page--style-about__blurb {
   font-size: 1.25em;
-  max-width: 25em;
 }
 
-.c-page--style-about__blurb,
 .c-page--style-about__profile-container {
   text-align: center;
 }
 
-
+//Window adjustments for about section
 .c-page--style-about__window {
   display: block;
   width: 90%;
@@ -46,36 +59,15 @@
   resize: none;
 }
 
-
-/*
-.c-page--style-about__language-container {
-  @extend %t-flexbox;
-  @include t-flex-wrap(wrap);
-}
-
-.c-page--style-about__language {
-  width: 100%;
-  padding: 1em;
-}
-
-.c-page--style-about__language-heading,
-.c-page--style-about__language-description {
-  text-align: center;
-}
-
-.c-page--style-about__subheading {
-  margin-top: 4em;
-}
-*/
+//Media queries
 @include t-media-query($s-small-up) {
+  .c-page--style-about__blurb {
+  }
+
   .c-page--style-about__window-container {
     width: 50%;
   }
   .c-page--style-about__window {
     width: 50%;
   }
-
-  /*.c-page--style-about__language {
-    width: 50%;
-  }*/
 }

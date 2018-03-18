@@ -6,34 +6,26 @@
  *    styles/components/_page--style-about.scss
  *
  *  Version:
- *    1.0.0 - 2018/03/11
+ *    1.0.0 - 2018/03/18
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+
+import Language from './../../language/Language';
 
 import Page from './../Page';
 import BlankPromo from './../sections/BlankPromo';
 import BodySection from './../sections/BodySection';
 import SplitSection from './../sections/SplitSection';
-import { connect } from 'react-redux';
-import Language from './../../language/Language';
-
+import VideoTitle from './../title/VideoTitle';
 import Window95 from './../w95/Window95';
 
 import domsHead from './../../images/profile.png';
-
-const ProgrammingBox = function(props) {
-  return (
-    <div className="c-page--style-about__language">
-      <h2 className="c-page--style-about__language-heading">
-        {Language.get("about."+props.language+".name")}
-      </h2>
-      <p className="c-page--style-about__language-description">
-        {Language.get("about."+props.language+".description")}
-      </p>
-    </div>
-  )
-}
+import aboutMP4 from './../../videos/about/about.mp4';
+import programmingMP4 from './../../videos/about/programming.mp4';
+import apiMP4 from './../../videos/about/api.mp4';
+import otherMP4 from './../../videos/about/other.mp4';
 
 class AboutPage extends React.Component {
   constructor(props) {
@@ -45,89 +37,43 @@ class AboutPage extends React.Component {
       <Page className="c-page--style-about">
         <BlankPromo />
 
+        {/* Bio */}
         <SplitSection
+          className="c-page--style-about__bio-section"
+
           leftClass="c-page--style-about__profile-container"
           left={ <img src={domsHead} className="c-page--style-about__profile" /> }
 
-          right={ <p>{Language.get("about.descriptions.welcome")}</p> }
-          rightClass="c-page--style-about__blurb"
-          full
-        />
-
-
-        <SplitSection
-          leftClass="c-page--style-about__window-container"
-          left={
-            <Window95 menu={[]} title={Language.get("about.titles.me")} className="c-page--style-about__window">
-              <div className="c-text-field c-page--style-about__window-text">
-                { Language.get("about.descriptions.me") }
+          right={
+            <Window95 title="Bio" className="c-window--style-about">
+              <div className="c-text-field">
+                <p>{ Language.get("about.descriptions.welcome") }</p>
               </div>
             </Window95>
           }
-
-          rightClass="c-page--style-about__window-container"
-          right={ <div></div> }
-          full
+          rightClass="c-page--style-about__blurb"
         />
 
-
-        <BodySection>
-          <h1>{Language.get("about.titles.me")}</h1>
-          <p>
-            { Language.get("about.descriptions.me") }
-          </p>
-
-          <h2 className="c-page--style-about__subheading">
-            { Language.get("about.titles.programming")}
-          </h2>
-          <p>{ Language.get("about.descriptions.programming")}</p>
-
-          <div className="c-page--style-about__language-container">
-            <ProgrammingBox language="C#" />
-            <ProgrammingBox language="Java" />
-            <ProgrammingBox language="Javascript" />
-            <ProgrammingBox language="HTML" />
-            <ProgrammingBox language="PHP" />
-            <ProgrammingBox language="VB" />
-            <ProgrammingBox language="SQL" />
-            <ProgrammingBox language="Lua" />
-            <ProgrammingBox language="ActionScript" />
-            <ProgrammingBox language="Ruby" />
-            <ProgrammingBox language="Python" />
-          </div>
-
-          <h2 className="c-page--style-about__subheading">
-            { Language.get("about.titles.apis")}
-          </h2>
-          <div className="c-page--style-about__language-container">
-            <ProgrammingBox language="GL" />
-            <ProgrammingBox language="Node" />
-            <ProgrammingBox language="React" />
-            <ProgrammingBox language="Shopify" />
-            <ProgrammingBox language="neto" />
-            <ProgrammingBox language="jQuery" />
-            <ProgrammingBox language="NodeCG" />
-            <ProgrammingBox language="PhoneGap" />
-            <ProgrammingBox language="Other" />
-          </div>
-
-
-          <h2 className="c-page--style-about__subheading">
-            { Language.get("about.titles.other")}
-          </h2>
-          <p>{ Language.get("about.descriptions.other")}</p>
-          <div className="c-page--style-about__language-container">
-            <ProgrammingBox language="Video" />
-            <ProgrammingBox language="Animation" />
-            <ProgrammingBox language="Graphics" />
-            <ProgrammingBox language="Networking" />
-            <ProgrammingBox language="Software" />
-          </div>
-
-
+        {/* About Me */}
+        <BodySection
+          className="c-about-page__body-section"
+          title={
+            <VideoTitle
+              title="about.titles.me" mp4={aboutMP4}
+            />
+          }
+        >
+          { Language.get("about.descriptions.me") }
         </BodySection>
+
+        {/*  Programming */}
+        <BodySection className="c-about-page__body-section" title={[
+          <VideoTitle title="about.titles.programming" mp4={programmingMP4} to="/about/programming" />,
+          <VideoTitle title="about.titles.apis" mp4={apiMP4} />,
+          <VideoTitle title="about.titles.other" mp4={otherMP4} />
+        ]}></BodySection>
       </Page>
-    )
+    );
   }
 }
 
