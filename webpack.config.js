@@ -41,7 +41,7 @@ module.exports = {
       },
 
       {
-        test: /\.jpe?g$|\.gif$|\.png$|\.svg$/i,
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg|\.webm|\.mp4$/i,
         loader: "file-loader?name=[path][name].[ext]"
       },
 
