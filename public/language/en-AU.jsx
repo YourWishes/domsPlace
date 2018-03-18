@@ -44,6 +44,8 @@ module.exports = {
         "skillset every day. I am fluent in many computing technologies and "+
         "languages. Below are just some of the languages I'm fluent in.",
 
+      "apis": " ",
+
       "other": "Beyond programming I have other skills in Computing Systems and " +
         "media."
     },

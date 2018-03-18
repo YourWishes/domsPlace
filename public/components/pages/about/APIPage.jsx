@@ -1,5 +1,5 @@
 /*
- *  Programming Page
+ *  API Page
  *    About that one lad.
  *
  *  Dependencies:
@@ -18,39 +18,37 @@ import BodySection from './../../sections/BodySection';
 import VideoTitle from './../../title/VideoTitle';
 import SkillBox from './SkillBox';
 
-import programmingMP4 from './../../../videos/about/programming.mp4';
+import apiMP4 from './../../../videos/about/api.mp4';
 
-class ProgrammingPage extends React.Component {
+class APIPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <Page className="c-page--style-programming">
+      <Page className="c-page--style-api-skills">
         <BlankPromo />
 
         <BodySection
           title={
             <VideoTitle
-              title="about.titles.programming" mp4={programmingMP4}
+              title="about.titles.apis" mp4={apiMP4}
             />
           }
         >
-          <p>{ Language.get("about.descriptions.programming") }</p>
+          <p>{ Language.get("about.descriptions.apis") }</p>
 
           <div className="o-skill-box__container">
-            <SkillBox language="csharp" />
-            <SkillBox language="java" />
-            <SkillBox language="javascript" />
-            <SkillBox language="html" />
-            <SkillBox language="php" />
-            <SkillBox language="vb" />
-            <SkillBox language="sql" />
-            <SkillBox language="lua" />
-            <SkillBox language="actionscript" />
-            <SkillBox language="ruby" />
-            <SkillBox language="python" />
+            <SkillBox language="gl" />
+            <SkillBox language="node" />
+            <SkillBox language="react" />
+            <SkillBox language="shopify" />
+            <SkillBox language="neto" />
+            <SkillBox language="jquery" />
+            <SkillBox language="nodecg" />
+            <SkillBox language="phonegap" />
+            <SkillBox language="other" />
           </div>
         </BodySection>
       </Page>
@@ -63,4 +61,4 @@ const mapStateToProps = function(state) {
     code: state.language.code
   }
 }
-export default connect(mapStateToProps)(ProgrammingPage);
+export default connect(mapStateToProps)(APIPage);

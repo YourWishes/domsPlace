@@ -20,6 +20,8 @@ import IndexPage from './components/pages/IndexPage';
 
 import AboutPage from './components/pages/AboutPage';
 import ProgrammingPage from './components/pages/about/ProgrammingPage';
+import APIPage from './components/pages/about/APIPage';
+import OtherSkillsPage from './components/pages/about/OtherSkillsPage';
 
 import PrivacyPolicyPage from './components/pages/PrivacyPolicyPage';
 
@@ -42,6 +44,8 @@ class App extends React.Component {
 
               <Route exact path="/about" component={AboutPage} />
               <Route exact path="/about/programming" component={ProgrammingPage} />
+              <Route exact path="/about/api" component={APIPage} />
+              <Route exact path="/about/other" component={OtherSkillsPage} />
 
               <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
               <Route exact path="/privacy" component={PrivacyPolicyPage} />

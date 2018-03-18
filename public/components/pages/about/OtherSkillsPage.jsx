@@ -1,5 +1,5 @@
 /*
- *  Programming Page
+ *  Other Skills Page
  *    About that one lad.
  *
  *  Dependencies:
@@ -18,39 +18,33 @@ import BodySection from './../../sections/BodySection';
 import VideoTitle from './../../title/VideoTitle';
 import SkillBox from './SkillBox';
 
-import programmingMP4 from './../../../videos/about/programming.mp4';
+import otherMP4 from './../../../videos/about/other.mp4';
 
-class ProgrammingPage extends React.Component {
+class OtherSkillsPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <Page className="c-page--style-programming">
+      <Page className="c-page--style-other-skills">
         <BlankPromo />
 
         <BodySection
           title={
             <VideoTitle
-              title="about.titles.programming" mp4={programmingMP4}
+              title="about.titles.other" mp4={otherMP4}
             />
           }
         >
-          <p>{ Language.get("about.descriptions.programming") }</p>
+          <p>{ Language.get("about.descriptions.other") }</p>
 
           <div className="o-skill-box__container">
-            <SkillBox language="csharp" />
-            <SkillBox language="java" />
-            <SkillBox language="javascript" />
-            <SkillBox language="html" />
-            <SkillBox language="php" />
-            <SkillBox language="vb" />
-            <SkillBox language="sql" />
-            <SkillBox language="lua" />
-            <SkillBox language="actionscript" />
-            <SkillBox language="ruby" />
-            <SkillBox language="python" />
+            <SkillBox language="video" />
+            <SkillBox language="animation" />
+            <SkillBox language="graphics" />
+            <SkillBox language="networking" />
+            <SkillBox language="software" />
           </div>
         </BodySection>
       </Page>
@@ -63,4 +57,4 @@ const mapStateToProps = function(state) {
     code: state.language.code
   }
 }
-export default connect(mapStateToProps)(ProgrammingPage);
+export default connect(mapStateToProps)(OtherSkillsPage);

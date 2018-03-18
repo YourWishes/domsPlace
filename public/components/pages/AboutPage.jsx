@@ -69,8 +69,8 @@ class AboutPage extends React.Component {
         {/*  Programming */}
         <BodySection className="c-about-page__body-section" title={[
           <VideoTitle title="about.titles.programming" mp4={programmingMP4} to="/about/programming" />,
-          <VideoTitle title="about.titles.apis" mp4={apiMP4} />,
-          <VideoTitle title="about.titles.other" mp4={otherMP4} />
+          <VideoTitle title="about.titles.apis" mp4={apiMP4} to="/about/api" />,
+          <VideoTitle title="about.titles.other" mp4={otherMP4} to="/about/other" />
         ]}></BodySection>
       </Page>
     );
