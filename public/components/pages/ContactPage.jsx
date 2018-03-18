@@ -31,11 +31,12 @@ class ContactPage extends React.Component {
         <PhoneSection />
         <BodySection>
           <h1>{Language.get("contact.form.title")}</h1>
+          <p>
+            {Language.get("contact.form.info")}
+          </p>
           <div className="c-page--style-container__split">
-            <p className="c-page--style-container__split-part">
-              {Language.get("contact.form.info")}
-            </p>
             <ContactForm className="c-page--style-container__split-part" />
+            <div className="c-page--style-container__split-part"></div>
           </div>
         </BodySection>
       </Page>

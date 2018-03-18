@@ -20,6 +20,9 @@ import Language from './../../language/Language';
 const MenuItems = {
   "navbar.contact.title": {
     "navbar.contact.about": "/about",
+    "navbar.contact.programming": "/about/programming",
+    "navbar.contact.api": "/about/api",
+    "navbar.contact.other": "/about/other",
     "navbar.contact.contact": "/contact"
   },
   "navbar.legal.title": {

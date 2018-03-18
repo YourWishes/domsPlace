@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import Language from './../../language/Language';
 
 import Page from './../Page';
-import BlankPromo from './../sections/BlankPromo';
+import Poly from './../sections/Poly';
 import BodySection from './../sections/BodySection';
 import SplitSection from './../sections/SplitSection';
 import VideoTitle from './../title/VideoTitle';
@@ -35,7 +35,7 @@ class AboutPage extends React.Component {
   render() {
     return (
       <Page className="c-page--style-about">
-        <BlankPromo />
+        <Poly />
 
         {/* Bio */}
         <SplitSection

@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import Language from './../../../language/Language';
 
 import Page from './../../Page';
-import BlankPromo from './../../sections/BlankPromo';
+import Poly from './../../sections/Poly';
 import BodySection from './../../sections/BodySection';
 import VideoTitle from './../../title/VideoTitle';
 import SkillBox from './SkillBox';
@@ -28,7 +28,7 @@ class ProgrammingPage extends React.Component {
   render() {
     return (
       <Page className="c-page--style-programming">
-        <BlankPromo />
+        <Poly />
 
         <BodySection
           title={

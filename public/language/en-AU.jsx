@@ -5,6 +5,9 @@ module.exports = {
     "contact": {
       "title": "Get in Touch",
       "about": "About Me",
+      "programming": "Programming Skills",
+      "api": "APIs & Tools Skills",
+      "other": "Other Skills",
       "contact": "Contact Me"
     },
     "legal": {
@@ -34,7 +37,15 @@ module.exports = {
             </p>
 
             <p>
-              Lorem
+              Some of my interests include; Programming, System Administration,
+              Hardware Repair, Disco Music, Video Games, Livestreaming, Video
+              Creation and editing, Voice Acting, Anime, Manga, Learning
+              Japanese and more!
+            </p>
+
+            <p>
+              Click one of the below headings to find out more about my
+              skillsets.
             </p>
           </div>
         );
@@ -47,7 +58,9 @@ module.exports = {
       "apis": " ",
 
       "other": "Beyond programming I have other skills in Computing Systems and " +
-        "media."
+        "media. Most of these skills are just hobbies but I have used them from " +
+        "time to time in my daily work. The skills can also often transfer to " +
+        "programming."
     },
 
 
