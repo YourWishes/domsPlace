@@ -18,13 +18,21 @@ class BodySection extends React.Component {
   }
 
   render() {
+    let children;
+
+    if(this.props.children) {
+      children = (
+        <div className="c-body-section__wrapper">
+          {this.props.children}
+        </div>
+      );
+    }
+
     return (
       <Section section="body" className={this.props.className}>
         <div className="c-section--style-body__inner">
           { this.props.title }
-          <div className="c-body-section__wrapper">
-            {this.props.children}
-          </div>
+          { children }
         </div>
       </Section>
     )
