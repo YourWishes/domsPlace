@@ -24,9 +24,21 @@ module.exports = {
       "welcome": "Hello! My name is Dominic \"YourWishes\" Masters, and welcome " +
         "to my little place on the web!",
 
-      "me": "I am a 23 year old programmer from Sydney, Australia. I have " +
-        "been programming , and generally working with computers and other " +
-        "technology for as long as I can remember.",
+      "me": function() {
+        return (
+          <div>
+            <p>
+              I am a 23 year old programmer from Sydney, Australia. I have
+              been programming, and generally working with computers and other
+              technology for as long as I can remember.
+            </p>
+
+            <p>
+              Lorem
+            </p>
+          </div>
+        );
+      },
 
       "programming": "Programming is my passion, and I continue to develop my " +
         "skillset every day. I am fluent in many computing technologies and "+
@@ -37,68 +49,68 @@ module.exports = {
     },
 
 
-    "C#": {
+    "csharp": {
       "name": "C#",
       "description": "I have been working with C# since late 2012, starting " +
         "with libraries like XNA and .NET."
     },
 
-    "Java": {
+    "java": {
       "name": "Java",
       "description": "I have been using Java since late 2011 as an introduction " +
         "into OOP and Desktop Software writing."
     },
 
-    "Javascript": {
+    "javascript": {
       "name": "Javascript",
       "description": "I have been using Javascript for various projects since " +
         "around 2009."
     },
 
-    "HTML": {
+    "html": {
       "name": "HTML/CSS",
       "description": "I have been using and playing with HTML for websites since " +
         "around 2006 as one of my first steps into programming."
     },
 
-    "PHP": {
+    "php": {
       "name": "PHP",
       "description": "I have been using PHP as a server language since 2011, " +
         "although lately I tend to favour libraries such as node for this."
     },
 
-    "VB": {
+    "vb": {
       "name": "VB",
       "description": "While an underappreciated language I have used VB for " +
         "university projects and system scripting since 2010."
     },
 
-    "SQL": {
+    "sql": {
       "name": "SQL",
       "description": "I have used SQL Servers for various projects since 2011 " +
         "mostly with MySQL or PGSQL."
     },
 
-    "Lua": {
+    "lua": {
       "name": "Lua",
       "description": "While rarely used anymore I have used Lua for scripting " +
         "and game development since late 2009."
     },
 
-    "ActionScript": {
+    "actionscript": {
       "name": "ActionScript",
       "description": "My first taste of programming, I have been using ActionScript " +
         "in all it's flavours since early 2005, starting with some Flash Animations and " +
         "developing into game programming."
     },
 
-    "Ruby": {
+    "ruby": {
       "name": "Ruby",
       "description": "Not one of my strongest languages, I have used Ruby for "+
         "Shopify, an eCommerce platform since 2017."
     },
 
-    "Python": {
+    "python": {
       "name": "Python",
       "description": "Another language I'm not super fluent in, however I have "+
         "used it for scripts and for personal projects since 2015."
@@ -106,27 +118,27 @@ module.exports = {
 
 
 
-    "GL": {
+    "gl": {
       "name": "GL",
       "description": "I have been working with various Graphics Libaries, incuding "+
         "OpenGL, LWJGL, JOGL, XNA, MonoGame, Unity C#, WebGL and Playstation " +
         "Mobile SDK in various forms since early 2009."
     },
 
-    "Node": {
+    "node": {
       "name": "Node",
       "description": "I write software, servers and scripts in Node, it is " +
         "becoming my most used platform to develop for. I have been using Node " +
         " since early 2014."
     },
 
-    "React": {
+    "react": {
       "name": "React & Redux",
       "description": "Since 2015 I have been writing apps using the React, " +
         "Redux and JSX frameworks."
     },
 
-    "Shopify": {
+    "shopify": {
       "name": "Shopify",
       "description": "I have been working with Shopify as part of my daily job " +
         "since October of 2017. Utilizing Shopify's Liquid Markup, as well as " +
@@ -139,26 +151,26 @@ module.exports = {
         "2015, as well as their b@se templating language."
     },
 
-    "jQuery": {
+    "jquery": {
       "name": "jQuery",
       "description": "Many websites I have developed have utilized the jQuery " +
         "library, since late 2009. Despite is fading popularity I still use it " +
         "from time to time, however tend to drop it in favour of native JS."
     },
 
-    "NodeCG": {
+    "nodecg": {
       "name": "NodeCG",
       "description": "Being an avid content creator for livestreams and videos, " +
         "I have extensive experince with the NodeCG Stream Graphics Library."
     },
 
-    "PhoneGap": {
+    "phonegap": {
       "name": "PhoneGap/Cordova",
       "description": "I have written ReactJS apps for mobile devices using Adobe's " +
         "PhoneGap tools built ontop of Apache's Cordova software."
     },
 
-    "Other": {
+    "other": {
       "name": "Other Tools",
       "description": "SCSS, LESS, JOGL, Webpack, Express, Babel, Grunt, JSON, " +
         "XML, YML, Typescript, ECMAScript, FFMPEG, Google API, Heroku, YouTube, " +
@@ -169,7 +181,7 @@ module.exports = {
     },
 
 
-    "Video": {
+    "video": {
       "name": "Video Creation",
       "description": "I have basic video editing and creation skills using software " +
         "such as Adobe Premiere, Sony Vegas and Adobe After Effects. For Audio " +
@@ -177,7 +189,7 @@ module.exports = {
         "I have been working on videos professionally and as a hobby since 2006."
     },
 
-    "Animation": {
+    "animation": {
       "name": "Animation",
       "description": "I have done some animation since the early 2000's, and " +
         "was my passion before programming. I have been working with various " +
@@ -185,14 +197,14 @@ module.exports = {
         "3DS MAX 9 and Source FilmMaker."
     },
 
-    "Graphics": {
+    "graphics": {
       "name": "Graphics",
       "description": "I have used various tools for Graphics design and editing " +
         "for many years, too many to name, my most commonly used tools are " +
         "Photoshop, Illustrator, Paint.NET."
     },
 
-    "Networking": {
+    "networking": {
       "name": "Networking",
       "description": "I have skills in networking and subnetting using the IPv4 " +
         "protocol. I also have extensive experience in setting up and managing " +
@@ -200,7 +212,7 @@ module.exports = {
         "include Active Directory, Windows Deployment Services, VNC and TeamViewer."
     },
 
-    "Software": {
+    "software": {
       "name": "Software Support",
       "description": "I have experience in software support and general IT support " +
         "both professionally and as a hobby. Everything from fixing emails, printers, " +
@@ -287,7 +299,7 @@ module.exports = {
   "contact": {
     "form": {
       "title": "Contact",
-      "info": "Want to contact me and other lorem ipsum dolor sit amet.",
+      "info": "Want to get in touch? Fill out this form and I should respond within a few days at most.",
       "name": {
         "label": "Name",
         "placeholder": "Enter your name."
@@ -304,5 +316,5 @@ module.exports = {
     }
   },
 
-  
+
 }
