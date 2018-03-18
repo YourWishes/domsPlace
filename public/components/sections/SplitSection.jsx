@@ -31,7 +31,7 @@ class SplitSection extends React.Component {
   render() {
 
     return (
-      <Section section="split" full={this.props.full ? true : false}>
+      <Section section="split" full={this.props.full ? true : false} className={this.props.className}>
         <SplitSectionSection className={this.props.leftClass}>
           {this.props.left}
         </SplitSectionSection>
