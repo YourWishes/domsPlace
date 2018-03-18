@@ -42,7 +42,7 @@ class Window95 extends Component {
       let key = btnKeys[i];
       var b = this.state.buttons[key];
       if(b === false) continue;
-      let cls = "btn " + btnKeys[i];
+      let cls = "c-window-btn " + btnKeys[i];
       if(b !== true && b !== false) cls += " " + b;
       btns.push(<div className={cls} key={i}></div>);
     }
@@ -52,15 +52,15 @@ class Window95 extends Component {
       menu = <ContextMenu menu={this.state.menu} />;
     }
 
-    let clss = "c-window ";
-    if(this.props.className) clss += this.props.className;
+    let clss = "c-window";
+    if(this.props.className) clss += " " + this.props.className;
 
     return (
       <div className={clss}>
         <div className="load_me_stuff"></div>
         <div className="c-title-bar">
           {this.state.title}
-          <div className="buttons">
+          <div className="c-window-buttons">
             {btns}
           </div>
         </div>
