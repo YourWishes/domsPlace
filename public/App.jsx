@@ -15,11 +15,17 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+//Pages
 import IndexPage from './components/pages/IndexPage';
+
 import AboutPage from './components/pages/AboutPage';
+import ProgrammingPage from './components/pages/about/ProgrammingPage';
+
 import PrivacyPolicyPage from './components/pages/PrivacyPolicyPage';
+
 import ContactPage from './components/pages/ContactPage';
 
+//App
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +39,9 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path="/" component={IndexPage} />
+
               <Route exact path="/about" component={AboutPage} />
+              <Route exact path="/about/programming" component={ProgrammingPage} />
 
               <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
               <Route exact path="/privacy" component={PrivacyPolicyPage} />
