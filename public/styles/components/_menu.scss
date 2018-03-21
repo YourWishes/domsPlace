@@ -90,6 +90,7 @@ body.is-menu-open {
 
 .c-menu__item {
   display: block;
+  padding: 0.25em 0;
 }
 
 @include t-media-query($s-xsmall-up) {

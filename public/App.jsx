@@ -11,6 +11,7 @@
  */
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -33,32 +34,43 @@ class App extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.historyListener = this.props.history.listen(this.onChange.bind(this));
+  }
+
+  onChange(location, action) {
+    console.log("on change");
+    window.scrollTo(0, 0)
+  }
+
+  componentWillUnmount() {
+
+  }
+
   render() {
     return (
-      <HashRouter>
-        <div className="c-app">
-            <Header />
+      <div className="c-app">
+        <Header />
 
-            <Switch>
-              <Route exact path="/" component={IndexPage} />
+        <Switch>
+          <Route exact path="/" component={IndexPage} />
 
-              <Route exact path="/about" component={AboutPage} />
-              <Route exact path="/about/programming" component={ProgrammingPage} />
-              <Route exact path="/about/api" component={APIPage} />
-              <Route exact path="/about/other" component={OtherSkillsPage} />
+          <Route exact path="/about" component={AboutPage} />
+          <Route exact path="/about/programming" component={ProgrammingPage} />
+          <Route exact path="/about/api" component={APIPage} />
+          <Route exact path="/about/other" component={OtherSkillsPage} />
 
-              <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
-              <Route exact path="/privacy" component={PrivacyPolicyPage} />
-              <Route exact path="/policy" component={PrivacyPolicyPage} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
+          <Route exact path="/privacy" component={PrivacyPolicyPage} />
+          <Route exact path="/policy" component={PrivacyPolicyPage} />
 
-              <Route exact path="/contact" component={ContactPage} />
-            </Switch>
+          <Route exact path="/contact" component={ContactPage} />
+        </Switch>
 
-            <Footer />
-        </div>
-      </HashRouter>
+        <Footer />
+      </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);

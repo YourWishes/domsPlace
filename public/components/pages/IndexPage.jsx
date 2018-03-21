@@ -28,7 +28,8 @@ class IndexPage extends React.Component {
       <Page>
         <Poly />
 
-        <BodySection>
+        <BodySection unpadded>
+          <h1>Lorem</h1>
         </BodySection>
       </Page>
     )

@@ -11,43 +11,51 @@
 import React from 'react';
 import ThreeSection from './ThreeSection';
 import * as THREE from 'three';
+import pvm from './../../3d/pvm.json';
+import staticGIF from './../../images/static.gif';
 
 const CUBES = [
   {
     size: [1, 1, 1],
     pos: [-4,-0.3,1],
     velocity: [0.3, 0.1, 0],
-    color: 0xFFFFFF
+    color: 0xFFFFFF,
+    pvm: true
   },
   {
     size: [1, 1, 1],
     pos: [1,-0.8,-0.3],
     velocity: [-0.3, 0.05, 0.1],
-    color: 0xCCFFFF
+    color: 0xCCFFFF,
+    pvm: true
   },
   {
     size: [1, 1, 1],
     pos: [-0.8,0.4,-5],
     velocity: [0, -0.1, 0.1],
-    color: 0xf7ffb7
+    color: 0xf7ffb7,
+    pvm: true
   },
   {
     size: [1, 1, 1],
     pos: [6,1,-2],
     velocity: [0.2, 0.5, 0],
-    color: 0xffb7ee
+    color: 0xffb7ee,
+    pvm: true
   },
   {
     size: [1, 1, 1],
     pos: [-3,1,0.3],
     velocity: [0.2, 0.5, 0],
-    color: 0xaaffb9
+    color: 0xaaffb9,
+    pvm: true
   },
   {
     size: [0.8, 0.8, 0.8],
     pos: [2.2,1,0.3],
     velocity: [1, 0.1, -0.1],
-    color: 0xff66ab
+    color: 0xff66ab,
+    pvm: true
   }
 ];
 
@@ -60,12 +68,31 @@ class Poly extends React.Component {
     this.cubes = [];
     this.outlines = [];
 
+    this.loader = this.loader || new THREE.ObjectLoader();
+    this.textureLoader = new THREE.TextureLoader();
+
+    this.pvmData = this.pvmData || this.loader.parse(pvm);
+    this.pvmData.scale.multiplyScalar(1.5);
+
+    console.log(staticGIF);
+
     for(var i = 0; i < CUBES.length; i++) {
       let c = CUBES[i];
 
-      let geometry = new THREE.BoxGeometry(c.size[0],c.size[1],c.size[2]);
-      let material = new THREE.MeshLambertMaterial( { color: c.color } );
-      let cube = new THREE.Mesh(geometry, material);
+      let cube;
+      if(c.pvm) {
+        cube = this.pvmData.clone();
+        let children = cube.children[0].children;
+
+        if(typeof this.screenMaterial === typeof undefined) {
+          let child = children[27];//TV Screen
+          this.screenMaterial = child.material;
+        }
+      } else {
+        let geometry = new THREE.BoxGeometry(c.size[0],c.size[1],c.size[2]);
+        let material = new THREE.MeshLambertMaterial( { color: c.color } );
+        cube = new THREE.Mesh(geometry, material);
+      }
 
       cube.position.x = c.pos[0];
       cube.position.y = c.pos[1];
@@ -90,7 +117,6 @@ class Poly extends React.Component {
         scene.add( outlineMesh );
       }
     }
-
   }
 
   onRender(diff) {

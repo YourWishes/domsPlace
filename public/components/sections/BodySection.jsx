@@ -21,11 +21,15 @@ class BodySection extends React.Component {
     let children;
 
     if(this.props.children) {
-      children = (
-        <div className="c-body-section__wrapper">
-          {this.props.children}
-        </div>
-      );
+      if(this.props.unpadded) {
+        children = this.props.children;  
+      } else {
+        children = (
+          <div className="c-body-section__wrapper">
+            {this.props.children}
+          </div>
+        );
+      }
     }
 
     return (

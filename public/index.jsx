@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 import App from './App.jsx';
 import Styles from './styles/index.scss';
@@ -23,6 +24,8 @@ const unsubscribe = store.subscribe(() => {
 //Render app and supply provider for store.
 render((
   <Provider store={store}>
-    <App />
+    <HashRouter>
+      <App />
+    </HashRouter>
   </Provider>
 ), document.getElementById("app"));
