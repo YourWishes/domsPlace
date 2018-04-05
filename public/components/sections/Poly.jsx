@@ -17,30 +17,16 @@ import staticGIF from './../../images/static.gif';
 const CUBES = [
   {
     size: [1, 1, 1],
-    pos: [-4,-0.3,1],
+    pos: [-4,-1,1],
     velocity: [0.3, 0.1, 0],
     color: 0xFFFFFF,
     pvm: true
   },
   {
     size: [1, 1, 1],
-    pos: [1,-0.8,-0.3],
+    pos: [0.5,-0,-0.3],
     velocity: [-0.3, 0.05, 0.1],
     color: 0xCCFFFF,
-    pvm: true
-  },
-  {
-    size: [1, 1, 1],
-    pos: [-0.8,0.4,-5],
-    velocity: [0, -0.1, 0.1],
-    color: 0xf7ffb7,
-    pvm: true
-  },
-  {
-    size: [1, 1, 1],
-    pos: [6,1,-2],
-    velocity: [0.2, 0.5, 0],
-    color: 0xffb7ee,
     pvm: true
   },
   {
@@ -52,7 +38,7 @@ const CUBES = [
   },
   {
     size: [0.8, 0.8, 0.8],
-    pos: [2.2,1,0.3],
+    pos: [3.4,-0.6,0.3],
     velocity: [1, 0.1, -0.1],
     color: 0xff66ab,
     pvm: true

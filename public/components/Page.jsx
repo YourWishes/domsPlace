@@ -19,7 +19,7 @@ class Page extends React.Component {
   render() {
     let clazz = "c-page";
     if(this.props.className) clazz += " " + this.props.className;
-    
+
     return (
       <main className={clazz}>
         {this.props.children}

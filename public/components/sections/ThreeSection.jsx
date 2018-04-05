@@ -26,15 +26,15 @@ class ThreeSection extends React.Component {
 
     this.camera.position.z = 5;
 
-    this.ambient1 = new THREE.AmbientLight(0xFFCCFF, 0.2);
-    this.scene.add(this.ambient1);
-    this.ambient2 = new THREE.AmbientLight(0xFFFFFF, 0.5);
-    this.scene.add(this.ambient2);
+    //this.ambient1 = new THREE.AmbientLight(0xFFCCFF, 0.2);
+    //this.scene.add(this.ambient1);
+    //this.ambient2 = new THREE.AmbientLight(0xFFFFFF, 0.5);
+    //this.scene.add(this.ambient2);
 
-    this.light = new THREE.DirectionalLight(0x22BBFF, 0.5);
+    this.light = new THREE.DirectionalLight(0x22BBFF, 0.3);
     this.light.position.x = this.camera.position.x;
     this.light.position.y = this.camera.position.y;
-    this.light.position.z = this.camera.position.z + 8;
+    this.light.position.z = this.camera.position.z + 5;
     this.scene.add(this.light);
 
     if(typeof this.props.onSetup !== typeof undefined) {
@@ -75,7 +75,7 @@ class ThreeSection extends React.Component {
     this.renderer.render(this.scene, this.camera);
     this.lastTime = now;
 
-    requestAnimationFrame(this.onFrame.bind(this));
+    //requestAnimationFrame(this.onFrame.bind(this));
   }
 
   render() {

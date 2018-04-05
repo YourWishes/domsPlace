@@ -12,13 +12,14 @@
  */
 $c-footer--text-color: $s-color--text;
 $c-footer--background-color: $s-color--background-default;
-
+$c-footer--z-index: 10;//Should render over most if not all body elements
 
 .c-footer {
   width: 100%;
   background: $c-footer--background-color;
   @extend %t-flexbox;
   @include t-flex-wrap(wrap);
+  z-index: $c-footer--z-index;
 }
 
 .c-footer__copyright {
