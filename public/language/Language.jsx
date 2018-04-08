@@ -19,6 +19,7 @@ class Language {
   }
 
   get(key) {
+    if(typeof key === typeof undefined)  return "Key \"undefined\".";
     let j = this.getRecursive(key.split("."));
     if(typeof j === typeof undefined || j == null) return "Missing \"" + key + "\"";
     return j;

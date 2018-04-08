@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Page from './../Page';
-import Poly from './../sections/Poly';
 import BodySection from './../sections/BodySection';
 
 class KitchenSinkPage extends React.Component {
@@ -12,7 +11,6 @@ class KitchenSinkPage extends React.Component {
   render() {
     return (
       <Page>
-        <Poly />
         <BodySection>
 
           <h1>This is the primary heading and there should only be one of these per page</h1>
@@ -128,7 +126,7 @@ class KitchenSinkPage extends React.Component {
               </tr>
             </tbody>
           </table>
-          
+
           <h3>A sub heading which is not as important as the second, but should be used with consideration</h3>
           <p>
             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.

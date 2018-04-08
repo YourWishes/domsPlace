@@ -12,8 +12,8 @@
 import React from 'react';
 
 import Page from './../Page';
-import PhoneSection from './../sections/PhoneSection';
 import BodySection from './../sections/BodySection';
+import TitleSection from './../sections/TitleSection';
 
 import ContactForm from './../forms/ContactForm';
 
@@ -28,15 +28,16 @@ class ContactPage extends React.Component {
   render() {
     return (
       <Page>
-        <PhoneSection />
+        <TitleSection title="contact.form.title" />
         <BodySection>
-          <h1>{Language.get("contact.form.title")}</h1>
-          <p>
-            {Language.get("contact.form.info")}
-          </p>
           <div className="c-page--style-container__split">
             <ContactForm className="c-page--style-container__split-part" />
-            <div className="c-page--style-container__split-part"></div>
+            
+            <div className="c-page--style-container__split-part">
+              <p>
+                {Language.get("contact.form.info")}
+              </p>
+            </div>
           </div>
         </BodySection>
       </Page>

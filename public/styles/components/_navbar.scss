@@ -69,8 +69,8 @@ $c-navbar--link-offset: 5px;
 @include t-media-query($s-small-up) {
   .c-navbar {
     width: 90%;
-    top:3em;
-    left: 2%;
+    top: 1em;
+    left: 1em;
     @include t-box-shadow(-10px, 10px, 0px, rgba(0, 0, 0, 0.5));
   }
 

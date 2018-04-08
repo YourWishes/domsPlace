@@ -12,8 +12,9 @@
 .c-page {
   min-height: 100%;
   @include t-flex-grow(1);
-  //@include t-gradient-directional($s-color--background-bottom, $s-color--background-top, 45deg);
+  @include t-gradient-directional($s-color--background-bottom, $s-color--background-top, 45deg);
   padding-bottom: 5em;
+
 
   //background-attachment: fixed;
   //background-color: #000019;

@@ -12,7 +12,6 @@
 import React from 'react';
 
 import Page from './../Page';
-import Poly from './../sections/Poly';
 import BodySection from './../sections/BodySection';
 import SplitSection from './../sections/SplitSection';
 import { connect } from 'react-redux';
@@ -26,9 +25,13 @@ class IndexPage extends React.Component {
   render() {
     return (
       <Page>
-        <Poly />
-
-        <BodySection unpadded>
+        <SplitSection left={
+            "test"
+          } right={
+            "tost"
+          }
+        />
+        <BodySection>
           <h1>Lorem</h1>
         </BodySection>
       </Page>
