@@ -8,6 +8,7 @@
  *    1.0.0 - 2018/05/03
  */
 .o-app {
+  display: inline-block;//Fixes collapsing margins on children.
   min-height: 100vh;
 
   //Civil Twilight
