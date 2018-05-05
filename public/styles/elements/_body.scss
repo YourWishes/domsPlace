@@ -2,6 +2,9 @@
  *  Body
  *    Styles and changes for the body HTML element.
  *
+ *  Dependencies:
+ *    styles/settings/typography.scss
+ *
  *  Version:
  *    1.0.0 - 2018/05/03
  */
@@ -9,7 +12,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  
+
   font-family: $s-font--stack-default;
   font-size: $s-font--size--base;
 }
