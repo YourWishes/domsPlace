@@ -17,7 +17,7 @@ module.exports = {
   ],
 
   output: {
-    path: __dirname + '/dist',
+    path: '/dist',
     filename: "app.js"
   },
 
@@ -54,11 +54,6 @@ module.exports = {
 
   // initialize the added webpack plugins
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    }),
     HTMLWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin()
   ]

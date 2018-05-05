@@ -1,0 +1,16 @@
+/*
+ *  Typography Settings
+ *    Provides the type variables for use throughout the theme
+ *
+ *  Version:
+ *    1.0.0 - 2018/02/23
+ */
+
+$s-font--stack-default: 'Nanum Gothic', Arial, Helvetica, sans-serif;
+$s-font--stack-headings: 'Bitter', serif;
+$s-font--size--base: 16px;
+
+//Font Styles
+%s-font--style-button {
+  font-family: $s-font--stack-headings;
+}

@@ -1,0 +1,30 @@
+/*
+ *  Color Settings
+ *    Provides common color settings for use throughout the styles.
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/03
+ */
+
+//Pastel Colors
+$s-color--pastel-pink: #FCE9F1;
+$s-color--pastel-green: #E9FCF4;
+$s-color--pastel-orange: #FEECE8;
+$s-color--pastel-blue: #E8FAFE;
+$s-color--pastel-purple: #ECE8FE;
+
+//Swatch Colors
+$s-color--swatch-red: #FFB3BA;
+$s-color--swatch-orange: #FFDFBA;
+$s-color--swatch-yellow: #FFFFBA;
+$s-color--swatch-green: #BAFFC9;
+$s-color--swatch-blue: #BAE1FF;
+
+//Hyperlink Colors
+$s-color--link: #FC78DE;
+$s-color--link-hover: lighten($s-color--link, 10%);
+
+//Navbar Colors
+$s-color--navbar: rgba(0, 0, 0, 0.7);
+$s-color--navbar__text: white;
+$s-color--navbar__text-hover: #CCC;

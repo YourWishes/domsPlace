@@ -1,0 +1,82 @@
+/*
+ *  Navbar
+ *    Navigation bar at the top of the screen.
+ *
+ *  Dependencies:
+ *    styles/settings/colors.scss
+ *    styles/settings/typography.scss
+ *    styles/tools/flex.scss
+ *    styles/tool/list.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/03
+ */
+.o-navbar {
+  @extend %t-flexbox;
+  @include t-align-items(stretch);
+  background: $s-color--navbar;
+  color: white;
+
+
+  &__section {
+    border: 1px solid blue;
+
+    .is-stuck {
+      position: fixed;
+      width: 100%;
+    }
+  }
+
+  //Logo
+  &__logo-container {
+    width: 100%;
+    padding: 0.5em;
+    text-align: center;
+  }
+
+  &__logo {
+    width: 12em;
+  }
+
+  //Links
+  &__link {
+    @extend %s-font--style-button;
+    @include t-align-items(center);
+    display: none;
+    padding: 1em;
+    color: $s-color--navbar__text;
+
+    &:hover {
+      color: $s-color--navbar__text-hover;
+    }
+  }
+
+
+  @include t-media-query($s-xsmall-up) {
+    &__logo-container {
+      text-align: left;
+    }
+
+    &__section {
+      padding: 1em;
+    }
+
+    &__logo {
+      width: 10em;
+    }
+
+    &__link {
+      @include t-flexbox();
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__section {
+      padding: 3em;
+    }
+
+    &__logo {
+      width: 12em;
+    }
+  }
+}
