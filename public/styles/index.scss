@@ -47,11 +47,15 @@
 @import './elements/_headings.scss';
 
 //Objects
+@import './objects/main.scss';
+
 @import './objects/_app.scss';
 @import './objects/_navbar.scss';
 
 //Components
 @import './components/_page.scss';
+@import './components/_section.scss';
+@import './components/_video-section.scss';
 
 //Vendor
 @import './vendor/_fonts.scss';

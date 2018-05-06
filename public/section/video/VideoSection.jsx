@@ -32,7 +32,7 @@ class VideoSection extends React.Component {
   render() {
     return (
       <Section full={this.props.full}>
-        <video class="c-video-section">
+        <video className="c-video-section">
 
         </video>
 

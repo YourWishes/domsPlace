@@ -33,7 +33,7 @@ class Homepage extends React.Component {
   render() {
     return (
       <Page style="home-page">
-        <VideoSection>
+        <VideoSection full>
           Test
         </VideoSection>
       </Page>
