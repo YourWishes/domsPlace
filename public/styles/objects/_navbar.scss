@@ -44,11 +44,12 @@ $o-navbar--link-thickness: 5px;
 
   //Links
   &__link {
-    display: none;
     @include t-align-items(center);
-    color: $s-color--navbar__text;
+    @extend %s-font--style-button;
+    display: none;
     position: relative;
     padding: 1em;
+    color: $s-color--navbar__text;
 
     &:after {
       position: absolute;
