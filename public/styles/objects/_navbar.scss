@@ -5,6 +5,7 @@
  *  Dependencies:
  *    styles/settings/colors.scss
  *    styles/settings/typography.scss
+ *    styles/settings/z.scss
  *    styles/tools/flex.scss
  *    styles/tool/list.scss
  *
@@ -14,21 +15,21 @@
 $o-navbar--link-thickness: 5px;
 
 .o-navbar {
-  @extend %t-flexbox;
-  @include t-align-items(stretch);
-  background: $s-color--navbar;
-  color: white;
+  z-index: $s-z--navbar;
+
+  &.is-stuck {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 
 
-  &__section {
-    border: 1px solid blue;
-
-    &.is-stuck {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-    }
+  &__nav {
+    @extend %t-flexbox;
+    @include t-align-items(stretch);
+    background: $s-color--navbar;
+    color: white;
   }
 
   //Logo
@@ -80,12 +81,10 @@ $o-navbar--link-thickness: 5px;
 
 
   @include t-media-query($s-xsmall-up) {
+    padding: 1em;
+
     &__logo-container {
       text-align: left;
-    }
-
-    &__section {
-      padding: 1em;
     }
 
     &__logo {
@@ -98,9 +97,7 @@ $o-navbar--link-thickness: 5px;
   }
 
   @include t-media-query($s-small-up) {
-    &__section {
-      padding: 3em;
-    }
+    padding: 3em;
 
     &__logo {
       width: 12em;

@@ -8,4 +8,15 @@
  *    1.0.0 - 2018/05/03
  */
 .c-video-section {
+  position: relative;
+
+  &__video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
 }

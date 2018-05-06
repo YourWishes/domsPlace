@@ -22,23 +22,38 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Page from './../Page';
-import VideoSection from './../../section/video/VideoSection';
 
-class Homepage extends React.Component {
+const VALID_SOURCES = [
+  "mp4",
+  "webm",
+  "ogg"
+]
+
+class Video extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    //TODO: Add image fallback support.
+    let sources = [];
+    let sourceProps = this.props.sources ? this.props.sources : this.props;
+
+    for(let i = 0; i < VALID_SOURCES.length; i++) {
+      let s = VALID_SOURCES[i];
+      if(!sourceProps[s]) continue;
+      sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
+    }
+
+    let clazz = "o-video";
+    if(this.props.className) clazz += " " + this.props.className;
+
     return (
-      <Page style="home-page">
-        <VideoSection full mp4={ require('./../../videos/about/programming/programming.mp4') }>
-          Test
-        </VideoSection>
-      </Page>
+      <video className={clazz}>
+        { sources }
+      </video>
     );
   }
 }
 
-export default Homepage;
+export default Video;

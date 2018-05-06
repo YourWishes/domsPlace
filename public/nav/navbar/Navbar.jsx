@@ -42,8 +42,8 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <section className="o-navbar__section is-stuck">
-        <nav className="o-navbar">
+      <section className="o-navbar is-stuck">
+        <nav className="o-navbar__nav">
 
           <a href="/" className="o-navbar__logo-container">
             <img

@@ -30,7 +30,11 @@ class Section extends React.Component {
 
   render() {
     return (
-      <section className={"c-section" + (this.props.full?" c-section--full":"") }>
+      <section className={
+          "c-section" +
+          (this.props.full?" c-section--full":"") +
+          (this.props.className ? " "+this.props.className : "")
+      }>
         { this.props.children }
       </section>
     );

@@ -23,6 +23,7 @@
 
 import React from 'react';
 import Section from './../Section';
+import Video from './../../video/Video';
 
 class VideoSection extends React.Component {
   constructor(props) {
@@ -31,10 +32,11 @@ class VideoSection extends React.Component {
 
   render() {
     return (
-      <Section full={this.props.full}>
-        <video className="c-video-section">
-
-        </video>
+      <Section full={this.props.full} className="c-video-section">
+        <Video
+          className="c-video-section__video"
+          sources={ this.props.sources ? this.props.sources : this.props }
+        />
 
         { this.props.children }
       </Section>
