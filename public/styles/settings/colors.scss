@@ -28,3 +28,5 @@ $s-color--link-hover: lighten($s-color--link, 10%);
 $s-color--navbar: rgba(0, 0, 0, 0.75);
 $s-color--navbar__text: white;
 $s-color--navbar__text-hover: #CCC;
+$s-color--navbar__bar-hover: $s-color--pastel-blue;
+$s-color--navbar__bar-active: $s-color--pastel-green;
