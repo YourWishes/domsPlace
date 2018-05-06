@@ -23,6 +23,7 @@
 
 import React from 'react';
 import Page from './../Page';
+import VideoSection from './../../section/video/VideoSection';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -32,7 +33,9 @@ class Homepage extends React.Component {
   render() {
     return (
       <Page style="home-page">
-        Homepage
+        <VideoSection>
+          Test
+        </VideoSection>
       </Page>
     );
   }

@@ -22,14 +22,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import Language from './../../language/Language';
 
-const NAVBAR_LINKS = {
-  "home": "/",
-  "about": "/about",
-  "contact": "/contact"
-};
+const NavbarLink = function(props) {
+  return (
+    <NavLink to={ props.to } className="o-navbar__link">
+      { Language.get("navbar." + props.title) }
+    </NavLink>
+  );
+}
+
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -37,17 +41,6 @@ class Navbar extends React.Component {
   }
 
   render() {
-    let links = [];
-    let keys = Object.keys(NAVBAR_LINKS);
-    for(let i = 0; i < keys.length; i++) {
-      let k = keys[i];
-      links.push(
-        <NavLink key={k} to={NAVBAR_LINKS[k]} className="o-navbar__link">
-          { Language.get("navbar." + k) }
-        </NavLink>
-      );
-    }
-
     return (
       <section className="o-navbar__section is-stuck">
         <nav className="o-navbar">
@@ -56,13 +49,22 @@ class Navbar extends React.Component {
             <img
               src={ require('./../../images/logo.svg') }
               className="o-navbar__logo"
-              alt="domsPlace"
+              alt={ Language.get("site.name") }
             />
           </a>
-          { links }
+
+          <NavbarLink to="/" title="home" />
+          <NavbarLink to="/about" title="about" />
+          <NavbarLink to="/contact" title="contact" />
         </nav>
       </section>
     );
+  }
+}
+
+const mapStateToProps = function(state) {
+  return {
+    code: state.language.code
   }
 }
 

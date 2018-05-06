@@ -21,31 +21,25 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import RootReducer from './reducers/RootReducer'
+import Section from './../Section';
 
-//Import Stylesheet
-import Styles from './styles/index';
+class VideoSection extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-//Import Base Component
-import App from './App';
+  render() {
+    return (
+      <Section full={this.props.full}>
+        <video class="c-video-section">
 
-//Create our redux middleware
-const store = createStore(RootReducer);
-const unsubscribe = store.subscribe(() => {
-  console.log(store.getState());
-});
+        </video>
 
-ReactDOM.render(
-  (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  ),
-  document.getElementById('app')
-);
+        { this.props.children }
+      </Section>
+    );
+  }
+}
+
+export default VideoSection;

@@ -21,31 +21,12 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
+import { combineReducers } from 'redux';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import RootReducer from './reducers/RootReducer'
+import LanguageReducer from './LanguageReducer';
 
-//Import Stylesheet
-import Styles from './styles/index';
-
-//Import Base Component
-import App from './App';
-
-//Create our redux middleware
-const store = createStore(RootReducer);
-const unsubscribe = store.subscribe(() => {
-  console.log(store.getState());
+const rootReducer = combineReducers({
+  language: LanguageReducer
 });
 
-ReactDOM.render(
-  (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  ),
-  document.getElementById('app')
-);
+export default rootReducer;

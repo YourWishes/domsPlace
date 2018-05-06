@@ -30,9 +30,11 @@ class Section extends React.Component {
 
   render() {
     return (
-      <section class="o-section">
+      <section className={"c-section" + (this.props.full?" c-section--full":"") }>
         { this.props.children }
       </section>
     );
   }
 }
+
+export default Section;

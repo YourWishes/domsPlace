@@ -41,7 +41,7 @@ class App extends React.Component {
           <Navbar />
           <main className="o-main">
             <Switch>
-              <Route exact path="/" component={ KitchenSinkPage } />
+              <Route exact path="/" component={ Homepage } />
             </Switch>
           </main>
         </div>
