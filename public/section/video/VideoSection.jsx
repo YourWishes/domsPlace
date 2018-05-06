@@ -35,7 +35,8 @@ class VideoSection extends React.Component {
       <Section full={this.props.full} className="c-video-section">
         <Video
           className="c-video-section__video"
-          sources={ this.props.sources ? this.props.sources : this.props }
+          autoPlay
+          loop
         />
 
         { this.props.children }

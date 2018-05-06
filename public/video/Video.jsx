@@ -36,6 +36,7 @@ class Video extends React.Component {
 
   render() {
     //TODO: Add image fallback support.
+    //TODO: Add state support, as well as functional controls.
     let sources = [];
     let sourceProps = this.props.sources ? this.props.sources : this.props;
 
@@ -47,11 +48,25 @@ class Video extends React.Component {
 
     let clazz = "o-video";
     if(this.props.className) clazz += " " + this.props.className;
+    if(sourceProps.image) clazz += " has-image";
+    if(sourceProps.gif) clazz += " has-gif";
+    if(this.props.autoplay) clazz += " is-autoplaying";
+    if(this.props.loop) clazz += " is-looping";
 
     return (
-      <video className={clazz}>
-        { sources }
-      </video>
+      <div class={clazz}>
+        { /* Video Element (And sources) */ }
+        <video className="o-video__video" autoPlay={this.props.autoPlay} loop={this.props.loop} >
+          { sources }
+        </video>
+
+        { /* Fallback Picture */ }
+        {
+          if(sourceProps.image) {
+            <img src={sourceProps.image} className="o-video__image" />
+          }
+        }
+      </div>
     );
   }
 }
