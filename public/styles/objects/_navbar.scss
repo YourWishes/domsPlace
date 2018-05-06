@@ -11,6 +11,8 @@
  *  Version:
  *    1.0.0 - 2018/05/03
  */
+$o-navbar--link-thickness: 5px;
+
 .o-navbar {
   @extend %t-flexbox;
   @include t-align-items(stretch);
@@ -42,14 +44,36 @@
 
   //Links
   &__link {
-    @extend %s-font--style-button;
-    @include t-align-items(center);
     display: none;
-    padding: 1em;
+    @include t-align-items(center);
     color: $s-color--navbar__text;
+    position: relative;
+    padding: 1em;
+
+    &:after {
+      position: absolute;
+      width: 100%;
+      height: 0px;
+      left: 0;
+      bottom: 0px;
+      @include t-translate-y(100%)
+      transition: height 0.2s $s-animation--ease-out;
+
+      content: " ";
+    }
+
+    &.is-active:after {
+      background: $s-color--navbar__bar-hover;
+      height: $o-navbar--link-thickness;
+    }
 
     &:hover {
       color: $s-color--navbar__text-hover;
+
+      &:after {
+        background: $s-color--navbar__bar-hover;
+        height: $o-navbar--link-thickness;
+      }
     }
   }
 

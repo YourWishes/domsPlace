@@ -43,7 +43,7 @@ class KitchenSinkPage extends React.Component {
           Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
         </p>
 
-        <table class="t1" summary="Top 10 downloaded movies in 2011 using BitTorrent, in descending order, listing number of downloads and worldwide cinema grosses">
+        <table className="t1" summary="Top 10 downloaded movies in 2011 using BitTorrent, in descending order, listing number of downloads and worldwide cinema grosses">
           <caption>
             Most Downloaded Movies on BitTorrent, 2011
           </caption>
@@ -57,7 +57,7 @@ class KitchenSinkPage extends React.Component {
           </thead>
           <tfoot>
             <tr>
-              <th colspan="4">torrentfreak.com</th>
+              <th colSpan="4">torrentfreak.com</th>
               </tr>
           </tfoot>
           <tbody>

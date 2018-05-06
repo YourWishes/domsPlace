@@ -22,6 +22,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { NavLink } from 'react-router-dom'
+import Language from './../../language/Language';
+
+const NAVBAR_LINKS = {
+  "home": "/",
+  "about": "/about",
+  "contact": "/contact"
+};
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -29,6 +37,17 @@ class Navbar extends React.Component {
   }
 
   render() {
+    let links = [];
+    let keys = Object.keys(NAVBAR_LINKS);
+    for(let i = 0; i < keys.length; i++) {
+      let k = keys[i];
+      links.push(
+        <NavLink key={k} to={NAVBAR_LINKS[k]} className="o-navbar__link">
+          { Language.get("navbar." + k) }
+        </NavLink>
+      );
+    }
+
     return (
       <section className="o-navbar__section is-stuck">
         <nav className="o-navbar">
@@ -40,19 +59,7 @@ class Navbar extends React.Component {
               alt="domsPlace"
             />
           </a>
-
-          <a href="/" className="o-navbar__link">
-            Home
-          </a>
-          <a href="/" className="o-navbar__link">
-            Home
-          </a>
-          <a href="/" className="o-navbar__link">
-            Home
-          </a>
-          <a href="/" className="o-navbar__link">
-            Home
-          </a>
+          { links }
         </nav>
       </section>
     );
