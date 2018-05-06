@@ -28,7 +28,7 @@ import Language from './../../language/Language';
 
 const NavbarLink = function(props) {
   return (
-    <NavLink to={ props.to } className="o-navbar__link">
+    <NavLink to={ props.to } className="o-navbar__link" activeClassName="is-active">
       { Language.get("navbar." + props.title) }
     </NavLink>
   );
@@ -45,13 +45,13 @@ class Navbar extends React.Component {
       <section className="o-navbar is-stuck">
         <nav className="o-navbar__nav">
 
-          <a href="/" className="o-navbar__logo-container">
+          <NavLink to="/" className="o-navbar__logo-container" activeClassName="is-active">
             <img
               src={ require('./../../images/logo.svg') }
               className="o-navbar__logo"
               alt={ Language.get("site.name") }
             />
-          </a>
+        </NavLink>
 
           <NavbarLink to="/" title="home" />
           <NavbarLink to="/about" title="about" />
