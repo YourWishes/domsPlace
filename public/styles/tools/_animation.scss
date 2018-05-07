@@ -1,0 +1,39 @@
+/*
+ *  Animation Tools
+ *    Provides common animation tools, as well as mixins.
+ *
+ *  Dependencies:
+ *    styles/settings/animation.scss
+ *    styles/tools/prefix.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/08
+ */
+@mixin t-keyframes($animation_name) {
+  @-webkit-keyframes #{$animation_name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$animation_name} {
+    @content;
+  }
+
+  @keyframes #{$animation_name} {
+    @content;
+  }
+}
+
+@mixin t-animation-name($animation_name) {
+  @include t-prefix-property("animation-name", $animation_name, webkit moz spec);
+}
+
+@mixin t-animation-delay($animation_name) {
+  @include t-prefix-property("animation-delay", $animation_name, webkit moz spec);
+}
+
+@mixin t-animation-duration($animation_name) {
+  @include t-prefix-property("animation-duration", $animation_name, webkit moz spec);
+}
+@mixin t-animation-fill-mode($animation_name) {
+  @include t-prefix-property("animation-fill-mode", $animation_name, webkit moz spec);
+}
