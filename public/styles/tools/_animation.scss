@@ -23,17 +23,26 @@
   }
 }
 
-@mixin t-animation-name($animation_name) {
-  @include t-prefix-property("animation-name", $animation_name, webkit moz spec);
+@mixin t-animation-name($name) {
+  @include t-prefix-property("animation-name", $name, webkit moz spec);
 }
 
-@mixin t-animation-delay($animation_name) {
-  @include t-prefix-property("animation-delay", $animation_name, webkit moz spec);
+@mixin t-animation-delay($delay) {
+  @include t-prefix-property("animation-delay", $delay, webkit moz spec);
 }
 
-@mixin t-animation-duration($animation_name) {
-  @include t-prefix-property("animation-duration", $animation_name, webkit moz spec);
+@mixin t-animation-duration($duration) {
+  @include t-prefix-property("animation-duration", $duration, webkit moz spec);
 }
-@mixin t-animation-fill-mode($animation_name) {
-  @include t-prefix-property("animation-fill-mode", $animation_name, webkit moz spec);
+
+@mixin t-animation-fill-mode($fills) {
+  @include t-prefix-property("animation-fill-mode", $fills, webkit moz spec);
+}
+
+@mixin t-animation-iteration-count($iterations) {
+  @include t-prefix-property("animation-iteration-count", $iterations, webkit moz spec);
+}
+
+@mixin t-animation-timing-function($bezier) {
+  @include t-prefix-property("animation-timing-function", $bezier, webkit moz spec);
 }
