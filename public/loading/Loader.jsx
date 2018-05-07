@@ -22,29 +22,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Section from './../Section';
-import Video from './../../video/Video';
-import Loader from './../../loading/Loader';
 
-class VideoSection extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Section full={this.props.full} className="c-video-section">
-        <Video
-          className="c-video-section__video"
-          autoPlay
-          loop
-          fill
-          sources={ this.props.sources ? this.props.sources : this.props }
-        />
-        { this.props.children }
-      </Section>
-    );
-  }
+const Loader = function(props) {
+  return (
+    <span className="o-loader">
+      <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" className="o-loader__image">
+        <g fill="none" fillRule="evenodd">
+          <g transform="translate(1 1)" strokeWidth="2">
+            <circle strokeOpacity=".5" cx="18" cy="18" r="18" />
+              <path id="test" d="M36 18c0-9.94-8.06-18-18-18">
+            </path>
+          </g>
+        </g>
+      </svg>
+    </span>
+  );
 }
 
-export default VideoSection;
+export default Loader;

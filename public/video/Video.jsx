@@ -22,6 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import Loader from './../loading/Loader';
 
 //Adjust the order to adjust the load position
 const VALID_SOURCES = [
@@ -46,7 +47,7 @@ class Video extends React.Component {
     for(let i = 0; i < VALID_SOURCES.length; i++) {
       let s = VALID_SOURCES[i];
       if(!sourceProps[s]) continue;
-      sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
+      //sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
     }
 
     //Classes
@@ -75,6 +76,9 @@ class Video extends React.Component {
         >
           { sources }
         </video>
+
+        {/* Loader */}
+        <Loader />
 
         { /* Fallback Picture */ }
         { fallback }
