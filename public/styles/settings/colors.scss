@@ -6,6 +6,9 @@
  *    1.0.0 - 2018/05/03
  */
 
+/*
+ == Color Sets ==
+*/
 //Pastel Colors
 $s-color--pastel-pink: #FCE9F1;
 $s-color--pastel-green: #E9FCF4;
@@ -20,6 +23,9 @@ $s-color--swatch-yellow: #FFFFBA;
 $s-color--swatch-green: #BAFFC9;
 $s-color--swatch-blue: #BAE1FF;
 
+/*
+ == Color Definitions ==
+*/
 //Hyperlink Colors
 $s-color--link: #FC78DE;
 $s-color--link-hover: lighten($s-color--link, 10%);
