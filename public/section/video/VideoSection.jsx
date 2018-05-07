@@ -37,6 +37,8 @@ class VideoSection extends React.Component {
           className="c-video-section__video"
           autoPlay
           loop
+          fill
+          sources={ this.props.sources ? this.props.sources : this.props }
         />
 
         { this.props.children }

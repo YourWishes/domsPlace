@@ -23,9 +23,10 @@
 
 import React from 'react';
 
+//Adjust the order to adjust the load position
 const VALID_SOURCES = [
-  "mp4",
   "webm",
+  "mp4",
   "ogg"
 ]
 
@@ -37,6 +38,8 @@ class Video extends React.Component {
   render() {
     //TODO: Add image fallback support.
     //TODO: Add state support, as well as functional controls.
+
+    //Sources
     let sources = [];
     let sourceProps = this.props.sources ? this.props.sources : this.props;
 
@@ -46,6 +49,7 @@ class Video extends React.Component {
       sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
     }
 
+    //Classes
     let clazz = "o-video";
     if(this.props.className) clazz += " " + this.props.className;
     if(sourceProps.image) clazz += " has-image";
@@ -53,19 +57,27 @@ class Video extends React.Component {
     if(this.props.autoplay) clazz += " is-autoplaying";
     if(this.props.loop) clazz += " is-looping";
 
+    let videoClass = "o-video__video";
+    if(this.props.fill) videoClass += " is-full";
+
+
+    //Fallback.
+    let fallback;
+
     return (
-      <div class={clazz}>
+      <div className={clazz}>
         { /* Video Element (And sources) */ }
-        <video className="o-video__video" autoPlay={this.props.autoPlay} loop={this.props.loop} >
+        <video
+          className={ videoClass }
+          autoPlay={this.props.autoPlay}
+          loop={this.props.loop}
+          controls={false /* Explicitly no controls */}
+        >
           { sources }
         </video>
 
         { /* Fallback Picture */ }
-        {
-          if(sourceProps.image) {
-            <img src={sourceProps.image} className="o-video__image" />
-          }
-        }
+        { fallback }
       </div>
     );
   }

@@ -24,6 +24,7 @@
 import React from 'react';
 import Page from './../Page';
 import VideoSection from './../../section/video/VideoSection';
+import Section from './../../section/Section';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -36,6 +37,10 @@ class Homepage extends React.Component {
         <VideoSection full mp4={ require('./../../videos/about/programming/programming.mp4') }>
           Test
         </VideoSection>
+
+        <Section full>
+          Lorem
+        </Section>
       </Page>
     );
   }

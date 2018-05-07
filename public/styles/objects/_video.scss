@@ -2,7 +2,7 @@
  *  Video
  *    Video Object, with general fallbacks and smarter controls for better
  *    cross-browser compatibility.
- *    
+ *
  *    Also allows for better and more styled controls.
  *
  *  Dependencies:
@@ -11,8 +11,17 @@
  *    1.0.0 - 2018/05/07
  */
 .o-video {
+  position: relative;
 
   &__video {
 
+    &.is-full {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit:cover;
+    }
   }
 }
