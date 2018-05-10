@@ -28,7 +28,7 @@ import Language from './../../language/Language';
 
 const NavbarLink = function(props) {
   return (
-    <NavLink to={ props.to } className="o-navbar__link" activeClassName="is-active">
+    <NavLink to={ props.to } className="o-navbar__link" activeClassName="is-active" exact={props.exact}>
       { Language.get("navbar." + props.title) }
     </NavLink>
   );
@@ -51,9 +51,9 @@ class Navbar extends React.Component {
               className="o-navbar__logo"
               alt={ Language.get("site.name") }
             />
-        </NavLink>
+          </NavLink>
 
-          <NavbarLink to="/" title="home" />
+          <NavbarLink to="/" title="home" exact />
           <NavbarLink to="/about" title="about" />
           <NavbarLink to="/contact" title="contact" />
         </nav>

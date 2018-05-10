@@ -34,8 +34,39 @@ const VALID_SOURCES = [
 class Video extends React.Component {
   constructor(props) {
     super(props);
+
+    //Initial State
+    this.state = {
+      autoPlay: this.props.autoPlay,
+      loop: this.props.loop,
+      loader: true
+    };
+
+    //Bound events (for removing event listeners)
+    this.onPlayingBound = this.onPlaying.bind(this);
+    this.onWaitingBound = this.onWaiting.bind(this);
   }
 
+  componentDidMount() {
+    this.refs.video.addEventListener('playing', this.onPlayingBound);
+    this.refs.video.addEventListener('waiting', this.onWaitingBound);
+  }
+
+  componentWillUnmount() {
+
+  }
+
+  //Standard Events - https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
+  onPlaying() {
+    this.setState({
+      loader: false
+    });
+  }
+
+  onWaiting() {
+  }
+
+  //React Render
   render() {
     //TODO: Add image fallback support.
     //TODO: Add state support, as well as functional controls.
@@ -47,7 +78,7 @@ class Video extends React.Component {
     for(let i = 0; i < VALID_SOURCES.length; i++) {
       let s = VALID_SOURCES[i];
       if(!sourceProps[s]) continue;
-      //sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
+      sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
     }
 
     //Classes
@@ -55,8 +86,8 @@ class Video extends React.Component {
     if(this.props.className) clazz += " " + this.props.className;
     if(sourceProps.image) clazz += " has-image";
     if(sourceProps.gif) clazz += " has-gif";
-    if(this.props.autoplay) clazz += " is-autoplaying";
-    if(this.props.loop) clazz += " is-looping";
+    if(this.state.autoplay) clazz += " is-autoplaying";
+    if(this.state.loop) clazz += " is-looping";
 
     let videoClass = "o-video__video";
     if(this.props.fill) videoClass += " is-full";
@@ -65,20 +96,28 @@ class Video extends React.Component {
     //Fallback.
     let fallback;
 
+    //Loader
+    let loader;
+    if(this.state.loader) {
+      loader = <Loader />
+    }
+
+
     return (
       <div className={clazz}>
         { /* Video Element (And sources) */ }
         <video
           className={ videoClass }
-          autoPlay={this.props.autoPlay}
-          loop={this.props.loop}
+          autoPlay={this.state.autoPlay}
+          loop={this.state.loop}
           controls={false /* Explicitly no controls */}
+          ref="video"
         >
           { sources }
         </video>
 
         {/* Loader */}
-        <Loader />
+        { loader }
 
         { /* Fallback Picture */ }
         { fallback }
