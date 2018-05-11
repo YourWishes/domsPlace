@@ -55,6 +55,7 @@
 @import './objects/main.scss';
 
 @import './objects/_app.scss';
+@import './objects/_button.scss';
 @import './objects/_floating-content-box.scss';
 @import './objects/_loader.scss';
 @import './objects/_navbar.scss';
@@ -64,6 +65,9 @@
 @import './components/_page.scss';
 @import './components/_section.scss';
 @import './components/_video-section.scss';
+
+//Utilities
+@import './utilities/text-align.scss';
 
 //Vendor
 @import './vendor/_fonts.scss';

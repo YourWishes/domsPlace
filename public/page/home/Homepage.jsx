@@ -26,6 +26,7 @@ import Page from './../Page';
 import VideoSection from './../../section/video/VideoSection';
 import Section from './../../section/Section';
 import FloatingContentBox from './../../content/FloatingContentBox';
+import Button from './../../input/button/Button';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -36,8 +37,10 @@ class Homepage extends React.Component {
     return (
       <Page style="home-page">
         <VideoSection full>
-          <FloatingContentBox position="middle right" size="medium">
-            Hello World
+          <FloatingContentBox position="middle right" size="medium" className="u-text-right">
+            <h1>My Cool Page</h1>
+            <p>Lorem ipsum dolor</p>
+            <Button>Hello</Button>
           </FloatingContentBox>
         </VideoSection>
 
