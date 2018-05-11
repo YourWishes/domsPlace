@@ -1,0 +1,19 @@
+/*
+ *  Title
+ *    Title Headings
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/11
+ */
+.o-title {
+  font-size: 3em;
+  margin-bottom: 0.25em;
+
+  + .o-subtitle {
+    margin-top: 0em;
+  }
+}
+
+.o-subtitle {
+  font-size: 1.2em;
+}

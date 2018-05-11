@@ -21,35 +21,10 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
-import Page from './../Page';
-import { Section, VideoSection } from './../../section/Sections';
-import FloatingContentBox from './../../content/FloatingContentBox';
-import { Button } from './../../input/Inputs';
-import { Title, Subtitle } from './../../typography/Typography';
+import Section from './Section';
+import VideoSection from './video/VideoSection';
 
-class Homepage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Page style="home-page">
-        <VideoSection full>
-          <FloatingContentBox position="middle right" size="medium" className="u-text-center">
-            <Title>My Cool Page</Title>
-            <Subtitle>Lorem ipsum dolor</Subtitle>
-            <Button>Hello</Button>
-          </FloatingContentBox>
-        </VideoSection>
-
-        <Section full>
-          Lorem
-        </Section>
-      </Page>
-    );
-  }
-}
-
-export default Homepage;
+export {
+  Section,
+  VideoSection
+};
