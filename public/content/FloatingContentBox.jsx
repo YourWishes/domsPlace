@@ -21,51 +21,37 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@charset "UTF-8";
+import React from 'react';
 
-//Settings
-@import './settings/animation.scss';
-@import './settings/colors.scss';
-@import './settings/responsive.scss';
-@import './settings/typography.scss';
-@import './settings/z.scss';
+class FloatingContentBox extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-//Tools
-@import './tools/flex.scss';
-@import './tools/list.scss';
-@import './tools/prefix.scss';
+  render() {
+    let clazzes = "o-floating-content-box";
 
-@import './tools/_animation.scss';
-@import './tools/_transform.scss';
-@import './tools/_responsive.scss';
+    //Positions
+    let position = "middle center";
+    if(this.props.position) position = this.props.position;
+    clazzes += " " + position.split(" ").map(i => 'is-'+i).join(" ");
 
-@import './tools/_absolute-centering.scss';
+    //Sizes`
+    let size = "medium";
+    if(this.props.size) size = this.props.size;
+    clazzes += " is-"+size;
 
-//Resets
+    //Custom Classes
+    if(this.props.className) clazzes += " " + this.props.className;
 
-//Elements
-@import './elements/all.scss';
-@import './elements/html.scss';
+    return (
+      <div className={ clazzes } >
+        <div className="o-floating-content-box__inner">
+          { this.props.children }
+        </div>
+      </div>
+    );
+  }
+}
 
-@import './elements/_a.scss';
-@import './elements/_body.scss';
-@import './elements/_headings.scss';
-
-//Objects
-@import './objects/main.scss';
-
-@import './objects/_app.scss';
-@import './objects/_floating-content-box.scss';
-@import './objects/_loader.scss';
-@import './objects/_navbar.scss';
-@import './objects/_video.scss';
-
-//Components
-@import './components/_page.scss';
-@import './components/_section.scss';
-@import './components/_video-section.scss';
-
-//Vendor
-@import './vendor/_fonts.scss';
-
-//Trumps
+export default FloatingContentBox;

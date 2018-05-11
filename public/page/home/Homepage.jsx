@@ -25,6 +25,7 @@ import React from 'react';
 import Page from './../Page';
 import VideoSection from './../../section/video/VideoSection';
 import Section from './../../section/Section';
+import FloatingContentBox from './../../content/FloatingContentBox';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -34,8 +35,10 @@ class Homepage extends React.Component {
   render() {
     return (
       <Page style="home-page">
-        <VideoSection full mp4={ require('./../../videos/about/programming/programming.mp4') }>
-          Test
+        <VideoSection full>
+          <FloatingContentBox position="middle right" size="medium">
+            Hello World
+          </FloatingContentBox>
         </VideoSection>
 
         <Section full>
