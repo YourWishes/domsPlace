@@ -22,8 +22,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import PageBoundary from './PageBoundary';
 
-class Page extends React.Component {
+export default class Page extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -37,4 +38,4 @@ class Page extends React.Component {
   }
 }
 
-export default Page;
+export { PageBoundary };

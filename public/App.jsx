@@ -26,7 +26,6 @@ import Navbar from './nav/navbar/Navbar';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
 //Pages
-import KitchenSinkPage from './page/test/KitchenSinkPage';
 import Homepage from './page/home/Homepage';
 
 class App extends React.Component {

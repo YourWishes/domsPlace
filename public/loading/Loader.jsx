@@ -23,7 +23,7 @@
 
 import React from 'react';
 
-const Loader = function(props) {
+export default function(props) {
   return (
     <span className="o-loader">
       <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" className="o-loader__image">
@@ -38,5 +38,3 @@ const Loader = function(props) {
     </span>
   );
 }
-
-export default Loader;

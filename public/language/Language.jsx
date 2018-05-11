@@ -72,4 +72,5 @@ class Language {
 }
 
 const lang = new Language();
+
 export default lang;

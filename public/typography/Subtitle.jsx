@@ -23,11 +23,10 @@
 
 import React from 'react';
 
-const Subtitle = function(props) {
+export default function(props) {
   return (
     <p className={ "o-subtitle" + ( props.className ? " " + props.className : "") }>
       { props.children }
     </p>
   );
 }
-export default Subtitle;

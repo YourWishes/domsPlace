@@ -23,35 +23,27 @@
 
 import React from 'react';
 
-class FloatingContentBox extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default function(props) {
+  let clazzes = "o-floating-content-box";
 
-  render() {
-    let clazzes = "o-floating-content-box";
+  //Positions
+  let position = "middle center";
+  if(props.position) position = props.position;
+  clazzes += " " + position.split(" ").map(i => 'is-'+i).join(" ");
 
-    //Positions
-    let position = "middle center";
-    if(this.props.position) position = this.props.position;
-    clazzes += " " + position.split(" ").map(i => 'is-'+i).join(" ");
+  //Sizes`
+  let size = "medium";
+  if(props.size) size = props.size;
+  clazzes += " is-"+size;
 
-    //Sizes`
-    let size = "medium";
-    if(this.props.size) size = this.props.size;
-    clazzes += " is-"+size;
+  //Custom Classes
+  if(props.className) clazzes += " " + props.className;
 
-    //Custom Classes
-    if(this.props.className) clazzes += " " + this.props.className;
-
-    return (
-      <div className={ clazzes } >
-        <div className="o-floating-content-box__inner">
-          { this.props.children }
-        </div>
+  return (
+    <div className={ clazzes } >
+      <div className="o-floating-content-box__inner">
+        { props.children }
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default FloatingContentBox;

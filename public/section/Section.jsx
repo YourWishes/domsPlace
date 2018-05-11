@@ -23,7 +23,7 @@
 
 import React from 'react';
 
-class Section extends React.Component {
+export default class Section extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -41,4 +41,8 @@ class Section extends React.Component {
   }
 }
 
-export default Section;
+import VideoSection from './video/VideoSection';
+
+export {
+  VideoSection
+}

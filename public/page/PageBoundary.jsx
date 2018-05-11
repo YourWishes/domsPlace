@@ -23,12 +23,10 @@
 
 import React from 'react';
 
-const PageBoundary = (props) => {
+export default function(props) {
   return (
     <div className="c-page__boundary">
       { props.children }
     </div>
   );
 }
-
-export default PageBoundary;

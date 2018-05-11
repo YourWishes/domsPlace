@@ -23,11 +23,10 @@
 
 import React from 'react';
 
-const Title = function(props) {
+export default function(props) {
   return (
     <h1 className={ "o-title" + ( props.className ? " " + props.className : "") }>
       { props.children }
     </h1>
   );
 }
-export default Title;

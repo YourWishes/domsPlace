@@ -24,7 +24,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-class Button extends React.Component {
+export default class Button extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -84,4 +84,3 @@ class Button extends React.Component {
     );
   }
 }
-export default Button;

@@ -22,34 +22,28 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Page from './../Page';
-import { Section, VideoSection } from './../../section/Sections';
+import Page, { PageBoundary } from './../Page';
+import Section, { VideoSection } from './../../section/Section';
 import FloatingContentBox from './../../content/FloatingContentBox';
 import { Button } from './../../input/Inputs';
 import { Title, Subtitle } from './../../typography/Typography';
 
-class Homepage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Page style="home-page">
-        <VideoSection>
+export default function() {
+  return (
+    <Page style="home-page">
+      <VideoSection full>
+        <PageBoundary>
           <FloatingContentBox position="middle right" size="medium" className="u-text-center">
             <Title>My Cool Page</Title>
             <Subtitle>Lorem ipsum dolor</Subtitle>
             <Button>Hello</Button>
           </FloatingContentBox>
-        </VideoSection>
+        </PageBoundary>
+      </VideoSection>
 
-        <Section full>
-          Lorem
-        </Section>
-      </Page>
-    );
-  }
+      <Section full>
+        Lorem
+      </Section>
+    </Page>
+  );
 }
-
-export default Homepage;

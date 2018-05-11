@@ -31,7 +31,7 @@ const VALID_SOURCES = [
   "ogg"
 ]
 
-class Video extends React.Component {
+export default class Video extends React.Component {
   constructor(props) {
     super(props);
 
@@ -125,5 +125,3 @@ class Video extends React.Component {
     );
   }
 }
-
-export default Video;
