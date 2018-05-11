@@ -5,15 +5,15 @@
  *  Version:
  *    1.0.0 - 2018/05/11
  */
-.o-title {
-  font-size: 3em;
-  margin-bottom: 0.25em;
+$o-title--size: 3em;
+$o-subtitle--size: 1.25em;
 
-  + .o-subtitle {
-    margin-top: 0em;
-  }
+.o-title {
+  font-size: $o-title--size;
+  margin: 0.25em 0;
 }
 
 .o-subtitle {
-  font-size: 1.2em;
+  font-size: $o-subtitle--size;
+  margin: 0 0 0.5em 0;
 }

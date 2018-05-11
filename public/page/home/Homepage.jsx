@@ -30,10 +30,10 @@ import { Title, Subtitle } from './../../typography/Typography';
 
 export default function() {
   return (
-    <Page style="home-page">
-      <VideoSection full>
+    <Page style="home-page" className="p-home-page">
+      <VideoSection full mp4={require('./../../videos/about/programming/programming.mp4')} >
         <PageBoundary>
-          <FloatingContentBox position="middle right" size="medium" className="u-text-center">
+          <FloatingContentBox position="middle right" size="medium" className="u-text-center p-home-page__video-content">
             <Title>My Cool Page</Title>
             <Subtitle>Lorem ipsum dolor</Subtitle>
             <Button>Hello</Button>

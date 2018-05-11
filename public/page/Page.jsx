@@ -30,8 +30,12 @@ export default class Page extends React.Component {
   }
 
   render() {
+    let clazzes = "c-page";
+
+    if(this.props.className) clazzes += " " + this.props.className;
+
     return (
-      <div className="c-page">
+      <div className={clazzes}>
         { this.props.children }
       </div>
     );
