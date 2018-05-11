@@ -65,6 +65,10 @@ class Button extends React.Component {
       contents = this.props.children;
     }
 
+    if(this.props.style) {
+      clazzes += " o-btn--style-" + this.props.style;
+    }
+
     //Determine extra clazzes
     if(this.props.className) this.clazzes += " "+this.props.className;
 
