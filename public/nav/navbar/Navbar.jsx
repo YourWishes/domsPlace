@@ -24,6 +24,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
+import PageBoundary from './../../page/PageBoundary';
 import Language from './../../language/Language';
 
 const NavbarLink = function(props) {
@@ -43,20 +44,22 @@ class Navbar extends React.Component {
   render() {
     return (
       <section className="o-navbar is-stuck">
-        <nav className="o-navbar__nav">
+        <PageBoundary>
+          <nav className="o-navbar__nav">
 
-          <NavLink to="/" className="o-navbar__logo-container" activeClassName="is-active">
-            <img
-              src={ require('./../../images/logo.svg') }
-              className="o-navbar__logo"
-              alt={ Language.get("site.name") }
-            />
-          </NavLink>
+            <NavLink to="/" className="o-navbar__logo-container" activeClassName="is-active">
+              <img
+                src={ require('./../../images/logo.svg') }
+                className="o-navbar__logo"
+                alt={ Language.get("site.name") }
+              />
+            </NavLink>
 
-          <NavbarLink to="/" title="home" exact />
-          <NavbarLink to="/about" title="about" />
-          <NavbarLink to="/contact" title="contact" />
-        </nav>
+            <NavbarLink to="/" title="home" exact />
+            <NavbarLink to="/about" title="about" />
+            <NavbarLink to="/contact" title="contact" />
+          </nav>
+        </PageBoundary>
       </section>
     );
   }
