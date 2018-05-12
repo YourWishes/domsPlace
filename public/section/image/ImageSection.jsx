@@ -22,29 +22,29 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import Section from './../Section';
+import Image from './../../image/Image';
 
-export default class Section extends React.Component {
-  constructor(props) {
-    super(props);
+export default function(props) {
+  let image;
+  if(props.image) {
+    image = props.image;
+  } else {
+    image = <Image
+      src={ props.src }
+      alt={ props.alt }
+      sources={ props.sources }
+      className="c-image-section__image"
+    />;
   }
 
-  render() {
-    return (
-      <section className={
-          "c-section" +
-          (this.props.full?" is-full":"") +
-          (this.props.className ? " "+this.props.className : "")
-      }>
-        { this.props.children }
-      </section>
-    );
-  }
-}
-
-import ImageSection from './image/ImageSection';
-import VideoSection from './video/VideoSection';
-
-export {
-  ImageSection,
-  VideoSection
+  return (
+    <Section
+      full={props.full}
+      className={"c-image-section" + (props.className ? " " + props.className : "" ) }
+    >
+      { image }
+      {props.children}
+    </Section>
+  );
 }

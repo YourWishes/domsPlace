@@ -32,6 +32,9 @@ export default class Image extends React.Component {
     let sourceElements = [];
     let sources = {};
 
+    let defaultSrc = this.props.src;
+    let defaultAlt = this.props.alt;
+
     if(this.props.sources) {
       //Iterate over supplied sources
       for(let i = 0; i < this.props.sources.length; i++) {
@@ -39,6 +42,9 @@ export default class Image extends React.Component {
         let w = x.size;
         sources[w] = sources[w] || [];
         sources[w].push(x);
+
+        defaultSrc = defaultSrc || x.src;
+        defaultAlt = defaultAlt || x.alt;
       }
 
       //Now map to components I guess
@@ -55,7 +61,7 @@ export default class Image extends React.Component {
         }
 
         sourceElements.push(
-          <source media={mediaQuery} srcset={ sss.join(", ") } key={i} />
+          <source media={mediaQuery} srcSet={ sss.join(", ") } key={i} />
         );
       }
     }

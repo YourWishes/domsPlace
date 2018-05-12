@@ -1,0 +1,22 @@
+/*
+ *  Image Section
+ *    Styles for Image Sections, usually contains videos (hmmmm).
+ *
+ *  Dependencies:
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/11
+ */
+.c-image-section {
+  position: relative;
+
+  &__image {
+    width: 100%;
+  }
+
+  &.is-full {
+    .c-image-section__image {
+      @include t-absolute-fill();
+    }
+  }
+}

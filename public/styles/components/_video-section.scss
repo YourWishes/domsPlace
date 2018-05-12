@@ -3,6 +3,7 @@
  *    Styles for Video Sections, usually contains videos.
  *
  *  Dependencies:
+ *    styles/tools/_absolute-centering.scss
  *
  *  Version:
  *    1.0.0 - 2018/05/03
@@ -11,11 +12,7 @@
   position: relative;
 
   &__video {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
+    @include t-absolute-fill();
     object-fit: cover;
     object-position: center;
   }

@@ -23,23 +23,34 @@
 
 import React from 'react';
 import Page, { PageBoundary } from './../Page';
-import Section, { VideoSection } from './../../section/Section';
+import Section, { ImageSection } from './../../section/Section';
 import FloatingContentBox from './../../content/FloatingContentBox';
 import { Button } from './../../input/Inputs';
+import Image from './../../image/Image';
 import { Title, Subtitle } from './../../typography/Typography';
 
 export default function() {
   return (
     <Page style="home-page" className="p-home-page">
-      <VideoSection full mp4={require('./../../videos/about/programming/programming.mp4')} >
-        <PageBoundary>
-          <FloatingContentBox position="middle right" size="medium" className="u-text-center p-home-page__video-content">
+      <ImageSection
+        full
+        src={ require('./../../images/test/img_red.png') }
+        sources={[
+          { src: require('./../../images/test/320x320.png'), size: 320 },
+          { src: require('./../../images/test/320x320x2.png'), size: 320, scale: 2 },
+          { src: require('./../../images/test/640x640.png'), size: 640 },
+          { src: require('./../../images/test/1280x1280.png'), size: 640, scale: 2 },
+          { src: require('./../../images/test/1280x1280.png'), size: 1280 }
+        ]}
+      >
+        <PageBoundary fill>
+          <FloatingContentBox position="middle right" size="small" className="u-text-center p-home-page__video-content">
             <Title>My Cool Page</Title>
             <Subtitle>Lorem ipsum dolor</Subtitle>
             <Button>Hello</Button>
           </FloatingContentBox>
         </PageBoundary>
-      </VideoSection>
+      </ImageSection>
 
       <Section full>
         Lorem

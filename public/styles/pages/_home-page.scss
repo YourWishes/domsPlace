@@ -12,6 +12,8 @@
 .p-home-page {
 
   &__video-content {
-    background: white;
+    padding: 1em 4em;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
   }
 }
