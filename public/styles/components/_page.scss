@@ -14,5 +14,10 @@
   &__boundary {
     max-width: $s-screen-boundary;
     margin: 0 auto;
+
+    &.is-full {
+      position: relative;
+      height: 100%;
+    }
   }
 }

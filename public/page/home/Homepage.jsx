@@ -32,25 +32,14 @@ import { Title, Subtitle } from './../../typography/Typography';
 export default function() {
   return (
     <Page style="home-page" className="p-home-page">
-      <ImageSection
-        full
-        src={ require('./../../images/test/img_red.png') }
-        sources={[
-          { src: require('./../../images/test/320x320.png'), size: 320 },
-          { src: require('./../../images/test/320x320x2.png'), size: 320, scale: 2 },
-          { src: require('./../../images/test/640x640.png'), size: 640 },
-          { src: require('./../../images/test/1280x1280.png'), size: 640, scale: 2 },
-          { src: require('./../../images/test/1280x1280.png'), size: 1280 }
-        ]}
-      >
-        <PageBoundary fill>
-          <FloatingContentBox position="middle right" size="small" className="u-text-center p-home-page__video-content">
-            <Title>My Cool Page</Title>
-            <Subtitle>Lorem ipsum dolor</Subtitle>
-            <Button>Hello</Button>
+      <Section full>
+        <PageBoundary full>
+          <FloatingContentBox position="middle right" size="small" className="u-text-center ">
+            <Title>Development & Design</Title>
+            <Subtitle>I'm not good at either.</Subtitle>
           </FloatingContentBox>
         </PageBoundary>
-      </ImageSection>
+      </Section>
 
       <Section full>
         Lorem

@@ -25,7 +25,7 @@ import React from 'react';
 
 export default function(props) {
   return (
-    <div className="c-page__boundary">
+    <div className={"c-page__boundary" + (props.full ? " is-full" : "") }>
       { props.children }
     </div>
   );
