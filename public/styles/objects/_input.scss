@@ -1,0 +1,22 @@
+/*
+ *  Input
+ *    Contains styles for input and input elements.
+ *
+ *  Dependencies:
+ *
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/13
+ */
+
+.o-input {
+  display: block;
+  width: 100%;
+  padding: 0.25em;
+}
+
+
+.o-label {
+  display: block;
+  visibility: hidden;
+}

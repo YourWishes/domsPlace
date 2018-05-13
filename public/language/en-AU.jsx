@@ -20,12 +20,12 @@ module.exports = {
 
       "email": {
         "label": "Email Address",
-        "placeholder": "Enter your email address."
+        "placeholder": "Email Address."
       },
 
       "message": {
         "label": "Message",
-        "placeholder": "Enter your message."
+        "placeholder": "Message."
       },
 
       "send": "Send"

@@ -81,7 +81,7 @@ $o-navbar--link-thickness: 5px;
 
 
   @include t-media-query($s-xsmall-up) {
-    padding: 1em;
+    //padding: 1em;
 
     &__logo-container {
       text-align: left;
@@ -97,7 +97,7 @@ $o-navbar--link-thickness: 5px;
   }
 
   @include t-media-query($s-small-up) {
-    padding: 3em;
+    //padding: 3em;
 
     &__logo {
       width: 12em;

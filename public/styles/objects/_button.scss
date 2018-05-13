@@ -3,13 +3,21 @@
  *    Clicky Tappy Touchy Buttons!
  *
  *  Dependencies:
+ *    styles/tools/_gradient.scss
  *
  *
  *  Version:
- *    1.0.0 - 2018/05/11
+ *    1.0.1 - 2018/05/14
  */
+
+
+
 .o-btn {
-  //Reset
   display: inline-block;
   cursor: pointer;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  padding: 0.5em 1.25em;
+
+  @include t-vertical-gradient(#FFF, #FBFBFB);
 }
