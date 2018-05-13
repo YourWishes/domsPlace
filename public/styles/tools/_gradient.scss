@@ -14,3 +14,11 @@
   background-image: linear-gradient(to bottom, #{$colorTop} 0%,#{$colorBottom} 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$colorTop}', endColorstr='#{$colorBottom}',GradientType=0 ); /* IE6-9 */
 }
+
+@mixin t-horizontal-gradient($colorLeft, $colorRight) {
+  background-color: $colorLeft;
+  background-image: -moz-linear-gradient(left, #{$colorLeft} 0%, #{$colorRight} 100%);
+  background-image: -webkit-linear-gradient(left, #{$colorLeft} 0%,#{$colorRight} 100%);
+  background-image: linear-gradient(to right, #{$colorLeft} 0%,#{$colorRight} 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$colorLeft}', endColorstr='#{$colorRight}', GradientType=1);
+}
