@@ -3,6 +3,8 @@
  *    Clicky Tappy Touchy Buttons!
  *
  *  Dependencies:
+ *    styles/settings/animation.scss
+ *    styles/settings/colors.scss
  *    styles/tools/_gradient.scss
  *
  *
@@ -10,14 +12,18 @@
  *    1.0.1 - 2018/05/14
  */
 
-
-
 .o-btn {
+  position: relative;
   display: inline-block;
   cursor: pointer;
-  border: 1px solid #DDD;
-  border-radius: 4px;
-  padding: 0.5em 1.25em;
+  border: $s-color--btn-default__border;
+  padding: 1em 1em;
+  transition: all 0.2s $s-animation--ease-out;
 
-  @include t-vertical-gradient(#FFF, #FBFBFB);
+  @include t-horizontal-gradient($s-color--btn-default__top, $s-color--btn-default__bottom);
+
+
+  &:hover {
+    @include t-vertical-gradient($s-color--btn-default-hover__top, $s-color--btn-default-hover__bottom);
+  }
 }
