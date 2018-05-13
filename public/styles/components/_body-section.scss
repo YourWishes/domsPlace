@@ -1,0 +1,16 @@
+/*
+ *  Body Section
+ *    Body Section.
+ *
+ *  Dependencies:
+ *    styles/settings/colors.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/13
+ */
+$c-body-section--padding: 1em;
+
+.c-body-section {
+  background: $s-color--background;
+  padding: $c-body-section--padding;
+}

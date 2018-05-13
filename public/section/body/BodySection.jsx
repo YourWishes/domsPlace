@@ -22,27 +22,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Page, { PageBoundary } from './../Page';
-import Section, { ImageSection } from './../../section/Section';
-import FloatingContentBox from './../../content/FloatingContentBox';
-import Image from './../../image/Image';
-import { Title, Subtitle } from './../../typography/Typography';
+import Section from './../Section';
 
-export default function() {
+export default function(props) {
+  let clazz = "c-body-section";
+  if(props.className) clazz += " " + props.className;
+
   return (
-    <Page style="home-page" className="p-home-page">
-      <Section full>
-        <PageBoundary full>
-          <FloatingContentBox position="middle right" size="small" className="u-text-center ">
-            <Title>Development & Design</Title>
-            <Subtitle>I'm not good at either.</Subtitle>
-          </FloatingContentBox>
-        </PageBoundary>
-      </Section>
-
-      <Section full>
-        Lorem
-      </Section>
-    </Page>
+    <Section {...props} className={clazz} />
   );
-}
+};

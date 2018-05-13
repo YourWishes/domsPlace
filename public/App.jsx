@@ -27,6 +27,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 
 //Pages
 import Homepage from './page/home/Homepage';
+import ContactPage from './page/contact/ContactPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends React.Component {
           <main className="o-main">
             <Switch>
               <Route exact path="/" component={ Homepage } />
+              <Route exact path="/contact" component={ ContactPage } />
             </Switch>
           </main>
         </div>

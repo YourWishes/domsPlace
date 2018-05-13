@@ -26,6 +26,9 @@ $s-color--swatch-blue: #BAE1FF;
 /*
  == Color Definitions ==
 */
+
+$s-color--background: white;
+
 //Hyperlink Colors
 $s-color--link: #FC78DE;
 $s-color--link-hover: lighten($s-color--link, 10%);
