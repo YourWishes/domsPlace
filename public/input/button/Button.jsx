@@ -74,6 +74,7 @@ export default class Button extends React.Component {
 
     return (
       <ElementType
+        {...this.props}
         type={type}
         className={clazzes}
         href={href}
