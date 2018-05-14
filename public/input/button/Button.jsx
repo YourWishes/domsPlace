@@ -37,6 +37,7 @@ export default class Button extends React.Component {
     let href;
     let to;
     let activeClassName;
+    let style;
 
     //Basic Element Determining
     if(this.props.type) {
@@ -65,8 +66,20 @@ export default class Button extends React.Component {
       contents = this.props.children;
     }
 
-    if(this.props.style) {
-      clazzes += " o-btn--style-" + this.props.style;
+    //Determine Style
+    if(this.props.primary) {
+      style = "primary"
+    } else if(this.props.secondary) {
+      style = "secondary";
+    } else if(this.props.danger) {
+      style = "danger";
+    } else if(this.props.style) {
+      style = this.props.style;
+    }
+
+    //Style Clazzes
+    if(style) {
+      clazzes += " o-btn--style-"+style;
     }
 
     //Determine extra clazzes
@@ -80,7 +93,7 @@ export default class Button extends React.Component {
         href={href}
         to={to}
       >
-        <span class="o-btn__inner">
+        <span className={ "o-btn__inner" + (style ? " o-btn--style-" + style + "__inner" : "") }>
           {contents}
         </span>
       </ElementType>

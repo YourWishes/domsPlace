@@ -35,7 +35,7 @@ $o-btn--padding: 1.5em;//Base Padding size.
 
   &__inner {
     position: relative;
-    background: white;
+    background: $s-color--btn-default__top;
     display: block;
     padding: ( $o-btn--padding / 2 ) $o-btn--padding;
     border-radius: $o-btn--padding / 3;
@@ -49,19 +49,44 @@ $o-btn--padding: 1.5em;//Base Padding size.
     }
   }
 
-  &:active {
-    .o-btn__inner {
-      @include t-translate-y($o-btn--padding / 4);
-      background: $s-color--btn-default-hover__top;
-    }
-  }
-
-  &:focus {
-    &::before,
-    .o-btn__inner {
-      //border-color: $s-color--btn-default__focus;
-    }
+  &:active &__inner {
+    @include t-translate-y($o-btn--padding / 4);
+    background: $s-color--btn-default-hover__top;
   }
 }
 
-//Custom Button Styles
+/*** Custom Button Styles ***/
+@mixin o-basic-button-design($top, $bottom) {
+  &::before,
+  &:active &__inner {
+    background: $bottom;
+  }
+
+  &__inner {
+    background: $top;
+  }
+}
+
+//Primary (Blue)
+.o-btn--style-primary {
+  @include o-basic-button-design(
+    $s-color--btn-primary__top,
+    $s-color--btn-primary__bottom
+  );
+}
+
+//Secondary (Light Blue)
+.o-btn--style-secondary {
+  @include o-basic-button-design(
+    $s-color--btn-secondary__top,
+    $s-color--btn-secondary__bottom
+  );
+}
+
+//Danger
+.o-btn--style-danger {
+  @include o-basic-button-design(
+    $s-color--btn-danger__top,
+    $s-color--btn-danger__bottom
+  );
+}
