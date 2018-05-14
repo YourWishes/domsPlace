@@ -78,7 +78,7 @@ class ContactPage extends React.Component {
               </InputGroup>
 
               <ButtonGroup>
-                <Input type="submit" value={ Language.get("pages.contact.send") } primary />
+                <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
                 <Input type="reset" value={ Language.get("pages.contact.reset") } />
               </ButtonGroup>
             </Form>

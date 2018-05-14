@@ -18,7 +18,7 @@ $o-btn--padding: 1em;//Base Padding size.
   position: relative;
   display: inline-block;
   cursor: pointer;
-  padding-bottom: 0.5em;
+  padding-bottom: $o-btn--padding / 2;
   overflow: hidden;
 
   &::before {

@@ -10,14 +10,32 @@
  */
 $o-input--padding: 1em;
 
+.o-input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  border: $s-color--input-default__border;
+  border-radius: $o-input--padding / 3;
+  padding-bottom: $o-input--padding / 2;
+}
+
 .o-input {
   display: block;
   width: 100%;
   padding: $o-input--padding / 2;
   margin: 0;//For some reason textareas have a 1px margin
 
-  border: $s-color--input-default__border;
+  border-bottom: $s-color--input-default__border;
   border-radius: $o-input--padding / 3;
+
+  //Textarea
+  max-width: 100%;
+  min-width: 100%;
+
+  //Placeholder
+  @include t-placeholder() {
+  }
 }
 
 

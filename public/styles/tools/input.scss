@@ -1,0 +1,17 @@
+/*
+ *  Input
+ *    Tools for various input types
+ *
+ * Dependencies:
+ *    styles/settings/colors.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/02/07
+ */
+@mixin t-placeholder() {
+  &:moz-placeholder {@content;}
+  &:ms-input-placeholder {@content;}
+  &::placeholder {@content;}
+  &::moz-placeholder {@content;}
+  &::-webkit-input-placeholder {@content;}
+}

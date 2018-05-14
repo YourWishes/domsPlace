@@ -60,14 +60,18 @@ export default class Input extends React.Component {
 
     //First we need to switch things like submit and reset
     if(type == "submit" || type == "reset" || type == "button") {
-      element = <Button {...this.props} />;
+      return <Button {...this.props} />;
     } else if(type == "textarea") {
       element = <textarea {...this.props} className={clazzes}>{ value }</textarea>
     } else {
       element = <ElementType {...this.props} type={type} className={clazzes} />
     }
 
-    return element;
+    return (
+      <div class="o-input-wrapper">
+        { element }
+      </div>
+    )
   }
 }
 
