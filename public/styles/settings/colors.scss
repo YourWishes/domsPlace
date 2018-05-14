@@ -48,6 +48,6 @@ $s-color--loader: $s-color--swatch-blue;
 $s-color--btn-default__top: #FFF;
 $s-color--btn-default__bottom: #FBFBFB;
 $s-color--btn-default__border: 1px solid #DDD;
+$s-color--btn-default__focus: $s-color--swatch-blue;
 
 $s-color--btn-default-hover__top: $s-color--btn-default__bottom;
-$s-color--btn-default-hover__bottom: #EEE;

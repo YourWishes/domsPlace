@@ -80,7 +80,9 @@ export default class Button extends React.Component {
         href={href}
         to={to}
       >
-        {contents}
+        <span class="o-btn__inner">
+          {contents}
+        </span>
       </ElementType>
     );
   }

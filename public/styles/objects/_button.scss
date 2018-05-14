@@ -12,18 +12,53 @@
  *    1.0.1 - 2018/05/14
  */
 
+//Default Button (applies to all styles)
 .o-btn {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  border: $s-color--btn-default__border;
-  padding: 1em 1em;
-  transition: all 0.2s $s-animation--ease-out;
+  padding-bottom: 0.5em;
+  overflow: hidden;
 
-  @include t-horizontal-gradient($s-color--btn-default__top, $s-color--btn-default__bottom);
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    border: $s-color--btn-default__border;
+    border-radius: 0.5em;
+    background: $s-color--btn-default__bottom;
+  }
 
+  &__inner {
+    position: relative;
+    background: white;
+    display: block;
+    padding: 0.75em 1.5em;
+    border-radius: 0.5em;
+    border: $s-color--btn-default__border;
+    transition: all 0.1s $s-animation--ease-out;
+  }
 
   &:hover {
-    @include t-vertical-gradient($s-color--btn-default-hover__top, $s-color--btn-default-hover__bottom);
+    .o-btn__inner {
+      @include t-translate-y(0.1em);
+    }
+  }
+
+  &:active {
+    .o-btn__inner {
+      @include t-translate-y(0.4em);
+      background: $s-color--btn-default-hover__top;
+    }
+  }
+
+  &:focus {
+    &::before,
+    .o-btn__inner {
+      border-color: $s-color--btn-default__focus;
+    }
   }
 }
