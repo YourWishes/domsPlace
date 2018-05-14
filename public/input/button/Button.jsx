@@ -73,6 +73,8 @@ export default class Button extends React.Component {
       style = "secondary";
     } else if(this.props.danger) {
       style = "danger";
+    } else if(this.props.warning) {
+      style = "warning";
     } else if(this.props.style) {
       style = this.props.style;
     }

@@ -25,7 +25,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Page, { PageBoundary } from './../Page';
 import Section, { BodySection } from './../../section/Section';
-import Input, { Form, InputGroup, TextArea, Label } from './../../input/input';
+import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/input';
 import Language from './../../language/Language';
 
 class ContactPage extends React.Component {
@@ -77,14 +77,10 @@ class ContactPage extends React.Component {
                 />
               </InputGroup>
 
-              <InputGroup>
+              <ButtonGroup>
                 <Input type="submit" value={ Language.get("pages.contact.send") } primary />
-
-                <Input type="submit" value="Default" />
-                <Input type="button" value="Primary" primary />
-                <Input type="button" value="Secondary" secondary />
-                <Input type="button" value="Danger" danger />
-              </InputGroup>
+                <Input type="reset" value={ Language.get("pages.contact.reset") } />
+              </ButtonGroup>
             </Form>
           </BodySection>
         </PageBoundary>

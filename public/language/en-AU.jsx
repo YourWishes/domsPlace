@@ -28,7 +28,8 @@ module.exports = {
         "placeholder": "Message."
       },
 
-      "send": "Send"
+      "send": "Send",
+      "reset": "Reset"
     }
   }
 }

@@ -5,13 +5,13 @@
  *  Dependencies:
  *    styles/settings/animation.scss
  *    styles/settings/colors.scss
- *    styles/tools/_gradient.scss
+ *    styles/tools/_box-shadow.scss
  *
  *
  *  Version:
  *    1.0.1 - 2018/05/14
  */
-$o-btn--padding: 1.5em;//Base Padding size.
+$o-btn--padding: 1em;//Base Padding size.
 
 //Default Button (applies to all styles)
 .o-btn {
@@ -28,18 +28,20 @@ $o-btn--padding: 1.5em;//Base Padding size.
     left: 0;
     width: 100%;
     height: 50%;
-    border: $s-color--btn-default__border;
+    border: $s-color--input-default__border;
     border-radius: $o-btn--padding / 3;
     background: $s-color--btn-default__bottom;
+    @include t-box-shadow(0,-($o-btn--padding/16),$o-btn--padding / 8,0,rgba(0, 0, 0, 0.1),true);
   }
 
   &__inner {
+    @include t-box-shadow(0,$o-btn--padding/8,$o-btn--padding/8,0,rgba(255,255,255, 0.4),true);
     position: relative;
     background: $s-color--btn-default__top;
     display: block;
     padding: ( $o-btn--padding / 2 ) $o-btn--padding;
     border-radius: $o-btn--padding / 3;
-    border: $s-color--btn-default__border;
+    border: $s-color--input-default__border;
     transition: all 0.1s $s-animation--ease-out;
   }
 
@@ -52,6 +54,13 @@ $o-btn--padding: 1.5em;//Base Padding size.
   &:active &__inner {
     @include t-translate-y($o-btn--padding / 4);
     background: $s-color--btn-default-hover__top;
+  }
+}
+
+//Button Group
+.o-btn-group {
+  .o-btn + .o-btn {
+    margin-left: 1em;
   }
 }
 
@@ -88,5 +97,13 @@ $o-btn--padding: 1.5em;//Base Padding size.
   @include o-basic-button-design(
     $s-color--btn-danger__top,
     $s-color--btn-danger__bottom
+  );
+}
+
+//Warning
+.o-btn--style-warning {
+  @include o-basic-button-design(
+    $s-color--btn-warning__top,
+    $s-color--btn-warning__bottom
   );
 }

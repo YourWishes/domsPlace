@@ -10,4 +10,9 @@
  */
 .o-form { }
 
-.o-form__group { }
+.o-form__group {
+  + .o-btn-group,
+  + .o-form__group {
+    margin-top: 1em;
+  }
+}

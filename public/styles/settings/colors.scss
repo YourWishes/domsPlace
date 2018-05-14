@@ -44,10 +44,11 @@ $s-color--navbar__bar-active: $s-color--pastel-green;
 $s-color--loader: $s-color--swatch-blue;
 
 /*** Buttons and Inputs ***/
+$s-color--input-default__border: 1px solid #AAA;
+
 //Button Default
 $s-color--btn-default__top: #F7F7F7;
 $s-color--btn-default__bottom: #DADADA;
-$s-color--btn-default__border: 1px solid #AAA;
 
 $s-color--btn-default-hover__top: $s-color--btn-default__bottom;
 
@@ -62,3 +63,7 @@ $s-color--btn-secondary__bottom: darken($s-color--btn-secondary__top, 8%);
 //Btn Danger
 $s-color--btn-danger__top: $s-color--swatch-red;
 $s-color--btn-danger__bottom: darken($s-color--btn-danger__top, 8%);
+
+//Btn Warning
+$s-color--btn-warning__top: $s-color--swatch-orange;
+$s-color--btn-warning__bottom: darken($s-color--btn-warning__top, 8%);

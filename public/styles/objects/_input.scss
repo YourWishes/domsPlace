@@ -8,15 +8,20 @@
  *  Version:
  *    1.0.0 - 2018/05/13
  */
+$o-input--padding: 1em;
 
 .o-input {
   display: block;
   width: 100%;
-  padding: 0.25em;
+  padding: $o-input--padding / 2;
+  margin: 0;//For some reason textareas have a 1px margin
+
+  border: $s-color--input-default__border;
+  border-radius: $o-input--padding / 3;
 }
 
 
 .o-label {
-  display: block;
+  display: none;
   visibility: hidden;
 }

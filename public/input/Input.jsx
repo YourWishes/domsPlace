@@ -24,6 +24,7 @@
 import React from 'react';
 
 import Button from './button/Button';
+import ButtonGroup from './button/ButtonGroup';
 import Form from './form/Form';
 import InputGroup from './group/InputGroup';
 import Label from './label/Label';
@@ -76,6 +77,7 @@ const TextArea = props => {
 
 export {
   Button,
+  ButtonGroup,
   Form,
   InputGroup,
   TextArea,
