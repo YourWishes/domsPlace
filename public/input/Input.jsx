@@ -39,6 +39,8 @@ export default class Input extends React.Component {
     let type = "text";
     let value;
     let clazzes = "o-input";
+    let innerClazzes = "o-input__inner";
+    let style;
 
     //Determining
     if(this.props.type) type = this.props.type;
@@ -50,9 +52,24 @@ export default class Input extends React.Component {
       value = this.props.children;
     }
 
+    //Style
+    if(this.props.style) {
+      style = this.props.style;
+    } else if(this.props.error || this.props.danger) {
+      style = "danger";
+    } else if(this.props.warning) {
+      style = "warning";
+    } else if(this.props.primary) {
+      style = "primary";
+    }
+
     //Classes
     clazzes += " is-"+type;
 
+    if(style) {
+      clazzes += " o-input--style-"+style;
+      innerClazzes += " o-input--style-"+style+"__inner";
+    }
     if(this.props.className) clazzes += " " + this.props.className;
 
     //Now create the element
@@ -62,13 +79,13 @@ export default class Input extends React.Component {
     if(type == "submit" || type == "reset" || type == "button") {
       return <Button {...this.props} />;
     } else if(type == "textarea") {
-      element = <textarea {...this.props} className={clazzes}>{ value }</textarea>
+      element = <textarea {...this.props} className={innerClazzes}>{ value }</textarea>
     } else {
-      element = <ElementType {...this.props} type={type} className={clazzes} />
+      element = <ElementType {...this.props} type={type} className={innerClazzes} />
     }
 
     return (
-      <div class="o-input-wrapper">
+      <div className={clazzes}>
         { element }
       </div>
     )

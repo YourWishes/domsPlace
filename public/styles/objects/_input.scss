@@ -3,41 +3,24 @@
  *    Contains styles for input and input elements.
  *
  *  Dependencies:
+ *    styles/tools/_input.scss
  *
  *
  *  Version:
  *    1.0.0 - 2018/05/13
  */
-$o-input--padding: 1em;
-
-.o-input-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-
-  border: $s-color--input-default__border;
-  border-radius: $o-input--padding / 3;
-  padding-bottom: $o-input--padding / 2;
-}
 
 .o-input {
-  display: block;
+  @include t-input--style-dp();
   width: 100%;
-  padding: $o-input--padding / 2;
-  margin: 0;//For some reason textareas have a 1px margin
 
-  border-bottom: $s-color--input-default__border;
-  border-radius: $o-input--padding / 3;
-
-  //Textarea
-  max-width: 100%;
-  min-width: 100%;
-
-  //Placeholder
-  @include t-placeholder() {
+  &__inner {
+    //Textarea
+    margin: 0;//For some reason textareas have a 1px margin
+    max-width: 100%;
+    min-width: 100%;
   }
 }
-
 
 .o-label {
   display: none;

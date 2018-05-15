@@ -12,4 +12,8 @@ input,textarea {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+
+  @include t-placeholder() {
+    color: inherit;
+  }
 }

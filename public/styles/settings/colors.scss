@@ -44,26 +44,28 @@ $s-color--navbar__bar-active: $s-color--pastel-green;
 $s-color--loader: $s-color--swatch-blue;
 
 /*** Buttons and Inputs ***/
+
+//Defaults
 $s-color--input-default__border: 1px solid #AAA;
+$s-color--input-default__top: #F7F7F7;
+$s-color--input-default__bottom: #DADADA;
+$s-color--input-default-hover__top: $s-color--input-default__bottom;
 
-//Button Default
-$s-color--btn-default__top: #F7F7F7;
-$s-color--btn-default__bottom: #DADADA;
-
-$s-color--btn-default-hover__top: $s-color--btn-default__bottom;
+//Input Styles
+$s-color--input-focus__outline: darken($s-color--swatch-blue, 20%);
 
 //Button Primary
-$s-color--btn-primary__top: $s-color--swatch-blue;
-$s-color--btn-primary__bottom: darken($s-color--btn-primary__top, 8%);
+$s-color--input-primary__top: $s-color--swatch-blue;
+$s-color--input-primary__bottom: darken($s-color--input-primary__top, 8%);
 
 //Btn Secondary
-$s-color--btn-secondary__top: $s-color--pastel-blue;
-$s-color--btn-secondary__bottom: darken($s-color--btn-secondary__top, 8%);
+$s-color--input-secondary__top: $s-color--pastel-blue;
+$s-color--input-secondary__bottom: darken($s-color--input-secondary__top, 8%);
 
 //Btn Danger
-$s-color--btn-danger__top: $s-color--swatch-red;
-$s-color--btn-danger__bottom: darken($s-color--btn-danger__top, 8%);
+$s-color--input-danger__top: $s-color--swatch-red;
+$s-color--input-danger__bottom: darken($s-color--input-danger__top, 8%);
 
 //Btn Warning
-$s-color--btn-warning__top: $s-color--swatch-orange;
-$s-color--btn-warning__bottom: darken($s-color--btn-warning__top, 8%);
+$s-color--input-warning__top: $s-color--swatch-orange;
+$s-color--input-warning__bottom: darken($s-color--input-warning__top, 8%);

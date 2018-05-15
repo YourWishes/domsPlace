@@ -74,6 +74,7 @@ class ContactPage extends React.Component {
                 <Label>{ Language.get("pages.contact.message.label") }</Label>
                 <TextArea
                   placeholder={ Language.get("pages.contact.message.placeholder") }
+                  rows="6"
                 />
               </InputGroup>
 

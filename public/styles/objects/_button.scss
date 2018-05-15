@@ -11,49 +11,14 @@
  *  Version:
  *    1.0.1 - 2018/05/14
  */
-$o-btn--padding: 1em;//Base Padding size.
 
 //Default Button (applies to all styles)
 .o-btn {
-  position: relative;
-  display: inline-block;
   cursor: pointer;
-  padding-bottom: $o-btn--padding / 2;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    border: $s-color--input-default__border;
-    border-radius: $o-btn--padding / 3;
-    background: $s-color--btn-default__bottom;
-    @include t-box-shadow(0,-($o-btn--padding/16),$o-btn--padding / 8,0,rgba(0, 0, 0, 0.1),true);
-  }
+  @include t-input--style-dp();
 
   &__inner {
-    @include t-box-shadow(0,$o-btn--padding/8,$o-btn--padding/8,0,rgba(255,255,255, 0.4),true);
-    position: relative;
-    background: $s-color--btn-default__top;
-    display: block;
-    padding: ( $o-btn--padding / 2 ) $o-btn--padding;
-    border-radius: $o-btn--padding / 3;
-    border: $s-color--input-default__border;
-    transition: all 0.1s $s-animation--ease-out;
-  }
-
-  &:hover {
-    .o-btn__inner {
-      @include t-translate-y($o-btn--padding / 10);
-    }
-  }
-
-  &:active &__inner {
-    @include t-translate-y($o-btn--padding / 4);
-    background: $s-color--btn-default-hover__top;
+    padding: ( $t-input--style-dp__padding / 2 ) $t-input--style-dp__padding;
   }
 }
 
@@ -74,36 +39,4 @@ $o-btn--padding: 1em;//Base Padding size.
   &__inner {
     background: $top;
   }
-}
-
-//Primary (Blue)
-.o-btn--style-primary {
-  @include o-basic-button-design(
-    $s-color--btn-primary__top,
-    $s-color--btn-primary__bottom
-  );
-}
-
-//Secondary (Light Blue)
-.o-btn--style-secondary {
-  @include o-basic-button-design(
-    $s-color--btn-secondary__top,
-    $s-color--btn-secondary__bottom
-  );
-}
-
-//Danger
-.o-btn--style-danger {
-  @include o-basic-button-design(
-    $s-color--btn-danger__top,
-    $s-color--btn-danger__bottom
-  );
-}
-
-//Warning
-.o-btn--style-warning {
-  @include o-basic-button-design(
-    $s-color--btn-warning__top,
-    $s-color--btn-warning__bottom
-  );
 }
