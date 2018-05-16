@@ -22,6 +22,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { PageBoundary } from './../page/Page';
+
+const FooterLink = function(props) {
+  return (
+    <a href="#" className="c-footer__link">Link</a>
+  );
+}
 
 class Footer extends React.Component {
   constructor(props) {
@@ -31,7 +38,20 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className="c-footer">
-        Footer
+        <PageBoundary>
+          <div className="c-footer__inner">
+            <div className="c-footer__copyright">
+              Footer
+            </div>
+
+            <div className="c-footer__links">
+              <FooterLink title="privacy" />
+              <FooterLink title="privacy" />
+              <FooterLink title="privacy" />
+              <FooterLink title="privacy" />
+            </div>
+          </div>
+        </PageBoundary>
       </footer>
     );
   }

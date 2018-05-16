@@ -1,8 +1,37 @@
 /*
  *  Footer
  *    Site Footer!
+ *
+ *  Dependencies:
+ *    styles/tools/flex.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/16
  */
 .c-footer {
-  background: red;
-  
+  background: white;
+  padding: 0.75em 0;
+
+  &__inner {
+    @extend %t-flexbox;
+    @include t-justify-content(space-between);
+  }
+
+  &__copyright {
+
+  }
+
+  &__links {
+
+  }
+
+  &__link {
+    display: inline-block;
+
+    + #{&}::before {
+      display: inline-block;
+      padding: 0 0.25em;
+      content: " | ";
+    }
+  }
 }

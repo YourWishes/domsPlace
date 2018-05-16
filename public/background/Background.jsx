@@ -22,39 +22,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Background from './background/Background';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import { HashRouter, Route, Switch } from 'react-router-dom';
 
-//Pages
-import Homepage from './page/home/Homepage';
-import ContactPage from './page/contact/ContactPage';
+export default function(props) {
+  let style = props.style || "test";
+  let styleClassPrefix = "o-background--style-"+style;
+  let inners = [];
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+  if(style == "twilight") {
+    inners.push(<div className={"o-background__grain "+style+"__grain"} key="grain"></div>);
   }
 
-  render() {
-    return (
-      <HashRouter>
-        <div className="o-app">
-          <Background style="twilight" />
-          <Header />
-
-          <main className="o-main">
-            <Switch>
-              <Route exact path="/" component={ Homepage } />
-              <Route exact path="/contact" component={ ContactPage } />
-            </Switch>
-          </main>
-
-          <Footer />
-        </div>
-      </HashRouter>
-    );
-  }
+  return (
+    <div className={"o-background "+styleClassPrefix}>
+      <div className={"o-background__inner " + styleClassPrefix + "__inner" }>
+        { inners }
+      </div>
+    </div>
+  );
 }
-
-export default App;
