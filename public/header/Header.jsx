@@ -22,37 +22,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import Navbar from './../nav/navbar/Navbar';
 
-//Pages
-import Homepage from './page/home/Homepage';
-import ContactPage from './page/contact/ContactPage';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <HashRouter>
-        <div className="o-app o-app--style-civil-twilight">
-          <Header />
-
-          <main className="o-main">
-            <Switch>
-              <Route exact path="/" component={ Homepage } />
-              <Route exact path="/contact" component={ ContactPage } />
-            </Switch>
-          </main>
-
-          <Footer />
-        </div>
-      </HashRouter>
-    );
-  }
+export default function(props) {
+  return (
+    <header>
+      <Navbar />
+    </header>
+  );
 }
-
-export default App;

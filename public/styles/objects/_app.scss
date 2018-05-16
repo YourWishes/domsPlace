@@ -3,6 +3,7 @@
  *    App styles for the app container.
  *
  *  Dependencies:
+ *    styles/tools/flex.scss
  *
  *  Version:
  *    1.0.0 - 2018/05/03
@@ -11,6 +12,9 @@
   //display: inline-block;//Fixes collapsing margins on children.
   min-height: 100vh;
   width: 100%;
+
+  @include t-flexbox();
+  @include t-flex-direction(column);
 
   //Civil Twilight
   &--style-civil-twilight {
