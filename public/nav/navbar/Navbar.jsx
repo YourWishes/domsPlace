@@ -22,6 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import PageBoundary from './../../page/PageBoundary';
@@ -57,7 +58,7 @@ class Navbar extends React.Component {
 
             <NavbarLink to="/" title="home" exact />
             <NavbarLink to="/about" title="about" />
-            <NavbarLink to="/contact" title="contact" />
+            <NavbarLink to="/contact" title="contact" exact />
           </nav>
         </PageBoundary>
       </section>
@@ -71,4 +72,4 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default withRouter(connect(mapStateToProps)(Navbar));
