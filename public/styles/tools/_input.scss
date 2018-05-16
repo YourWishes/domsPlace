@@ -81,10 +81,10 @@ $t-input--style-dp__padding: 1em;
     //Shine effect
     @include t-box-shadow(
       0,
-      $t-input--style-dp__padding/8,
-      $t-input--style-dp__padding/8,
+      $t-input--style-dp__padding/4,
+      $t-input--style-dp__padding/4,
       0,
-      rgba(255,255,255, 0.4),
+      rgba(255,255,255, 0.6),
       true
     );
   }
