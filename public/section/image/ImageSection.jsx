@@ -44,7 +44,11 @@ export default function(props) {
       className={"c-image-section" + (props.className ? " " + props.className : "" ) }
     >
       { image }
-      {props.children}
+      <div class="c-image-section__content">
+        <div class="c-image-section__content-inner">
+          { props.children }
+        </div>
+      </div>
     </Section>
   );
 }

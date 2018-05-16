@@ -29,16 +29,18 @@ import Image from './../../image/Image';
 import { Title, Subtitle } from './../../typography/Typography';
 
 export default function() {
+
+
   return (
     <Page style="home-page" className="p-home-page">
-      <Section full>
+      <ImageSection src="//placehold.it/2400x1200" alt="domsPlace">
         <PageBoundary full>
           <FloatingContentBox position="middle right" size="small" className="u-text-center ">
             <Title>Development & Design</Title>
             <Subtitle>I'm not good at either.</Subtitle>
           </FloatingContentBox>
         </PageBoundary>
-      </Section>
+      </ImageSection>
 
       <Section full>
         Lorem

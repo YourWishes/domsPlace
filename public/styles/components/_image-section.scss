@@ -17,6 +17,18 @@
   &.is-full {
     .c-image-section__image {
       @include t-absolute-fill();
+      object-fit: cover;
+      object-position: bottom center;
+    }
+  }
+
+  &__content {
+    @include t-absolute-fill();
+    
+    &-inner {
+      position: relative;
+      height: 100%;
+      width: 100%;
     }
   }
 }
