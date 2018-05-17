@@ -53,7 +53,7 @@ $t-input--style-dp__padding: 1em;
 
     background: $s-color--input-default__bottom;
     border: $s-color--input-default__border;
-    border-radius: $t-input--style-dp__padding / 3;
+    //border-radius: $t-input--style-dp__padding / 3;
 
     //Background Shadow (3D effect)
     @include t-box-shadow(
@@ -76,7 +76,7 @@ $t-input--style-dp__padding: 1em;
     background: $s-color--input-default__top;
     border: $s-color--input-default__border;
     transition: all 0.1s $s-animation--ease-out;
-    border-radius: $t-input--style-dp__padding / 3;
+    //border-radius: $t-input--style-dp__padding / 3;
 
     //Shine effect
     @include t-box-shadow(

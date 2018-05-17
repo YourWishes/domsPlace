@@ -28,6 +28,7 @@ $o-navbar--link-thickness: 5px;
   &__nav {
     @extend %t-flexbox;
     @include t-align-items(stretch);
+    @extend %t-dp--shadow;
     background: $s-color--navbar;
     color: white;
   }
@@ -53,12 +54,13 @@ $o-navbar--link-thickness: 5px;
     color: $s-color--navbar__text;
 
     &:after {
+      @extend %t-dp--shadow;
       position: absolute;
       width: 100%;
       height: 0px;
       left: 0;
       bottom: 0px;
-      @include t-translate-y(100%)
+      @include t-translate-y(90%)
       transition: height 0.2s $s-animation--ease-out;
 
       content: " ";

@@ -1,0 +1,17 @@
+/*
+ *  domsPlace Shadows
+ *    Standard Shadows used throughout domsPlace
+ *
+ *  Dependencies:
+ *    styles/settings/colors.scss
+ *    styles/tools/_box-shadow.scss
+ */
+%t-dp--shadow {
+  @include t-box-shadow(
+    1em,
+    1em,
+    0,
+    0,
+    $s-color--shadow
+  );
+}
