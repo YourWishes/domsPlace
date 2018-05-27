@@ -15,3 +15,11 @@
     @include t-prefix-property(box-shadow, #{$horizontal} #{$vertical} #{$blur} #{$spread} #{$color}, spec webkit moz);
   }
 }
+
+@mixin t-drop-shadow($horizontal, $vertical, $blur, $color, $inset:false) {
+  @if $inset == true {
+    @include t-prefix-property(filter, drop-shadow( #{$horizontal} #{$vertical} #{$blur} #{$color} ), spec webkit moz);
+  } @else {
+    @include t-prefix-property(filter, drop-shadow( #{$horizontal} #{$vertical} #{$blur} #{$color} ), spec webkit moz);
+  }
+}

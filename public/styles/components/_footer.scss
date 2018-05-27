@@ -9,12 +9,16 @@
  *    1.0.0 - 2018/05/16
  */
 .c-footer {
+  padding-top: 2em;
+  padding-bottom: 3em;
+  position: relative;
+  overflow: hidden;
   background: white;
-  padding: 0.75em 0;
 
   &__inner {
-    @extend %t-flexbox;
-    @include t-justify-content(space-between);
+    text-align: center;
+    position: relative;
+    z-index: 10;
   }
 
   &__copyright {
@@ -22,16 +26,13 @@
   }
 
   &__links {
-
+    padding-bottom: 1em;
   }
 
   &__link {
+   + #{&} {
     display: inline-block;
-
-    + #{&}::before {
-      display: inline-block;
-      padding: 0 0.25em;
-      content: " | ";
-    }
+    padding-left: 1em;
+   }
   }
 }

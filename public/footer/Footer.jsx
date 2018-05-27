@@ -26,7 +26,11 @@ import { PageBoundary } from './../page/Page';
 
 const FooterLink = function(props) {
   return (
-    <a href="#" className="c-footer__link">Link</a>
+    <span className="c-footer__link">
+      <a href="#">
+        Link
+      </a>
+    </span>
   );
 }
 
@@ -40,15 +44,18 @@ class Footer extends React.Component {
       <footer className="c-footer">
         <PageBoundary>
           <div className="c-footer__inner">
-            <div className="c-footer__copyright">
-              Footer
-            </div>
 
-            <div className="c-footer__links">
+            <nav className="c-footer__links">
               <FooterLink title="privacy" />
               <FooterLink title="privacy" />
               <FooterLink title="privacy" />
               <FooterLink title="privacy" />
+            </nav>
+
+            <div className="c-footer__copyright">
+              &copy; { new Date(1335830400000).getFullYear() }
+              ~
+              { new Date().getFullYear() } Dominic Masters
             </div>
           </div>
         </PageBoundary>

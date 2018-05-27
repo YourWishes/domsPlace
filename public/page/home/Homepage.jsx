@@ -33,7 +33,10 @@ export default function() {
 
   return (
     <Page style="home-page" className="p-home-page">
-      <ImageSection src="//placehold.it/2400x1200" alt="domsPlace">
+      <ImageSection
+        src={ require('./../../images/2400x1200.png') }
+        alt="domsPlace"
+      >
         <PageBoundary full>
           <FloatingContentBox position="middle right" size="small" className="u-text-center ">
             <Title>Development & Design</Title>
