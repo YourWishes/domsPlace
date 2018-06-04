@@ -33,12 +33,14 @@ export default function() {
 
   return (
     <Page style="home-page" className="p-home-page">
+
+      { /* Sections */ }
       <ImageSection
-        src={ require('./../../images/2400x1200.png') }
+        src={ require('./../../images/banners/homepage/palms.svg') }
         alt="domsPlace"
       >
         <PageBoundary full>
-          <FloatingContentBox position="middle right" size="small" className="u-text-center ">
+          <FloatingContentBox position="middle center" size="small" className="u-text-center">
             <Title>Development & Design</Title>
             <Subtitle>I'm not good at either.</Subtitle>
           </FloatingContentBox>

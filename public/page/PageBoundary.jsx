@@ -24,8 +24,12 @@
 import React from 'react';
 
 export default function(props) {
+  let clazzes = "c-page__boundary";
+  if(props.full) clazzes += " is-full";
+  if(props.small) clazzes += " is-small";
+
   return (
-    <div className={"c-page__boundary" + (props.full ? " is-full" : "") }>
+    <div className={ clazzes }>
       { props.children }
     </div>
   );

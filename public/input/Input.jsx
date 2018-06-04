@@ -70,7 +70,10 @@ export default class Input extends React.Component {
       clazzes += " o-input--style-"+style;
       innerClazzes += " o-input--style-"+style+"__inner";
     }
-    if(this.props.className) clazzes += " " + this.props.className;
+    if(this.props.className) {
+      clazzes += " " + this.props.className;
+      innerClazzes += " " + this.props.className + "-element";
+    }
 
     //Now create the element
     let element;

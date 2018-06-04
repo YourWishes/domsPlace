@@ -9,6 +9,7 @@
  *    1.0.0 - 2018/05/05
  */
 .c-page {
+  padding-bottom: 5em;
 
   &__boundary {
     max-width: $s-screen-boundary;
@@ -17,6 +18,10 @@
     &.is-full {
       position: relative;
       height: 100%;
+    }
+
+    &.is-small {
+      max-width: $s-screen-boundary / 2;
     }
   }
 }

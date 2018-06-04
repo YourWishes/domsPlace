@@ -28,6 +28,7 @@ import Section, { BodySection } from './../../section/Section';
 import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/input';
 import Language from './../../language/Language';
 import SplitSection, { Split } from './../../section/split/SplitSection';
+import ClearSection from './../../section/layout/ClearSection';
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -37,22 +38,11 @@ class ContactPage extends React.Component {
   render() {
     return (
       <Page style="contact-page" className="p-contact-page">
-        <Section>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-        </Section>
+        <ClearSection />
 
-        <PageBoundary>
+        <PageBoundary small>
           <SplitSection>
+
             <Split>
               <BodySection>
                 <Form>
@@ -76,7 +66,8 @@ class ContactPage extends React.Component {
                     <Label>{ Language.get("pages.contact.message.label") }</Label>
                     <TextArea
                       placeholder={ Language.get("pages.contact.message.placeholder") }
-                      rows="6"
+                      rows="8"
+                      className="p-contact-page__message"
                     />
                   </InputGroup>
 
@@ -88,8 +79,6 @@ class ContactPage extends React.Component {
               </BodySection>
             </Split>
 
-            <Split>
-            </Split>
           </SplitSection>
         </PageBoundary>
       </Page>

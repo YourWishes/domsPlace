@@ -28,16 +28,6 @@ export default function(props) {
   let styleClassPrefix = "o-background--style-"+style;
   let inners = [];
 
-  if(style == "twilight") {
-    inners.push(
-      <img
-        src={ require('./../images/palm.svg') }
-        className={"o-background__palm "+style+"__palm"} key="palm"
-      />
-    );
-    inners.push(<div className={"o-background__grain "+style+"__grain"} key="grain"></div>);
-  }
-
   return (
     <div className={"o-background "+styleClassPrefix}>
       <div className={"o-background__inner " + styleClassPrefix + "__inner" }>

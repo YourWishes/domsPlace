@@ -1,0 +1,23 @@
+/*
+ *  Contact Page
+ *    Contact Page specific styles and designs
+ *
+ *  Dependencies:
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/28
+ */
+.p-contact-page {
+  background-image: url('./../images/pattern_poly.svg');
+
+  &__message-element {
+    resize: none;
+  }
+
+  &__floppy {
+    width: 80%;
+    display: block;
+    margin: auto;
+    max-width: 320px;
+  }
+}

@@ -42,6 +42,9 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className="c-footer">
+        <div className="c-footer__part">
+        </div>
+
         <PageBoundary>
           <div className="c-footer__inner">
 

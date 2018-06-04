@@ -99,7 +99,9 @@ $o-navbar--link-thickness: 5px;
   }
 
   @include t-media-query($s-small-up) {
-    //padding: 3em;
+    &.is-stuck {
+      top: 5%;
+    }
 
     &__logo {
       width: 12em;

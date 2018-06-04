@@ -18,34 +18,9 @@
   z-index: $s-z--background;
   overflow: hidden;
 
-  //Civil Twilight
-  &--style-twilight {
-    //http://colorzilla.com/gradient-editor/#bea9d0+0,dab2cd+25,e7b7c5+50,e4b0a3+75,c79a97+100
-    background: #bea9d0;
-    background: -moz-linear-gradient(top, #bea9d0 0%, #dab2cd 25%, #e7b7c5 50%, #e4b0a3 75%, #c79a97 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #bea9d0 0%,#dab2cd 25%,#e7b7c5 50%,#e4b0a3 75%,#c79a97 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #bea9d0 0%,#dab2cd 25%,#e7b7c5 50%,#e4b0a3 75%,#c79a97 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bea9d0', endColorstr='#c79a97',GradientType=0 ); /* IE6-9 */
-  }
-
   &__inner {
     position: relative;
     width: 100%;
     height: 100%;
-
-  }
-
-  //Elements that fill
-  &__grain {
-    @include t-absolute-fill();
-    background-image: url('./../images/grain.png');
-  }
-
-  &__palm {
-    position: absolute;
-    width: 150%;
-    bottom: -10%;
-    left: -40%;
-    @include t-drop-shadow(2.5vw, 2.5vw, 0, rgba(0, 0, 0, 0.5));
   }
 }
