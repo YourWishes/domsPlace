@@ -74,3 +74,13 @@ class Language {
 const lang = new Language();
 
 export default lang;
+
+const LanguageTools = {
+  random: function(someArray) {
+    return someArray[Math.floor(Math.random() * someArray.length)];
+  }
+}
+
+export {
+  LanguageTools
+}
