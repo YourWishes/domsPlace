@@ -54,7 +54,9 @@ const AboutPage = (props) => {
           <SplitSection>
             <Split className="u-text-center">
               <Video
-                image={ require('./../../images/patterns/arcade.svg') }
+                image={ require('./../../videos/about/programming/programming.png') }
+                mp4={ require('./../../videos/about/programming/programming.mp4') }
+                controls
               />
             </Split>
 

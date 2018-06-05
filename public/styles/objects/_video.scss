@@ -19,14 +19,17 @@
   object-fit:cover;
 }
 
-$o-video__loader-z: 1;
 $o-video__fallback-z: 0;
+$o-video__video-z: 1;
+$o-video__loader-z: 2;
 
 .o-video {
   position: relative;
 
   &__video {
     width: 100%;
+    position: relative;//Needed by some browser to allow the Z-Index to apply
+    z-index: $o-video__video-z;
 
     &.is-full {
       @extend %o-video__media-cover;

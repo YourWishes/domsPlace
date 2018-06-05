@@ -69,7 +69,6 @@ export default class Video extends React.Component {
 
   //React Render
   render() {
-    //TODO: Add image fallback support.
     //TODO: Add state support, as well as functional controls.
 
     //Sources
