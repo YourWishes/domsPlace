@@ -22,10 +22,12 @@ $c-footer--shadow: 1.5em;
     text-align: center;
     position: relative;
     z-index: 10;
+    padding: 1em 0;
   }
 
   &__copyright {
-
+    font-size: 1.2em;
+    font-family: $s-font--stack-headings;
   }
 
   &__links {
@@ -33,6 +35,7 @@ $c-footer--shadow: 1.5em;
   }
 
   &__link {
+
    + #{&} {
     display: inline-block;
     padding-left: 1em;
