@@ -33,23 +33,7 @@ export default function() {
 
   return (
     <Page style="home-page" className="p-home-page">
-
-      { /* Sections */ }
-      <ImageSection
-        src={ require('./../../images/banners/homepage/palms.svg') }
-        alt="domsPlace"
-      >
-        <PageBoundary full>
-          <FloatingContentBox position="middle center" size="small" className="u-text-center">
-            <Title>Development & Design</Title>
-            <Subtitle>I'm not good at either.</Subtitle>
-          </FloatingContentBox>
-        </PageBoundary>
-      </ImageSection>
-
-      <Section full>
-        Lorem
-      </Section>
+      Welcome home
     </Page>
   );
 }
