@@ -24,11 +24,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Page, { PageBoundary } from './../Page';
-import Section, { BodySection } from './../../section/Section';
 import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/input';
 import Language from './../../language/Language';
-import SplitSection, { Split } from './../../section/split/SplitSection';
-import ClearSection from './../../section/layout/ClearSection';
+import Section, {
+  BodySection,
+  ClearSection,
+  SplitSection,
+  Split
+} from './../../section/Section';
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -40,8 +43,8 @@ class ContactPage extends React.Component {
       <Page style="contact-page" className="p-contact-page">
 
         <ClearSection />
-        <PageBoundary small>
 
+        <PageBoundary small>
           <SplitSection>
             <Split>
               <BodySection>
@@ -81,6 +84,8 @@ class ContactPage extends React.Component {
 
           </SplitSection>
         </PageBoundary>
+
+        <ClearSection />
       </Page>
     );
   }
