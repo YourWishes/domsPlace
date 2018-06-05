@@ -23,6 +23,7 @@
 
 import React from 'react';
 import Loader from './../loading/Loader';
+import Image from './../image/Image';
 
 //Adjust the order to adjust the load position
 const VALID_SOURCES = [
@@ -95,11 +96,14 @@ export default class Video extends React.Component {
 
     //Fallback.
     let fallback;
+    if(sourceProps.image) {
+      fallback = <Image image={sourceProps.image} alt={sourceProps.alt} className="o-video__image" />
+    }
 
     //Loader
     let loader;
     if(this.state.loader) {
-      loader = <Loader />
+      loader = <Loader className="o-video__loader" />
     }
 
 
