@@ -59,7 +59,6 @@
 
 //Objects
 @import './objects/main.scss';
-@import './objects/title.scss';
 
 @import './objects/_app.scss';
 @import './objects/_background.scss';
@@ -69,6 +68,7 @@
 @import './objects/_input.scss';
 @import './objects/_loader.scss';
 @import './objects/_navbar.scss';
+@import './objects/_title.scss';
 @import './objects/_video.scss';
 
 //Components
@@ -82,11 +82,14 @@
 @import './components/_video-section.scss';
 
 //Pages
+@import './pages/_about-page.scss';
 @import './pages/_contact-page.scss';
 @import './pages/_home-page.scss';
 
 //Utilities
 @import './utilities/text-align.scss';
+
+@import './utilities/_responsive.scss';
 
 //Vendor
 @import './vendor/_fonts.scss';
