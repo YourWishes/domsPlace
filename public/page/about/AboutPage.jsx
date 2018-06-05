@@ -22,15 +22,56 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
+import Language from './../../language/Language';
 import Page, { PageBoundary } from './../Page';
-import Section, { ImageSection } from './../../section/Section';
-import ClearSection from './../../section/layout/ClearSection';
+import Section, { ImageSection, VideoSection, SplitSection, Split } from './../../section/Section';
+import FloatingContentBox from './../../content/FloatingContentBox';
+import Image from './../../image/Image';
+import Video from './../../video/Video';
+import { Title, Subtitle } from './../../typography/Typography';
 
-export default function() {
+const AboutPage = (props) => {
   return (
-    <Page style="about-page" className="p-about-page">
-      <ClearSection />
-      Test
+    <Page style="home-page" className="p-about-page">
+
+      { /* Banner */ }
+      <ImageSection
+        src={ require('./../../images/banners/about/glasses.svg') }
+        alt="domsPlace"
+      >
+        <PageBoundary full>
+          <FloatingContentBox position="middle center" size="large" className="u-text-center">
+            <Title>{ Language.get("pages.about.banner.title") }</Title>
+            <Subtitle className="u-responsive--small-up">{ Language.get("pages.about.banner.subtitle") }</Subtitle>
+          </FloatingContentBox>
+        </PageBoundary>
+      </ImageSection>
+
+      { /* Promo Video */ }
+      <Section className="p-about-page__promo-video">
+        <PageBoundary>
+          <SplitSection>
+            <Split className="u-text-center">
+              <Video
+                image={ require('./../../images/patterns/arcade.svg') }
+              />
+            </Split>
+
+            <Split className="u-text-center">
+              Right Side
+            </Split>
+          </SplitSection>
+        </PageBoundary>
+      </Section>
     </Page>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    code: state.language.code
+  };
+}
+
+export default connect(mapStateToProps)(AboutPage);
