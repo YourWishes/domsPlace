@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { LanguageTools } from './Language';
 
 module.exports = {
   "site": {
@@ -12,6 +13,18 @@ module.exports = {
   },
 
   "pages": {
+    "about": {
+      "banner": {
+        "title": "About Dominic Masters",
+        "subtitle": () => {
+          return LanguageTools.random([
+            "Developer, Nerd, Occasionally Funny.",
+            "Once forgot his own birthday."
+          ]);
+        }
+      }
+    },
+
     "contact": {
       "name": {
         "label": "Name",
