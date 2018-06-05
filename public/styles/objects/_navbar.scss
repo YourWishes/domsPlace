@@ -41,7 +41,7 @@ $o-navbar--link-thickness: 5px;
   }
 
   &__logo {
-    width: 12em;
+    width: 7em;
   }
 
   //Links
@@ -99,12 +99,14 @@ $o-navbar--link-thickness: 5px;
   }
 
   @include t-media-query($s-small-up) {
-    &.is-stuck {
-      top: 5%;
-    }
-
     &__logo {
       width: 12em;
+    }
+  }
+
+  @include t-media-query($s-medium-up) {
+    &.is-stuck {
+      top: 5%;
     }
   }
 }
