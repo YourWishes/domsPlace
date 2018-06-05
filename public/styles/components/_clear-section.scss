@@ -1,7 +1,7 @@
 /*
  *  Clear section
- *    Simple section that is designed to clear pass the navbar. Can also be used
- *    to add a little spacing between sections.
+ *    Simple section that is designed to clear pass the navbar (and some).
+ *    Can also be used to add spacing between sections.
  *
  *  Dependencies:
  *
@@ -9,5 +9,7 @@
  *    1.0.0 - 2018/06/05
  */
 .c-clear-section {
-  height: 20vh;
+  width: 100%;
+  padding-bottom: 15%;
+  position: relative;
 }

@@ -8,15 +8,15 @@
  *  Version:
  *    1.0.0 - 2018/05/16
  */
-$c-footer--shadow: 1em;
+$c-footer--shadow: 1.5em;
 .c-footer {
   padding-top: 4em;
   padding-bottom: 6em;
   position: relative;
   overflow: hidden;
-  background-color: #F3E4C6;
-  background-image: url('./../images/grain.png');
-  @include t-box-shadow(0px, -$c-footer--shadow, $c-footer--shadow, 0px, rgba(0, 0, 0, 0.5));
+  background-image: url('./../images/patterns/schoolbell.svg');
+  background-size: cover;
+  @include t-box-shadow(0px, $c-footer--shadow, $c-footer--shadow, 0px, rgba(0, 0, 0, 0.25), true);
 
   &__inner {
     text-align: center;

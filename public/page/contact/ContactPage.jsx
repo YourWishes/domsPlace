@@ -38,11 +38,11 @@ class ContactPage extends React.Component {
   render() {
     return (
       <Page style="contact-page" className="p-contact-page">
+
         <ClearSection />
-
         <PageBoundary small>
-          <SplitSection>
 
+          <SplitSection>
             <Split>
               <BodySection>
                 <Form>

@@ -22,41 +22,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Background from './background/Background';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import Page, { PageBoundary } from './../Page';
+import Section, { ImageSection } from './../../section/Section';
+import ClearSection from './../../section/layout/ClearSection';
 
-//Pages
-import Homepage from './page/home/Homepage';
-import AboutPage from './page/about/AboutPage';
-import ContactPage from './page/contact/ContactPage';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <HashRouter>
-        <div className="o-app">
-          <Background style="normal" />
-          <Header />
-
-          <main className="o-main">
-            <Switch>
-              <Route exact path="/" component={ Homepage } />
-              <Route exact path="/about" component={ AboutPage } />
-              <Route exact path="/contact" component={ ContactPage } />
-            </Switch>
-          </main>
-
-          <Footer />
-        </div>
-      </HashRouter>
-    );
-  }
+export default function() {
+  return (
+    <Page style="about-page" className="p-about-page">
+      <ClearSection />
+      Test
+    </Page>
+  );
 }
-
-export default App;
