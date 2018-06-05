@@ -29,16 +29,28 @@ export default class Image extends React.Component {
   }
 
   render() {
+    let sourceProps = Object.assign({}, this.props);
+
+    //Prop Manipulation
+    if(sourceProps.image) {
+      if(Array.isArray(sourceProps.image)) {
+        sourceProps.sources = sourceProps.image;
+      } else {
+        sourceProps.src = sourceProps.image;
+      }
+    }
+
+    //Image
     let sourceElements = [];
     let sources = {};
 
-    let defaultSrc = this.props.src;
-    let defaultAlt = this.props.alt;
+    let defaultSrc = sourceProps.src;
+    let defaultAlt = sourceProps.alt;
 
-    if(this.props.sources) {
+    if(sourceProps.sources) {
       //Iterate over supplied sources
-      for(let i = 0; i < this.props.sources.length; i++) {
-        let x = this.props.sources[i];
+      for(let i = 0; i < sourceProps.sources.length; i++) {
+        let x = sourceProps.sources[i];
         let w = x.size;
         sources[w] = sources[w] || [];
         sources[w].push(x);
@@ -69,7 +81,7 @@ export default class Image extends React.Component {
     return (
       <picture>
         { sourceElements }
-        <img src={ this.props.src } alt={ this.props.alt } className={ this.props.className } />
+        <img src={ defaultSrc } alt={ defaultAlt } className={ sourceProps.className } />
       </picture>
     );
   }
