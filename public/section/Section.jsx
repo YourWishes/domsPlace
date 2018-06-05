@@ -44,9 +44,14 @@ export default class Section extends React.Component {
 import ImageSection from './image/ImageSection';
 import VideoSection from './video/VideoSection';
 import BodySection from './body/BodySection';
+import ClearSection from './layout/ClearSection';
+import SplitSection, { Split }  from './layout/SplitSection';
 
 export {
   ImageSection,
   VideoSection,
-  BodySection
+  BodySection,
+  ClearSection,
+  SplitSection,
+  Split
 }
