@@ -1,0 +1,17 @@
+/*
+ *  About Page
+ *    Styles for the About Page, a simple page outlining some info about me.
+ *
+ *  Dependencies:
+ *
+ *  Version:
+ *    1.0.0 - 2018/06/06
+ */
+.p-about-page {
+
+  &__promo-video {
+    padding: 5em 0;
+    background-image: url('./../images/banners/homepage/palms.svg');
+    background-size: cover;
+  }
+}
