@@ -30,6 +30,7 @@ import FloatingContentBox from './../../content/FloatingContentBox';
 import Image from './../../image/Image';
 import Video from './../../video/Video';
 import { Title, Subtitle } from './../../typography/Typography';
+import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 
 const AboutPage = (props) => {
   return (
@@ -53,11 +54,13 @@ const AboutPage = (props) => {
         <PageBoundary>
           <SplitSection>
             <Split className="u-text-center">
-              <Video
-                image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
-                mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
-                controls
-              />
+              <ElementScrollFader>
+                <Image
+                  image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
+                  mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
+                  controls
+                />
+            </ElementScrollFader>
             </Split>
 
             <Split className="u-text-center">
