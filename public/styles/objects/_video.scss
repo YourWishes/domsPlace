@@ -28,6 +28,7 @@ $o-video__loader-z: 2;
 
   &__video {
     width: 100%;
+    display: block;
     position: relative;//Needed by some browser to allow the Z-Index to apply
     z-index: $o-video__video-z;
 

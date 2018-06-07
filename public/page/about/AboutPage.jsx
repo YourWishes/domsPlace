@@ -54,14 +54,18 @@ const AboutPage = (props) => {
           <SplitSection>
             <Split className="u-text-center">
               <Video
-                image={ require('./../../videos/about/programming/programming.png') }
-                mp4={ require('./../../videos/about/programming/programming.mp4') }
+                image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
+                mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
                 controls
               />
             </Split>
 
             <Split className="u-text-center">
-              Right Side
+              <Video
+                image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
+                mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
+                autoPlay
+              />
             </Split>
           </SplitSection>
         </PageBoundary>
