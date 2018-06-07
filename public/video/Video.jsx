@@ -40,17 +40,24 @@ export default class Video extends React.Component {
     this.state = {
       autoPlay: this.props.autoPlay,
       loop: this.props.loop,
-      loader: true
+      loader: false,
+      controls: this.props.controls
     };
 
     //Bound events (for removing event listeners)
     this.onPlayingBound = this.onPlaying.bind(this);
     this.onWaitingBound = this.onWaiting.bind(this);
+    this.onPauseBound = this.onPause.bind(this);
+    this.onSeekedBound = this.onSeeked.bind(this);
+    this.onLoadStartBound = this.onLoadStart.bind(this);
   }
 
   componentDidMount() {
     this.refs.video.addEventListener('playing', this.onPlayingBound);
     this.refs.video.addEventListener('waiting', this.onWaitingBound);
+    this.refs.video.addEventListener('seeked', this.onSeekedBound);
+    this.refs.video.addEventListener('pause', this.onPauseBound);
+    this.refs.video.addEventListener('loadstart', this.onLoadStartBound);
   }
 
   componentWillUnmount() {
@@ -64,7 +71,34 @@ export default class Video extends React.Component {
     });
   }
 
+  onPause() {
+    this.setState({
+      loader: false
+    });
+  }
+
+  onSeeked() {
+    this.setState({
+      loader: false
+    });
+  }
+
+  onLoadStart() {
+    if(this.isPaused()) return;
+    this.setState({
+      loader: true
+    });
+  }
+
   onWaiting() {
+    this.setState({
+      loader: true
+    });
+  }
+
+  //Media Highlevel Functions
+  isPaused() {
+    return this.refs.video.paused
   }
 
   //React Render
@@ -113,7 +147,7 @@ export default class Video extends React.Component {
           className={ videoClass }
           autoPlay={this.state.autoPlay}
           loop={this.state.loop}
-          controls={false /* Explicitly no controls */}
+          controls={this.state.controls}
           ref="video"
         >
           { sources }
