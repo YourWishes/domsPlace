@@ -42,6 +42,10 @@ class ElementScrollFader extends React.Component {
     if(rect.top > window.innerHeight / 2) return;
     this.setState({visible: true});
     this.detachListener();//stop Listening
+    
+    if(this.props.onVisible) {
+      this.props.onVisible(this.refs.fader);
+    }
   }
 
   componentWillUnmount() {
