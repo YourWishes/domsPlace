@@ -26,6 +26,7 @@ import { connect } from 'react-redux';
 import Page, { PageBoundary } from './../Page';
 import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/input';
 import Language from './../../language/Language';
+import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 import Section, {
   BodySection,
   ClearSection,
@@ -47,39 +48,41 @@ class ContactPage extends React.Component {
         <PageBoundary small>
           <SplitSection>
             <Split>
-              <BodySection>
-                <Form>
-                  <InputGroup>
-                    <Label>{ Language.get("pages.contact.name.label") }</Label>
-                    <Input
-                      type="text"
-                      placeholder={ Language.get("pages.contact.name.placeholder") }
-                    />
-                  </InputGroup>
+              <ElementScrollFader>
+                <BodySection>
+                  <Form>
+                    <InputGroup>
+                      <Label>{ Language.get("pages.contact.name.label") }</Label>
+                      <Input
+                        type="text"
+                        placeholder={ Language.get("pages.contact.name.placeholder") }
+                      />
+                    </InputGroup>
 
-                  <InputGroup >
-                    <Label>{ Language.get("pages.contact.email.label") }</Label>
-                    <Input
-                      type="email"
-                      placeholder={ Language.get("pages.contact.email.placeholder") }
-                    />
-                  </InputGroup>
+                    <InputGroup >
+                      <Label>{ Language.get("pages.contact.email.label") }</Label>
+                      <Input
+                        type="email"
+                        placeholder={ Language.get("pages.contact.email.placeholder") }
+                      />
+                    </InputGroup>
 
-                  <InputGroup>
-                    <Label>{ Language.get("pages.contact.message.label") }</Label>
-                    <TextArea
-                      placeholder={ Language.get("pages.contact.message.placeholder") }
-                      rows="8"
-                      className="p-contact-page__message"
-                    />
-                  </InputGroup>
+                    <InputGroup>
+                      <Label>{ Language.get("pages.contact.message.label") }</Label>
+                      <TextArea
+                        placeholder={ Language.get("pages.contact.message.placeholder") }
+                        rows="8"
+                        className="p-contact-page__message"
+                      />
+                    </InputGroup>
 
-                  <ButtonGroup>
-                    <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
-                    <Input type="reset" value={ Language.get("pages.contact.reset") } />
-                  </ButtonGroup>
-                </Form>
-              </BodySection>
+                    <ButtonGroup>
+                      <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
+                      <Input type="reset" value={ Language.get("pages.contact.reset") } />
+                    </ButtonGroup>
+                  </Form>
+                </BodySection>
+              </ElementScrollFader>
             </Split>
 
           </SplitSection>
