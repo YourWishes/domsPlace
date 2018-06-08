@@ -25,8 +25,14 @@ import React from 'react';
 import Section from './../Section';
 
 export default (props) => {
-  let clazz = "c-split-section";
+  let aligned = "stretched";
+  if(props.align) {
+    aligned = props.align;
+  }
+
+  let clazz = "c-split-section is-" + aligned;
   if(props.className) clazz += " " + props.className;
+
 
   return (
     <Section {...props} className={clazz} />
@@ -34,8 +40,13 @@ export default (props) => {
 };
 
 const Split = function(props) {
+  let clazz = "c-split-section__split";
+
+  if(props.padded) clazz += " is-padded";
+  if(props.className) clazz += " "+props.className;
+
   return (
-    <div className="c-split-section__split">
+    <div className={clazz}>
       { props.children }
     </div>
   );

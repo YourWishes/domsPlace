@@ -8,16 +8,29 @@
  *  Version:
  *    1.0.0 - 2018/05/28
  */
+$c-split-section__split--padding: 1em;
+
 .c-split-section {
   @extend %t-flexbox;
-  @include t-align-items(stretch);
   @include t-flex-wrap(wrap);
+
+  &.is-stretched {
+    @include t-align-items(stretch);
+  }
+
+  &.is-center {
+    @include t-align-items(center);
+  }
 
   &__split {
     width: 100%;
+
+    &.is-padded {
+      padding: $c-split-section__split--padding;
+    }
   }
 
   @include t-media-query($s-small-up) {
-    @include t-flex-wrap(nowrap);  
+    @include t-flex-wrap(nowrap);
   }
 }
