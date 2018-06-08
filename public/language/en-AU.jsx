@@ -22,6 +22,10 @@ module.exports = {
             "Once forgot his own birthday."
           ]);
         }
+      },
+      "video": {
+        "heading": "Learn about me",
+        "paragraph": "Watch this short video about me, made by.. me!"
       }
     },
 

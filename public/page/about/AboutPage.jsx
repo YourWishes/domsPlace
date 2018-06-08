@@ -29,7 +29,7 @@ import Section, { ImageSection, VideoSection, SplitSection, Split } from './../.
 import FloatingContentBox from './../../content/FloatingContentBox';
 import Image from './../../image/Image';
 import Video from './../../video/Video';
-import { Title, Subtitle } from './../../typography/Typography';
+import { Title, Subtitle, Paragraph, Heading1 } from './../../typography/Typography';
 import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 
 const AboutPage = (props) => {
@@ -52,10 +52,10 @@ const AboutPage = (props) => {
       { /* Promo Video */ }
       <Section className="p-about-page__promo-video">
         <PageBoundary>
-          <SplitSection>
-            <Split className="u-text-center">
+          <SplitSection align="center">
+            <Split className="u-text-center" padded>
               <ElementScrollFader>
-                <Image
+                <Video
                   image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
                   mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
                   controls
@@ -63,12 +63,15 @@ const AboutPage = (props) => {
             </ElementScrollFader>
             </Split>
 
-            <Split className="u-text-center">
-              <Video
-                image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
-                mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
-                autoPlay
-              />
+            <Split className="u-text-center" padded>
+              <ElementScrollFader from="bottom">
+                <Heading1>
+                  { Language.get("pages.about.video.heading") }
+                </Heading1>
+                <Paragraph>
+                  { Language.get("pages.about.video.paragraph") }
+                </Paragraph>
+              </ElementScrollFader>
             </Split>
           </SplitSection>
         </PageBoundary>
