@@ -21,21 +21,11 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import Title from './Title';
-import Subtitle from './Subtitle';
-import Paragraph from './Paragraph';
-import Heading, { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6 } from './Heading';
+import React from 'react';
 
-export {
-  Title,
-  Subtitle,
-  Paragraph,
+export default (props) => {
+  let clazz = "o-paragraph";
+  if(props.className) clazz += " "+props.className;
 
-  Heading,
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6
-}
+  return <p {...props} className={clazz} />
+};
