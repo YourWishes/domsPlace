@@ -25,12 +25,8 @@ import React from 'react';
 import Background from './background/Background';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-
-//Pages
-import Homepage from './page/home/Homepage';
-import AboutPage from './page/about/AboutPage';
-import ContactPage from './page/contact/ContactPage';
+import { HashRouter } from 'react-router-dom';
+import Routes from './page/Routes';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,16 +39,7 @@ class App extends React.Component {
         <div className="o-app">
           <Background style="normal" />
           <Header />
-
-          <main className="o-main">
-            <Switch>
-              <Route exact path="/" component={ Homepage } />
-              <Route exact path="/about" component={ AboutPage } />
-              <Route exact path="/contact" component={ ContactPage } />
-            </Switch>
-          </main>
-
-          <Footer />
+          <Routes />
         </div>
       </HashRouter>
     );

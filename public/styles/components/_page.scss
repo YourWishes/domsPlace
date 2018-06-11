@@ -9,8 +9,7 @@
  *    1.0.0 - 2018/05/05
  */
 .c-page {
-  //padding-bottom: 5em;
-
+  @include t-flex-grow(1);
   &__boundary {
     max-width: $s-screen-boundary;
     margin: 0 auto;
