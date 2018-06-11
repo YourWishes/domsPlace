@@ -29,31 +29,46 @@ class ElementScrollFader extends React.Component {
 
     this.state = { visible: false };
     this.onScrollBound = this.onScroll.bind(this);
+    this.checkEffectBound = this.checkEffect.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('scroll', this.onScrollBound, true);
-  }
-
-  onScroll(e) {
-    //Get bounds
-    var rect = this.refs.fader.getBoundingClientRect();
-    //If our top is at least half way UP the page, show
-    if(rect.top > window.innerHeight / 2) return;
-    this.setState({visible: true});
-    this.detachListener();//stop Listening
-    
-    if(this.props.onVisible) {
-      this.props.onVisible(this.refs.fader);
+    if(!this.initialCheckFunction) {
+      this.initialCheckFunction = setTimeout(this.checkEffectBound, 300);
     }
+
+    document.addEventListener('scroll', this.onScrollBound, true);
+    document.addEventListener("DOMContentLoaded", this.onScrollBound);
   }
 
   componentWillUnmount() {
     this.detachListener();
   }
 
+  onScroll(e) {
+    this.checkEffect();
+  }
+
+  //Common functions
   detachListener() {
     document.removeEventListener('scroll', this.onScrollBound);
+    document.removeEventListener("DOMContentLoaded", this.onScrollBound);
+    if(this.initialCheckFunction) clearTimeout(this.initialCheckFunction);
+  }
+
+  checkEffect() {
+    if(!this.refs || !this.refs.fader) return;
+    //Get bounds
+    var rect = this.refs.fader.getBoundingClientRect();
+    //If our top is at least half way UP the page, show
+    if(rect.top > window.innerHeight / 2) return;
+    this.setState({visible: true});
+    this.detachListener();//stop Listening
+
+    if(this.props.onVisible) {
+      this.props.onVisible(this.refs.fader);
+    }
+    return true;
   }
 
   render() {
