@@ -27,6 +27,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import PageBoundary from './../../page/PageBoundary';
 import Language from './../../language/Language';
+import HamburgerMenu from './../menu/HamburgerMenu';
 
 const NavbarLink = function(props) {
   return (
@@ -48,6 +49,7 @@ class Navbar extends React.Component {
         <PageBoundary>
           <nav className="o-navbar__nav">
 
+            {/* Logo */}
             <NavLink to="/" className="o-navbar__logo-container" activeClassName="is-active">
               <img
                 src={ require('./../../images/logo.svg') }
@@ -56,9 +58,13 @@ class Navbar extends React.Component {
               />
             </NavLink>
 
+            {/* Desktop / Tablet Screen Links */}
             <NavbarLink to="/" title="home" exact />
             <NavbarLink to="/about" title="about" />
             <NavbarLink to="/contact" title="contact" exact />
+
+            {/* Hamburger Menu for smaller screens */}
+            <HamburgerMenu className="o-navbar__hamburger" />
           </nav>
         </PageBoundary>
       </section>

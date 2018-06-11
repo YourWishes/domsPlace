@@ -37,7 +37,6 @@ $o-navbar--link-thickness: 5px;
   &__logo-container {
     width: 100%;
     padding: 0.5em;
-    text-align: center;
   }
 
   &__logo {
@@ -81,12 +80,12 @@ $o-navbar--link-thickness: 5px;
     }
   }
 
+  &__hamburger {
+  }
 
   @include t-media-query($s-xsmall-up) {
-    //padding: 1em;
-
-    &__logo-container {
-      text-align: left;
+    &__hamburger {
+      display: none;
     }
 
     &__logo {
@@ -99,6 +98,7 @@ $o-navbar--link-thickness: 5px;
   }
 
   @include t-media-query($s-small-up) {
+
     &__logo {
       width: 12em;
     }

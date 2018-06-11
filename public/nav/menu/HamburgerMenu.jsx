@@ -22,50 +22,59 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-import { PageBoundary } from './../page/Page';
+import { NavLink } from 'react-router-dom';
 
-const FooterLink = function(props) {
+const HamburerMenuItem = function(props) {
   return (
-    <span className="c-footer__link">
-      <NavLink to="/about">
-        Link
-      </NavLink>
-    </span>
+    <li className="o-hamburger-menu__link">
+      <NavLink to={ props.to }>Home</NavLink>
+    </li>
   );
 }
 
-class Footer extends React.Component {
+class HamburgerMenu extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state ={
+      open: false
+    }
+
+    this.toggleMenuBound = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu() {
+    this.setState({
+      open: !this.state.open
+    });
   }
 
   render() {
+    let clazz = "o-hamburger-menu";
+    if(this.state && this.state.open) clazz += " is-open";
+    if(this.props.className) clazz += " " + this.props.className;
+
     return (
-      <footer className="c-footer">
-        <div className="c-footer__part">
-        </div>
+      <div className={clazz}>
+        <button
+          type="button"
+          className="o-hamburger-menu__button"
+          onClick={this.toggleMenuBound}
+        >
+          <img
+            src={ require('./../../images/icons/hamburger.svg') }
+            className="o-hamburger-menu__icon"
+          />
+        </button>
 
-        <PageBoundary>
-          <div className="c-footer__inner">
-
-            <nav className="c-footer__links">
-              <FooterLink title="privacy" />
-              <FooterLink title="privacy" />
-              <FooterLink title="privacy" />
-              <FooterLink title="privacy" />
-            </nav>
-
-            <div className="c-footer__copyright">
-              &copy; { new Date(1335830400000).getFullYear() }
-              ~
-              { new Date().getFullYear() } Dominic Masters
-            </div>
-          </div>
-        </PageBoundary>
-      </footer>
+        <ul className="o-hamburger-menu__menu">
+          <HamburerMenuItem to="/" />
+          <HamburerMenuItem to="/" />
+          <HamburerMenuItem to="/" />
+        </ul>
+      </div>
     );
   }
 }
 
-export default Footer;
+export default HamburgerMenu;

@@ -3,9 +3,11 @@
  *    Provides Z-Index tracking, for use throughout the theme.
  *
  *  Version:
- *    1.0.0 - 2018/05/07
+ *    1.0.1 - 2018/06/12
  */
 
-$s-z--background: -1;
-$s-z--navbar: 10;   //Navbar
-$s-z--transition: 1;//The Z-Index of an element in transition
+$s-z--background: -1;   //Background Element
+$s-z--navbar: 10;       //Navbar
+$s-z--menu: 15;         //Hamburger Menu
+$s-z--menu-button: 16;  //Button to toggle menu.
+$s-z--transition: 1;    //The Z-Index of an element in transition

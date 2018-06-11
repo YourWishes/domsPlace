@@ -65,9 +65,9 @@ const AboutPage = (props) => {
 
             <Split className="u-text-center" padded>
               <ElementScrollFader from="bottom">
-                <Heading1>
+                <Title>
                   { Language.get("pages.about.video.heading") }
-                </Heading1>
+                </Title>
                 <Paragraph>
                   { Language.get("pages.about.video.paragraph") }
                 </Paragraph>
