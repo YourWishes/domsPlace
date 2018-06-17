@@ -61,7 +61,7 @@ class ElementScrollFader extends React.Component {
     //Get bounds
     var rect = this.refs.fader.getBoundingClientRect();
     //If our top is at least half way UP the page, show
-    if(rect.top > window.innerHeight / 2) return;
+    if(rect.top > window.innerHeight / 1.5) return;
     this.setState({visible: true});
     this.detachListener();//stop Listening
 
