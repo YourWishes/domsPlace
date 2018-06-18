@@ -21,49 +21,31 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
-import { connect } from 'react-redux';
+import {
+  OPEN_MENU,
+  CLOSE_MENU,
+  TOGGLE_MENU
+} from './../actions/MenuActions';
 
-import Background from './background/Background';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import { HashRouter } from 'react-router-dom';
-import Routes from './page/Routes';
+const initialState = {
+  open: false
+}
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.onEnteringBound = this.onEntering.bind(this);
+const menu = function(state, action) {
+  if(typeof state === typeof undefined) {
+    state = initialState;
   }
 
-  onEntering() {
-    this.refs.app.scroll({
-      top:  0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
-
-  render() {
-    let clazz = "o-app";
-    if(this.props.menuOpen) clazz += " is-menu-open "
-
-    return (
-      <HashRouter>
-        <div className={clazz} ref="app">
-          <Header />
-          <Routes onEntering={this.onEnteringBound} />
-        </div>
-      </HashRouter>
-    );
+  switch(action.type) {
+    case OPEN_MENU:
+      return {open: true}
+    case CLOSE_MENU:
+      return {open: false}
+    case TOGGLE_MENU:
+      return {open: !state.open}
+    default:
+      return state;
   }
 }
 
-const mapStateToProps = function(state) {
-  return {
-    menuOpen: state.menu.open
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default menu;

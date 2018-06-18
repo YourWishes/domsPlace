@@ -22,12 +22,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import * as MenuActions from './../../actions/MenuActions';
 
 const HamburerMenuItem = function(props) {
   return (
     <li className="o-hamburger-menu__link">
-      <NavLink to={ props.to }>Home</NavLink>
+      <NavLink to={ props.to } className="o-hamburger-menu__link-link">
+        Home
+      </NavLink>
     </li>
   );
 }
@@ -35,23 +39,11 @@ const HamburerMenuItem = function(props) {
 class HamburgerMenu extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state ={
-      open: false
-    }
-
-    this.toggleMenuBound = this.toggleMenu.bind(this);
-  }
-
-  toggleMenu() {
-    this.setState({
-      open: !this.state.open
-    });
   }
 
   render() {
     let clazz = "o-hamburger-menu";
-    if(this.state && this.state.open) clazz += " is-open";
+    if(this.props.open) clazz += " is-open";
     if(this.props.className) clazz += " " + this.props.className;
 
     return (
@@ -59,7 +51,7 @@ class HamburgerMenu extends React.Component {
         <button
           type="button"
           className="o-hamburger-menu__button"
-          onClick={this.toggleMenuBound}
+          onClick={this.props.toggleMenu}
         >
           <img
             src={ require('./../../images/icons/hamburger.svg') }
@@ -67,14 +59,31 @@ class HamburgerMenu extends React.Component {
           />
         </button>
 
-        <ul className="o-hamburger-menu__menu">
-          <HamburerMenuItem to="/" />
-          <HamburerMenuItem to="/" />
-          <HamburerMenuItem to="/" />
-        </ul>
+        <div className="o-hamburger-menu__menu">
+          <ul className="o-hamburger-menu__links">
+            <HamburerMenuItem to="/" />
+            <HamburerMenuItem to="/" />
+            <HamburerMenuItem to="/" />
+          </ul>
+        </div>
       </div>
     );
   }
 }
 
-export default HamburgerMenu;
+
+const mapStateToProps = function(state) {
+  return {
+    open: state.menu.open
+  }
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    toggleMenu: function(theme) {
+      dispatch(MenuActions.toggleMenu());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HamburgerMenu);

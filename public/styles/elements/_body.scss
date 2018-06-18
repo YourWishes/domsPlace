@@ -11,9 +11,10 @@
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
   font-family: $s-font--stack-default;
   font-size: $s-font--size--base;
-  overflow-y: scroll;//Really makes the transitions feel smoother
+  overflow: hidden;//Really makes the transitions feel smoother
 }

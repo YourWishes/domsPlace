@@ -29,11 +29,15 @@ import Image from './../../image/Image';
 import { Title, Subtitle } from './../../typography/Typography';
 
 export default function() {
-
+  let lines = [];
+  for(let i = 0; i < 100; i++) {
+    lines.push(<br key={i} />);
+  }
 
   return (
     <Page style="home-page" className="p-home-page">
       Welcome home
+      { lines }
     </Page>
   );
 }

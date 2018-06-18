@@ -21,49 +21,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
-import { connect } from 'react-redux';
+export const OPEN_MENU = "OPEN_MENU";
+export const CLOSE_MENU = "CLOSE_MENU";
+export const TOGGLE_MENU = "TOGGLE_MENU";
 
-import Background from './background/Background';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import { HashRouter } from 'react-router-dom';
-import Routes from './page/Routes';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.onEnteringBound = this.onEntering.bind(this);
-  }
-
-  onEntering() {
-    this.refs.app.scroll({
-      top:  0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
-
-  render() {
-    let clazz = "o-app";
-    if(this.props.menuOpen) clazz += " is-menu-open "
-
-    return (
-      <HashRouter>
-        <div className={clazz} ref="app">
-          <Header />
-          <Routes onEntering={this.onEnteringBound} />
-        </div>
-      </HashRouter>
-    );
-  }
-}
-
-const mapStateToProps = function(state) {
+export function openMenu() {
   return {
-    menuOpen: state.menu.open
+    type: OPEN_MENU
   }
 }
 
-export default connect(mapStateToProps)(App);
+export function closeMenu() {
+  return {
+    type: CLOSE_MENU
+  }
+}
+
+export function toggleMenu() {
+  return {
+    type: TOGGLE_MENU
+  }
+}

@@ -27,6 +27,7 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types'
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
+import Header from './../header/Header';
 import Footer from './../footer/Footer';
 
 //Pages
@@ -49,33 +50,35 @@ const RouteWrapper = (props) => {
   );
 };
 
-const Routes = ({location}) => {
-  return (
-    <TransitionGroup className="o-page-transition__container">
-      <CSSTransition
-        key={ location.pathname }
-        timeout={1000}
-        classNames="o-page-transition"
-        mountOnEnter={ true }
-        unmountOnExit={ true }
-        onEntering={() => {
-          window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-          });
-        }}
-      >
-        <Switch location={ location }>
-          <RouteWrapper exact path="/" page={ Homepage } />
-          <RouteWrapper exact path="/about" page={ AboutPage } />
-          <RouteWrapper exact path="/contact" page={ ContactPage } />
-        </Switch>
-      </CSSTransition>
-    </TransitionGroup>
-  );
-};
+class Routes extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default withRouter(() => {
-  return <Route render={Routes} />
-});
+  render() {
+    const { match, location, history } = this.props;
+
+    return (
+      <Route>
+        <TransitionGroup className="o-page-transition__container">
+          <CSSTransition
+            key={ location.pathname }
+            timeout={1000}
+            classNames="o-page-transition"
+            mountOnEnter={ true }
+            unmountOnExit={ true }
+            onEntering={ this.props.onEntering }
+          >
+            <Switch location={ location }>
+              <RouteWrapper exact path="/" page={ Homepage } />
+              <RouteWrapper exact path="/about" page={ AboutPage } />
+              <RouteWrapper exact path="/contact" page={ ContactPage } />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      </Route>
+    );
+  }
+}
+
+export default withRouter(Routes);

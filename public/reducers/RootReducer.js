@@ -24,9 +24,11 @@
 import { combineReducers } from 'redux';
 
 import LanguageReducer from './LanguageReducer';
+import MenuReducer from './MenuReducer';
 
 const rootReducer = combineReducers({
-  language: LanguageReducer
+  language: LanguageReducer,
+  menu: MenuReducer
 });
 
 export default rootReducer;
