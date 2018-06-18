@@ -27,6 +27,7 @@ import Language from './../../language/Language';
 import Page, { PageBoundary } from './../Page';
 import Section, { ImageSection, VideoSection, SplitSection, Split } from './../../section/Section';
 import FloatingContentBox from './../../content/FloatingContentBox';
+import ContentBox from './../../content/ContentBox';
 import Image from './../../image/Image';
 import Video from './../../video/Video';
 import { Title, Subtitle, Paragraph, Heading1 } from './../../typography/Typography';
@@ -65,12 +66,14 @@ const AboutPage = (props) => {
 
             <Split className="u-text-center" padded>
               <ElementScrollFader from="bottom">
-                <Title>
-                  { Language.get("pages.about.video.heading") }
-                </Title>
-                <Paragraph>
-                  { Language.get("pages.about.video.paragraph") }
-                </Paragraph>
+                <ContentBox box>
+                  <Title>
+                    { Language.get("pages.about.video.heading") }
+                  </Title>
+                  <Paragraph>
+                    { Language.get("pages.about.video.paragraph") }
+                  </Paragraph>
+                </ContentBox>
               </ElementScrollFader>
             </Split>
           </SplitSection>

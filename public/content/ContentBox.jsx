@@ -22,29 +22,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import ContentBox from './ContentBox';
 
-export default function(props) {
-  let clazzes = "o-floating-content-box";
+export default (props) => {
+  let clazz = "o-content-box";
 
-  //Positions
-  let position = "middle center";
-  if(props.position) position = props.position;
-  clazzes += " " + position.split(" ").map(i => 'is-'+i).join(" ");
-
-  //Sizes`
-  let size = "medium";
-  if(props.size) size = props.size;
-  clazzes += " is-"+size;
-
-  //Custom Classes
-  if(props.className) clazzes += " " + props.className;
+  if(props.box) clazz += " is-box"
+  if(props.className) clazz += " " + props.className;
 
   return (
-    <ContentBox {...props} className={ clazzes }>
-      <div className="o-floating-content-box__inner">
-        { props.children }
-      </div>
-    </ContentBox>
+    <div className={clazz}>
+      {props.children}
+    </div>
   );
-}
+};
