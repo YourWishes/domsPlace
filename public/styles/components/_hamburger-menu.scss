@@ -10,20 +10,20 @@
  *  Version:
  *    1.0.0 - 2018/06/12
  */
-$o-hamburger-menu--max: 200%;
-$o-hamburger-menu--pos-x: 100%;
-$o-hamburger-menu--pos-y: 0%;
-@include t-keyframes(o-hamburger-menu--open) {
-  from { clip-path: circle(0% at $o-hamburger-menu--pos-x $o-hamburger-menu--pos-y); }
-  to { clip-path: circle($o-hamburger-menu--max at $o-hamburger-menu--pos-x $o-hamburger-menu--pos-y); }
+$c-hamburger-menu--max: 200%;
+$c-hamburger-menu--pos-x: 100%;
+$c-hamburger-menu--pos-y: 0%;
+@include t-keyframes(c-hamburger-menu--open) {
+  from { clip-path: circle(0% at $c-hamburger-menu--pos-x $c-hamburger-menu--pos-y); }
+  to { clip-path: circle($c-hamburger-menu--max at $c-hamburger-menu--pos-x $c-hamburger-menu--pos-y); }
 }
 
-@include t-keyframes(o-hamburger-menu--close) {
-  from { clip-path: circle($o-hamburger-menu--max at $o-hamburger-menu--pos-x $o-hamburger-menu--pos-y); }
-  to { clip-path: circle(0% at $o-hamburger-menu--pos-x $o-hamburger-menu--pos-y); }
+@include t-keyframes(c-hamburger-menu--close) {
+  from { clip-path: circle($c-hamburger-menu--max at $c-hamburger-menu--pos-x $c-hamburger-menu--pos-y); }
+  to { clip-path: circle(0% at $c-hamburger-menu--pos-x $c-hamburger-menu--pos-y); }
 }
 
-.o-hamburger-menu {
+.c-hamburger-menu {
 
   &__menu {
     display: none;
@@ -81,16 +81,16 @@ $o-hamburger-menu--pos-y: 0%;
 
 
   &.is-open {
-    .o-hamburger-menu__menu {
+    .c-hamburger-menu__menu {
       display: block;
-      @include t-animation-name(o-hamburger-menu--open);
+      @include t-animation-name(c-hamburger-menu--open);
     }
   }
 
   &.is-closing {
-    .o-hamburger-menu__menu {
+    .c-hamburger-menu__menu {
       display: block;
-      @include t-animation-name(o-hamburger-menu--close);
+      @include t-animation-name(c-hamburger-menu--close);
     }
   }
 }

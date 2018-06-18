@@ -41,7 +41,7 @@ const RouteWrapper = (props) => {
     <Route {...props} render={() => {
         let CustomTag = props.page;
         return (
-          <main className="o-main">
+          <main className="c-main">
             <CustomTag />
             <Footer />
           </main>

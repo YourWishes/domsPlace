@@ -28,10 +28,9 @@ import Language from './../../language/Language';
 import * as MenuActions from './../../actions/MenuActions';
 
 const HamburerMenuItem = function(props) {
-  console.log(props);
   return (
-    <li className="o-hamburger-menu__link">
-      <NavLink to={ props.to } className="o-hamburger-menu__link-link">
+    <li className="c-hamburger-menu__link">
+      <NavLink to={ props.to } className="c-hamburger-menu__link-link">
         { Language.get(props.lang) }
       </NavLink>
     </li>
@@ -44,7 +43,7 @@ class HamburgerMenu extends React.Component {
   }
 
   render() {
-    let clazz = "o-hamburger-menu";
+    let clazz = "c-hamburger-menu";
     if(this.props.open) clazz += " is-open";
     if(this.props.className) clazz += " " + this.props.className;
 
@@ -52,17 +51,17 @@ class HamburgerMenu extends React.Component {
       <div className={clazz}>
         <button
           type="button"
-          className="o-hamburger-menu__button"
+          className="c-hamburger-menu__button"
           onClick={this.props.toggleMenu}
         >
           <img
             src={ require('./../../images/icons/hamburger.svg') }
-            className="o-hamburger-menu__icon"
+            className="c-hamburger-menu__icon"
           />
         </button>
 
-        <div className="o-hamburger-menu__menu">
-          <ul className="o-hamburger-menu__links">
+        <div className="c-hamburger-menu__menu">
+          <ul className="c-hamburger-menu__links">
             <HamburerMenuItem to="/" lang="navbar.home" />
             <HamburerMenuItem to="/about" lang="navbar.about" />
             <HamburerMenuItem to="/contact" lang="navbar.contact" />

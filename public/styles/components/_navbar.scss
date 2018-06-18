@@ -12,9 +12,9 @@
  *  Version:
  *    1.0.0 - 2018/05/03
  */
-$o-navbar--link-thickness: 5px;
+$c-navbar--link-thickness: 5px;
 
-.o-navbar {
+.c-navbar {
   z-index: $s-z--navbar;
 
   &.is-stuck {
@@ -67,7 +67,7 @@ $o-navbar--link-thickness: 5px;
 
     &.is-active:after {
       background: $s-color--navbar__bar-hover;
-      height: $o-navbar--link-thickness;
+      height: $c-navbar--link-thickness;
     }
 
     &:hover {
@@ -75,7 +75,7 @@ $o-navbar--link-thickness: 5px;
 
       &:after {
         background: $s-color--navbar__bar-hover;
-        height: $o-navbar--link-thickness;
+        height: $c-navbar--link-thickness;
       }
     }
   }

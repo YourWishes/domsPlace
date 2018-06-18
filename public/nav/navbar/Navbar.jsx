@@ -31,7 +31,7 @@ import HamburgerMenu from './../menu/HamburgerMenu';
 
 const NavbarLink = function(props) {
   return (
-    <NavLink to={ props.to } className="o-navbar__link" activeClassName="is-active" exact={props.exact}>
+    <NavLink to={ props.to } className="c-navbar__link" activeClassName="is-active" exact={props.exact}>
       { Language.get("navbar." + props.title) }
     </NavLink>
   );
@@ -45,15 +45,15 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <section className="o-navbar is-stuck">
+      <section className="c-navbar is-stuck">
         <PageBoundary>
-          <nav className="o-navbar__nav">
+          <nav className="c-navbar__nav">
 
             {/* Logo */}
-            <NavLink to="/" className="o-navbar__logo-container" activeClassName="is-active">
+            <NavLink to="/" className="c-navbar__logo-container" activeClassName="is-active">
               <img
                 src={ require('./../../images/logo.svg') }
-                className="o-navbar__logo"
+                className="c-navbar__logo"
                 alt={ Language.get("site.name") }
               />
             </NavLink>
@@ -64,7 +64,7 @@ class Navbar extends React.Component {
             <NavbarLink to="/contact" title="contact" exact />
 
             {/* Hamburger Menu for smaller screens */}
-            <HamburgerMenu className="o-navbar__hamburger" />
+            <HamburgerMenu className="c-navbar__hamburger" />
           </nav>
         </PageBoundary>
       </section>

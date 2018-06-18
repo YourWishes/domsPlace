@@ -46,7 +46,7 @@ class App extends React.Component {
   }
 
   render() {
-    let clazz = "o-app";
+    let clazz = "c-app";
     if(this.props.menuOpen) clazz += " is-menu-open "
 
     return (

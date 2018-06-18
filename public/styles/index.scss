@@ -58,27 +58,27 @@
 @import './elements/_headings.scss';
 
 //Objects
-@import './objects/main.scss';
 
-@import './objects/_app.scss';
 @import './objects/_background.scss';
 @import './objects/_button.scss';
 @import './objects/_element-scroll-fader.scss';
 @import './objects/_floating-content-box.scss';
 @import './objects/_form.scss';
-@import './objects/_hamburger-menu.scss';
 @import './objects/_input.scss';
 @import './objects/_loader.scss';
-@import './objects/_navbar.scss';
 @import './objects/_page-transition.scss';
 @import './objects/_title.scss';
 @import './objects/_video.scss';
 
 //Components
+@import './components/_app.scss';
 @import './components/_body-section.scss';
 @import './components/_clear-section.scss';
 @import './components/_footer.scss';
+@import './components/_hamburger-menu.scss';
 @import './components/_image-section.scss';
+@import './components/_main.scss';
+@import './components/_navbar.scss';
 @import './components/_page.scss';
 @import './components/_section.scss';
 @import './components/_split-section.scss';
