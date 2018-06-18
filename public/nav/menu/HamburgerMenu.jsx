@@ -24,13 +24,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Language from './../../language/Language';
 import * as MenuActions from './../../actions/MenuActions';
 
 const HamburerMenuItem = function(props) {
+  console.log(props);
   return (
     <li className="o-hamburger-menu__link">
       <NavLink to={ props.to } className="o-hamburger-menu__link-link">
-        Home
+        { Language.get(props.lang) }
       </NavLink>
     </li>
   );
@@ -61,9 +63,9 @@ class HamburgerMenu extends React.Component {
 
         <div className="o-hamburger-menu__menu">
           <ul className="o-hamburger-menu__links">
-            <HamburerMenuItem to="/" />
-            <HamburerMenuItem to="/" />
-            <HamburerMenuItem to="/" />
+            <HamburerMenuItem to="/" lang="navbar.home" />
+            <HamburerMenuItem to="/about" lang="navbar.about" />
+            <HamburerMenuItem to="/contact" lang="navbar.contact" />
           </ul>
         </div>
       </div>
@@ -74,7 +76,8 @@ class HamburgerMenu extends React.Component {
 
 const mapStateToProps = function(state) {
   return {
-    open: state.menu.open
+    open: state.menu.open,
+    language: state.language.code
   }
 }
 
