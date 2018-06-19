@@ -8,10 +8,26 @@
  *    1.0.0 - 2018/06/06
  */
 .p-about-page {
+  &__promo {
+    padding: 6em 0;
+    background-size: 50%;
 
-  &__promo-video {
-    padding: 5em 0;
-    background-image: url('./../images/banners/homepage/palms.svg');
-    background-size: cover;
+    &-video {
+      background-size: cover;
+      background-image: url('./../images/banners/homepage/palms.svg');
+    }
+
+    &-programming {
+      background-image: url('./../images/patterns/third-dimension-squiggle.svg');
+    }
+
+
+    &-admin {
+      background-image: url('./../images/patterns/lemon-triangle.svg');
+    }
+
+    &-media {
+
+    }
   }
 }

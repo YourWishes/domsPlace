@@ -51,9 +51,10 @@ const AboutPage = (props) => {
       </ImageSection>
 
       { /* Promo Video */ }
-      <Section className="p-about-page__promo-video">
+      <Section className="p-about-page__promo p-about-page__promo-video">
         <PageBoundary>
           <SplitSection align="center">
+
             <Split className="u-text-center" padded>
               <ElementScrollFader>
                 <Video
@@ -61,7 +62,7 @@ const AboutPage = (props) => {
                   mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
                   controls
                 />
-            </ElementScrollFader>
+              </ElementScrollFader>
             </Split>
 
             <Split className="u-text-center" padded>
@@ -76,9 +77,56 @@ const AboutPage = (props) => {
                 </ContentBox>
               </ElementScrollFader>
             </Split>
+
           </SplitSection>
         </PageBoundary>
       </Section>
+
+      {/* Programming */}
+      <Section className="p-about-page__promo p-about-page__promo-programming">
+        <PageBoundary small>
+          <ElementScrollFader from="bottom">
+            <ContentBox box>
+              <Title className="u-text-center">
+                { Language.get("pages.about.programming.heading") }
+              </Title>
+              <Paragraph>
+                { Language.get("pages.about.programming.paragraph") }
+              </Paragraph>
+            </ContentBox>
+          </ElementScrollFader>
+        </PageBoundary>
+      </Section>
+
+      {/* Systems Admin */}
+      <Section className="p-about-page__promo p-about-page__promo-admin">
+        <PageBoundary>
+          <SplitSection align="center">
+          <Split className="u-text-center" padded>
+            <ElementScrollFader from="left">
+              <Video
+                image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
+                mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
+                controls
+              />
+            </ElementScrollFader>
+          </Split>
+
+            <Split padded>
+              <ElementScrollFader from="right">
+                <ContentBox box>
+                  <Title>
+                    { Language.get("pages.about.admin.heading") }
+                  </Title>
+                  { Language.get("pages.about.admin.paragraph") }
+                </ContentBox>
+              </ElementScrollFader>
+            </Split>
+          </SplitSection>
+        </PageBoundary>
+      </Section>
+
+      {/* Media */}
     </Page>
   );
 }
