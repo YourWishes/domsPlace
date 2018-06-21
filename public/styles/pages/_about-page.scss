@@ -3,6 +3,9 @@
  *    Styles for the About Page, a simple page outlining some info about me.
  *
  *  Dependencies:
+ *    styles/settings/responsive.scss
+ *    styles/tools/_flex.scss
+ *    styles/tools/_responsive.scss
  *
  *  Version:
  *    1.0.0 - 2018/06/06
@@ -19,7 +22,7 @@
 
     &-platforms {
       //background-image: url('./../images/patterns/game-show.svg');
-      background: black;
+      background: #FFD6DE;
     }
 
     &-programming {
@@ -36,17 +39,56 @@
     }
   }
 
-  &__brand {
-    display: block;
-    > a {display: block;}
+  &__brands {
+    @extend %t-flexbox;
+    @include t-align-items(center);
+    @include t-justify-content(space-between);
+    @include t-flex-wrap(wrap);
+
+    &-brand {
+      width: 50%;
+      padding: 1em;
+    }
 
     &-image {
-      width: 100%;
-      max-width: 250px;
-      max-height: 200px;
       display: block;
-      margin: auto;
-      padding: 2em;
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      max-width: 5em;
+      max-height: 5em;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    &-link {
+      display: block;
+    }
+
+    &-title {
+      color: white;
     }
   }
+
+  @include t-media-query($s-xsmall-up) {
+    &__brands {
+      &-brand {
+        width: 25%;
+      }
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__brands {
+      &-brand {
+        padding: 2em;
+      }
+
+      &-image {
+        max-width: 7em;
+        max-height: 6em;
+      }
+    }
+  }
+
 }

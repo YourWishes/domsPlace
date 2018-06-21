@@ -47,7 +47,8 @@ module.exports = {
         }
       },
       "platforms": {
-        "heading": "Platforms I work with"
+        "heading": "Platforms I work with",
+        "footer": "... And many more!"
       },
       "admin": {
         "heading": "Systems Admin",

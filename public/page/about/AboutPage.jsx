@@ -36,11 +36,11 @@ import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 
 const AboutPageBrand = (props) => {
   let children;
-  let image = <Image src={props.src} className="p-about-page__brand-image" />;
+  let image = <Image src={props.src} className="p-about-page__brands-image" />;
 
   if(props.to) {
     children = (
-      <a href={props.to} target="_blank">
+      <a href={props.to} target="_blank" className="p-about-page__brands-link">
         {image}
       </a>
     );
@@ -49,13 +49,9 @@ const AboutPageBrand = (props) => {
   }
 
   return (
-    <Split padded>
-      <Split>
-        <ElementScrollFader from={props.from} className="p-about-page__brand">
-          {children}
-        </ElementScrollFader>
-      </Split>
-    </Split>
+    <ElementScrollFader from={props.from} className="p-about-page__brands-brand">
+      {children}
+    </ElementScrollFader>
   );
 };
 
@@ -128,11 +124,11 @@ const AboutPage = (props) => {
       {/* Platforms */}
       <Section className="p-about-page__promo p-about-page__promo-platforms">
         <PageBoundary>
-          <Title className="u-text-center">
+          <Title className="u-text-center p-about-page__brands-title">
             { Language.get("pages.about.platforms.heading") }
           </Title>
 
-          <SplitSection align="center">
+          <div className="p-about-page__brands">
             {/* Shopify */}
             <AboutPageBrand
               src={require('./../../images/branding/shopify/shopify_glyph.svg')}
@@ -159,10 +155,6 @@ const AboutPage = (props) => {
               from="left"
               to="//www.postgresql.org"
             />
-
-          </SplitSection>
-
-          <SplitSection align="center">
 
             {/* NodeJS */}
             <AboutPageBrand
@@ -191,9 +183,6 @@ const AboutPage = (props) => {
               from="left"
               to="//java.com"
             />
-          </SplitSection>
-
-          <SplitSection align="center">
 
             {/* neto */}
             <AboutPageBrand
@@ -222,19 +211,17 @@ const AboutPage = (props) => {
               from="bottom"
               to="//www.opengl.org"
             />
-          </SplitSection>
 
-          <SplitSection align="center">
             {/* Discord */}
             <AboutPageBrand
-              src={require('./../../images/branding/discord/discord-logo.svg')}
+              src={ require('./../../images/branding/discord/discord-logo.svg') }
               from="left"
               to="//discordapp.com"
             />
 
             {/* Twitch */}
             <AboutPageBrand
-              src={require('./../../images/branding/twitch/twitch-logo.svg')}
+              src={ require('./../../images/branding/twitch/twitch-logo.svg') }
               from="left"
               to="//twitch.tv"
             />
@@ -246,14 +233,19 @@ const AboutPage = (props) => {
               to="//twitter.com"
             />
 
-          ``{/* Google Cloud */}
+            {/* Google Cloud */}
             <AboutPageBrand
-              src={require('./../../images/branding/google-cloud/google-cloud-logo.svg')}
+              src={
+                require('./../../images/branding/google-cloud/google-cloud-logo.svg')
+              }
               from="left"
               to="//console.cloud.google.com"
             />
-          </SplitSection>
-          <Title className="u-text-center">... And many more!</Title>
+          </div>
+
+          <Subtitle className="u-text-center p-about-page__brands-title">
+            { Language.get("pages.about.platforms.footer") }
+          </Subtitle>
         </PageBoundary>
       </Section>
 
