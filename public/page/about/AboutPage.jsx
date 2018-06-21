@@ -24,6 +24,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Language from './../../language/Language';
+import { Link } from 'react-router-dom';
 import Page, { PageBoundary } from './../Page';
 import Section, { ImageSection, VideoSection, SplitSection, Split } from './../../section/Section';
 import FloatingContentBox from './../../content/FloatingContentBox';
@@ -33,7 +34,33 @@ import Video from './../../video/Video';
 import { Title, Subtitle, Paragraph, Heading1 } from './../../typography/Typography';
 import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 
+const AboutPageBrand = (props) => {
+  let children;
+  let image = <Image src={props.src} className="p-about-page__brand-image" />;
+
+  if(props.to) {
+    children = (
+      <a href={props.to} target="_blank">
+        {image}
+      </a>
+    );
+  } else {
+    children = image;
+  }
+
+  return (
+    <Split padded>
+      <Split>
+        <ElementScrollFader from={props.from} className="p-about-page__brand">
+          {children}
+        </ElementScrollFader>
+      </Split>
+    </Split>
+  );
+};
+
 const AboutPage = (props) => {
+  //Return
   return (
     <Page style="home-page" className="p-about-page">
 
@@ -98,19 +125,151 @@ const AboutPage = (props) => {
         </PageBoundary>
       </Section>
 
+      {/* Platforms */}
+      <Section className="p-about-page__promo p-about-page__promo-platforms">
+        <PageBoundary>
+          <Title className="u-text-center">
+            { Language.get("pages.about.platforms.heading") }
+          </Title>
+
+          <SplitSection align="center">
+            {/* Shopify */}
+            <AboutPageBrand
+              src={require('./../../images/branding/shopify/shopify_glyph.svg')}
+              from="left"
+              to="//www.shopify.com"
+            />
+            {/* React */}
+            <AboutPageBrand
+              src={require('./../../images/branding/react/react-logo.svg')}
+              from="top"
+              to="//reactjs.org"
+            />
+
+            {/* MonoGame */}
+            <AboutPageBrand
+              src={require('./../../images/branding/monogame/monogame-logo.svg')}
+              from="left"
+              to="http://www.monogame.net"
+            />
+
+            {/* PGSQL */}
+            <AboutPageBrand
+              src={require('./../../images/branding/pgsql/pgsql-logo.svg')}
+              from="left"
+              to="//www.postgresql.org"
+            />
+
+          </SplitSection>
+
+          <SplitSection align="center">
+
+            {/* NodeJS */}
+            <AboutPageBrand
+              src={require('./../../images/branding/nodejs/nodejs-logo.svg')}
+              from="bottom"
+              to="//nodejs.org"
+            />
+
+            {/* C# */}
+            <AboutPageBrand
+              src={require('./../../images/branding/csharp/csharp-logo.svg')}
+              from="left"
+              to="//docs.microsoft.com/en-us/dotnet/csharp/"
+            />
+
+            {/* PHP */}
+            <AboutPageBrand
+              src={require('./../../images/branding/php/php-logo.svg')}
+              from="left"
+              to="//php.net"
+            />
+
+            {/* Java */}
+            <AboutPageBrand
+              src={require('./../../images/branding/java/java-logo.svg')}
+              from="left"
+              to="//java.com"
+            />
+          </SplitSection>
+
+          <SplitSection align="center">
+
+            {/* neto */}
+            <AboutPageBrand
+              src={require('./../../images/branding/neto/neto-logo.svg')}
+              from="left"
+              to="http://www.monogame.net"
+            />
+
+            {/* MySQL */}
+            <AboutPageBrand
+              src={require('./../../images/branding/mysql/mysql-logo.svg')}
+              from="left"
+              to="//www.mysql.com"
+            />
+
+            {/* Heroku */}
+            <AboutPageBrand
+              src={require('./../../images/branding/heroku/heroku-logo.svg')}
+              from="left"
+              to="//heroku.com"
+            />
+
+            {/* OpenGL */}
+            <AboutPageBrand
+              src={require('./../../images/branding/opengl/opengl-logo.svg')}
+              from="bottom"
+              to="//www.opengl.org"
+            />
+          </SplitSection>
+
+          <SplitSection align="center">
+            {/* Discord */}
+            <AboutPageBrand
+              src={require('./../../images/branding/discord/discord-logo.svg')}
+              from="left"
+              to="//discordapp.com"
+            />
+
+            {/* Twitch */}
+            <AboutPageBrand
+              src={require('./../../images/branding/twitch/twitch-logo.svg')}
+              from="left"
+              to="//twitch.tv"
+            />
+
+            {/* Twitter */}
+            <AboutPageBrand
+              src={require('./../../images/branding/twitter/twitter-logo.svg')}
+              from="left"
+              to="//twitter.com"
+            />
+
+          ``{/* Google Cloud */}
+            <AboutPageBrand
+              src={require('./../../images/branding/google-cloud/google-cloud-logo.svg')}
+              from="left"
+              to="//console.cloud.google.com"
+            />
+          </SplitSection>
+          <Title className="u-text-center">... And many more!</Title>
+        </PageBoundary>
+      </Section>
+
       {/* Systems Admin */}
       <Section className="p-about-page__promo p-about-page__promo-admin">
         <PageBoundary>
           <SplitSection align="center">
-          <Split className="u-text-center" padded>
-            <ElementScrollFader from="left">
-              <Video
-                image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
-                mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
-                controls
-              />
-            </ElementScrollFader>
-          </Split>
+            <Split className="u-text-center" padded>
+              <ElementScrollFader from="left">
+                <Video
+                  image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
+                  mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
+                  controls
+                />
+              </ElementScrollFader>
+            </Split>
 
             <Split padded>
               <ElementScrollFader from="right">
@@ -127,6 +286,19 @@ const AboutPage = (props) => {
       </Section>
 
       {/* Media */}
+      <Section className="p-about-page__promo p-about-page__promo-media">
+        <PageBoundary>
+          <SplitSection align="center">
+
+            <Split padded>
+              <ElementScrollFader from="bottom">
+
+              </ElementScrollFader>
+            </Split>
+
+          </SplitSection>
+        </PageBoundary>
+      </Section>
     </Page>
   );
 }

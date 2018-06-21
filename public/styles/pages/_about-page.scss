@@ -17,6 +17,11 @@
       background-image: url('./../images/banners/homepage/palms.svg');
     }
 
+    &-platforms {
+      //background-image: url('./../images/patterns/game-show.svg');
+      background: black;
+    }
+
     &-programming {
       background-image: url('./../images/patterns/third-dimension-squiggle.svg');
     }
@@ -28,6 +33,20 @@
 
     &-media {
 
+    }
+  }
+
+  &__brand {
+    display: block;
+    > a {display: block;}
+
+    &-image {
+      width: 100%;
+      max-width: 250px;
+      max-height: 200px;
+      display: block;
+      margin: auto;
+      padding: 2em;
     }
   }
 }

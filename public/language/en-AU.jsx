@@ -46,6 +46,9 @@ module.exports = {
           </Fragment>);
         }
       },
+      "platforms": {
+        "heading": "Platforms I work with"
+      },
       "admin": {
         "heading": "Systems Admin",
         "paragraph": () => {
