@@ -21,8 +21,27 @@
     }
 
     &-platforms {
-      //background-image: url('./../images/patterns/game-show.svg');
-      background: #FFD6DE;
+      background-image: url('./../images/hills-night.svg');
+      background-size: cover;
+      background-position: center;
+
+      //Image is a bit bright, so we're going to darken it here
+      position: relative;
+
+      &::before {
+        content:"";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 0;
+      }
+
+      > .c-page__boundary {
+        position: relative;//This is to Z-Index fight the background just a bit.
+      }
     }
 
     &-programming {
@@ -41,13 +60,12 @@
 
   &__brands {
     @extend %t-flexbox;
-    @include t-align-items(center);
+    @include t-align-items(stretch);
     @include t-justify-content(space-between);
     @include t-flex-wrap(wrap);
 
     &-brand {
       width: 50%;
-      padding: 1em;
     }
 
     &-image {
@@ -59,10 +77,18 @@
       max-height: 5em;
       object-fit: contain;
       object-position: center;
+
+      transition: all 0.2s $s-animation--ease-out;
     }
 
     &-link {
+      padding: 1em;
       display: block;
+      height: 100%;
+
+      &:hover .p-about-page__brands-image {
+        @include t-transform(rotate(10deg));
+      }
     }
 
     &-title {
@@ -80,7 +106,7 @@
 
   @include t-media-query($s-small-up) {
     &__brands {
-      &-brand {
+      &-link {
         padding: 2em;
       }
 
