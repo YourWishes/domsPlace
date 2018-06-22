@@ -67,8 +67,10 @@ const AboutPage = (props) => {
       >
         <PageBoundary full>
           <FloatingContentBox position="middle center" size="large" className="u-text-center">
-            <Title>{ Language.get("pages.about.banner.title") }</Title>
-            <Subtitle className="u-responsive--small-up">{ Language.get("pages.about.banner.subtitle") }</Subtitle>
+            <ElementScrollFader from="bottom">
+              <Title>{ Language.get("pages.about.banner.title") }</Title>
+              <Subtitle className="u-responsive--small-up">{ Language.get("pages.about.banner.subtitle") }</Subtitle>
+            </ElementScrollFader>
           </FloatingContentBox>
         </PageBoundary>
       </ImageSection>
@@ -124,9 +126,11 @@ const AboutPage = (props) => {
       {/* Platforms */}
       <Section className="p-about-page__promo p-about-page__promo-platforms">
         <PageBoundary>
-          <Title className="u-text-center p-about-page__brands-title">
-            { Language.get("pages.about.platforms.heading") }
-          </Title>
+          <ElementScrollFader from="left">
+            <Title className="u-text-center p-about-page__brands-title">
+              { Language.get("pages.about.platforms.heading") }
+            </Title>
+          </ElementScrollFader>
 
           <div className="p-about-page__brands">
             {/* Shopify */}
@@ -145,63 +149,63 @@ const AboutPage = (props) => {
             {/* MonoGame */}
             <AboutPageBrand
               src={require('./../../images/branding/monogame/monogame-logo.svg')}
-              from="left"
+              from="bottom"
               to="http://www.monogame.net"
             />
 
             {/* PGSQL */}
             <AboutPageBrand
               src={require('./../../images/branding/pgsql/pgsql-logo.svg')}
-              from="left"
+              from="right"
               to="//www.postgresql.org"
             />
 
             {/* NodeJS */}
             <AboutPageBrand
               src={require('./../../images/branding/nodejs/nodejs-logo.svg')}
-              from="bottom"
+              from="top"
               to="//nodejs.org"
             />
 
             {/* C# */}
             <AboutPageBrand
               src={require('./../../images/branding/csharp/csharp-logo.svg')}
-              from="left"
+              from="top"
               to="//docs.microsoft.com/en-us/dotnet/csharp/"
             />
 
             {/* PHP */}
             <AboutPageBrand
               src={require('./../../images/branding/php/php-logo.svg')}
-              from="left"
+              from="top"
               to="//php.net"
             />
 
             {/* Java */}
             <AboutPageBrand
               src={require('./../../images/branding/java/java-logo.svg')}
-              from="left"
+              from="top"
               to="//java.com"
             />
 
             {/* neto */}
             <AboutPageBrand
               src={require('./../../images/branding/neto/neto-logo.svg')}
-              from="left"
+              from="bottom"
               to="http://www.monogame.net"
             />
 
             {/* MySQL */}
             <AboutPageBrand
               src={require('./../../images/branding/mysql/mysql-logo.svg')}
-              from="left"
+              from="bottom"
               to="//www.mysql.com"
             />
 
             {/* Heroku */}
             <AboutPageBrand
               src={require('./../../images/branding/heroku/heroku-logo.svg')}
-              from="left"
+              from="bottom"
               to="//heroku.com"
             />
 
@@ -215,14 +219,14 @@ const AboutPage = (props) => {
             {/* Discord */}
             <AboutPageBrand
               src={ require('./../../images/branding/discord/discord-logo.svg') }
-              from="left"
+              from="right"
               to="//discordapp.com"
             />
 
             {/* Twitch */}
             <AboutPageBrand
               src={ require('./../../images/branding/twitch/twitch-logo.svg') }
-              from="left"
+              from="right"
               to="//twitch.tv"
             />
 
@@ -243,54 +247,44 @@ const AboutPage = (props) => {
             />
           </div>
 
-          <Subtitle className="u-text-center p-about-page__brands-title">
-            { Language.get("pages.about.platforms.footer") }
-          </Subtitle>
+          <ElementScrollFader from="bottom">
+            <Subtitle className="u-text-center p-about-page__brands-title">
+              { Language.get("pages.about.platforms.footer") }
+            </Subtitle>
+          </ElementScrollFader>
         </PageBoundary>
       </Section>
 
-      {/* Systems Admin */}
-      <Section className="p-about-page__promo p-about-page__promo-admin">
+      {/* Existing Work */}
+      <Section className="p-about-page__promo p-about-page__promo-work">
         <PageBoundary>
+          {/* Title */}
           <SplitSection align="center">
-            <Split className="u-text-center" padded>
-              <ElementScrollFader from="left">
-                <Video
-                  image={ require('./../../videos/bunny/big_buck_bunny.jpg') }
-                  mp4={ require('./../../videos/bunny/big_buck_bunny.mp4') }
-                  controls
-                />
-              </ElementScrollFader>
-            </Split>
-
             <Split padded>
-              <ElementScrollFader from="right">
+              <ElementScrollFader from="left">
                 <ContentBox box>
-                  <Title>
-                    { Language.get("pages.about.admin.heading") }
-                  </Title>
-                  { Language.get("pages.about.admin.paragraph") }
+                  <Title>Some of my work</Title>
+                  <Paragraph>
+                    Interested to see what I can do? Check out some of
+                    my personal favourite projects!
+                  </Paragraph>
                 </ContentBox>
               </ElementScrollFader>
             </Split>
-          </SplitSection>
-        </PageBoundary>
-      </Section>
-
-      {/* Media */}
-      <Section className="p-about-page__promo p-about-page__promo-media">
-        <PageBoundary>
-          <SplitSection align="center">
 
             <Split padded>
-              <ElementScrollFader from="bottom">
-
-              </ElementScrollFader>
+              {/* Empty Space */
             </Split>
+          </SplitSection>
 
+          <SplitSection align="center">
+            <Split padded>
+            </Split>
           </SplitSection>
         </PageBoundary>
       </Section>
+
+
     </Page>
   );
 }

@@ -49,12 +49,8 @@
     }
 
 
-    &-admin {
+    &-work {
       background-image: url('./../images/patterns/lemon-triangle.svg');
-    }
-
-    &-media {
-
     }
   }
 
@@ -96,6 +92,7 @@
     }
   }
 
+  /* Media Queries */
   @include t-media-query($s-xsmall-up) {
     &__brands {
       &-brand {
@@ -116,5 +113,4 @@
       }
     }
   }
-
 }
