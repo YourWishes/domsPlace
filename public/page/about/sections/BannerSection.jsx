@@ -22,42 +22,28 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
-import Page from './../Page';
+import Language from './../../../language/Language';
+import { PageBoundary } from './../../Page';
+import { ImageSection } from './../../../section/Section';
+import FloatingContentBox from './../../../content/FloatingContentBox';
+import { Title, Subtitle } from './../../../typography/Typography';
+import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
-import BannerSection from './sections/BannerSection';
-import PromoVideoSection from './sections/PromoVideoSection';
-import ProgrammingSection from './sections/ProgrammingSection';
-import PlatformsSection from './sections/PlatformsSection';
-import ExistingWorkSection from './sections/ExistingWorkSection';
 
-const AboutPage = (props) => {
-  //Return
+export default (props) => {
   return (
-    <Page style="home-page" className="p-about-page">
-
-      { /* Banner */ }
-      <BannerSection />
-
-      { /* Promo Video */ }
-      <PromoVideoSection />
-
-      {/* Programming */}
-      <ProgrammingSection />
-
-      {/* Platforms */}
-      <PlatformsSection />
-
-      {/* Existing Work */}
-      <ExistingWorkSection />
-    </Page>
+    <ImageSection
+      src={ require('./../../../images/banners/about/glasses.svg') }
+      alt="domsPlace"
+    >
+      <PageBoundary full>
+        <FloatingContentBox position="middle center" size="large" className="u-text-center">
+          <ElementScrollFader from="bottom">
+            <Title>{ Language.get("pages.about.banner.title") }</Title>
+            <Subtitle className="u-responsive--small-up">{ Language.get("pages.about.banner.subtitle") }</Subtitle>
+          </ElementScrollFader>
+        </FloatingContentBox>
+      </PageBoundary>
+    </ImageSection>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  };
-}
-
-export default connect(mapStateToProps)(AboutPage);

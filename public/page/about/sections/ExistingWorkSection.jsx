@@ -22,42 +22,36 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
-import Page from './../Page';
+import Language from './../../../language/Language';
+import { PageBoundary } from './../../Page';
+import Section, { SplitSection, Split } from './../../../section/Section';
+import ContentBox from './../../../content/ContentBox';
+import { Title, Subtitle, Paragraph, Heading1 } from './../../../typography/Typography';
+import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
-import BannerSection from './sections/BannerSection';
-import PromoVideoSection from './sections/PromoVideoSection';
-import ProgrammingSection from './sections/ProgrammingSection';
-import PlatformsSection from './sections/PlatformsSection';
-import ExistingWorkSection from './sections/ExistingWorkSection';
-
-const AboutPage = (props) => {
-  //Return
+export default (props) => {
   return (
-    <Page style="home-page" className="p-about-page">
+    <Section className="p-about-page__promo p-about-page__promo-work">
+      <PageBoundary>
+        {/* Title */}
+        <SplitSection align="center">
+          <Split padded>
+            <ElementScrollFader from="left">
+              <ContentBox box>
+                <Title>Some of my work</Title>
+                <Paragraph>
+                  Interested to see what I can do? Check out some of
+                  my personal favourite projects!
+                </Paragraph>
+              </ContentBox>
+            </ElementScrollFader>
+          </Split>
 
-      { /* Banner */ }
-      <BannerSection />
-
-      { /* Promo Video */ }
-      <PromoVideoSection />
-
-      {/* Programming */}
-      <ProgrammingSection />
-
-      {/* Platforms */}
-      <PlatformsSection />
-
-      {/* Existing Work */}
-      <ExistingWorkSection />
-    </Page>
+          <Split padded>
+            {/* Empty Space */}
+          </Split>
+        </SplitSection>
+      </PageBoundary>
+    </Section>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  };
-}
-
-export default connect(mapStateToProps)(AboutPage);

@@ -23,41 +23,28 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Page from './../Page';
+import Language from './../../../language/Language';
+import { PageBoundary } from './../../Page';
+import Section from './../../../section/Section';
+import ContentBox from './../../../content/ContentBox';
+import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
+import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
-import BannerSection from './sections/BannerSection';
-import PromoVideoSection from './sections/PromoVideoSection';
-import ProgrammingSection from './sections/ProgrammingSection';
-import PlatformsSection from './sections/PlatformsSection';
-import ExistingWorkSection from './sections/ExistingWorkSection';
-
-const AboutPage = (props) => {
-  //Return
+export default (props) => {
   return (
-    <Page style="home-page" className="p-about-page">
-
-      { /* Banner */ }
-      <BannerSection />
-
-      { /* Promo Video */ }
-      <PromoVideoSection />
-
-      {/* Programming */}
-      <ProgrammingSection />
-
-      {/* Platforms */}
-      <PlatformsSection />
-
-      {/* Existing Work */}
-      <ExistingWorkSection />
-    </Page>
+    <Section className="p-about-page__promo p-about-page__promo-programming">
+      <PageBoundary small>
+        <ElementScrollFader from="bottom">
+          <ContentBox box>
+            <Heading1 className="u-text-center">
+              { Language.get("pages.about.programming.heading") }
+            </Heading1>
+            <Paragraph>
+              { Language.get("pages.about.programming.paragraph") }
+            </Paragraph>
+          </ContentBox>
+        </ElementScrollFader>
+      </PageBoundary>
+    </Section>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  };
-}
-
-export default connect(mapStateToProps)(AboutPage);
