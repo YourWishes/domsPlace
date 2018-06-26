@@ -44,30 +44,32 @@ const ExistingWorkFrame = (props) => {
     fakeURL = "https:" + fakeURL;
   }
   return (
-    <Window95>
-      <TitleBar buttons={[
-        <Minimize key="Minimize" disabled />,
-        <Close key="close" disabled />
-      ]}>
-        { props.title }
-      </TitleBar>
+    <ElementScrollFader from={props.from}>
+      <Window95>
+        <TitleBar buttons={[
+          <Minimize key="Minimize" disabled />,
+          <Close key="close" disabled />
+        ]}>
+          { props.title }
+        </TitleBar>
 
-      <MenuBar>
-        <MenuOption title="File" disabled />
-        <MenuOption title="Visit Page" href={ props.href } target="_blank" />
-      </MenuBar>
+        <MenuBar>
+          <MenuOption title="File" disabled />
+          <MenuOption title="Visit Page" href={ props.href } target="_blank" />
+        </MenuBar>
 
-      <AddressBar href={fakeURL} />
-      <Frame>
-        <a href={ props.href} target="_blank" className="p-about-page__work-link">
-          <Image
-            src={props.src}
-            alt={props.title}
-            className="p-about-page__work-link-image"
-          />
-        </a>
-      </Frame>
-    </Window95>
+        <AddressBar href={fakeURL} />
+        <Frame>
+          <a href={ props.href} target="_blank" className="p-about-page__work-link">
+            <Image
+              src={props.src}
+              alt={props.title}
+              className="p-about-page__work-link-image"
+            />
+          </a>
+        </Frame>
+      </Window95>
+    </ElementScrollFader>
   );
 };
 
@@ -78,7 +80,7 @@ export default (props) => {
       <PageBoundary small>
         <ElementScrollFader from="left">
           <ContentBox box>
-            <Title>
+            <Title className="u-text-center">
               { Language.get("pages.about.work.heading") }
             </Title>
             <Paragraph>
@@ -96,12 +98,19 @@ export default (props) => {
           <Split padded>
             <ExistingWorkFrame
               title="KOPA Life"
-              href="//www.kopalife.com"
+              href="//www.kopalife.com/product/kube-customise"
+              from="top"
               src={ require('./../../../images/work-showcase/kopalife.png') }
             />
           </Split>
 
           <Split padded>
+            <ElementScrollFader from="bottom">
+              <ContentBox box>
+                <Heading1>{ Language.get("pages.about.work.kopa.heading") }</Heading1>
+                { Language.get("pages.about.work.kopa.description") }
+              </ContentBox>
+            </ElementScrollFader>
           </Split>
         </SplitSection>
 

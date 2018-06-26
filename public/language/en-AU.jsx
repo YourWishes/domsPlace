@@ -52,7 +52,26 @@ module.exports = {
       },
       "work": {
         "heading": "Some of my work",
-        "paragraph": "Interested to see what I can do? Check out some of my personal favourite projects that I have built!"
+        "paragraph": "Interested to see what I can do? Check out some of my personal favourite projects that I have built!",
+        "kopa": {
+          "heading": "KOPA Life",
+          "description": () => { return (
+            <Fragment>
+              <p>
+                KOPA Life is a modern modular furniture designer in Australia.
+                Since 2016 they have created many modern design pieces, including
+                their signature KUBE, a modular couch available in removable and
+                attachable components.
+              </p>
+              <p>
+                The website features a modern minimalistic design, with a focus
+                on great imagery, and a fully fledged in-site 3D Couch builder,
+                which allows you to design your perfect couch and hit one button
+                to purchase the couch you've designed.
+              </p>
+            </Fragment>
+          ); }
+        }
       },
       "admin": {
         "heading": "Systems Admin",
