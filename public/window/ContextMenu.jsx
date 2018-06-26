@@ -22,27 +22,32 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
-import Language from './../../../language/Language';
-import { PageBoundary } from './../../Page';
-import Section from './../../../section/Section';
-import ContentBox from './../../../content/ContentBox';
-import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
-export default (props) => {
+class ContextMenu extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="o-window__context-menu" ref="menu">
+        { this.props.children }
+      </div>
+    );
+  }
+}
+export default ContextMenu;
+
+const ContextMenuOption = (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-programming">
-      <PageBoundary small>
-        <ElementScrollFader from="bottom">
-          <ContentBox box>
-            <Heading1 className="u-text-center">
-              { Language.get("pages.about.programming.heading") }
-            </Heading1>
-            { Language.get("pages.about.programming.paragraph") }
-          </ContentBox>
-        </ElementScrollFader>
-      </PageBoundary>
-    </Section>
+    <div className="o-window__context-menu-option">
+      <div className="o-window__context-menu-option-title">
+        { props.title }
+      </div>
+    </div>
   );
+};
+
+export {
+  ContextMenuOption
 }

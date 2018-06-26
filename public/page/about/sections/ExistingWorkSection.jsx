@@ -24,33 +24,88 @@
 import React from 'react';
 import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
-import Section, { SplitSection, Split } from './../../../section/Section';
+import Section, { SplitSection, Split, ClearSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
 import { Title, Subtitle, Paragraph, Heading1 } from './../../../typography/Typography';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
+import Image from './../../../image/Image';
+
+import Window95, {
+  TitleBar, Close, Minimize,
+  MenuBar, MenuOption,
+  ContextMenu, ContextMenuOption,
+  Frame,
+  AddressBar
+} from './../../../window/Window95';
+
+const ExistingWorkFrame = (props) => {
+  let fakeURL = props.href;
+  if(!fakeURL.startsWith("http")) {
+    fakeURL = "https:" + fakeURL;
+  }
+  return (
+    <Window95>
+      <TitleBar buttons={[
+        <Minimize key="Minimize" disabled />,
+        <Close key="close" disabled />
+      ]}>
+        { props.title }
+      </TitleBar>
+
+      <MenuBar>
+        <MenuOption title="File" disabled />
+        <MenuOption title="Visit Page" href={ props.href } target="_blank" />
+      </MenuBar>
+
+      <AddressBar href={fakeURL} />
+      <Frame>
+        <a href={ props.href} target="_blank" className="p-about-page__work-link">
+          <Image
+            src={props.src}
+            alt={props.title}
+            className="p-about-page__work-link-image"
+          />
+        </a>
+      </Frame>
+    </Window95>
+  );
+};
 
 export default (props) => {
   return (
     <Section className="p-about-page__promo p-about-page__promo-work">
+      {/* Title */}
+      <PageBoundary small>
+        <ElementScrollFader from="left">
+          <ContentBox box>
+            <Title>
+              { Language.get("pages.about.work.heading") }
+            </Title>
+            <Paragraph>
+              { Language.get("pages.about.work.paragraph") }
+            </Paragraph>
+          </ContentBox>
+        </ElementScrollFader>
+
+        <ClearSection />{/* Space a bit */}
+      </PageBoundary>
+
       <PageBoundary>
-        {/* Title */}
+        {/* KOPA */}
         <SplitSection align="center">
           <Split padded>
-            <ElementScrollFader from="left">
-              <ContentBox box>
-                <Title>Some of my work</Title>
-                <Paragraph>
-                  Interested to see what I can do? Check out some of
-                  my personal favourite projects!
-                </Paragraph>
-              </ContentBox>
-            </ElementScrollFader>
+            <ExistingWorkFrame
+              title="KOPA Life"
+              href="//www.kopalife.com"
+              src={ require('./../../../images/work-showcase/kopalife.png') }
+            />
           </Split>
 
           <Split padded>
-            {/* Empty Space */}
           </Split>
         </SplitSection>
+
+
       </PageBoundary>
     </Section>
   );

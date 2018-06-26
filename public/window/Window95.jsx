@@ -22,27 +22,32 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
-import Language from './../../../language/Language';
-import { PageBoundary } from './../../Page';
-import Section from './../../../section/Section';
-import ContentBox from './../../../content/ContentBox';
-import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
+import TitleBar, { Close, Minimize } from './TitleBar';
+import MenuBar, { MenuOption } from './MenuBar';
+import ContextMenu, { ContextMenuOption } from './ContextMenu';
+import Frame from './Frame';
+import AddressBar from './AddressBar';
 
 export default (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-programming">
-      <PageBoundary small>
-        <ElementScrollFader from="bottom">
-          <ContentBox box>
-            <Heading1 className="u-text-center">
-              { Language.get("pages.about.programming.heading") }
-            </Heading1>
-            { Language.get("pages.about.programming.paragraph") }
-          </ContentBox>
-        </ElementScrollFader>
-      </PageBoundary>
-    </Section>
+    <div className="o-window">
+      { props.children }
+    </div>
   );
+}
+
+export {
+  TitleBar,
+  Close,
+  Minimize,
+
+  MenuBar,
+  MenuOption,
+
+  ContextMenu,
+  ContextMenuOption,
+
+  Frame,
+
+  AddressBar
 }

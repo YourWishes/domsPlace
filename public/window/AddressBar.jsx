@@ -23,26 +23,43 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from './../../../language/Language';
-import { PageBoundary } from './../../Page';
-import Section from './../../../section/Section';
-import ContentBox from './../../../content/ContentBox';
-import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
+import Frame from './Frame';
+import Language from './../language/Language';
 
-export default (props) => {
-  return (
-    <Section className="p-about-page__promo p-about-page__promo-programming">
-      <PageBoundary small>
-        <ElementScrollFader from="bottom">
-          <ContentBox box>
-            <Heading1 className="u-text-center">
-              { Language.get("pages.about.programming.heading") }
-            </Heading1>
-            { Language.get("pages.about.programming.paragraph") }
-          </ContentBox>
-        </ElementScrollFader>
-      </PageBoundary>
-    </Section>
-  );
+class AddressBar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  onChange() {
+
+  }
+
+  render() {
+    let clazz = "o-window__address-bar";
+
+    return (
+      <div className={clazz}>
+        <span className="o-window__address-bar-title">
+          { Language.get("window.address") }
+        </span>
+        <Frame className="o-window__address-bar-frame">
+          <input
+            type="text"
+            value={this.props.href}
+            className="o-window__input o-window__address-bar-input"
+            onChange={ this.onChange.bind(this) }
+          />
+        </Frame>
+      </div>
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    code: state.language.code
+  };
+}
+
+export default connect(mapStateToProps)(AddressBar);

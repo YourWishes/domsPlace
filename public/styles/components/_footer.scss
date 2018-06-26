@@ -8,13 +8,15 @@
  *  Version:
  *    1.0.0 - 2018/05/16
  */
+$c-footer--link-color: red;
 $c-footer--shadow: 1.5em;
+
 .c-footer {
-  padding-top: 4em;
-  padding-bottom: 6em;
+  padding-top: 8em;
+  padding-bottom: 10em;
   position: relative;
   overflow: hidden;
-  background-image: url('./../images/patterns/schoolbell.svg');
+  background-image: url('./../images/banners/palms.svg');
   background-size: cover;
   @include t-box-shadow(0px, $c-footer--shadow, $c-footer--shadow, 0px, rgba(0, 0, 0, 0.25), true);
 

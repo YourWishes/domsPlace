@@ -11,46 +11,12 @@
  *    1.0.0 - 2018/06/06
  */
 .p-about-page {
+  background-color: #F7EFE2;
+
   &__promo {
     padding: 6em 0;
-    background-size: 50%;
-
-    &-video {
-      background-size: cover;
-      background-image: url('./../images/banners/homepage/palms.svg');
-    }
 
     &-platforms {
-      background-image: url('./../images/hills-night.svg');
-      background-size: cover;
-      background-position: center;
-
-      //Image is a bit bright, so we're going to darken it here
-      position: relative;
-
-      &::before {
-        content:"";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 0;
-      }
-
-      > .c-page__boundary {
-        position: relative;//This is to Z-Index fight the background just a bit.
-      }
-    }
-
-    &-programming {
-      background-image: url('./../images/patterns/third-dimension-squiggle.svg');
-    }
-
-
-    &-work {
-      background-image: url('./../images/patterns/lemon-triangle.svg');
     }
   }
 
@@ -83,13 +49,15 @@
       height: 100%;
 
       &:hover .p-about-page__brands-image {
-        @include t-transform(rotate(10deg));
+        @include t-rotate(10deg);
       }
     }
 
-    &-title {
-      color: white;
-    }
+    &-title { }
+  }
+
+  &__work-link,&__work-link-image {
+    display: block;
   }
 
   /* Media Queries */

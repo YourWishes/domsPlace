@@ -50,6 +50,10 @@ module.exports = {
         "heading": "Platforms I work with",
         "footer": "... And many more!"
       },
+      "work": {
+        "heading": "Some of my work",
+        "paragraph": "Interested to see what I can do? Check out some of my personal favourite projects that I have built!"
+      },
       "admin": {
         "heading": "Systems Admin",
         "paragraph": () => {
@@ -83,5 +87,9 @@ module.exports = {
       "send": "Send",
       "reset": "Reset"
     }
+  },
+
+  "window": {
+    "address": "Address:"
   }
 }

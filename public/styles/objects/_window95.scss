@@ -1,0 +1,238 @@
+/*
+ *  Window 95
+ *    Windows 95 esque objects
+ *
+ *  Dependencies:
+ *
+ *  Version:
+ *    1.0.0 - 2018/06/24
+ */
+$o-window--color-background: #C0C0C0;
+$o-window--color-highlight: #0000BF;
+$o-window--color-disabled: #808080;
+$o-window--color-title-bar: #000080;
+
+$o-window--font: 'MS PGothic', Verdana, Arial, Helvetica, sans-serif;
+$o-window--scale: 1;
+$o-window--font-size: 12px * $o-window--scale;
+
+$o-window--one-third: #{"33.333333333%"};//I needed greater accuracy than SCSS provided
+
+@mixin o-window-border($thickness) {
+  border: (3px * $thickness) solid black;
+  border-image-source: url('./../images/window/window.svg');
+  border-image-slice: $o-window--one-third;
+}
+
+@mixin o-window-button($thickness) {
+  border: (2px * $thickness) solid black;
+  border-image-source: url('./../images/window/button.svg');
+  border-image-slice: $o-window--one-third;
+  display: inline-block;
+  background: $o-window--color-background;
+
+  &:not(.is-disabled):active {
+    border-image-source: url('./../images/window/button-inverted.svg');
+  }
+}
+
+@mixin o-window-frame($thickness) {
+  border: (2px * $thickness) solid black;
+  border-image: url('./../images/window/frame.svg') $o-window--one-third repeat;
+}
+
+//Classes
+.o-window {
+  @extend %t-dp--shadow;
+  @include o-window-border($o-window--scale);
+  background: $o-window--color-background;
+  font-size: $o-window--font-size;
+  font-family: $o-window--font;
+
+  &__button {
+    @include o-window-button($o-window--scale);
+
+    padding: (1px * $o-window--scale) (5px * $o-window--scale);
+    border: 1px * $o-window--scale solid transparent;
+    display: inline-block;
+    position: relative;
+
+    &::first-letter {
+      text-decoration: underline;
+    }
+  }
+
+  &__title-bar {
+    width: 100%;
+    background: $o-window--color-title-bar;
+    padding: 2px * $o-window--scale;
+
+    &-title {
+      color: white;
+      font-weight: bold;
+      font-family: $o-window--font;
+      font-size: $o-window--font-size;
+      cursor: default;
+    }
+
+    &-buttons {
+      height: 100%;
+      float: right;
+      font-size: 0;
+    }
+
+    &-button {
+      @include o-window-button($o-window--scale);
+      width: 16px * $o-window--scale;
+      height: 14px * $o-window--scale;
+      font-size: $o-window--font-size;
+
+      background-image: url('./../images/window/icons.png');
+      background-position: 0px 0px;
+      background-size: 48px*$o-window--scale 20px*$o-window--scale;
+
+      &.is-disabled {
+        background-position-y: 10px*$o-window--scale;
+      }
+
+      &--close {
+        margin-left: 2px * $o-window--scale;
+      }
+
+      &--minimize {
+        background-position-x: 24px * $o-window--scale;
+      }
+    }
+  }
+
+  &__menu-bar {
+    width: 100%;
+    overflow: visible;
+
+    &-option {
+      display: inline-block;
+      position: relative;
+    }
+
+    &-button {
+      padding: (1px * $o-window--scale) (5px * $o-window--scale);
+      border: 1px * $o-window--scale solid transparent;
+      font-family: $o-window--font;
+      font-size: $o-window--font-size;
+      cursor: default;
+      color: black;
+
+      &::first-letter {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        color: black;
+        text-decoration: none;
+        border-bottom-color: #868686;
+        border-right-color: #868686;
+        border-top-color: #FFFFFF;
+        border-left-color: #FFFFFF;
+      }
+
+      &:active,
+      &.is-active,
+      .o-window__menu-bar-option.is-active &
+      {
+        border-right-color: #FFFFFF;
+        border-bottom-color: #FFFFFF;
+        border-top-color: #868686;
+        border-left-color: #868686;
+      }
+
+      .o-window__menu-bar-option.is-disabled & {
+        color: $o-window--color-disabled;
+
+        &:hover,&:active,&.is-active,.o-window__menu-bar.is-active & {
+          border-right-color: transparent;
+          border-bottom-color: transparent;
+          border-top-color: transparent;
+          border-left-color: transparent;
+        }
+      }
+    }
+
+
+  }
+
+  &__context-menu {
+    @include o-window-border($o-window--scale);
+    border-top-width: 2px*$o-window--scale;
+    background: $o-window--color-background;
+    width: auto;
+
+    .o-window__menu-bar-option > & {
+      position: absolute;
+      display: none;
+    }
+
+    .o-window__menu-bar-option.is-active > & {
+      display: block;
+    }
+
+    &-option {
+      padding-left: 22px*$o-window--scale;
+      padding-right: 22px*$o-window--scale;
+      padding-bottom: 3px*$o-window--scale;
+      padding-top: 1px*$o-window--scale;
+      white-space: nowrap;
+
+      &-title {
+        font-family: $o-window--font;
+        font-size: $o-window--font-size;
+        cursor: default;
+
+        &::first-letter {
+          text-decoration: underline;
+        }
+      }
+
+      &:hover {
+        background: $o-window--color-highlight;
+        color: white;
+      }
+
+      &:first-child > .o-window__context-menu-option-title {
+        font-weight: bold;
+      }
+
+      &.is-disabled {
+        color: $o-window--color-disabled;
+
+        &:hover {
+          background: inherit;
+          color: $o-window--color-disabled;
+        }
+      }
+    }
+  }
+
+  &__frame {
+    @include o-window-frame($o-window--scale);
+  }
+
+  &__address-bar {
+    @extend %t-flexbox;
+    @include t-align-items(center);
+
+    &-title {
+      display: block;
+      padding-right: 2px;
+    }
+
+    &-frame {
+      @include t-flex-basis(100%);
+    }
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    background: white;
+  }
+}

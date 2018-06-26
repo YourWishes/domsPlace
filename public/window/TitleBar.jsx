@@ -22,27 +22,48 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
-import Language from './../../../language/Language';
-import { PageBoundary } from './../../Page';
-import Section from './../../../section/Section';
-import ContentBox from './../../../content/ContentBox';
-import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
+//Title Bar
 export default (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-programming">
-      <PageBoundary small>
-        <ElementScrollFader from="bottom">
-          <ContentBox box>
-            <Heading1 className="u-text-center">
-              { Language.get("pages.about.programming.heading") }
-            </Heading1>
-            { Language.get("pages.about.programming.paragraph") }
-          </ContentBox>
-        </ElementScrollFader>
-      </PageBoundary>
-    </Section>
+    <div className="o-window__title-bar">
+      <div className="o-window__title-bar-buttons">
+        { props.buttons }
+      </div>
+
+      <div className="o-window__title-bar-title">
+        { props.children }
+      </div>
+    </div>
   );
+}
+
+//Buttons
+const TitleBarButton = (props) => {
+  let clz = "o-window__title-bar-button";
+  if(props.className) clz += " o-window__title-bar-button--"+props.className;
+  if(props.disabled) clz += " is-disabled";
+  return (
+    <div className={clz}>
+      { props.children }
+    </div>
+  );
+}
+
+const Close = (props) => {
+  return (
+    <TitleBarButton {...props} className="close" title="Close" />
+  );
+}
+
+const Minimize = (props) => {
+  return (
+    <TitleBarButton {...props} className="minimize" title="Minimize" />
+  );
+}
+
+export {
+  TitleBarButton,
+  Close,
+  Minimize
 }
