@@ -41,37 +41,52 @@ import Window95, {
 const ExistingWorkFrame = (props) => {
   let fakeURL = props.href;
   if(!fakeURL.startsWith("http")) {
-    fakeURL = "https:" + fakeURL;
+    fakeURL = window.location.protocol + fakeURL;
   }
   return (
-    <ElementScrollFader from={props.from}>
-      <Window95>
-        <TitleBar buttons={[
-          <Minimize key="Minimize" disabled />,
-          <Close key="close" disabled />
-        ]}>
-          { props.title }
-        </TitleBar>
+    <SplitSection align="center">
+      <Split padded>
+        <ElementScrollFader from={props.fromLeft}>
+          <Window95>
+            <TitleBar buttons={[
+              <Minimize key="Minimize" disabled />,
+              <Close key="close" disabled />
+            ]}>
+              { props.title }
+            </TitleBar>
 
-        <MenuBar>
-          <MenuOption title="File" disabled />
-          <MenuOption title="Visit Page" href={ props.href } target="_blank" />
-        </MenuBar>
+            <MenuBar>
+              <MenuOption title="File" disabled />
+              <MenuOption title="Visit Page" href={ props.href } target="_blank" />
+            </MenuBar>
 
-        <AddressBar href={fakeURL} />
-        <Frame>
-          <a href={ props.href} target="_blank" className="p-about-page__work-link">
-            <Image
-              src={props.src}
-              alt={props.title}
-              className="p-about-page__work-link-image"
-            />
-          </a>
-        </Frame>
-      </Window95>
-    </ElementScrollFader>
+            <AddressBar href={fakeURL} />
+            <Frame>
+              <a href={ props.href} target="_blank" className="p-about-page__work-link">
+                <Image
+                  src={props.src}
+                  alt={props.title}
+                  className="p-about-page__work-link-image"
+                />
+              </a>
+            </Frame>
+          </Window95>
+        </ElementScrollFader>
+      </Split>
+
+      <Split padded>
+        <ElementScrollFader from={ props.fromRight }>
+          <ContentBox box>
+            <Heading1>{ props.title }</Heading1>
+            { props.description }
+          </ContentBox>
+        </ElementScrollFader>
+      </Split>
+    </SplitSection>
   );
 };
+
+
 
 export default (props) => {
   return (
@@ -94,27 +109,14 @@ export default (props) => {
 
       <PageBoundary>
         {/* KOPA */}
-        <SplitSection align="center">
-          <Split padded>
-            <ExistingWorkFrame
-              title="KOPA Life"
-              href="//www.kopalife.com/product/kube-customise"
-              from="top"
-              src={ require('./../../../images/work-showcase/kopalife.png') }
-            />
-          </Split>
-
-          <Split padded>
-            <ElementScrollFader from="bottom">
-              <ContentBox box>
-                <Heading1>{ Language.get("pages.about.work.kopa.heading") }</Heading1>
-                { Language.get("pages.about.work.kopa.description") }
-              </ContentBox>
-            </ElementScrollFader>
-          </Split>
-        </SplitSection>
-
-
+        <ExistingWorkFrame
+          href="//www.kopalife.com/product/kube-customise"
+          fromLeft="top"
+          fromRight="bottom"
+          src={ require('./../../../images/work-showcase/kopalife.png') }
+          title={ Language.get("pages.about.work.kopa.heading") }
+          description={ Language.get("pages.about.work.kopa.description") }
+        />
       </PageBoundary>
     </Section>
   );
