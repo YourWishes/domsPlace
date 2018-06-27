@@ -27,6 +27,8 @@ import Page, { PageBoundary } from './../Page';
 import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/Input';
 import Language from './../../language/Language';
 import ElementScrollFader from './../../animation/fade/ElementScrollFader';
+import ContentBox from './../../content/ContentBox';
+import { Title, Paragraph } from './../../typography/Typography'
 import Section, {
   BodySection,
   ClearSection,
@@ -46,46 +48,56 @@ class ContactPage extends React.Component {
         <ClearSection />
 
         <PageBoundary small>
-          <SplitSection>
-            <Split>
-              <ElementScrollFader>
-                <BodySection>
-                  <Form>
-                    <InputGroup>
-                      <Label>{ Language.get("pages.contact.name.label") }</Label>
-                      <Input
-                        type="text"
-                        placeholder={ Language.get("pages.contact.name.placeholder") }
-                      />
-                    </InputGroup>
 
-                    <InputGroup >
-                      <Label>{ Language.get("pages.contact.email.label") }</Label>
-                      <Input
-                        type="email"
-                        placeholder={ Language.get("pages.contact.email.placeholder") }
-                      />
-                    </InputGroup>
+          <ElementScrollFader from="left">
+            <ContentBox box className="u-text-center">
+              <Title>Contact Me</Title>
+              <Paragraph>
+                Want to get in touch with me? Fill out this easy form and I should be
+                in touch shortly to chat! More of a phone person? Leave a number
+                and we can chat.
+              </Paragraph>
+            </ContentBox>
+          </ElementScrollFader>
 
-                    <InputGroup>
-                      <Label>{ Language.get("pages.contact.message.label") }</Label>
-                      <TextArea
-                        placeholder={ Language.get("pages.contact.message.placeholder") }
-                        rows="8"
-                        className="p-contact-page__message"
-                      />
-                    </InputGroup>
+          <br />
+          <br />
 
-                    <ButtonGroup>
-                      <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
-                      <Input type="reset" value={ Language.get("pages.contact.reset") } />
-                    </ButtonGroup>
-                  </Form>
-                </BodySection>
-              </ElementScrollFader>
-            </Split>
+          <ElementScrollFader from="right">
+            <BodySection>
+              <Form>
+                <InputGroup>
+                  <Label>{ Language.get("pages.contact.name.label") }</Label>
+                  <Input
+                    type="text"
+                    placeholder={ Language.get("pages.contact.name.placeholder") }
+                  />
+                </InputGroup>
 
-          </SplitSection>
+                <InputGroup >
+                  <Label>{ Language.get("pages.contact.email.label") }</Label>
+                  <Input
+                    type="email"
+                    placeholder={ Language.get("pages.contact.email.placeholder") }
+                  />
+                </InputGroup>
+
+                <InputGroup>
+                  <Label>{ Language.get("pages.contact.message.label") }</Label>
+                  <TextArea
+                    placeholder={ Language.get("pages.contact.message.placeholder") }
+                    rows="8"
+                    className="p-contact-page__message"
+                  />
+                </InputGroup>
+
+                <ButtonGroup>
+                  <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
+                  <Input type="reset" value={ Language.get("pages.contact.reset") } />
+                </ButtonGroup>
+              </Form>
+            </BodySection>
+          </ElementScrollFader>
         </PageBoundary>
 
         <ClearSection />
