@@ -54,11 +54,14 @@ $s-color--input-default__border: 1px solid #AAA;
 $s-color--input-default__top: #F7F7F7;
 $s-color--input-default__bottom: #DADADA;
 $s-color--input-default-hover__top: $s-color--input-default__bottom;
+$s-color--input-default__text: black;
+$s-color--input-default-hover__text: black;
 
 //Input Styles
 $s-color--input-focus__outline: darken($s-color--swatch-blue, 20%);
 
 //Button Primary
+$s-color--input-primary__text: black;
 $s-color--input-primary__top: $s-color--swatch-blue;
 $s-color--input-primary__bottom: darken($s-color--input-primary__top, 8%);
 

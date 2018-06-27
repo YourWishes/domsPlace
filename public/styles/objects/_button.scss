@@ -20,6 +20,10 @@
   &__inner {
     padding: ( $t-input--style-dp__padding / 2 ) $t-input--style-dp__padding;
   }
+
+  &:hover {
+    text-decoration: none;/* Override Standard Link Underline */
+  }
 }
 
 //Button Group

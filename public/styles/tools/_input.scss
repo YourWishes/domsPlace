@@ -22,13 +22,14 @@
 
 $t-input--style-dp__padding: 1em;
 //Basic Design
-@mixin t-input--style($top, $bottom) {
+@mixin t-input--style($top, $bottom, $color:black) {
   &::before,
   &:active &__inner {
     background: $bottom;
   }
 
   &__inner {
+    color: $color;
     background: $top;
   }
 }
@@ -76,6 +77,8 @@ $t-input--style-dp__padding: 1em;
     background: $s-color--input-default__top;
     border: $s-color--input-default__border;
     transition: all 0.1s $s-animation--ease-out;
+
+    color: $s-color--input-default__text;
     //border-radius: $t-input--style-dp__padding / 3;
 
     //Shine effect
@@ -91,6 +94,7 @@ $t-input--style-dp__padding: 1em;
 
   //Pseudo elements
   &:hover &__inner {
+    color: $s-color--input-default-hover__text;
     @include t-translate-y($t-input--style-dp__padding / 8);
   }
 
@@ -118,7 +122,8 @@ $t-input--style-dp__padding: 1em;
   &--style-primary {
     @include t-input--style(
       $s-color--input-primary__top,
-      $s-color--input-primary__bottom
+      $s-color--input-primary__bottom,
+      $s-color--input-primary__text
     );
   }
 
