@@ -129,7 +129,7 @@ export default (props) => {
       <PageBoundary>
         {/* KOPA */}
         <ExistingWorkFrame
-          href="//www.kopalife.com/product/kube-customise"
+          href="//www.kopalife.com/products/kube-customise"
           fromLeft="top"
           fromRight="bottom"
           src={ require('./../../../images/work-showcase/kopalife.png') }
