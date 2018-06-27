@@ -26,7 +26,7 @@ import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
 import Section, { SplitSection, Split, ClearSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
-import { Title, Subtitle, Paragraph, Heading1 } from './../../../typography/Typography';
+import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../typography/Typography';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 import Image from './../../../image/Image';
 
@@ -43,44 +43,62 @@ const ExistingWorkFrame = (props) => {
   if(!fakeURL.startsWith("http")) {
     fakeURL = window.location.protocol + fakeURL;
   }
+
+  let fakeWindow = (
+    <ElementScrollFader from={props.fromLeft}>
+      <Window95>
+        <TitleBar buttons={[
+          <Minimize key="Minimize" disabled />,
+          <Close key="close" disabled />
+        ]}>
+          { props.title }
+        </TitleBar>
+
+        <MenuBar>
+          <MenuOption title="File" disabled />
+          <MenuOption title="Visit Page" href={ props.href } target="_blank" />
+        </MenuBar>
+
+        <AddressBar href={fakeURL} />
+        <Frame>
+          <a href={ props.href} target="_blank" className="p-about-page__work-link">
+            <Image
+              src={props.src}
+              alt={props.title}
+              className="p-about-page__work-link-image"
+            />
+          </a>
+        </Frame>
+      </Window95>
+    </ElementScrollFader>
+  );
+
+  let box = (
+    <ElementScrollFader from={ props.fromRight }>
+      <ContentBox box>
+        <Heading2>{ props.title }</Heading2>
+        { props.description }
+      </ContentBox>
+    </ElementScrollFader>
+  );
+
+  let left, right;
+  if(props.swap) {
+    left = box;
+    right = fakeWindow;
+  } else {
+    left = fakeWindow;
+    right = box;
+  }
+
   return (
     <SplitSection align="center">
       <Split padded>
-        <ElementScrollFader from={props.fromLeft}>
-          <Window95>
-            <TitleBar buttons={[
-              <Minimize key="Minimize" disabled />,
-              <Close key="close" disabled />
-            ]}>
-              { props.title }
-            </TitleBar>
-
-            <MenuBar>
-              <MenuOption title="File" disabled />
-              <MenuOption title="Visit Page" href={ props.href } target="_blank" />
-            </MenuBar>
-
-            <AddressBar href={fakeURL} />
-            <Frame>
-              <a href={ props.href} target="_blank" className="p-about-page__work-link">
-                <Image
-                  src={props.src}
-                  alt={props.title}
-                  className="p-about-page__work-link-image"
-                />
-              </a>
-            </Frame>
-          </Window95>
-        </ElementScrollFader>
+        { left }
       </Split>
 
       <Split padded>
-        <ElementScrollFader from={ props.fromRight }>
-          <ContentBox box>
-            <Heading1>{ props.title }</Heading1>
-            { props.description }
-          </ContentBox>
-        </ElementScrollFader>
+        { right }
       </Split>
     </SplitSection>
   );
@@ -95,9 +113,9 @@ export default (props) => {
       <PageBoundary small>
         <ElementScrollFader from="left">
           <ContentBox box>
-            <Title className="u-text-center">
+            <Heading1 className="u-text-center">
               { Language.get("pages.about.work.heading") }
-            </Title>
+            </Heading1>
             <Paragraph>
               { Language.get("pages.about.work.paragraph") }
             </Paragraph>
@@ -116,6 +134,28 @@ export default (props) => {
           src={ require('./../../../images/work-showcase/kopalife.png') }
           title={ Language.get("pages.about.work.kopa.heading") }
           description={ Language.get("pages.about.work.kopa.description") }
+        />
+
+        {/* SMAI */}
+        <ExistingWorkFrame
+          href="//www.smai.com.au/"
+          fromLeft="right"
+          fromRight="right"
+          swap
+          src={ require('./../../../images/work-showcase/smai.svg') }
+          title={ Language.get("pages.about.work.smai.heading") }
+          description={ Language.get("pages.about.work.smai.description") }
+        />
+
+      {/* Oz Hair and Beauty */}
+        <ExistingWorkFrame
+          href="//www.ozhairandbeauty.com/"
+          fromLeft="left"
+          fromRight="left"
+
+          src={ require('./../../../images/work-showcase/ozhair.png') }
+          title={ Language.get("pages.about.work.ozhair.heading") }
+          description={ Language.get("pages.about.work.ozhair.description") }
         />
       </PageBoundary>
     </Section>

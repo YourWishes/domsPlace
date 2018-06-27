@@ -71,6 +71,42 @@ module.exports = {
               </p>
             </Fragment>
           ); }
+        },
+        "smai": {
+          "heading": "SMAI",
+          "description": () => { return (
+            <Fragment>
+              <p>
+                Sport Master Athletics International (SMAI) are producers and
+                sellers of athletic and martial art goods. They have been
+                operating since 1985 and have grown to now sell over 3000
+                different products.
+              </p>
+              <p>
+                I have worked on both their front-end website and design, as
+                well as creating many custom integrations, and primarily an
+                integration with the StarTrack courier service to offer live
+                rates for their website shipping.
+              </p>
+            </Fragment>
+          ); }
+        },
+        "ozhair": {
+          "heading": "Oz Hair & Beauty",
+          "description": () => { return ( <Fragment>
+            <p>
+              Oz Hair and Beauty is an online hair and beauty retail store from
+              Sydney, Australia with a focus on selling the best brands at an
+              affordable price.
+            </p>
+
+            <p>
+              With a large inventory and constantly changing marketing campaigns,
+              the website was built by to be fast, easily filtered and searched,
+              and flexible enough to feature any single group of products at a
+              given time.
+            </p>
+          </Fragment> ); }
         }
       },
       "admin": {
