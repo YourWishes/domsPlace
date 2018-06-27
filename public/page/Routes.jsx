@@ -35,6 +35,8 @@ import Homepage from './home/Homepage';
 import AboutPage from './about/AboutPage';
 import ContactPage from './contact/ContactPage';
 
+import PrivacyPolicyPage from './legal/privacy/PrivacyPolicyPage';
+
 const RouteWrapper = (props) => {
   let newProps = Object.assign({}, props);
   return (
@@ -73,6 +75,8 @@ class Routes extends React.Component {
               <RouteWrapper exact path="/" page={ Homepage } />
               <RouteWrapper exact path="/about" page={ AboutPage } />
               <RouteWrapper exact path="/contact" page={ ContactPage } />
+
+              <RouteWrapper exact path="/legal/privacy" page={ PrivacyPolicyPage } />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

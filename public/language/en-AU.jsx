@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { LanguageTools } from './Language';
 
+import Policy from './policy-english';
+
 module.exports = {
   "site": {
     "name": "domsPlace"
@@ -13,7 +15,9 @@ module.exports = {
   },
 
   "pages": {
+
     "about": {
+      "title": "About Me",
       "banner": {
         "title": "About Dominic Masters",
         "subtitle": "Developer, Nerd, Occasionally Funny."
@@ -109,6 +113,7 @@ module.exports = {
     },
 
     "contact": {
+      "title": "Contact Me",
       "name": {
         "label": "Name",
         "placeholder": "Enter your name."
@@ -126,6 +131,12 @@ module.exports = {
 
       "send": "Send",
       "reset": "Reset"
+    },
+
+    "privacy": {
+      "title": "Privacy Policy",
+      "heading": "Privacy Policy",
+      "policy": Policy
     }
   },
 
