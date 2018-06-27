@@ -27,6 +27,7 @@ import { PageBoundary } from './../../Page';
 import Section, { SplitSection, Split, ClearSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
 import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../typography/Typography';
+import { Button } from './../../../input/Input';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 import Image from './../../../image/Image';
 
@@ -157,6 +158,21 @@ export default (props) => {
           title={ Language.get("pages.about.work.ozhair.heading") }
           description={ Language.get("pages.about.work.ozhair.description") }
         />
+      </PageBoundary>
+
+      <PageBoundary small>
+        <ClearSection />{/* Space a bit */}
+
+        <ElementScrollFader from="bottom">
+          <ContentBox box className="u-text-center">
+            <Subtitle>{ Language.get("pages.about.work.footer") }</Subtitle>
+            <Button size="large" to="/contact">
+              { Language.get("pages.about.work.footer-button") }
+            </Button>
+          </ContentBox>
+        </ElementScrollFader>
+
+        <ClearSection />{/* Space a bit */}
       </PageBoundary>
     </Section>
   );

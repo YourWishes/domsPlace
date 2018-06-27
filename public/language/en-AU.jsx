@@ -16,12 +16,7 @@ module.exports = {
     "about": {
       "banner": {
         "title": "About Dominic Masters",
-        "subtitle": () => {
-          return LanguageTools.random([
-            "Developer, Nerd, Occasionally Funny.",
-            "Once forgot his own birthday."
-          ]);
-        }
+        "subtitle": "Developer, Nerd, Occasionally Funny."
       },
       "video": {
         "heading": "Learn about me",
@@ -107,19 +102,9 @@ module.exports = {
               given time.
             </p>
           </Fragment> ); }
-        }
-      },
-      "admin": {
-        "heading": "Systems Admin",
-        "paragraph": () => {
-          return (<Fragment>
-            <p>
-              Beyond programming knowledge, I also have extensive knowledge in
-              the field of systems administration, and while a little outdated,
-              I can still solve most systems issues.
-            </p>
-          </Fragment>);
-        }
+        },
+        "footer": "Want me for your next project?",
+        "footer-button": "Contact Me"
       }
     },
 

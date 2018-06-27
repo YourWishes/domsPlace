@@ -11,7 +11,8 @@
  *    1.0.0 - 2018/06/06
  */
 .p-about-page {
-  background-color: #F7EFE2;
+  background-image: url('./../images/patterns/game-show.svg');
+  background-size: 150% auto;
 
   &__promo {
     padding: 6em 0;

@@ -24,7 +24,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Page, { PageBoundary } from './../Page';
-import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/input';
+import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/Input';
 import Language from './../../language/Language';
 import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 import Section, {
