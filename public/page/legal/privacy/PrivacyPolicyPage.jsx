@@ -30,11 +30,13 @@ import { Title } from './../../../typography/Typography';
 
 const PrivacyPolicyPage = (props) => {
   return (
-    <Page style="privacy-policy" title={ Language.get("pages.privacy.title") }>
+    <Page style="privacy-policy" className="p-privacy-policy" title={ Language.get("pages.privacy.title") }>
       <PageBoundary small>
         <ClearSection />
-        <Title>{ Language.get("pages.privacy.heading") }</Title>
-        { Language.get("pages.privacy.policy") }
+        <BodySection>
+          <Title>{ Language.get("pages.privacy.heading") }</Title>
+          { Language.get("pages.privacy.policy") }
+        </BodySection>
         <ClearSection />
       </PageBoundary>
     </Page>
