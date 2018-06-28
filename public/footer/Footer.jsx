@@ -30,11 +30,9 @@ import { PageBoundary } from './../page/Page';
 const FooterLink = function(props) {
   let key = "footer.links." + props.title;
   return (
-    <span className="c-footer__link">
-      <NavLink to={ props.to }>
-        { Language.get(key) }
-      </NavLink>
-    </span>
+    <NavLink to={ props.to } className="c-footer__link">
+      { Language.get(key) }
+    </NavLink>
   );
 }
 
