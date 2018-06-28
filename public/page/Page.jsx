@@ -22,9 +22,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { Helmet } from "react-helmet";
 import PageBoundary from './PageBoundary';
+import Language from './../language/Language';
 
-export default class Page extends React.Component {
+class Page extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -34,12 +37,36 @@ export default class Page extends React.Component {
 
     if(this.props.className) clazzes += " " + this.props.className;
 
+    let title;
+    if(
+      (typeof this.props.title === typeof undefined ||
+      typeof this.props.title.length === typeof undefined ||
+      !this.props.title.length) && this.props.style != "home-page"
+    ) {
+      console.exception("This page (" + (this.props.style || this.props.className) + ") does not have a title!");
+    } else {
+      title = <title>{ this.props.title }</title>
+    }
+
     return (
       <div className={clazzes}>
+        <Helmet defaultTitle={ Language.get("site.title") } titleTemplate={ Language.get("site.titleTemplate") }>
+          { title }
+        </Helmet>
         { this.props.children }
       </div>
     );
   }
 }
 
-export { PageBoundary };
+const mapStateToProps = function(state) {
+  return {
+    code: state.language.code
+  }
+}
+
+export default connect(mapStateToProps)(Page);
+
+export {
+  PageBoundary
+}

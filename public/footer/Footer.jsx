@@ -22,14 +22,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
+import Language from './../language/Language';
 import { NavLink } from 'react-router-dom'
 import { PageBoundary } from './../page/Page';
 
 const FooterLink = function(props) {
+  let key = "footer.links." + props.title;
   return (
     <span className="c-footer__link">
-      <NavLink to="/about">
-        Link
+      <NavLink to={ props.to }>
+        { Language.get(key) }
       </NavLink>
     </span>
   );
@@ -50,10 +53,10 @@ class Footer extends React.Component {
           <div className="c-footer__inner">
 
             <nav className="c-footer__links">
-              <FooterLink title="privacy" />
-              <FooterLink title="privacy" />
-              <FooterLink title="privacy" />
-              <FooterLink title="privacy" />
+              <FooterLink title="home" to="/" />
+              <FooterLink title="about" to="/about" />
+              <FooterLink title="contact" to="/contact" />
+              <FooterLink title="privacy" to="/legal/privacy" />
             </nav>
 
             <div className="c-footer__copyright">
@@ -68,4 +71,10 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer;
+const mapStateToProps = function(state) {
+  return {
+    code: state.language.code
+  }
+}
+
+export default connect(mapStateToProps)(Footer);

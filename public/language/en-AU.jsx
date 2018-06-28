@@ -5,13 +5,24 @@ import Policy from './policy-english';
 
 module.exports = {
   "site": {
-    "name": "domsPlace"
+    "name": "domsPlace",
+    "title": "domsPlace - Personal Site of Dominic Masters",
+    "titleTemplate": "%s - domsPlace"
   },
 
   "navbar": {
     "home": "Home",
     "about": "About",
     "contact": "Contact"
+  },
+
+  "footer": {
+    "links": {
+      "home": "Home",
+      "about": "About Me",
+      "contact": "Contact Me",
+      "privacy": "Privacy Policy"
+    }
   },
 
   "pages": {

@@ -43,7 +43,7 @@ class ContactPage extends React.Component {
 
   render() {
     return (
-      <Page style="contact-page" className="p-contact-page" title="">
+      <Page style="contact-page" className="p-contact-page" title={ Language.get("pages.contact.title") }>
 
         <ClearSection />
 

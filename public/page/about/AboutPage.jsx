@@ -24,6 +24,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Page from './../Page';
+import Language from './../../language/Language'
 
 import BannerSection from './sections/BannerSection';
 import PromoVideoSection from './sections/PromoVideoSection';
@@ -34,7 +35,7 @@ import ExistingWorkSection from './sections/ExistingWorkSection';
 const AboutPage = (props) => {
   //Return
   return (
-    <Page style="home-page" className="p-about-page">
+    <Page style="about-page" className="p-about-page" title={ Language.get("pages.about.title") }>
 
       { /* Banner */ }
       <BannerSection />

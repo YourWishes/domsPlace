@@ -35,7 +35,7 @@ export default function() {
   }
 
   return (
-    <Page style="home-page" className="p-home-page">
+    <Page style="home-page" title={0} className="p-home-page">
       Welcome home
       { lines }
     </Page>
