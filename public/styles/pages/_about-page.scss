@@ -11,13 +11,29 @@
  *    1.0.0 - 2018/06/06
  */
 .p-about-page {
-  background-image: url('./../images/patterns/game-show.svg');
-  background-size: 150% auto;
 
   &__promo {
     padding: 6em 0;
+    background-size: 150% auto;
+
+    &-video {
+      background-image: url('./../images/patterns/florida.svg');
+      @extend %t-dp--shadow-3d;
+    }
+
+    &-programming {
+      background-image: url('./../images/patterns/rhythm-heaven.svg');
+      @extend %t-dp--shadow-3d;
+    }
 
     &-platforms {
+      background-image: url('./../images/patterns/game-show.svg');
+      @extend %t-dp--shadow-3d;
+    }
+
+    &-work {
+      background-image: url('./../images/patterns/arcade.svg');
+      @extend %t-dp--shadow-3d;
     }
   }
 
@@ -26,6 +42,9 @@
     @include t-align-items(stretch);
     @include t-justify-content(space-between);
     @include t-flex-wrap(wrap);
+
+    &-title {
+    }
 
     &-brand {
       width: 50%;
