@@ -5,7 +5,7 @@
   "main": "private/index.js",
   "scripts": {
     "serve": "webpack-serve --config ./webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/YourWishes/domsPlaceNew#readme",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
+    "pg-promise": "^8.4.4",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-helmet": "^5.2.0",
@@ -38,6 +38,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
