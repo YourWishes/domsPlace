@@ -80,18 +80,18 @@ class Server {
     }
 
     //Setup the express wrapper.
-    this.app = express();
+    this.express = express();
 
     //Setup Express Middleware
-    this.app.use(bodyParser.json({
+    this.express.use(bodyParser.json({
       type:'application/json' // to support JSON-encoded bodies
     }));
-    this.app.use(bodyParser.urlencoded({
+    this.express.use(bodyParser.urlencoded({
       extended: true
     }));
 
     //Create our HTTP and (if needed HTTPS) server(s)
-    this.http = http.createServer(this.app);
+    this.http = http.createServer(this.express);
     this.http.on('error', this.onServerError.bind(this));
 
     if(this.isHTTPS()) {
@@ -101,7 +101,7 @@ class Server {
       this.https = https.createServer({
         key: this.key,
         cert: this.cert
-      }, this.app);
+      }, this.express);
       this.https.on('error', this.onServerError.bind(this));
     }
   }
