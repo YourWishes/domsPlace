@@ -57,6 +57,7 @@ class ElementScrollFader extends React.Component {
   }
 
   checkEffect() {
+    if(typeof window === typeof undefined) return;
     if(!this.refs || !this.refs.fader) return;
     //Get bounds
     var rect = this.refs.fader.getBoundingClientRect();

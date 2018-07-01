@@ -27,8 +27,14 @@ const
   https = require('https'),
   express = require('express'),
   bodyParser = require('body-parser'),
-  fs = require('fs')
+  fs = require('fs'),
+  path = require('path'),
+  webpack = require('webpack'),
+  CompilerOptions = require('./WebpackCompilerOptions')
 ;
+
+//Constants
+const LANDING_FILE = 'index.html';
 
 class Server {
   constructor(app) {
@@ -66,6 +72,7 @@ class Server {
         throw new Error("Invalid SSL Cert in Server Configuration");
       }
 
+      //TODO: Clean this up, don't use static files (use path.join etc) and should these be flat files?
       let keyFile = __dirname+'./../'+this.config.ssl.key;
       let certFile = __dirname+'./../'+this.config.ssl.cert;
       if(!fs.existsSync(keyFile)) {
@@ -89,6 +96,10 @@ class Server {
     this.express.use(bodyParser.urlencoded({
       extended: true
     }));
+    this.express.use(express.static('./dist'));
+
+    //Finally our catcher for all other enquiries
+    this.express.get('*', this.onGetRequest.bind(this));
 
     //Create our HTTP and (if needed HTTPS) server(s)
     this.http = http.createServer(this.express);
@@ -104,6 +115,9 @@ class Server {
       }, this.express);
       this.https.on('error', this.onServerError.bind(this));
     }
+
+    //Create our bundler
+    this.compiler = webpack(CompilerOptions(this, this.app));
   }
 
   getConfig() {return this.config;}
@@ -114,6 +128,7 @@ class Server {
   getHTTPSPort() {return this.portHTTPS;}
   getKey() {return this.key;}
   getCertificate() {return this.cert;}
+  getLandingFile() {return path.join(this.app.getPublicDirectory(), LANDING_FILE);}
 
   isRunning() {
     if(typeof this.http !== typeof undefined) {
@@ -139,6 +154,11 @@ class Server {
       host: this.ip,
       port: this.port
     };
+
+    //Create our webpack watcher
+    this.watcher = this.compiler.watch({
+
+    }, this.onWatchChange.bind(this));
 
     //Start the HTTP Server
     this.http.listen(options, this.onServerStart.bind(this));
@@ -172,11 +192,17 @@ class Server {
     delete this.http;
     delete this.https;
     delete this.stopPromise;
+    delete this.watcher;
   }
 
   stopPromise(resolve, reject) {
     this.stopResolve = resolve;
     this.stopReject = reject;
+
+    if(typeof this.watcher !== typeof undefined) {
+      this.watcher.close(() => {
+      });
+    }
 
     try {
       this.http.close(this.onHTTPClosed.bind(this));
@@ -200,6 +226,15 @@ class Server {
 
   onHTTPSClosed() {
     this.resolve();
+  }
+
+  onWatchChange(error, stats) {
+    if(error) console.log(error);
+  }
+
+  onGetRequest(req, res) {
+    //Used as our "catch all get requests"
+    res.sendFile(this.getLandingFile());
   }
 }
 

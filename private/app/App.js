@@ -21,11 +21,16 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+//Imports
 const
+  path = require('path'),
   ConfigurationManager = require('./../configuration/ConfigurationManager'),
   DatabaseConnection = require('./../database/DatabaseConnection'),
   Server = require('./../server/Server')
 ;
+
+//Constants
+const PUBLIC_PATH = path.join(__dirname, '..', '..', 'dist');
 
 class App {
   constructor() {
@@ -34,6 +39,7 @@ class App {
 
   getConfig()   { return this.config; }
   getDatabase() { return this.db; }
+  getPublicDirectory() { return PUBLIC_PATH; }
 
   //Primary Functions
   async start() {

@@ -41,7 +41,7 @@ import Window95, {
 
 const ExistingWorkFrame = (props) => {
   let fakeURL = props.href;
-  if(!fakeURL.startsWith("http")) {
+  if(!fakeURL.startsWith("http") && typeof window !== typeof undefined) {
     fakeURL = window.location.protocol + fakeURL;
   }
 

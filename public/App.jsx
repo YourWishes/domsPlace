@@ -27,7 +27,7 @@ import { connect } from 'react-redux';
 import Background from './background/Background';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import Routes from './page/Routes';
 
 class App extends React.Component {
@@ -50,12 +50,12 @@ class App extends React.Component {
     if(this.props.menuOpen) clazz += " is-menu-open "
 
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div className={clazz} ref="app">
           <Header />
           <Routes onEntering={this.onEnteringBound} />
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
