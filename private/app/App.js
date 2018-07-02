@@ -40,6 +40,8 @@ class App {
   getConfig()   { return this.config; }
   getDatabase() { return this.db; }
   getPublicDirectory() { return PUBLIC_PATH; }
+  getServer() { return this.server; }
+  getAPI() { return this.getServer().getAPI(); }
 
   //Primary Functions
   async start() {
@@ -81,9 +83,7 @@ class App {
   }
 
   //Database Specific
-  onDatabaseConnected(db) {
-
-  }
+  onDatabaseConnected(db) { }
 }
 
 module.exports = App;

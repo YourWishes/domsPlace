@@ -5,6 +5,7 @@
   "main": "private/index.js",
   "scripts": {
     "serve": "webpack-serve --config ./webpack.config.js",
+    "watch": "nodemon --watch private private/index.js",
     "test": "jest"
   },
   "repository": {
@@ -54,6 +55,7 @@
     "webpack": "^4.14.0"
   },
   "devDependencies": {
+    "nodemon": "^1.17.5",
     "react-hot-loader": "^4.3.3",
     "webpack-dev-server": "^3.1.4"
   }

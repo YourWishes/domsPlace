@@ -1,4 +1,3 @@
-'use strict';
 // Copyright (c) 2018 Dominic Masters
 //
 // MIT License
@@ -22,19 +21,33 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-//Import
 const
-  App = require('./app/App')
+  API = require('./API'),
+  APIRequest = require('./APIRequest')
 ;
 
-//Create
-const app = new App();
+class APIHandler {
+  constructor(api, methods, paths) {
+    if(!(api instanceof API)) throw new Error('Invalid API Supplied!');
+    if(typeof methods === typeof undefined) methods = ['GET'];
+    if(typeof paths === typeof undefined) paths = [];
+    if(typeof methods === "string") methods = [ methods ];
+    if(typeof paths === "string") paths = [ paths ];
+    this.api = api;
+    this.methods = methods;
+    this.paths = paths;
+  }
 
-//Create entire app wrapper for safe logging and exiting from crashes etc.
-(async () => {
-  //Start the app
-  return await app.start();
-})().then((e) => console.log).catch((e) => {
-  if(!e) return;
-  console.error(e);
-});
+  getMethods() {return this.methods;}
+  getPaths() {return this.paths;}
+
+  onMethod(req, res) {
+    //Now that we have a request we need to create a nice wrapper for it, pass
+    //it to our method, and then expect a nice JSON object to send back to the
+    //client.
+    let request = new APIRequest(this, req, res);
+    request.process();
+  }
+}
+
+module.exports = APIHandler;

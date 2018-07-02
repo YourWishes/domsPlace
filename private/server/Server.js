@@ -30,7 +30,8 @@ const
   fs = require('fs'),
   path = require('path'),
   webpack = require('webpack'),
-  CompilerOptions = require('./WebpackCompilerOptions')
+  CompilerOptions = require('./WebpackCompilerOptions'),
+  API = require('./../api/API')
 ;
 
 //Constants
@@ -59,8 +60,6 @@ class Server {
       process.env.PORT ||
       80
     ;
-    this.apiBase = app.getConfig().getValueOf("apiBase") || "/API/";
-    if(!this.apiBase.endsWith("/")) this.apiBase += "/";
 
     this.useHTTPS = app.getConfig().getValueOf("ssl") && app.getConfig().getValueOf("ssl.enable")
     if(this.useHTTPS) {
@@ -96,7 +95,13 @@ class Server {
     this.express.use(bodyParser.urlencoded({
       extended: true
     }));
+
+    //Serve Static Files
     this.express.use(express.static('./dist'));
+
+    //API Handler
+    this.api = new API(this);
+    this.api.loadHandlers();
 
     //Finally our catcher for all other enquiries
     this.express.get('*', this.onGetRequest.bind(this));
@@ -123,12 +128,13 @@ class Server {
   getConfig() {return this.config;}
   getIP() {return this.ip; }
   getPort() {return this.port;}
-  getAPIBase() {return this.apiBase;}
   isHTTPS() {return this.useHTTPS;}
   getHTTPSPort() {return this.portHTTPS;}
   getKey() {return this.key;}
   getCertificate() {return this.cert;}
   getLandingFile() {return path.join(this.app.getPublicDirectory(), LANDING_FILE);}
+  getExpress() {return this.express;}
+  getAPI() {return this.api;}
 
   isRunning() {
     if(typeof this.http !== typeof undefined) {
