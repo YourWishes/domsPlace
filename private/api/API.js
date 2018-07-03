@@ -36,9 +36,10 @@ class API {
 
   getHandlers() {return this.handlers;}
   getServer() {return this.server;}
-  getApp() {return this.server.getApp();}
+  getApp() {return this.getServer().getApp();}
   getExpress() {return this.getServer().getExpress();}
   getConfig() {return this.getApp().getConfig();}
+  getEmail() {return this.getApp().getEmail();}
 
   addHandler(handler) {this.handlers.push(handler);}
 

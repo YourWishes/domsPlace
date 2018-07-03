@@ -26,7 +26,8 @@ const
   path = require('path'),
   ConfigurationManager = require('./../configuration/ConfigurationManager'),
   DatabaseConnection = require('./../database/DatabaseConnection'),
-  Server = require('./../server/Server')
+  Server = require('./../server/Server'),
+  Email = require('./../email/Email')
 ;
 
 //Constants
@@ -42,6 +43,7 @@ class App {
   getPublicDirectory() { return PUBLIC_PATH; }
   getServer() { return this.server; }
   getAPI() { return this.getServer().getAPI(); }
+  getEmail() {return this.email;}
 
   //Primary Functions
   async start() {
@@ -65,6 +67,17 @@ class App {
       console.log("...Done!");
     } catch(e) {
       console.error("Failed to connect to the database!");
+      throw new Error(e);
+    }
+
+    //Connect to our SMTP Host (For sending mail)
+    try {
+      console.log('Connecting to SMTP Server');
+      this.email = new Email(this);
+      await this.email.connect();
+      console.log('...Done');
+    } catch(e) {
+      console.error("Failed to setup emails!");
       throw new Error(e);
     }
 

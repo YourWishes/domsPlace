@@ -135,6 +135,7 @@ class Server {
   getLandingFile() {return path.join(this.app.getPublicDirectory(), LANDING_FILE);}
   getExpress() {return this.express;}
   getAPI() {return this.api;}
+  getApp() {return this.app;}
 
   isRunning() {
     if(typeof this.http !== typeof undefined) {
@@ -235,7 +236,11 @@ class Server {
   }
 
   onWatchChange(error, stats) {
-    if(error) console.log(error);
+    if(error || (stats.compilation.errors && stats.compilation.errors.length)) {
+      console.error(error || stats.compilation.errors);
+    } else {
+      console.log("Server compiled!");
+    }
   }
 
   onGetRequest(req, res) {

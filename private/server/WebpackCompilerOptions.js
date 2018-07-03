@@ -62,9 +62,11 @@ module.exports = function(server, app) {
   output.module = {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$|\.js?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        use: {
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.scss$|\.css$/i,

@@ -28,7 +28,8 @@ import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../i
 import Language from './../../language/Language';
 import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 import ContentBox from './../../content/ContentBox';
-import { Title, Paragraph } from './../../typography/Typography'
+import { Title, Paragraph } from './../../typography/Typography';
+import Forms from './../../../common/Forms';
 import Section, {
   BodySection,
   ClearSection,
@@ -71,6 +72,9 @@ class ContactPage extends React.Component {
                   <Input
                     type="text"
                     placeholder={ Language.get("pages.contact.name.placeholder") }
+                    required={ Forms.contact.name.required }
+                    maxLength={ Forms.contact.name.maxLength }
+
                   />
                 </InputGroup>
 
@@ -79,6 +83,8 @@ class ContactPage extends React.Component {
                   <Input
                     type="email"
                     placeholder={ Language.get("pages.contact.email.placeholder") }
+                    required={ Forms.contact.email.required }
+                    maxLength={ Forms.contact.email.maxLength }
                   />
                 </InputGroup>
 
@@ -88,6 +94,8 @@ class ContactPage extends React.Component {
                     placeholder={ Language.get("pages.contact.message.placeholder") }
                     rows="8"
                     className="p-contact-page__message"
+                    required={ Forms.contact.message.required }
+                    maxLength={ Forms.contact.message.maxLength }
                   />
                 </InputGroup>
 

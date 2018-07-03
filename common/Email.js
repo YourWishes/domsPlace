@@ -21,34 +21,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const
-  API = require('./API'),
-  APIRequest = require('./APIRequest')
-;
-
-class APIHandler {
-  constructor(api, methods, paths) {
-    if(!(api instanceof API)) throw new Error('Invalid API Supplied!');
-    if(typeof methods === typeof undefined) methods = ['GET'];
-    if(typeof paths === typeof undefined) paths = [];
-    if(typeof methods === "string") methods = [ methods ];
-    if(typeof paths === "string") paths = [ paths ];
-    this.api = api;
-    this.methods = methods;
-    this.paths = paths;
-  }
-
-  getAPI() {return this.api;}
-  getMethods() {return this.methods;}
-  getPaths() {return this.paths;}
-
-  onMethod(req, res) {
-    //Now that we have a request we need to create a nice wrapper for it, pass
-    //it to our method, and then expect a nice JSON object to send back to the
-    //client.
-    let request = new APIRequest(this, req, res);
-    request.process();
-  }
+module.exports = {
+  REGEX: /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
 }
-
-module.exports = APIHandler;
