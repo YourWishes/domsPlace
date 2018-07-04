@@ -20,6 +20,8 @@ module.exports = {
     path: '/dist',
     filename: "app.js"
   },
+  
+  mode: 'development',
 
   resolve: {
     modules: ['node_modules', './public'],
@@ -55,6 +57,9 @@ module.exports = {
   // initialize the added webpack plugins
   plugins: [
     HTMLWebpackPluginConfig,
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      DEVELOPMENT: JSON.stringify(true)
+    })
   ]
 };

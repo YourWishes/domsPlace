@@ -125,6 +125,12 @@ module.exports = {
 
     "contact": {
       "title": "Contact Me",
+      "heading": "Contact Me",
+      "paragraph": "\
+        Want to get in touch with me? Fill out this easy form and I should be \
+        in touch shortly to chat! More of a phone person? Leave a number \
+        and we can chat.\
+      ",
       "name": {
         "label": "Name",
         "placeholder": "Enter your name."

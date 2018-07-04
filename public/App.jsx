@@ -47,16 +47,20 @@ class App extends React.Component {
 
   render() {
     let clazz = "c-app";
-    if(this.props.menuOpen) clazz += " is-menu-open "
+    if(this.props.menuOpen) clazz += " is-menu-open ";
 
-    return (
-      <BrowserRouter>
-        <div className={clazz} ref="app">
-          <Header />
-          <Routes onEntering={this.onEnteringBound} />
-        </div>
-      </BrowserRouter>
+    let children = (
+      <div className={clazz} ref="app">
+        <Header />
+        <Routes onEntering={this.onEnteringBound} />
+      </div>
     );
+
+    if(true) {
+      return <HashRouter>{children}</HashRouter>;
+    } else {
+      return <BrowserRouter>{children}</BrowserRouter>;
+    }
   }
 }
 

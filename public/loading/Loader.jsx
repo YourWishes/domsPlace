@@ -23,7 +23,7 @@
 
 import React from 'react';
 
-export default function(props) {
+const Loader = function(props) {
   return (
     <span className={"o-loader"+(props.className?" "+props.className:"")}>
       <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" className="o-loader__image">
@@ -38,3 +38,16 @@ export default function(props) {
     </span>
   );
 }
+
+const LoaderBackdrop = function(props) {
+  return (
+    <div className={"o-loader__backdrop"+(props.className?" "+props.className:"")}>
+      { props.children }
+    </div>
+  );
+}
+
+export default Loader;
+export {
+  LoaderBackdrop
+};

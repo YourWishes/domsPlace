@@ -8,7 +8,9 @@
  *  Version:
  *    1.0.0 - 2018/05/13
  */
-.o-form { }
+.o-form {
+  position: relative;
+}
 
 .o-form__group {
   + .o-btn-group,

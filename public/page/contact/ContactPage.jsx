@@ -52,11 +52,9 @@ class ContactPage extends React.Component {
 
           <ElementScrollFader from="left">
             <ContentBox box className="u-text-center">
-              <Title>Contact Me</Title>
+              <Title>{ Language.get("pages.contact.heading") }</Title>
               <Paragraph>
-                Want to get in touch with me? Fill out this easy form and I should be
-                in touch shortly to chat! More of a phone person? Leave a number
-                and we can chat.
+                { Language.get("pages.contact.paragraph") }
               </Paragraph>
             </ContentBox>
           </ElementScrollFader>
@@ -66,7 +64,7 @@ class ContactPage extends React.Component {
 
           <ElementScrollFader from="right">
             <BodySection>
-              <Form>
+              <Form post="/api/contact/send" ajax loader>
                 <InputGroup>
                   <Label>{ Language.get("pages.contact.name.label") }</Label>
                   <Input
@@ -74,7 +72,6 @@ class ContactPage extends React.Component {
                     placeholder={ Language.get("pages.contact.name.placeholder") }
                     required={ Forms.contact.name.required }
                     maxLength={ Forms.contact.name.maxLength }
-
                   />
                 </InputGroup>
 
