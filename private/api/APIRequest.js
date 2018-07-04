@@ -59,7 +59,7 @@ class APIRequest {
         response = await this.getHandleFunction()(this);
       } catch(e) {
         console.error(e);
-        response = { ok: false, data: "An unknown error occured" };
+        response = { ok: 500, data: "An unknown error occured" };
       }
     }
 
@@ -68,7 +68,7 @@ class APIRequest {
     }
 
     if(response.ok !== true) {
-      response.code = typeof response.ok === "number" ? response.ok : 500;
+      response.code = typeof response.ok === "number" ? response.ok : 400;
     }
 
     this.res.status(response.code || 200).json(response.data);
