@@ -49,9 +49,14 @@ class App extends React.Component {
     let clazz = "c-app";
     if(this.props.menuOpen) clazz += " is-menu-open ";
 
+    let modal;
+    if(this.props.modal.open) clazz += " is-modal-open";
+    if(this.props.modal.modal) modal = this.props.modal.modal;
+
     let children = (
       <div className={clazz} ref="app">
         <Header />
+        { modal }
         <Routes onEntering={this.onEnteringBound} />
       </div>
     );
@@ -66,7 +71,8 @@ class App extends React.Component {
 
 const mapStateToProps = function(state) {
   return {
-    menuOpen: state.menu.open
+    menuOpen: state.menu.open,
+    modal: state.modal
   }
 }
 

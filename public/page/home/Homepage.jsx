@@ -22,22 +22,60 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Page, { PageBoundary } from './../Page';
 import Section, { ImageSection } from './../../section/Section';
 import FloatingContentBox from './../../content/FloatingContentBox';
 import Image from './../../image/Image';
 import { Title, Subtitle } from './../../typography/Typography';
+import { Button } from './../../input/Input';
 
-export default function() {
-  let lines = [];
-  for(let i = 0; i < 100; i++) {
-    lines.push(<br key={i} />);
+import { openModal } from './../../actions/ModalActions';
+import Modal from './../../modal/Modal';
+
+class Homepage extends React.Component {
+  constructor(props) {
+    super(props)
   }
 
-  return (
-    <Page style="home-page" title={0} className="p-home-page">
-      Welcome home
-      { lines }
-    </Page>
-  );
+  testModal() {
+    console.log("oof");
+    this.props.openModal(
+      <Modal>
+        Hello Modal
+      </Modal>
+    );
+  }
+
+  render() {
+    let lines = [];
+    for(let i = 0; i < 20; i++) {
+      lines.push(<br key={i} />);
+    }
+
+    return (
+      <Page style="home-page" title={0} className="p-home-page">
+        Welcome home
+        { lines }
+        <Button onClick={this.testModal.bind(this)}>
+          Test Modal
+        </Button>
+      </Page>
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    modal: state.modal
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    openModal: openModal
+  },dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

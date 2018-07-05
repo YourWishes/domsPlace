@@ -21,16 +21,46 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { combineReducers } from 'redux';
+import React from 'react';
+import { Button } from './../input/Input';
 
-import LanguageReducer from './LanguageReducer';
-import MenuReducer from './MenuReducer';
-import ModalReducer from './ModalReducer';
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-const rootReducer = combineReducers({
-  language: LanguageReducer,
-  menu: MenuReducer,
-  modal: ModalReducer
-});
+  render() {
+    let junk = [];
+    for(let x = 0; x < 1000; x++) {
+      junk.push(<div  key={x}>Hello World</div>);
+    }
 
-export default rootReducer;
+    let buttons;
+    if(this.props.buttons || true) {
+      buttons = (
+        <div className="o-modal__box-footer">
+          <Button>Test</Button>
+        </div>
+      );
+    }
+
+    return (
+      <div className="o-modal">
+        <div className="o-modal__inner">
+          <div className="o-modal__backdrop"></div>
+
+          <div className="o-modal__box">
+            <div className="o-modal__box-body">
+              <div className="o-modal__box-body-inner">
+                { junk }
+              </div>
+            </div>
+            { buttons }
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+module.exports = Modal;

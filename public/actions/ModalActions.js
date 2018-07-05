@@ -21,16 +21,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { combineReducers } from 'redux';
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
 
-import LanguageReducer from './LanguageReducer';
-import MenuReducer from './MenuReducer';
-import ModalReducer from './ModalReducer';
+export function openModal(modal) {
+  return {
+    type: OPEN_MODAL,
+    modal
+  };
+}
 
-const rootReducer = combineReducers({
-  language: LanguageReducer,
-  menu: MenuReducer,
-  modal: ModalReducer
-});
-
-export default rootReducer;
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL
+  }
+}
