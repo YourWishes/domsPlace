@@ -22,7 +22,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Button } from './../input/Input';
+import { openModal, closeModal } from './../actions/ModalActions';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -35,32 +39,72 @@ class Modal extends React.Component {
       junk.push(<div  key={x}>Hello World</div>);
     }
 
+    //Add necessary buttons
     let buttons;
-    if(this.props.buttons || true) {
-      buttons = (
-        <div className="o-modal__box-footer">
-          <Button>Test</Button>
-        </div>
-      );
-    }
+    if(this.props.buttons) buttons = this.props.button;
 
-    return (
+    //Create our modal contents
+    let contents = (
       <div className="o-modal">
         <div className="o-modal__inner">
-          <div className="o-modal__backdrop"></div>
+          <div className="o-modal__backdrop" onClick={this.props.closeModal}>
+          </div>
 
           <div className="o-modal__box">
-            <div className="o-modal__box-body">
-              <div className="o-modal__box-body-inner">
-                { junk }
+            <div className="o-modal__box-inner">
+              <div className="o-modal__box-body">
+                <div className="o-modal__box-body-inner">
+                  { junk }
+                </div>
+              </div>
+
+              <div className="o-modal__box-footer">
+                { buttons }
               </div>
             </div>
-            { buttons }
           </div>
         </div>
       </div>
     );
+
+    //Display?
+    let displayedContents = <div></div>;
+
+    if(this.props.modal.open) {
+      displayedContents = (
+        <CSSTransition
+          appear={true}
+          timeout={200}
+          classNames="o-modal__transition"
+          mountOnEnter={ true }
+          unmountOnExit={ true }
+          key="modal"
+        >
+          { contents }
+        </CSSTransition>
+      );
+    }
+
+    //Wrap entire contents of modal in transitional container.
+    return (
+      <TransitionGroup className="o-modal__transition-container">
+        { displayedContents }
+      </TransitionGroup>
+    );
   }
 }
 
-module.exports = Modal;
+const mapStateToProps = (state) => {
+  return {
+    modal: state.modal
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    openModal: openModal,
+    closeModal: closeModal
+  },dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

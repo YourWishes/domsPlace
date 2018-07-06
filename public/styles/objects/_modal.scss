@@ -14,6 +14,8 @@ $o-modal--backdrop: rgba(0, 0, 0, 0.7);
 $o-modal--background: white;
 $o-modal--padding: 0.5em;
 
+$o-modal--transition: 0.2s $s-animation--ease-out;
+
 .o-modal {
   position: fixed;
   top: 0;
@@ -35,26 +37,41 @@ $o-modal--padding: 0.5em;
     width: 100%;
     height: 100%;
     background: $o-modal--backdrop;
+
+    //Transition Properties
+    transition: opacity #{$o-modal--transition};
+    opacity: 0;
   }
 
   &__box {
     @include t-absolute-center-x-y();
-    @extend %t-dp--shadow;
-    @extend %t-flexbox;
-    @include t-flex-wrap(wrap);
-    @include t-flex-direction(column);
-    @include t-align-items(flex-start);
-    @include t-align-content(flex-start);
-    background: $o-modal--background;
     width: 100%;
     height: 100%;
     max-width: 95%;
     max-height: 95%;
 
-    &-body {
-      width: 100%;
-      @include t-flex-grow(1);
+    &-inner {
       position: relative;
+      @extend %t-flexbox;
+      @include t-flex-wrap(wrap);
+      @include t-flex-direction(column);
+      @include t-align-items(flex-start);
+      @include t-align-content(flex-start);
+      @extend %t-dp--shadow;
+      width: 100%;
+      height: 100%;
+      background: $o-modal--background;
+
+      //Transition properties
+      transition: all #{$o-modal--transition};
+      @include t-scale(0.4);
+      opacity: 0;
+    }
+
+    &-body {
+      position: relative;
+      @include t-flex-grow(1);
+      width: 100%;
 
       /* Unfortunately flex can only get us half way there */
       &-inner {//Hacks our content so it will never overflow its container.
@@ -78,6 +95,35 @@ $o-modal--padding: 0.5em;
     &__box {
       width: 800px;
       height: 600px;
+    }
+  }
+
+  //Transition related
+  &__transition {
+    &-container {}//Top level container
+
+    //Entry animation
+    &-enter {
+      &-active {}
+      &-done {}
+
+      &-active,&-done {
+        .o-modal__backdrop {
+          opacity: 1;
+        }
+
+        .o-modal__box-inner {
+          @include t-scale(1);
+          opacity: 1;
+        }
+      }
+    }
+
+    //Exit animation
+    &-exit {
+      &-active {}
+      &-done {
+      }
     }
   }
 }
