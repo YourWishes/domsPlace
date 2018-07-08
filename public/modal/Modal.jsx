@@ -34,26 +34,24 @@ import Keyboard from './../keyboard/Keyboard';
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    this.onKeyDownBound = this.onKeyDown.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeyDownBound);
+    Keyboard.addListener(this);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDownBound);
+    Keyboard.removeListener(this);
   }
 
-  onKeyDown(e) {
-    if(!Keyboard.isEscape(e)) return;
+  onKeyUp(e) {
+    if(!Keyboard.isEscape()) return;
     e.preventDefault();
     e.stopPropagation();
     this.props.closeModal();
   }
 
   render() {
-
     //Add necessary buttons
     let buttons = [];
     if(this.props.buttons) {

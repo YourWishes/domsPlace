@@ -22,19 +22,77 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 const KEY_ESCAPE = 27;
+const KEY_CTRL = 17;
+const KEY_ENTER = 13;
 
 class Keyboard {
-  constructor(){}
+  constructor(){
+    //Bound events
+    this.onKeyUpBound = this.onKeyUp.bind(this);
+    this.onKeyDownBound = this.onKeyDown.bind(this);
 
-  isKeyOrCode(evt, key, code) {
-    if (typeof evt.key !== typeof undefined) {
-      return evt.key.toLowerCase() === key.toLowerCase();
-    }
-    return evt.keyCode === code;
+    this.listeners = [];
+
+    this.states = {};
   }
 
-  isEscape(e) {
-    return this.isKeyOrCode(e, "Escape", KEY_ESCAPE);
+  isRegistered() {return this.registered === true;}
+
+  register() {
+    if(this.isRegistered()) return;
+    this.registered = true;
+    document.addEventListener('keyup', this.onKeyUpBound);
+    document.addEventListener('keydown', this.onKeyDownBound);
+  }
+
+  unregister() {
+    this.registered = false;
+    document.removeEventListener('keyup', this.onKeyUpBound);
+    document.removeEventListener('keydown', this.onKeyDownBound);
+  }
+
+  addListener(listener) {
+    this.listeners.push(listener);
+  }
+
+  removeListener(listener) {
+    let index = this.listeners.indexOf(listener);
+    if(index === -1) return;
+    this.listeners.splice(index,1);
+  }
+
+  tellListeners(keyCode, event) {
+    for(let i = 0; i < this.listeners.length; i++) {
+      let l = this.listeners[i];
+      if(typeof l[event] !== "function") continue;
+      l[event](keyCode, this);
+    }
+  }
+
+  onKeyUp(e) {
+    //console.log("Key " + e.keyCode); // FOR TESTING KEY COMBOS
+    this.tellListeners(e.keyCode, "onKeyUp");
+    this.states[e.keyCode] = false;
+    this.tellListeners(e.keyCode, "onKeyRelease");
+  }
+
+  onKeyDown(e) {
+    this.tellListeners(e.keyCode, "onKeyPress");
+    this.states[e.keyCode] = true;
+    this.tellListeners(e.keyCode, "onKeyRelease");
+  }
+
+  isKey(key) {
+    return typeof this.states[key] !== typeof undefined && this.states[key] === true;
+  }
+
+  //Now the submits
+  isEscape() {
+    return this.isKey(KEY_ESCAPE);
+  }
+
+  isSubmit() {
+    return this.isKey(KEY_CTRL) && this.isKey(KEY_ENTER);
   }
 }
 

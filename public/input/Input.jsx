@@ -28,15 +28,37 @@ import ButtonGroup from './button/ButtonGroup';
 import Form, { FormManager } from './form/Form';
 import InputGroup from './group/InputGroup';
 import Label from './label/Label';
-
+import Keyboard from './../keyboard/Keyboard';
 
 export default class Input extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: props.value
+      value: props.value,
+      focused: false
     };
+  }
+
+  isFocused() {
+    return this.state && this.state.focused === true;
+  }
+
+  componentDidMount() {
+    if(this.props.manager) this.props.manager.addInput(this);
+    Keyboard.addListener(this);
+  }
+
+  componentWillUnmount() {
+    if(this.props.manager) this.props.manager.removeInput(this);
+    Keyboard.removeListener(this);
+  }
+
+  onKeyUp(e, k) {
+    if(!this.props.manager) return;
+    if(!this.isFocused()) return;
+    if(!k.isSubmit()) return;
+    this.props.manager.submit();
   }
 
   onChange(e, a, b) {
@@ -54,12 +76,12 @@ export default class Input extends React.Component {
     });
   }
 
-  componentDidMount() {
-    if(this.props.manager) this.props.manager.addInput(this);
+  onFocus() {
+    this.setState({ focused: true });
   }
 
-  componentWillUnmount() {
-    if(this.props.manager) this.props.manager.removeInput(this);
+  onBlur() {
+    this.setState({ focused: false });
   }
 
   render() {
@@ -119,6 +141,8 @@ export default class Input extends React.Component {
           {...this.props}
           className={innerClazzes}
           onChange={this.onChange.bind(this)}
+          onFocus={this.onFocus.bind(this)}
+          onBlur={this.onBlur.bind(this)}
         >{ this.state.value }</textarea>
       );
 
@@ -126,6 +150,8 @@ export default class Input extends React.Component {
       element = (<ElementType
         {...this.props}
         onChange={this.onChange.bind(this)}
+        onFocus={this.onFocus.bind(this)}
+        onBlur={this.onBlur.bind(this)}
         type={type}
         value={ this.state.value }
         className={innerClazzes}

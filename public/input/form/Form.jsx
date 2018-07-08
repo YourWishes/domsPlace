@@ -57,13 +57,25 @@ export default class Form extends React.Component {
     this.state = s;
   }
 
+  componentDidMount() {
+    if(this.props.manager) this.props.manager.addForm(this);
+  }
+
+  componentWillUnmount() {
+    if(this.props.manager) this.props.manager.removeForm(this);
+  }
+
+  submit() {
+    this.onSubmit();
+  }
+
   onSubmit(e) {
     //Is Ajax?
     if(!this.state.ajax) {
       return this.state.onSubmit ? this.state.onSubmit(e) : true;
     }
 
-    e.preventDefault();
+    if(e) e.preventDefault();
     if(!this.state.action) return console.warning("This form has no action.");
     if(this.state.submitting) return false;//Already submitting?
 
@@ -166,6 +178,7 @@ export default class Form extends React.Component {
 
     return (
       <form
+        ref="formDOM"
         className={clazz}
         method={ this.state.method }
         autoComplete={ this.props.autoComplete }
@@ -186,17 +199,27 @@ class FormManager {
     this.inputs = [];
   }
 
-  addInput(input) {
-    this.inputs.push(input);
+  addForm(form) { this.forms.push(form); }
+  addInput(input) { this.inputs.push(input); }
+
+  removeForm(form) {
+    let i = this.forms.indexOf(form);
+    if(i === -1) return;
+    this.forms.splice(i, 1);
   }
 
   removeInput(input) {
-    let i = this.forms.indexOf(input);
+    let i = this.inputs.indexOf(input);
     if(i === -1) return;
     this.inputs.splice(i, 1);
   }
 
-  onChange(input, event) {
+  onChange(input, event) {}
+
+  submit() {
+    for(let i = 0; i < this.forms.length; i++) {
+      this.forms[i].submit();
+    }
   }
 
   getFormData() {

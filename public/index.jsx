@@ -28,6 +28,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import RootReducer from './reducers/RootReducer'
+import Keyboard from './keyboard/Keyboard';
 
 //Import Stylesheet
 import Styles from './styles/index';
@@ -40,6 +41,9 @@ const store = createStore(RootReducer);
 const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
+
+//Start listening for key events
+Keyboard.register();
 
 ReactDOM.render(
   (
