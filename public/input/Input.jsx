@@ -29,6 +29,7 @@ import Form, { FormManager } from './form/Form';
 import InputGroup from './group/InputGroup';
 import Label from './label/Label';
 
+
 export default class Input extends React.Component {
   constructor(props) {
     super(props);
@@ -39,30 +40,26 @@ export default class Input extends React.Component {
   }
 
   onChange(e, a, b) {
-    //Self explanitory
-    if(this.props.onChange) {
-      if(this.props.onChange(e) === false) return false;
+    //Try my props
+    if(this.props.onChange && this.props.onChange(e) === false) return false;
+
+    //Try the form manager
+    if(this.props.manager && this.props.manager.onChange(this, e) === false) {
+      return false;
     }
 
-    if(this.props.manager) {
-      if(this.props.manager.onChange(this, e) === false) return false;
-    }
-
+    //Try something else?
     this.setState({
       value: e.target.value
     });
   }
 
   componentDidMount() {
-    if(this.props.manager) {
-      this.props.manager.addInput(this);
-    }
+    if(this.props.manager) this.props.manager.addInput(this);
   }
 
   componentWillUnmount() {
-    if(this.props.manager) {
-      this.props.manager.removeInput(this);
-    }
+    if(this.props.manager) this.props.manager.removeInput(this);
   }
 
   render() {
