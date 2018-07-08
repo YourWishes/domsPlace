@@ -12,7 +12,6 @@
  */
 $o-modal--backdrop: rgba(0, 0, 0, 0.7);
 $o-modal--background: white;
-$o-modal--padding: 0.5em;
 
 $o-modal--transition: 0.2s $s-animation--ease-out;
 
@@ -28,10 +27,11 @@ $o-modal--transition: 0.2s $s-animation--ease-out;
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: auto;
   }
 
   &__backdrop {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
@@ -44,59 +44,40 @@ $o-modal--transition: 0.2s $s-animation--ease-out;
   }
 
   &__box {
-    @include t-absolute-center-x-y();
+    @extend %t-dp--shadow;
+    background: $o-modal--background;
+    position: relative;
     width: 100%;
-    height: 100%;
-    max-width: 95%;
-    max-height: 95%;
+    margin: 5em auto;
 
-    &-inner {
-      position: relative;
-      @extend %t-flexbox;
-      @include t-flex-wrap(wrap);
-      @include t-flex-direction(column);
-      @include t-align-items(flex-start);
-      @include t-align-content(flex-start);
-      @extend %t-dp--shadow;
-      width: 100%;
-      height: 100%;
-      background: $o-modal--background;
+    //Transition properties
+    transition: all #{$o-modal--transition};
+    @include t-scale(0.4);
+    opacity: 0;
 
-      //Transition properties
-      transition: all #{$o-modal--transition};
-      @include t-scale(0.4);
-      opacity: 0;
-    }
-
-    &-body {
-      position: relative;
-      @include t-flex-grow(1);
-      width: 100%;
-
-      /* Unfortunately flex can only get us half way there */
-      &-inner {//Hacks our content so it will never overflow its container.
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-        padding: $o-modal--padding;
-      }
-    }
-
+    &-heading,
+    &-body,
     &-footer {
-      width: 100%;
-      padding: $o-modal--padding;
+      padding: 1em;
     }
   }
 
+  &__title {
+    margin: 1em 0 0.5em;
+  }
+
+
+  //Media Queries
   @include t-media-query($s-xsmall-up) {
     &__box {
-      width: 800px;
-      height: 600px;
+      max-width: 600px;
+
+      &.is-large {
+        max-width: 900px;
+      }
     }
   }
+
 
   //Transition related
   &__transition {
@@ -112,7 +93,7 @@ $o-modal--transition: 0.2s $s-animation--ease-out;
           opacity: 1;
         }
 
-        .o-modal__box-inner {
+        .o-modal__box {
           @include t-scale(1);
           opacity: 1;
         }

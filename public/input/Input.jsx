@@ -25,13 +25,44 @@ import React from 'react';
 
 import Button from './button/Button';
 import ButtonGroup from './button/ButtonGroup';
-import Form from './form/Form';
+import Form, { FormManager } from './form/Form';
 import InputGroup from './group/InputGroup';
 import Label from './label/Label';
 
 export default class Input extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      value: props.value
+    };
+  }
+
+  onChange(e, a, b) {
+    //Self explanitory
+    if(this.props.onChange) {
+      if(this.props.onChange(e) === false) return false;
+    }
+
+    if(this.props.manager) {
+      if(this.props.manager.onChange(this, e) === false) return false;
+    }
+
+    this.setState({
+      value: e.target.value
+    });
+  }
+
+  componentDidMount() {
+    if(this.props.manager) {
+      this.props.manager.addInput(this);
+    }
+  }
+
+  componentWillUnmount() {
+    if(this.props.manager) {
+      this.props.manager.removeInput(this);
+    }
   }
 
   render() {
@@ -80,11 +111,28 @@ export default class Input extends React.Component {
 
     //First we need to switch things like submit and reset
     if(type == "submit" || type == "reset" || type == "button") {
-      return <Button {...this.props} />;
+      return (<Button
+        {...this.props}
+        className={this.props.className}
+        value={this.state.value}
+      />);
+
     } else if(type == "textarea") {
-      element = <textarea {...this.props} className={innerClazzes}>{ value }</textarea>
+      element = (<textarea
+          {...this.props}
+          className={innerClazzes}
+          onChange={this.onChange.bind(this)}
+        >{ this.state.value }</textarea>
+      );
+
     } else {
-      element = <ElementType {...this.props} type={type} className={innerClazzes} />
+      element = (<ElementType
+        {...this.props}
+        onChange={this.onChange.bind(this)}
+        type={type}
+        value={ this.state.value }
+        className={innerClazzes}
+      />);
     }
 
     return (
@@ -103,6 +151,7 @@ export {
   Button,
   ButtonGroup,
   Form,
+  FormManager,
   InputGroup,
   TextArea,
   Label

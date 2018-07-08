@@ -21,33 +21,21 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
+const KEY_ESCAPE = 27;
 
-const Heading = (props) => {
-  let level = props.level || 1;
-  let CustomTag = "h"+level;
-  let clazz = "o-heading o-heading--"+level;
-  if(props.className) clazz += " " + props.className;
+class Keyboard {
+  constructor(){}
 
+  isKeyOrCode(evt, key, code) {
+    if (typeof evt.key !== typeof undefined) {
+      return evt.key.toLowerCase() === key.toLowerCase();
+    }
+    return evt.keyCode === code;
+  }
 
-  return (
-    <CustomTag {...props} className={clazz} />
-  );
+  isEscape(e) {
+    return this.isKeyOrCode(e, "Escape", KEY_ESCAPE);
+  }
 }
-export default Heading;
 
-const Heading1 = (props) => { return <Heading {...props} level="1" />; };
-const Heading2 = (props) => { return <Heading {...props} level="2" />; };
-const Heading3 = (props) => { return <Heading {...props} level="3" />; };
-const Heading4 = (props) => { return <Heading {...props} level="4" />; };
-const Heading5 = (props) => { return <Heading {...props} level="5" />; };
-const Heading6 = (props) => { return <Heading {...props} level="6" />; };
-
-export {
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6
-};
+export default new Keyboard();

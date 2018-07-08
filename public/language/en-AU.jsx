@@ -26,7 +26,6 @@ module.exports = {
   },
 
   "pages": {
-
     "about": {
       "title": "About Me",
       "banner": {
@@ -147,7 +146,13 @@ module.exports = {
       },
 
       "send": "Send",
-      "reset": "Reset"
+      "reset": "Reset",
+
+      "error": "An error has occured!",
+      "success": {
+        "heading": "Message sent!",
+        "paragraph": "Your email was sent! I should respond shortly, thanks for your patience!"
+      }
     },
 
     "privacy": {
@@ -155,6 +160,10 @@ module.exports = {
       "heading": "Privacy Policy",
       "policy": Policy
     }
+  },
+
+  "modal": {
+    "close": "Close"
   },
 
   "window": {

@@ -42,7 +42,7 @@ class Homepage extends React.Component {
   testModal() {
     console.log("oof");
     this.props.openModal(
-      <Modal>
+      <Modal close>
         Hello Modal
       </Modal>
     );

@@ -23,6 +23,7 @@
 
 import React from 'react';
 import Loader, { LoaderBackdrop } from './../../loading/Loader';
+import Input, { InputGroup, TextArea } from './../Input';
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -34,7 +35,8 @@ export default class Form extends React.Component {
       loader: props.loader || false,
       loading: false,
       onSubmit: props.onSubmit,
-      contentType: props.contentType || props.encType || "application/x-www-form-urlencoded"
+      contentType: props.contentType || props.encType || "application/x-www-form-urlencoded",
+      manager: props.manager
     };
 
     //Determine action and method based off the internals
@@ -71,10 +73,25 @@ export default class Form extends React.Component {
       submitting: true
     });
 
+    //Prepare our data
+    let data;
+    if(this.props.manager) {
+      data = this.props.manager.getFormData();
+    }
+
+    if(this.state.contentType == "application/json") {
+      let dataJson = {};
+      data.forEach(function(value, key) {
+        dataJson[key] = value;
+      });
+      data = JSON.stringify(dataJson);
+    }
+
     //Prepare our request.
     fetch(this.state.action, {
       method: this.state.method,
       mode: this.state.mode,
+      body: data,
       headers: {
         "Content-Type": this.state.contentType
       }
@@ -87,19 +104,38 @@ export default class Form extends React.Component {
   }
 
   onSubmitted(response) {
+    let method = 'text';
+    let isJson = response.headers.get("Content-Type").toLowerCase().indexOf("application/json") !== -1;
+    if(isJson) method = 'json';
+
     if(!response.ok) {
-      throw Error(response.statusText);
+      let is4xx = Math.floor(response.status / 400) === 1;
+      if(is4xx) {
+        return response[method]()
+          .then(this.onErrorText.bind(this))
+          .catch(this.onError.bind(this))
+        ;
+      } else {
+        throw Error(response.statusText);
+      }
     }
 
     if(this.props.onData) return this.props.onData(response);
 
     //Handle the old fashioned way (expect json)
-    response.json().then(this.onJSON.bind(this)).catch(this.onError.bind(this));
+    response[method]()
+      .then(this.onData.bind(this))
+      .catch(this.onError.bind(this))
+    ;
   }
 
-  onJSON(response) {
-    if(this.props.onJSON) return this.props.onJSON(response);
+  onData(response) {
+    if(this.props.onSuccess) return this.props.onSuccess(response);
     console.log(response);
+  }
+
+  onErrorText(e,a,b) {
+    this.onError(e,a,b);
   }
 
   onError(e, a, b) {
@@ -142,3 +178,39 @@ export default class Form extends React.Component {
     );
   }
 }
+
+//FormManager
+class FormManager {
+  constructor() {
+    this.forms = [];
+    this.inputs = [];
+  }
+
+  addInput(input) {
+    this.inputs.push(input);
+  }
+
+  removeInput(input) {
+    let i = this.forms.indexOf(input);
+    if(i === -1) return;
+    this.inputs.splice(i, 1);
+  }
+
+  onChange(input, event) {
+  }
+
+  getFormData() {
+    let data = new FormData();
+
+    for(let i = 0; i < this.inputs.length; i++) {
+      let input = this.inputs[i];
+      data.append(input.props.name, input.state.value);
+    }
+
+    return data;
+  }
+}
+
+export {
+  FormManager
+};

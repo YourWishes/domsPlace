@@ -26,42 +26,89 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Button } from './../input/Input';
+import Language from './../language/Language';
 import { openModal, closeModal } from './../actions/ModalActions';
+import { Heading4 } from './../typography/Typography';
+import Keyboard from './../keyboard/Keyboard';
 
 class Modal extends React.Component {
   constructor(props) {
     super(props);
+    this.onKeyDownBound = this.onKeyDown.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeyDownBound);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyDownBound);
+  }
+
+  onKeyDown(e) {
+    if(!Keyboard.isEscape(e)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.closeModal();
   }
 
   render() {
-    let junk = [];
-    for(let x = 0; x < 1000; x++) {
-      junk.push(<div  key={x}>Hello World</div>);
-    }
 
     //Add necessary buttons
-    let buttons;
-    if(this.props.buttons) buttons = this.props.button;
+    let buttons = [];
+    if(this.props.buttons) {
+      if(Array.isArray(buttons)) {
+        buttons.concat(this.props.buttons);
+      } else {
+        buttons.push(this.props.buttons);
+      }
+    }
+
+    if(this.props.close) {
+      buttons.push(<Button key="close" onClick={this.props.closeModal}>{ Language.get("modal.close") }</Button>);
+    }
+
+    //Inner divs
+    let heading,body,footer;
+    if(this.props.title) {
+      heading = (
+        <div className="o-modal__box-heading">
+          <Heading4 className="o-modal__title">
+            { this.props.title }
+          </Heading4>
+        </div>
+      );
+    }
+
+    if(this.props.children) {
+      body = (
+        <div className="o-modal__box-body">
+          { this.props.children }
+        </div>
+      );
+    }
+
+    if(buttons) {
+      footer = (
+        <div className="o-modal__box-footer">
+          { buttons }
+        </div>
+      );
+    }
 
     //Create our modal contents
     let contents = (
       <div className="o-modal">
         <div className="o-modal__inner">
+          {/* Provides both a good overlay, and a nice clickable area  */}
           <div className="o-modal__backdrop" onClick={this.props.closeModal}>
           </div>
 
-          <div className="o-modal__box">
-            <div className="o-modal__box-inner">
-              <div className="o-modal__box-body">
-                <div className="o-modal__box-body-inner">
-                  { junk }
-                </div>
-              </div>
-
-              <div className="o-modal__box-footer">
-                { buttons }
-              </div>
-            </div>
+          {/* Box itself, has a background and a shadow */}
+          <div className={"o-modal__box" + (this.props.large ? " is-large":"")}>
+            { heading }
+            { body }
+            { footer }
           </div>
         </div>
       </div>
@@ -96,7 +143,8 @@ class Modal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal
+    modal: state.modal,
+    language: state.language
   };
 }
 

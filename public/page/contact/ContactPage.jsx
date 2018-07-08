@@ -23,33 +23,142 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Page, { PageBoundary } from './../Page';
-import Input, { Form, InputGroup, TextArea, Label, ButtonGroup } from './../../input/Input';
 import Language from './../../language/Language';
 import ElementScrollFader from './../../animation/fade/ElementScrollFader';
 import ContentBox from './../../content/ContentBox';
-import { Title, Paragraph } from './../../typography/Typography';
+import { Title, Heading1, Paragraph } from './../../typography/Typography';
 import Forms from './../../../common/Forms';
+import Input, {
+  Form,
+  FormManager,
+  InputGroup,
+  TextArea,
+  Label,
+  ButtonGroup
+} from './../../input/Input';
 import Section, {
   BodySection,
   ClearSection,
   SplitSection,
   Split
 } from './../../section/Section';
+import { openModal } from './../../actions/ModalActions';
+import Modal from './../../modal/Modal';
 
 class ContactPage extends React.Component {
   constructor(props) {
     super(props);
+
+    //Form Manager (For the form and elements)
+    this.manager = new FormManager();
+
+    this.state = {
+      sent: false
+    };
+  }
+
+  onSuccess(data) {
+    if(data !== true) return this.onError(data);
+    this.setState({
+      sent: true
+    });
+  }
+
+  onError(e, a, b) {
+    this.props.openModal(
+      <Modal close title={Language.get("pages.contact.error")}>
+        { e }
+      </Modal>
+    );
   }
 
   render() {
+
+    //Form
+    let inners;
+    if(this.state.sent) {
+      //Sent Display
+      inners = (
+        <ElementScrollFader from="bottom">
+          <ContentBox box className="u-text-center">
+            <Heading1>{ Language.get("pages.contact.success.heading") }</Heading1>
+            <Paragraph>{ Language.get("pages.contact.success.paragraph") }</Paragraph>
+          </ContentBox>
+        </ElementScrollFader>
+      );
+    } else {
+      //Form
+      inners = (
+        <ElementScrollFader from="right">
+          <BodySection>
+            <Form
+              post="/api/contact/send"
+              contentType="application/json"
+              ajax
+              loader
+              onSuccess={ this.onSuccess.bind(this) }
+              onError={ this.onError.bind(this) }
+              manager={ this.manager }
+            >
+              <InputGroup test="First Group">
+                <Label htmlFor="name">
+                  { Language.get("pages.contact.name.label") }
+                </Label>
+                <Input
+                  name="name"
+                  type="text"
+                  placeholder={ Language.get("pages.contact.name.placeholder") }
+                  required={ Forms.contact.name.required }
+                  maxLength={ Forms.contact.name.maxLength }
+                  manager={ this.manager }
+                />
+              </InputGroup>
+
+              <InputGroup >
+                <Label htmlFor="email">
+                  { Language.get("pages.contact.email.label") }
+                </Label>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder={ Language.get("pages.contact.email.placeholder") }
+                  required={ Forms.contact.email.required }
+                  maxLength={ Forms.contact.email.maxLength }
+                  manager={ this.manager }
+                />
+              </InputGroup>
+
+              <InputGroup>
+                <Label> htmlFor="message">
+                  { Language.get("pages.contact.message.label") }
+                </Label>
+                <TextArea
+                  name="message"
+                  placeholder={ Language.get("pages.contact.message.placeholder") }
+                  rows="8"
+                  className="p-contact-page__message"
+                  required={ Forms.contact.message.required }e
+                  maxLength={ Forms.contact.message.maxLength }
+                  manager={ this.manager }
+                />
+              </InputGroup>
+
+              <ButtonGroup>
+                <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
+                <Input type="reset" value={ Language.get("pages.contact.reset") } />
+              </ButtonGroup>
+            </Form>
+          </BodySection>
+        </ElementScrollFader>
+      );
+    }
+
     return (
       <Page style="contact-page" className="p-contact-page" title={ Language.get("pages.contact.title") }>
-
         <ClearSection />
-
         <PageBoundary small>
-
           <ElementScrollFader from="left">
             <ContentBox box className="u-text-center">
               <Title>{ Language.get("pages.contact.heading") }</Title>
@@ -62,49 +171,8 @@ class ContactPage extends React.Component {
           <br />
           <br />
 
-          <ElementScrollFader from="right">
-            <BodySection>
-              <Form post="/api/contact/send" ajax loader>
-                <InputGroup>
-                  <Label>{ Language.get("pages.contact.name.label") }</Label>
-                  <Input
-                    type="text"
-                    placeholder={ Language.get("pages.contact.name.placeholder") }
-                    required={ Forms.contact.name.required }
-                    maxLength={ Forms.contact.name.maxLength }
-                  />
-                </InputGroup>
-
-                <InputGroup >
-                  <Label>{ Language.get("pages.contact.email.label") }</Label>
-                  <Input
-                    type="email"
-                    placeholder={ Language.get("pages.contact.email.placeholder") }
-                    required={ Forms.contact.email.required }
-                    maxLength={ Forms.contact.email.maxLength }
-                  />
-                </InputGroup>
-
-                <InputGroup>
-                  <Label>{ Language.get("pages.contact.message.label") }</Label>
-                  <TextArea
-                    placeholder={ Language.get("pages.contact.message.placeholder") }
-                    rows="8"
-                    className="p-contact-page__message"
-                    required={ Forms.contact.message.required }
-                    maxLength={ Forms.contact.message.maxLength }
-                  />
-                </InputGroup>
-
-                <ButtonGroup>
-                  <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
-                  <Input type="reset" value={ Language.get("pages.contact.reset") } />
-                </ButtonGroup>
-              </Form>
-            </BodySection>
-          </ElementScrollFader>
+          { inners }
         </PageBoundary>
-
         <ClearSection />
       </Page>
     );
@@ -117,4 +185,10 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)(ContactPage);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    openModal: openModal
+  },dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactPage);
