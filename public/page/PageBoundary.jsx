@@ -27,6 +27,7 @@ export default function(props) {
   let clazzes = "c-page__boundary";
   if(props.full) clazzes += " is-full";
   if(props.small) clazzes += " is-small";
+  if(props.className) clazzes += " " + props.className;
 
   return (
     <div className={ clazzes }>

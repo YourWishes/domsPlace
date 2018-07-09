@@ -34,11 +34,11 @@ import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 const Platform = (props) => {
   let children;
-  let image = <Image src={props.src} className="p-about-page__brands-image" />;
+  let image = <Image src={props.src} className="p-home-page__brands-image" />;
 
   if(props.to) {
     children = (
-      <a href={props.to} target="_blank" className="p-about-page__brands-link">
+      <a href={props.to} target="_blank" className="p-home-page__brands-link">
         {image}
       </a>
     );
@@ -47,7 +47,7 @@ const Platform = (props) => {
   }
 
   return (
-    <ElementScrollFader from={props.from} className="p-about-page__brands-brand">
+    <ElementScrollFader from={props.from} className="p-home-page__brands-brand">
       {children}
     </ElementScrollFader>
   );
@@ -55,15 +55,15 @@ const Platform = (props) => {
 
 export default (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-platforms">
+    <Section className="p-home-page__promo p-home-page__promo-platforms">
       <PageBoundary>
         <ElementScrollFader from="left">
-          <Title className="u-text-center p-about-page__brands-title">
-            { Language.get("pages.about.platforms.heading") }
+          <Title className="u-text-center p-home-page__brands-title">
+            { Language.get("pages.home.platforms.heading") }
           </Title>
         </ElementScrollFader>
 
-        <div className="p-about-page__brands">
+        <div className="p-home-page__brands">
           {/* Shopify */}
           <Platform
             src={require('./../../../images/branding/shopify/shopify_glyph.svg')}
@@ -179,8 +179,8 @@ export default (props) => {
         </div>
 
         <ElementScrollFader from="bottom">
-          <Subtitle className="u-text-center p-about-page__brands-title">
-            { Language.get("pages.about.platforms.footer") }
+          <Subtitle className="u-text-center p-home-page__brands-title">
+            { Language.get("pages.home.platforms.footer") }
           </Subtitle>
         </ElementScrollFader>
       </PageBoundary>

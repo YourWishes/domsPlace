@@ -44,7 +44,7 @@ $c-hamburger-menu--pos-y: 0%;
 
   &__links {
     @extend %t-list-blank;
-    padding: 1em;
+    padding-top: 3em;
   }
 
   &__link {
@@ -53,12 +53,20 @@ $c-hamburger-menu--pos-y: 0%;
     font-size: 1.25em;
     width: 100%;
     position: relative;
-    border: 1px solid red;
+    background-size: 150%;
 
     &-link {
       position: relative;
       display: block;
-      padding: 1.5em 0;
+      padding: 1.5em;
+    }
+
+    &--home {
+      background-image: url('./../images/patterns/game-show.svg');
+    }
+
+    &--contact {
+      background-image: url('./../images/patterns/lemon-triangle.svg');
     }
 
     &:hover:before {

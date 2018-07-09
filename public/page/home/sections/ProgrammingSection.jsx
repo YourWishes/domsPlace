@@ -32,14 +32,14 @@ import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 export default (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-programming">
+    <Section className="p-home-page__promo p-home-page__promo-programming">
       <PageBoundary small>
         <ElementScrollFader from="bottom">
           <ContentBox box>
             <Heading1 className="u-text-center">
-              { Language.get("pages.about.programming.heading") }
+              { Language.get("pages.home.programming.heading") }
             </Heading1>
-            { Language.get("pages.about.programming.paragraph") }
+            { Language.get("pages.home.programming.paragraph") }
           </ContentBox>
         </ElementScrollFader>
       </PageBoundary>

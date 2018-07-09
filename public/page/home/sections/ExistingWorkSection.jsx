@@ -62,11 +62,11 @@ const ExistingWorkFrame = (props) => {
 
         <AddressBar href={fakeURL} />
         <Frame>
-          <a href={ props.href} target="_blank" className="p-about-page__work-link">
+          <a href={ props.href} target="_blank" className="p-home-page__work-link">
             <Image
               src={props.src}
               alt={props.title}
-              className="p-about-page__work-link-image"
+              className="p-home-page__work-link-image"
             />
           </a>
         </Frame>
@@ -109,16 +109,16 @@ const ExistingWorkFrame = (props) => {
 
 export default (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-work">
+    <Section className="p-home-page__promo p-home-page__promo-work">
       {/* Title */}
       <PageBoundary small>
         <ElementScrollFader from="left">
           <ContentBox box>
             <Heading1 className="u-text-center">
-              { Language.get("pages.about.work.heading") }
+              { Language.get("pages.home.work.heading") }
             </Heading1>
             <Paragraph>
-              { Language.get("pages.about.work.paragraph") }
+              { Language.get("pages.home.work.paragraph") }
             </Paragraph>
           </ContentBox>
         </ElementScrollFader>
@@ -133,8 +133,8 @@ export default (props) => {
           fromLeft="top"
           fromRight="bottom"
           src={ require('./../../../images/work-showcase/kopalife.png') }
-          title={ Language.get("pages.about.work.kopa.heading") }
-          description={ Language.get("pages.about.work.kopa.description") }
+          title={ Language.get("pages.home.work.kopa.heading") }
+          description={ Language.get("pages.home.work.kopa.description") }
         />
 
         {/* SMAI */}
@@ -144,8 +144,8 @@ export default (props) => {
           fromRight="right"
           swap
           src={ require('./../../../images/work-showcase/smai.svg') }
-          title={ Language.get("pages.about.work.smai.heading") }
-          description={ Language.get("pages.about.work.smai.description") }
+          title={ Language.get("pages.home.work.smai.heading") }
+          description={ Language.get("pages.home.work.smai.description") }
         />
 
       {/* Oz Hair and Beauty */}
@@ -155,8 +155,8 @@ export default (props) => {
           fromRight="left"
 
           src={ require('./../../../images/work-showcase/ozhair.png') }
-          title={ Language.get("pages.about.work.ozhair.heading") }
-          description={ Language.get("pages.about.work.ozhair.description") }
+          title={ Language.get("pages.home.work.ozhair.heading") }
+          description={ Language.get("pages.home.work.ozhair.description") }
         />
       </PageBoundary>
 
@@ -165,9 +165,9 @@ export default (props) => {
 
         <ElementScrollFader from="bottom">
           <ContentBox box className="u-text-center">
-            <Subtitle>{ Language.get("pages.about.work.footer") }</Subtitle>
+            <Subtitle>{ Language.get("pages.home.work.footer") }</Subtitle>
             <Button size="large" to="/contact">
-              { Language.get("pages.about.work.footer-button") }
+              { Language.get("pages.home.work.footer-button") }
             </Button>
           </ContentBox>
         </ElementScrollFader>

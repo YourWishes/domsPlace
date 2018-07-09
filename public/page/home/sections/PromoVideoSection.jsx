@@ -34,7 +34,7 @@ import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 export default (props) => {
   return (
-    <Section className="p-about-page__promo p-about-page__promo-video">
+    <Section className="p-home-page__promo p-home-page__promo-video">
       <PageBoundary>
         <SplitSection align="center">
 
@@ -52,10 +52,10 @@ export default (props) => {
             <ElementScrollFader from="bottom">
               <ContentBox box>
                 <Title>
-                  { Language.get("pages.about.video.heading") }
+                  { Language.get("pages.home.video.heading") }
                 </Title>
                 <Paragraph>
-                  { Language.get("pages.about.video.paragraph") }
+                  { Language.get("pages.home.video.paragraph") }
                 </Paragraph>
               </ContentBox>
             </ElementScrollFader>

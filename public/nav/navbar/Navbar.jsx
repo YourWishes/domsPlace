@@ -60,7 +60,6 @@ class Navbar extends React.Component {
 
             {/* Desktop / Tablet Screen Links */}
             <NavbarLink to="/" title="home" exact />
-            <NavbarLink to="/about" title="about" />
             <NavbarLink to="/contact" title="contact" exact />
 
             {/* Hamburger Menu for smaller screens */}

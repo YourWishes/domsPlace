@@ -12,22 +12,19 @@ module.exports = {
 
   "navbar": {
     "home": "Home",
-    "about": "About",
     "contact": "Contact"
   },
 
   "footer": {
     "links": {
       "home": "Home",
-      "about": "About Me",
       "contact": "Contact Me",
       "privacy": "Privacy Policy"
     }
   },
 
   "pages": {
-    "about": {
-      "title": "About Me",
+    "home": {
       "banner": {
         "title": "About Dominic Masters",
         "subtitle": "Developer, Nerd, Occasionally Funny."

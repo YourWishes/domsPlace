@@ -52,7 +52,6 @@ class Footer extends React.Component {
 
             <nav className="c-footer__links">
               <FooterLink title="home" to="/" />
-              <FooterLink title="about" to="/about" />
               <FooterLink title="contact" to="/contact" />
               <FooterLink title="privacy" to="/legal/privacy" />
             </nav>

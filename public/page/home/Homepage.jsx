@@ -23,59 +23,43 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Page, { PageBoundary } from './../Page';
-import Section, { ImageSection } from './../../section/Section';
-import FloatingContentBox from './../../content/FloatingContentBox';
-import Image from './../../image/Image';
-import { Title, Subtitle } from './../../typography/Typography';
-import { Button } from './../../input/Input';
+import Page from './../Page';
+import Language from './../../language/Language'
 
-import { openModal } from './../../actions/ModalActions';
-import Modal from './../../modal/Modal';
+import BannerSection from './sections/BannerSection';
+import PromoVideoSection from './sections/PromoVideoSection';
+import ProgrammingSection from './sections/ProgrammingSection';
+import PlatformsSection from './sections/PlatformsSection';
+import ExistingWorkSection from './sections/ExistingWorkSection';
 
-class Homepage extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+const HomePage = (props) => {
+  //Return
+  return (
+    <Page style="home-page" className="p-home-page" title={0}>
 
-  testModal() {
-    console.log("oof");
-    this.props.openModal(
-      <Modal close>
-        Hello Modal
-      </Modal>
-    );
-  }
+      { /* Banner */ }
+      <BannerSection />
 
-  render() {
-    let lines = [];
-    for(let i = 0; i < 20; i++) {
-      lines.push(<br key={i} />);
-    }
+      { /* Promo Video
+      <PromoVideoSection />
+      */ }
 
-    return (
-      <Page style="home-page" title={0} className="p-home-page">
-        Welcome home
-        { lines }
-        <Button onClick={this.testModal.bind(this)}>
-          Test Modal
-        </Button>
-      </Page>
-    );
-  }
+      {/* Programming */}
+      <ProgrammingSection />
+
+      {/* Platforms */}
+      <PlatformsSection />
+
+      {/* Existing Work */}
+      <ExistingWorkSection />
+    </Page>
+  );
 }
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal
+    code: state.language.code
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    openModal: openModal
-  },dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
+export default connect(mapStateToProps)(HomePage);

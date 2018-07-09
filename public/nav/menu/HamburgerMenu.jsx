@@ -29,7 +29,7 @@ import * as MenuActions from './../../actions/MenuActions';
 
 const HamburerMenuItem = function(props) {
   return (
-    <li className="c-hamburger-menu__link">
+    <li className={"c-hamburger-menu__link c-hamburger-menu__link--"+props.link}>
       <NavLink to={ props.to } className="c-hamburger-menu__link-link">
         { Language.get(props.lang) }
       </NavLink>
@@ -62,9 +62,8 @@ class HamburgerMenu extends React.Component {
 
         <div className="c-hamburger-menu__menu">
           <ul className="c-hamburger-menu__links">
-            <HamburerMenuItem to="/" lang="navbar.home" />
-            <HamburerMenuItem to="/about" lang="navbar.about" />
-            <HamburerMenuItem to="/contact" lang="navbar.contact" />
+            <HamburerMenuItem to="/" lang="navbar.home" link="home" />
+            <HamburerMenuItem to="/contact" lang="navbar.contact" link="contact" />
           </ul>
         </div>
       </div>

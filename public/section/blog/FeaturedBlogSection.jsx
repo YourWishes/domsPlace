@@ -22,28 +22,45 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from './../../../language/Language';
-import { PageBoundary } from './../../Page';
-import { ImageSection } from './../../../section/Section';
-import FloatingContentBox from './../../../content/FloatingContentBox';
-import { Title, Subtitle } from './../../../typography/Typography';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
+import Section from './../Section';
+import { PageBoundary } from './../../page/Page';
 
+const FeaturedArticle = function(props) {
+  let clazz = "c-featured-blog-section__article";
 
-export default (props) => {
+  let internals;
+  internals = "test";
+
+  if(props.contain) {
+    internals = <PageBoundary>{internals}</PageBoundary>
+    clazz += " is-contained";
+  }
+
   return (
-    <ImageSection
-      src={ require('./../../../images/banners/about/glasses.svg') }
-      alt="domsPlace"
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <ElementScrollFader from="bottom">
-            <Title>{ Language.get("pages.about.banner.title") }</Title>
-            <Subtitle className="u-responsive--small-up">{ Language.get("pages.about.banner.subtitle") }</Subtitle>
-          </ElementScrollFader>
-        </FloatingContentBox>
-      </PageBoundary>
-    </ImageSection>
+    <article className={ clazz }>
+      { internals }
+    </article>
   );
 }
+
+export default (props) => {
+  let firstArticle;
+  let articles = [];
+  for(let i = 0; i < props.data.length; i++) {
+    let art = <FeaturedArticle data={props.data[i]} key={i} contain />
+    if(i === 0) {
+      firstArticle = art;
+      continue;
+    }
+    articles.push(art);
+  }
+
+  return (
+    <Section className="c-featured-blog-section">
+      { firstArticle }
+      <PageBoundary className="c-featured-blog-section__articles">
+        { articles }
+      </PageBoundary>
+    </Section>
+  );
+};

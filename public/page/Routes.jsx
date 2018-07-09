@@ -32,7 +32,6 @@ import Footer from './../footer/Footer';
 
 //Pages
 import Homepage from './home/Homepage';
-import AboutPage from './about/AboutPage';
 import ContactPage from './contact/ContactPage';
 
 import PrivacyPolicyPage from './legal/privacy/PrivacyPolicyPage';
@@ -73,7 +72,6 @@ class Routes extends React.Component {
           >
             <Switch location={ location }>
               <RouteWrapper exact path="/" page={ Homepage } />
-              <RouteWrapper exact path="/about" page={ AboutPage } />
               <RouteWrapper exact path="/contact" page={ ContactPage } />
 
               <RouteWrapper exact path="/legal/privacy" page={ PrivacyPolicyPage } />
