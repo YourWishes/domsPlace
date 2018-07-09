@@ -4,6 +4,7 @@
   "description": "Personal website for Dominic \"YouWish\" Masters.",
   "main": "private/index.js",
   "scripts": {
+	  "start": "node private/index",
     "serve": "webpack-serve --config ./webpack.config.js",
     "watch": "nodemon --watch private private/index.js",
     "test": "jest"
