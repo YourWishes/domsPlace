@@ -43,10 +43,8 @@ class Email {
     if(!this.getConfig().getValueOf("smtp.password")) throw new Error("Missing SMTP Password Config");
 
     //We require some info about the person who handles the mailing.
-    if(!this.getConfig().getValueOf("smtp.destination")) throw new Error("Missing SMTP Destination Config");
     if(!this.getConfig().getValueOf("smtp.destination.name")) throw new Error("Missing SMTP Destination Name Config");
     if(!this.getConfig().getValueOf("smtp.destination.email")) throw new Error("Missing SMTP Destination Email Config");
-    if(!this.getConfig().getValueOf("smtp.source")) throw new Error("Missing SMTP Source Config");
     if(!this.getConfig().getValueOf("smtp.source.name")) throw new Error("Missing SMTP Source Name Config");
     if(!this.getConfig().getValueOf("smtp.source.email")) throw new Error("Missing SMTP Source Email Config");
 
