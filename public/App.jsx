@@ -61,7 +61,7 @@ class App extends React.Component {
       </div>
     );
 
-    if(true) {
+    if(false) {
       return <HashRouter>{children}</HashRouter>;
     } else {
       return <BrowserRouter>{children}</BrowserRouter>;
