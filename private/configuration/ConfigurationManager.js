@@ -59,7 +59,7 @@ class ConfigurationManager {
 
   getValueOf(key) {
     if(this.isHeroku) {
-      key = key.replace(/\./, '_').toUpperCase();
+      key = key.replace(/\./g, '_').toUpperCase();
       if(typeof this.data[key] === typeof undefined) return null;
       return this.data[key];
     }
