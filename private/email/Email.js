@@ -38,7 +38,6 @@ class Email {
   getSourceEmail() {return this.getConfig().getValueOf("smtp.source.email");}
 
   connect() {
-    if(!this.getConfig().getValueOf("smtp")) throw new Error("Missing SMTP Config");
     if(!this.getConfig().getValueOf("smtp.host")) throw new Error("Missing SMTP Host Config");
     if(!this.getConfig().getValueOf("smtp.username")) throw new Error("Missing SMTP Username Config");
     if(!this.getConfig().getValueOf("smtp.password")) throw new Error("Missing SMTP Password Config");
