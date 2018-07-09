@@ -46,8 +46,6 @@ class Modal extends React.Component {
 
   onKeyUp(e) {
     if(!Keyboard.isEscape()) return;
-    e.preventDefault();
-    e.stopPropagation();
     this.props.closeModal();
   }
 
