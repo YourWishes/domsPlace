@@ -43,7 +43,7 @@ module.exports = {
       },
 
       {
-        test: /\.svg|\.webm|\.mp4$/i,
+        test: /\.svg$|\.webm$|\.mp4$/i,
         use: [{
           loader: "file-loader",
           options: {
