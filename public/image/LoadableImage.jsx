@@ -22,32 +22,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Section from './../Section';
-import Image from './../../image/Image';
+import Image from './Image';
+import Loader from './../loading/Loader';
 
-export default function(props) {
-  let image;
-  if(props.image) {
-    image = props.image;
-  } else {
-    image = <Image
-      {...props}
-      children={null}
-      className="c-image-section__image"
-    />;
+class LoadableImage extends React.Component {
+  constructor(props) {
+    super(props);
   }
 
-  return (
-    <Section
-      full={props.full}
-      className={"c-image-section" + (props.className ? " " + props.className : "" ) }
-    >
-      { image }
-      <div className="c-image-section__content">
-        <div className="c-image-section__content-inner">
-          { props.children }
-        </div>
-      </div>
-    </Section>
-  );
+  render() {
+    let p = Object.assign({}, this.props);
+    p.loadable = false;
+    return <Image {...p} />
+  }
 }
+
+export default LoadableImage;

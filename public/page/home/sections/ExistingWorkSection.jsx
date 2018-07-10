@@ -66,6 +66,7 @@ const ExistingWorkFrame = (props) => {
             <Image
               src={props.src}
               alt={props.title}
+              loadable
               className="p-home-page__work-link-image"
             />
           </a>

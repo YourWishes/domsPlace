@@ -4,7 +4,7 @@
   "description": "Personal website for Dominic \"YouWish\" Masters.",
   "main": "private/index.js",
   "scripts": {
-	  "start": "node private/index",
+    "start": "node private/index",
     "serve": "webpack-serve --config ./webpack.config.js",
     "watch": "nodemon --watch private private/index.js",
     "test": "jest"
@@ -58,8 +58,11 @@
     "webpack": "^4.14.0"
   },
   "devDependencies": {
+    "jimp": "^0.2.28",
     "nodemon": "^1.17.5",
     "react-hot-loader": "^4.3.3",
+    "responsive-loader": "^1.1.0",
+    "sharp": "^0.20.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   }

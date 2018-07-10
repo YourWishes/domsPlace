@@ -22,6 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import LoadableImage from './LoadableImage';
 
 export default class Image extends React.Component {
   constructor(props) {
@@ -29,6 +30,10 @@ export default class Image extends React.Component {
   }
 
   render() {
+    if(this.props.loadable) {
+      //return (<LoadableImage {...this.props} />);
+    }
+
     let sourceProps = Object.assign({}, this.props);
 
     //Prop Manipulation
@@ -40,36 +45,56 @@ export default class Image extends React.Component {
       }
     }
 
+    if(sourceProps.src) {
+      if(sourceProps.src.images) sourceProps.sources = sourceProps.src.images;
+      if(sourceProps.src.width) sourceProps.width = sourceProps.src.width;
+      if(sourceProps.src.height) sourceProps.height = sourceProps.src.height;
+    }
+
     //Image
     let sourceElements = [];
     let sources = {};
 
     let defaultSrc = sourceProps.src;
     let defaultAlt = sourceProps.alt;
+    let defaultWidth = sourceProps.width;
+    let defaultHeight = sourceProps.height;
+
+    console.log(defaultSrc);
 
     if(sourceProps.sources) {
       //Iterate over supplied sources
       for(let i = 0; i < sourceProps.sources.length; i++) {
         let x = sourceProps.sources[i];
-        let w = x.size;
-        sources[w] = sources[w] || [];
-        sources[w].push(x);
+        let width = x.size || x.width;
+        let isLast = (i+1) === sourceProps.sources.length;
 
-        defaultSrc = defaultSrc || x.src;
-        defaultAlt = defaultAlt || x.alt;
+        for(let scale = 1; scale <= 4; scale++) {
+          let scaledWidth = Math.round(width / scale);
+          let o = Object.assign({}, x);
+          o.scale = scale;
+          o.isLast = isLast;
+          sources[scaledWidth] = sources[scaledWidth] || [];
+          sources[scaledWidth].push(o);
+        }
       }
 
-      //Now map to components I guess
       let keys = Object.keys(sources);
       for(let i = 0; i < keys.length; i++) {
-        let k = keys[i];
-        let j = sources[k];
-        let q = j[0];
-        let mediaQuery = '(max-width:'+q.size+'px)';
+        let k = keys[i];//The pixel size
+        let ss = sources[k];//Sources at this pixel resolution
+        let mediaQuery = '(max-width:'+k+'px)';
         let sss = [];
-        for(let p = 0; p < j.length; p++) {
-          let v = j[p];
-          sss.push(v.src + (v.scale && v.scale != 1 ? " "+v.scale+"x" : "" ) );
+
+        if(ss.length && ss[0].isLast) {
+          let prev = i > 0 ? keys[i-1] : 0;
+          mediaQuery = '(min-width:'+prev+'px)';
+        }
+
+        for(let x = 0; x < ss.length; x++) {
+          let scale = ss[x];
+          let source = scale.src || scale.path;
+          sss.push( source + (scale.scale && scale.scale!=1 ? " "+scale.scale+"x" : "") );
         }
 
         sourceElements.push(
@@ -81,7 +106,13 @@ export default class Image extends React.Component {
     return (
       <picture>
         { sourceElements }
-        <img src={ defaultSrc } alt={ defaultAlt } className={ sourceProps.className } />
+        <img
+          src={ defaultSrc }
+          alt={ defaultAlt }
+          className={ sourceProps.className }
+          width={ defaultWidth }
+          height={ defaultHeight }
+        />
       </picture>
     );
   }
