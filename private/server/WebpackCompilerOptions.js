@@ -28,7 +28,8 @@ const
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CompressionPlugin = require("compression-webpack-plugin"),
   UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
-  MiniCssExtractPlugin = require("mini-css-extract-plugin")
+  MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 ;
 
 //Constants
@@ -136,7 +137,8 @@ module.exports = function(server, app) {
   output.optimization = {
     minimize: true,
     minimizer: [
-      UglifyPluginConfig
+      UglifyPluginConfig,
+      new OptimizeCSSAssetsPlugin({})
     ]
    };
 
