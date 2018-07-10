@@ -79,7 +79,13 @@ module.exports = function(server, app) {
 
       {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg|\.webm|\.mp4$/i,
-        loader: "file-loader?name=[path][name].[ext]"
+        use: [{
+          loader: "file-loader",
+          options: {
+            name: "[path][name].[ext]",
+            context: 'public'
+          }
+        }]
       },
 
       {
