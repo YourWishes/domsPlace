@@ -58,7 +58,7 @@ module.exports = {
         use: [{
           loader: "responsive-loader",
           options: {
-            sizes: [128, 256, 500, 750, 1000, 1250, 1500, 2000, 2250, 2500],
+            sizes: [250, 500, 1000, 1500, 2000, 2500],
             name: "[path][name]_[width]x.[ext]",
             context: 'public'
           }

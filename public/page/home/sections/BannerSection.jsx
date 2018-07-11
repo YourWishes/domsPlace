@@ -35,6 +35,10 @@ export default (props) => {
     <ImageSection
       src={ require('./../../../images/banners/about/glasses.svg') }
       alt="domsPlace"
+      width="2400"
+      height="1200"
+      test="true"
+      loadable
     >
       <PageBoundary full>
         <FloatingContentBox position="middle center" size="large" className="u-text-center">

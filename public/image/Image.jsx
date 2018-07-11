@@ -29,9 +29,18 @@ export default class Image extends React.Component {
     super(props);
   }
 
+  onLoad(e) {
+    console.log(this.props);
+    if(this.props.onLoad) this.props.onLoad(e);
+  }
+
+  onError() {
+    if(this.props.onError) this.props.onErorr(e);
+  }
+
   render() {
     if(this.props.loadable) {
-      //return (<LoadableImage {...this.props} />);
+      return <LoadableImage {...this.props} />;
     }
 
     let sourceProps = Object.assign({}, this.props);
@@ -60,8 +69,6 @@ export default class Image extends React.Component {
     let defaultWidth = sourceProps.width;
     let defaultHeight = sourceProps.height;
 
-    console.log(defaultSrc);
-
     if(sourceProps.sources) {
       //Iterate over supplied sources
       for(let i = 0; i < sourceProps.sources.length; i++) {
@@ -80,11 +87,26 @@ export default class Image extends React.Component {
       }
 
       let keys = Object.keys(sources);
+      keys.sort((l, r) => {
+        return parseInt(l) - parseInt(r);
+      });
+      let breakNext = false;
       for(let i = 0; i < keys.length; i++) {
+        if(breakNext) break;
         let k = keys[i];//The pixel size
+
         let ss = sources[k];//Sources at this pixel resolution
         let mediaQuery = '(max-width:'+k+'px)';
         let sss = [];
+
+        let isNextBreak = false;
+        if(this.props.maxWidth && (i+1 < keys.length)) {
+          if(keys[i+1] > parseInt(this.props.maxWidth)) isNextBreak = true;
+        }
+        if(isNextBreak) {
+          breakNext = true;
+          mediaQuery = '(min-width:'+k+'px)';
+        }
 
         if(ss.length && ss[0].isLast) {
           let prev = i > 0 ? keys[i-1] : 0;
@@ -104,9 +126,12 @@ export default class Image extends React.Component {
     }
 
     return (
+      //HEY DOM: try putting the img tag within a this.image or something so we can just reference the image object? .complete may work??
       <picture>
         { sourceElements }
         <img
+          onLoad={ this.onLoad.bind(this) }
+          onError={ this.onError.bind(this) }
           src={ defaultSrc }
           alt={ defaultAlt }
           className={ sourceProps.className }

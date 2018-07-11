@@ -34,7 +34,7 @@ import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 const Platform = (props) => {
   let children;
-  let image = <Image src={props.src} className="p-home-page__brands-image" />;
+  let image = <Image src={props.src} loadable className="p-home-page__brands-image" />;
 
   if(props.to) {
     children = (

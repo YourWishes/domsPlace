@@ -28,12 +28,47 @@ import Loader from './../loading/Loader';
 class LoadableImage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: true
+    };
+  }
+
+  componentDidMount() {}
+  componentWillUnmount() {}
+
+  onLoad() {
+    this.setState({
+      loading: false
+    });
+  }
+
+  onError() {
+    this.setState({
+      loading: false
+    });
   }
 
   render() {
     let p = Object.assign({}, this.props);
     p.loadable = false;
-    return <Image {...p} />
+    p.onLoad = this.onLoad.bind(this);
+    let image = <Image {...p} />;
+
+    let loader;
+
+    if(this.state.loading) {
+      loader = <Loader />;
+    }
+
+    return (
+      <div className={"o-loadable-image " + (this.state.loading ? "is-loading" : "is-loaded")}>
+        { loader }
+        <div className="o-loadable-image__image-container">
+          { image }
+        </div>
+      </div>
+    );
   }
 }
 

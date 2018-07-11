@@ -68,6 +68,7 @@ const ExistingWorkFrame = (props) => {
               alt={props.title}
               loadable
               className="p-home-page__work-link-image"
+              maxWidth="600"
             />
           </a>
         </Frame>
