@@ -29,6 +29,7 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import { HashRouter, BrowserRouter } from 'react-router-dom';
 import Routes from './page/Routes';
+import Favicon from './Favicon';
 
 class App extends React.Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class App extends React.Component {
 
     let children = (
       <div className={clazz} ref="app">
+        <Favicon />
         <Header />
         { modal }
         <Routes onEntering={this.onEnteringBound} />
