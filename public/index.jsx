@@ -22,6 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 'use strict';
+import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
