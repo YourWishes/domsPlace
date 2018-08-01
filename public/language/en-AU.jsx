@@ -75,6 +75,12 @@ module.exports = {
                 which allows you to design your perfect couch and hit one button
                 to purchase the couch you've designed.
               </p>
+              <p>
+                I built this website using the Shopify Slate framework, as well
+                as an internal custom framework I built while working at <a target="_blank" href="//processcreative.com.au">
+                  Process Creative
+                </a>
+              </p>
             </Fragment>
           ); }
         },
@@ -92,7 +98,10 @@ module.exports = {
                 I have worked on both their front-end website and design, as
                 well as creating many custom integrations, and primarily an
                 integration with the StarTrack courier service to offer live
-                rates for their website shipping.
+                rates for their website shipping. This project was completed
+                while I was working at <a target="_blank" href="//processcreative.com.au">
+                  Process Creative
+                </a>
               </p>
             </Fragment>
           ); }
@@ -110,7 +119,10 @@ module.exports = {
               With a large inventory and constantly changing marketing campaigns,
               the website was built by to be fast, easily filtered and searched,
               and flexible enough to feature any single group of products at a
-              given time.
+              given time. This was another project I worked on while performing
+              my daily job at <a target="_blank" href="//processcreative.com.au">
+                Process Creative
+              </a>
             </p>
           </Fragment> ); }
         },
