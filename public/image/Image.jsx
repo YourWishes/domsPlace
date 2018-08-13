@@ -30,7 +30,6 @@ export default class Image extends React.Component {
   }
 
   onLoad(e) {
-    console.log(this.props);
     if(this.props.onLoad) this.props.onLoad(e);
   }
 

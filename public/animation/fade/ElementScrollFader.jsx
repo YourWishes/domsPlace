@@ -29,20 +29,33 @@ class ElementScrollFader extends React.Component {
 
     this.state = { visible: false };
     this.onScrollBound = this.onScroll.bind(this);
+    this.updateRectangleBound = this.updateRectangle.bind(this);
     this.checkEffectBound = this.checkEffect.bind(this);
+
+    this.rect = null;
   }
 
   componentDidMount() {
+    //Update rectangle
+    if(this.rectTimer) clearInterval(this.rectTimer);
+    this.rectTimer = setInterval(this.updateRectangleBound, 100);
+
     if(!this.initialCheckFunction) {
       this.initialCheckFunction = setTimeout(this.checkEffectBound, 300);
     }
 
     document.addEventListener('scroll', this.onScrollBound, true);
-    document.addEventListener("DOMContentLoaded", this.onScrollBound);
+    document.addEventListener("DOMContentLoaded", this.updateRectangleBound);
   }
 
   componentWillUnmount() {
     this.detachListener();
+  }
+
+  //Used for rect calculation
+  updateRectangle() {
+    if(!this.refs || !this.refs.fader) return;
+    this.rect = this.refs.fader.getBoundingClientRect();
   }
 
   onScroll(e) {
@@ -52,18 +65,29 @@ class ElementScrollFader extends React.Component {
   //Common functions
   detachListener() {
     document.removeEventListener('scroll', this.onScrollBound);
-    document.removeEventListener("DOMContentLoaded", this.onScrollBound);
+    document.removeEventListener("DOMContentLoaded", this.updateRectangleBound);
+
+    if(this.rectTimer) clearInterval(this.rectTimer);
     if(this.initialCheckFunction) clearTimeout(this.initialCheckFunction);
   }
 
   checkEffect() {
     if(typeof window === typeof undefined) return;
     if(!this.refs || !this.refs.fader) return;
+    if(this.state.visible) return this.detachListener();
+
+    if(!this.rect) this.updateRectangle();
+
     //Get bounds
-    var rect = this.refs.fader.getBoundingClientRect();
+    var rect = this.rect;
+
     //If our top is at least half way UP the page, show
     if(rect.top > window.innerHeight / 1.5) return;
-    this.setState({visible: true});
+
+    this.setState({
+      visible: true
+    });
+
     this.detachListener();//stop Listening
 
     if(this.props.onVisible) {

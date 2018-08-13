@@ -24,6 +24,7 @@
 import React from 'react';
 import Image from './Image';
 import Loader from './../loading/Loader';
+import BoxSizer from './../layout/BoxSizer';
 
 class LoadableImage extends React.Component {
   constructor(props) {
@@ -55,15 +56,20 @@ class LoadableImage extends React.Component {
     p.onLoad = this.onLoad.bind(this);
     let image = <Image {...p} />;
 
-    let loader;
+    let loader,imageSizerDuringLoad;
 
     if(this.state.loading) {
       loader = <Loader />;
+      if(p.width && p.height) {
+        imageSizerDuringLoad = <BoxSizer ratioWidth={p.width} ratioHeight={p.height} />
+      }
     }
 
     return (
       <div className={"o-loadable-image " + (this.state.loading ? "is-loading" : "is-loaded")}>
         { loader }
+        { imageSizerDuringLoad }
+
         <div className="o-loadable-image__image-container">
           { image }
         </div>

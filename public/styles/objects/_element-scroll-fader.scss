@@ -16,6 +16,7 @@ $o-element-scroll-fader--amount: 15%;
 .o-element-scroll-fader {
   opacity: 0;
   transition: all $o-element-scroll-fader--speed $s-animation--ease-out;
+  will-change: transform;
 
   $amt: $o-element-scroll-fader--amount;//Shorthand
   &.from-top    { @include t-translate-y(-$amt); }

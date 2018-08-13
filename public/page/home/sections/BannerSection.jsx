@@ -39,6 +39,7 @@ export default (props) => {
       height="1200"
       test="true"
       loadable
+      due
     >
       <PageBoundary full>
         <FloatingContentBox position="middle center" size="large" className="u-text-center">
