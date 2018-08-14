@@ -91,25 +91,26 @@ export default class Input extends React.Component {
     let clazzes = "o-input";
     let innerClazzes = "o-input__inner";
     let style;
+    let props = Object.assign({}, this.props);
 
     //Determining
-    if(this.props.type) type = this.props.type;
+    if(props.type) type = props.type;
 
     //Values
-    if(this.props.value) {
-      value = this.props.value;
+    if(props.value) {
+      value = props.value;
     } else {
-      value = this.props.children;
+      value = props.children;
     }
 
     //Style
-    if(this.props.style) {
-      style = this.props.style;
-    } else if(this.props.error || this.props.danger) {
+    if(props.style) {
+      style = props.style;
+    } else if(props.error || props.danger) {
       style = "danger";
-    } else if(this.props.warning) {
+    } else if(props.warning) {
       style = "warning";
-    } else if(this.props.primary) {
+    } else if(props.primary) {
       style = "primary";
     }
 
@@ -120,10 +121,13 @@ export default class Input extends React.Component {
       clazzes += " o-input--style-"+style;
       innerClazzes += " o-input--style-"+style+"__inner";
     }
-    if(this.props.className) {
-      clazzes += " " + this.props.className;
-      innerClazzes += " " + this.props.className + "-element";
+    if(props.className) {
+      clazzes += " " + props.className;
+      innerClazzes += " " + props.className + "-element";
     }
+
+    //Clear junk props
+    delete props.manager;
 
     //Now create the element
     let element;
@@ -131,14 +135,14 @@ export default class Input extends React.Component {
     //First we need to switch things like submit and reset
     if(type == "submit" || type == "reset" || type == "button") {
       return (<Button
-        {...this.props}
-        className={this.props.className}
+        {...props}
+        className={props.className}
         value={this.state.value}
       />);
 
     } else if(type == "textarea") {
       element = (<textarea
-          {...this.props}
+          {...props}
           className={innerClazzes}
           onChange={this.onChange.bind(this)}
           onFocus={this.onFocus.bind(this)}
@@ -148,7 +152,7 @@ export default class Input extends React.Component {
 
     } else {
       element = (<ElementType
-        {...this.props}
+        {...props}
         onChange={this.onChange.bind(this)}
         onFocus={this.onFocus.bind(this)}
         onBlur={this.onBlur.bind(this)}

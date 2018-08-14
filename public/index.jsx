@@ -43,6 +43,11 @@ const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });
 
+document.onreadystatechange = function () {
+  console.log("Ready state changed");
+  console.log(document.readyState);
+}
+
 //Start listening for key events
 Keyboard.register();
 

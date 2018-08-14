@@ -139,7 +139,7 @@ class ContactPage extends React.Component {
                   placeholder={ Language.get("pages.contact.message.placeholder") }
                   rows="8"
                   className="p-contact-page__message"
-                  required={ Forms.contact.message.required }e
+                  required={ Forms.contact.message.required }
                   maxLength={ Forms.contact.message.maxLength }
                   manager={ this.manager }
                 />
