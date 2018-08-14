@@ -24,7 +24,7 @@
 import React from 'react';
 import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
-import Section, { SplitSection, Split, ClearSection } from './../../../section/Section';
+import { ImageSection, SplitSection, Split, ClearSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
 import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../typography/Typography';
 import { Button } from './../../../input/Input';
@@ -111,7 +111,12 @@ const ExistingWorkFrame = (props) => {
 
 export default (props) => {
   return (
-    <Section className="p-home-page__promo p-home-page__promo-work">
+    <ImageSection
+      className="p-home-page__promo p-home-page__promo-work"
+      src={ require('./../../../images/patterns/arcade.svg') }
+      loadable
+      background
+    >
       {/* Title */}
       <PageBoundary small>
         <ElementScrollFader from="left">
@@ -176,6 +181,6 @@ export default (props) => {
 
         <ClearSection />{/* Space a bit */}
       </PageBoundary>
-    </Section>
+    </ImageSection>
   );
 }

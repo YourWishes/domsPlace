@@ -10,7 +10,7 @@
  *    styles/tool/list.scss
  *
  *  Version:
- *    1.0.0 - 2018/05/03
+ *    1.1.0 - 2018/08/14
  */
 $c-navbar--link-thickness: 5px;
 
@@ -40,6 +40,9 @@ $c-navbar--link-thickness: 5px;
   }
 
   &__logo {
+    //To Allow the logo to go over the top of the menu!~
+    position: relative;
+    z-index: $s-z--logo;
     width: 7em;
   }
 

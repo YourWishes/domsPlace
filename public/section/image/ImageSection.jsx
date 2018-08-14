@@ -27,6 +27,8 @@ import Image from './../../image/Image';
 
 export default function(props) {
   let image;
+  let clazz = "c-image-section";
+
   if(props.image) {
     image = props.image;
   } else {
@@ -37,10 +39,17 @@ export default function(props) {
     />;
   }
 
+  if(props.className) clazz += " " + props.className;
+
+  if(props.background) {
+    //Background Image Effect
+    clazz += " is-background";
+  }
+
   return (
     <Section
       full={props.full}
-      className={"c-image-section" + (props.className ? " " + props.className : "" ) }
+      className={ clazz }
     >
       { image }
       <div className="c-image-section__content">

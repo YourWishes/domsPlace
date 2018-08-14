@@ -24,7 +24,7 @@
 import React from 'react';
 import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
-import Section, { ImageSection, VideoSection, SplitSection, Split } from './../../../section/Section';
+import { ImageSection, SplitSection, Split } from './../../../section/Section';
 import FloatingContentBox from './../../../content/FloatingContentBox';
 import ContentBox from './../../../content/ContentBox';
 import Image from './../../../image/Image';
@@ -34,7 +34,7 @@ import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 const Platform = (props) => {
   let children;
-  let image = <Image src={props.src} loadable className="p-home-page__brands-image" />;
+  let image = <Image src={props.src} loadable className="p-home-page__brands-image" width="96" height="96" />;
 
   if(props.to) {
     children = (
@@ -55,7 +55,12 @@ const Platform = (props) => {
 
 export default (props) => {
   return (
-    <Section className="p-home-page__promo p-home-page__promo-platforms">
+    <ImageSection
+      className="p-home-page__promo p-home-page__promo-platforms"
+      src={ require('./../../../images/patterns/game-show.svg') }
+      loadable
+      background
+    >
       <PageBoundary>
         <ElementScrollFader from="left">
           <Title className="u-text-center p-home-page__brands-title">
@@ -184,6 +189,6 @@ export default (props) => {
           </Subtitle>
         </ElementScrollFader>
       </PageBoundary>
-    </Section>
+    </ImageSection>
   );
 }

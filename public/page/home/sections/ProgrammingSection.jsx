@@ -25,14 +25,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
-import Section from './../../../section/Section';
+import { ImageSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
 import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 export default (props) => {
   return (
-    <Section className="p-home-page__promo p-home-page__promo-programming">
+    <ImageSection
+      className="p-home-page__promo p-home-page__promo-programming"
+      src={ require('./../../../images/patterns/rhythm-heaven.svg') }
+      loadable
+      background
+    >
       <PageBoundary small>
         <ElementScrollFader from="bottom">
           <ContentBox box>
@@ -43,6 +48,6 @@ export default (props) => {
           </ContentBox>
         </ElementScrollFader>
       </PageBoundary>
-    </Section>
+    </ImageSection>
   );
 }

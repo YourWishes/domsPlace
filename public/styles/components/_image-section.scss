@@ -5,10 +5,9 @@
  *  Dependencies:
  *
  *  Version:
- *    1.0.0 - 2018/05/11
+ *    1.1.0 - 2018/08/14
  */
 .c-image-section {
-  position: relative;
 
   &__image {
     display: block;
@@ -16,6 +15,8 @@
   }
 
   &.is-full {
+    position: relative;
+    
     .c-image-section__image {
       @include t-absolute-fill();
       object-fit: cover;
@@ -32,4 +33,28 @@
       width: 100%;
     }
   }
+
+  //Background Image
+  &.is-background {
+    position: relative;
+
+    .c-image-section {
+      &__image {
+        @include t-absolute-fill();
+        object-fit: cover;
+        object-position: bottom center;
+      }
+
+      &__content {
+        position: relative;
+
+        &-inner {
+          position: relative;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
 }

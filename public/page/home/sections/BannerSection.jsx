@@ -33,13 +33,12 @@ import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 export default (props) => {
   return (
     <ImageSection
+      className="p-home-page__banner"
       src={ require('./../../../images/banners/about/glasses.svg') }
       alt="domsPlace"
       width="2400"
       height="1200"
-      test="true"
       loadable
-      due
     >
       <PageBoundary full>
         <FloatingContentBox position="middle center" size="large" className="u-text-center">

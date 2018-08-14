@@ -8,9 +8,14 @@
  *    styles/tools/_responsive.scss
  *
  *  Version:
- *    1.0.0 - 2018/06/06
+ *    1.1.0 - 2018/08/14
  */
 .p-home-page {
+  &__banner,
+  &__promo {
+    position: relative;
+    //@extend %t-dp--shadow-3d;
+  }
 
   &__promo {
     padding: 6em 0;
@@ -18,22 +23,6 @@
 
     &-video {
       background-image: url('./../images/patterns/florida.svg');
-      @extend %t-dp--shadow-3d;
-    }
-
-    &-programming {
-      background-image: url('./../images/patterns/rhythm-heaven.svg');
-      @extend %t-dp--shadow-3d;
-    }
-
-    &-platforms {
-      background-image: url('./../images/patterns/game-show.svg');
-      @extend %t-dp--shadow-3d;
-    }
-
-    &-work {
-      background-image: url('./../images/patterns/arcade.svg');
-      @extend %t-dp--shadow-3d;
     }
   }
 
