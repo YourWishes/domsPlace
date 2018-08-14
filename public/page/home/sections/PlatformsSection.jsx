@@ -46,10 +46,13 @@ const Platform = (props) => {
     children = image;
   }
 
+  //Wrap in a div and a fader. Div is to help with random transitions on resizing.
   return (
-    <ElementScrollFader from={props.from} className="p-home-page__brands-brand">
-      {children}
-    </ElementScrollFader>
+    <div className="p-home-page__brands-brand">
+      <ElementScrollFader from={props.from}>
+        {children}
+      </ElementScrollFader>
+    </div>
   );
 };
 
