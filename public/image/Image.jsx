@@ -125,11 +125,9 @@ export default class Image extends React.Component {
     }
 
     return (
-      //HEY DOM: try putting the img tag within a this.image or something so we can just reference the image object? .complete may work??
       <picture>
         { sourceElements }
         <img
-          { ...sourceProps }
           onLoad={ this.onLoad.bind(this) }
           onError={ this.onError.bind(this) }
           src={ defaultSrc }
@@ -137,6 +135,7 @@ export default class Image extends React.Component {
           className={ sourceProps.className }
           width={ defaultWidth }
           height={ defaultHeight }
+          title={sourceProps.title}
         />
       </picture>
     );
