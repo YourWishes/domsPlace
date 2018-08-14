@@ -54,7 +54,23 @@ module.exports = {
       },
       "platforms": {
         "heading": "Platforms I work with",
-        "footer": "... And many more!"
+        "footer": "... And many more!",
+        "shopify": "Shopify",
+        "react": "React",
+        "monogame": "MonoGame",
+        "nodejs": "NodeJS",
+        "csharp": "C#",
+        "php": "PHP",
+        "java": "Java",
+        "neto": "neto",
+        "pgsql": "PostgreSQL",
+        "mysql": "MySQL",
+        "heroku": "Heroku",
+        "opengl": "OpenGL",
+        "discord": "Discord",
+        "twitch": "Twitch",
+        "twitter": "Twitter",
+        "googlecloud": "Google Cloud Platform"
       },
       "work": {
         "heading": "Some of my work",

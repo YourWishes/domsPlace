@@ -28,6 +28,7 @@ import { NavLink } from 'react-router-dom'
 import PageBoundary from './../../page/PageBoundary';
 import Language from './../../language/Language';
 import HamburgerMenu from './../menu/HamburgerMenu';
+import Image from './../../image/Image';
 
 const NavbarLink = function(props) {
   return (
@@ -51,10 +52,13 @@ class Navbar extends React.Component {
 
             {/* Logo */}
             <NavLink to="/" className="c-navbar__logo-container" activeClassName="is-active">
-              <img
+              <Image
                 src={ require('./../../images/logo.svg') }
                 className="c-navbar__logo"
                 alt={ Language.get("site.name") }
+                title={ Language.get("site.name") }
+                width="780"
+                height="200"
               />
             </NavLink>
 

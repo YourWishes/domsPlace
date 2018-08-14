@@ -129,6 +129,7 @@ export default class Image extends React.Component {
       <picture>
         { sourceElements }
         <img
+          { ...sourceProps }
           onLoad={ this.onLoad.bind(this) }
           onError={ this.onError.bind(this) }
           src={ defaultSrc }
