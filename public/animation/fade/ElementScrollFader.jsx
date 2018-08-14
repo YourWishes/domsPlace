@@ -27,7 +27,10 @@ class ElementScrollFader extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { visible: false };
+    this.state = {
+      waiting: true,
+      visible: false
+    };
     this.onScrollBound = this.onScroll.bind(this);
     this.updateRectangleBound = this.updateRectangle.bind(this);
     this.checkEffectBound = this.checkEffect.bind(this);
@@ -74,6 +77,11 @@ class ElementScrollFader extends React.Component {
   checkEffect() {
     if(typeof window === typeof undefined) return;
     if(!this.refs || !this.refs.fader) return;
+    if(this.state.waiting) {
+      this.setState({
+        waiting: false
+      });
+    }
     if(this.state.visible) return this.detachListener();
 
     if(!this.rect) this.updateRectangle();
@@ -104,7 +112,7 @@ class ElementScrollFader extends React.Component {
     } else {
       clazz += " from-top";
     }
-    if(this.state.visible) {
+    if(this.state.visible || this.state.waiting) {
       clazz += " is-visible";
     }
 
