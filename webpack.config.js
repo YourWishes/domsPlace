@@ -1,6 +1,7 @@
 const
   webpack = require('webpack'),
-  HtmlWebpackPlugin = require('html-webpack-plugin')
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
+  SharpLoader = require('responsive-loader/sharp')
 ;
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -58,6 +59,7 @@ module.exports = {
         use: [{
           loader: "responsive-loader",
           options: {
+            adapter: SharpLoader,
             sizes: [250, 500, 1000, 1500, 2000, 2500],
             name: "[path][name]_[width]x.[ext]",
             context: 'public'

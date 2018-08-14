@@ -29,7 +29,8 @@ const
   CompressionPlugin = require("compression-webpack-plugin"),
   UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
+  SharpLoader = require('responsive-loader/sharp')
 ;
 
 //Constants
@@ -94,6 +95,7 @@ module.exports = function(server, app) {
         use: [{
           loader: "responsive-loader",
           options: {
+            adapter: SharpLoader,
             sizes: [250, 500, 1000, 1500, 2000, 2500],
             name: "[path][name]_[width]x.[ext]",
             context: 'public'
