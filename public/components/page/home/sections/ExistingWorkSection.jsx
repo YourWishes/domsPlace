@@ -22,14 +22,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from './../../../../language/Language';
-import { PageBoundary } from './../../Page';
-import { ImageSection, SplitSection, Split, ClearSection } from './../../../section/Section';
-import ContentBox from './../../../../objects/content/ContentBox';
-import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../../objects/typography/Typography';
-import { Button } from './../../../../objects/input/Input';
-import ElementScrollFader from './../../../../objects/animation/fade/ElementScrollFader';
-import Image from './../../../../objects/image/Image';
+import Language from '@public/language/Language';
+import { PageBoundary } from '@components/page/Page';
+import { ImageSection, SplitSection, Split, ClearSection } from '@components/section/Section';
+import ContentBox from '@objects/content/ContentBox';
+import { Title, Subtitle, Paragraph, Heading1, Heading2 } from '@objects/typography/Typography';
+import { Button } from '@objects/input/Input';
+import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
+import Image from '@objects/image/Image';
 
 import Window95, {
   TitleBar, Close, Minimize,

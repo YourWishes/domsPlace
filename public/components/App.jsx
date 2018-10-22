@@ -25,7 +25,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, BrowserRouter } from 'react-router-dom';
 
-import Background from './../objects/background/Background';
+import Background from '@objects/background/Background';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import Routes from './page/Routes';

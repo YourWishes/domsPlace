@@ -1,7 +1,8 @@
 const
   webpack = require('webpack'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  SharpLoader = require('responsive-loader/sharp')
+  SharpLoader = require('responsive-loader/sharp'),
+  path = require('path')
 ;
 
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -26,7 +27,13 @@ module.exports = {
 
   resolve: {
     modules: ['node_modules', './public'],
-    extensions: ['.js', '.jsx', '.css', '.scss' ]
+    extensions: ['.js', '.jsx', '.css', '.scss' ],
+    alias: {
+      '@public':  path.resolve(__dirname, './public'),
+      '@objects': path.resolve(__dirname, './public/objects'),
+      '@components': path.resolve(__dirname, './public/components'),
+      '@assets': path.resolve(__dirname, './public/assets')
+    }
   },
 
   // declare loaders to be used in webpack

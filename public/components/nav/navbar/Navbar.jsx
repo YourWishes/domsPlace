@@ -25,10 +25,10 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
-import PageBoundary from './../../page/PageBoundary';
-import Language from './../../../language/Language';
+import PageBoundary from '@components/page/PageBoundary';
+import Language from '@public/language/Language';
 import HamburgerMenu from './../menu/HamburgerMenu';
-import Image from './../../../objects/image/Image';
+import Image from '@objects/image/Image';
 
 const NavbarLink = function(props) {
   return (

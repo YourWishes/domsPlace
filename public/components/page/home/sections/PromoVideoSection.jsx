@@ -22,14 +22,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from './../../../../language/Language';
-import Page, { PageBoundary } from './../../Page';
-import Section, {  SplitSection, Split } from './../../../section/Section';
-import FloatingContentBox from './../../../../objects/content/FloatingContentBox';
-import ContentBox from './../../../../objects/content/ContentBox';
-import Video from './../../../../objects/video/Video';
-import { Title, Subtitle, Paragraph, Heading1 } from './../../../../objects/typography/Typography';
-import ElementScrollFader from './../../../../objects/animation/fade/ElementScrollFader';
+import Language from '@public/language/Language';
+import Page, { PageBoundary } from '@components/page/Page';
+import Section, {  SplitSection, Split } from '@components/section/Section';
+import FloatingContentBox from '@objects/content/FloatingContentBox';
+import ContentBox from '@objects/content/ContentBox';
+import Video from '@objects/video/Video';
+import { Title, Subtitle, Paragraph, Heading1 } from '@objects/typography/Typography';
+import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
 
 export default (props) => {

@@ -28,7 +28,7 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-const prefix = './../assets/images/favicon/';
+const prefix = '@assets/images/favicon/';
 
 export default (props) => {
   return (

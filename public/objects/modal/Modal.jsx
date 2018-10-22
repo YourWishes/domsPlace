@@ -26,10 +26,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Button } from './../input/Input';
-import Language from './../../language/Language';
-import { openModal, closeModal } from './../../actions/ModalActions';
-import { Heading4 } from './../typography/Typography';
-import Keyboard from './../../keyboard/Keyboard';
+import Language from '@public/language/Language';
+import { openModal, closeModal } from '@public/actions/ModalActions';
+import { Heading4 } from '@objects/typography/Typography';
+import Keyboard from '@public/keyboard/Keyboard';
 
 class Modal extends React.Component {
   constructor(props) {

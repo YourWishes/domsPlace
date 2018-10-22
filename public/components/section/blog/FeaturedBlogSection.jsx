@@ -23,7 +23,7 @@
 
 import React from 'react';
 import Section from './../Section';
-import { PageBoundary } from './../../page/Page';
+import { PageBoundary } from '@components/page/Page';
 
 const FeaturedArticle = function(props) {
   let clazz = "c-featured-blog-section__article";

@@ -23,12 +23,12 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from './../../../../language/Language';
-import { PageBoundary } from './../../Page';
-import { ImageSection } from './../../../section/Section';
-import ContentBox from './../../../../objects/content/ContentBox';
-import { Title, Paragraph, Heading1 } from './../../../../objects/typography/Typography';
-import ElementScrollFader from './../../../../objects/animation/fade/ElementScrollFader';
+import Language from '@public/language/Language';
+import { PageBoundary } from '@components/page/Page';
+import { ImageSection } from '@components/section/Section';
+import ContentBox from '@objects/content/ContentBox';
+import { Title, Paragraph, Heading1 } from '@objects/typography/Typography';
+import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
 export default (props) => {
   return (

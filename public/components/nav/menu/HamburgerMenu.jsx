@@ -24,8 +24,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Language from './../../../language/Language';
-import * as MenuActions from './../../../actions/MenuActions';
+import Language from '@public/language/Language';
+import * as MenuActions from '@public/actions/MenuActions';
 
 const HamburerMenuItem = function(props) {
   return (

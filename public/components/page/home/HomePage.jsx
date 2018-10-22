@@ -24,7 +24,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Page from './../Page';
-import Language from './../../../language/Language'
+import Language from '@public/language/Language'
 
 import BannerSection from './sections/BannerSection';
 import PromoVideoSection from './sections/PromoVideoSection';

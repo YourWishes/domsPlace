@@ -23,10 +23,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from './../../../../language/Language';
+import Language from '@public/language/Language';
 import Page, { PageBoundary } from './../../Page';
-import { BodySection, ClearSection } from './../../../section/Section';
-import { Title } from './../../../../objects/typography/Typography';
+import { BodySection, ClearSection } from '@components/section/Section';
+import { Title } from '@objects/typography/Typography';
 
 const PrivacyPolicyPage = (props) => {
   return (

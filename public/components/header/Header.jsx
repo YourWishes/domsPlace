@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Navbar from './../nav/navbar/Navbar';
+import Navbar from '@components/nav/navbar/Navbar';
 
 export default function(props) {
   return (

@@ -23,9 +23,9 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from './../../language/Language';
+import Language from '@public/language/Language';
 import { NavLink } from 'react-router-dom'
-import { PageBoundary } from './../page/Page';
+import { PageBoundary } from '@components/page/Page';
 
 const FooterLink = function(props) {
   let key = "footer.links." + props.title;

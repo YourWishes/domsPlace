@@ -27,7 +27,7 @@ import { bindActionCreators } from 'redux';
 
 //Components
 import Page, { PageBoundary } from './../Page';
-import Language from './../../../language/Language';
+import Language from '@public/language/Language';
 
 //Objects
 import ElementScrollFader from './../../../objects/animation/fade/ElementScrollFader';

@@ -23,7 +23,7 @@
 
 import React from 'react';
 import Section from './../Section';
-import Image from './../../../objects/image/Image';
+import Image from '@objects/image/Image';
 
 export default function(props) {
   let image;

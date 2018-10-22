@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Loader, { LoaderBackdrop } from './../../loading/Loader';
+import Loader, { LoaderBackdrop } from '@objects/loading/Loader';
 import Input, { InputGroup, TextArea } from './../Input';
 
 export default class Form extends React.Component {
