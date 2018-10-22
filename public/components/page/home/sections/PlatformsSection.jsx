@@ -28,8 +28,8 @@ import { ImageSection, SplitSection, Split } from './../../../section/Section';
 import FloatingContentBox from './../../../content/FloatingContentBox';
 import ContentBox from './../../../content/ContentBox';
 import Image from './../../../image/Image';
-import Video from './../../../video/Video';
-import { Title, Subtitle, Paragraph, Heading1 } from './../../../typography/Typography';
+import Video from './../../../../video/Video';
+import { Title, Subtitle, Paragraph, Heading1 } from './../../../../objects/typography/Typography';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 const Platform = (props) => {

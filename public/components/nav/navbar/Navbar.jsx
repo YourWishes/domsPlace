@@ -26,9 +26,9 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 import PageBoundary from './../../page/PageBoundary';
-import Language from './../../language/Language';
+import Language from './../../../language/Language';
 import HamburgerMenu from './../menu/HamburgerMenu';
-import Image from './../../image/Image';
+import Image from './../../../objects/image/Image';
 
 const NavbarLink = function(props) {
   return (
@@ -53,7 +53,7 @@ class Navbar extends React.Component {
             {/* Logo */}
             <NavLink to="/" className="c-navbar__logo-container" activeClassName="is-active">
               <Image
-                src={ require('./../../images/logo.svg') }
+                src={ require('./../../../assets/images/logo.svg') }
                 className="c-navbar__logo"
                 alt={ Language.get("site.name") }
                 title={ Language.get("site.name") }

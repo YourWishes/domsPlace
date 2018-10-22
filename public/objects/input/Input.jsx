@@ -28,7 +28,7 @@ import ButtonGroup from './button/ButtonGroup';
 import Form, { FormManager } from './form/Form';
 import InputGroup from './group/InputGroup';
 import Label from './label/Label';
-import Keyboard from './../keyboard/Keyboard';
+import Keyboard from './../../keyboard/Keyboard';
 
 export default class Input extends React.Component {
   constructor(props) {

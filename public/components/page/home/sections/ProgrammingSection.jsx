@@ -27,7 +27,7 @@ import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
 import { ImageSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
-import { Title, Paragraph, Heading1 } from './../../../typography/Typography';
+import { Title, Paragraph, Heading1 } from './../../../../objects/typography/Typography';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 export default (props) => {

@@ -27,8 +27,8 @@ import Page, { PageBoundary } from './../../Page';
 import Section, {  SplitSection, Split } from './../../../section/Section';
 import FloatingContentBox from './../../../content/FloatingContentBox';
 import ContentBox from './../../../content/ContentBox';
-import Video from './../../../video/Video';
-import { Title, Subtitle, Paragraph, Heading1 } from './../../../typography/Typography';
+import Video from './../../../../objects/video/Video';
+import { Title, Subtitle, Paragraph, Heading1 } from './../../../../objects/typography/Typography';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 
 
@@ -41,8 +41,8 @@ export default (props) => {
           <Split className="u-text-center" padded>
             <ElementScrollFader>
               <Video
-                image={ require('./../../../videos/bunny/big_buck_bunny.jpg') }
-                mp4={ require('./../../../videos/bunny/big_buck_bunny.mp4') }
+                image={ require('./../../../../assets/videos/bunny/big_buck_bunny.jpg') }
+                mp4={ require('./../../../assets/videos/bunny/big_buck_bunny.mp4') }
                 controls
               />
             </ElementScrollFader>

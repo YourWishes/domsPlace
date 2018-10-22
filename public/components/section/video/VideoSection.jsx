@@ -23,8 +23,8 @@
 
 import React from 'react';
 import Section from './../Section';
-import Video from './../../video/Video';
-import Loader from './../../loading/Loader';
+import Video from './../../../objects/video/Video';
+import Loader from './../../../objects/loading/Loader';
 
 class VideoSection extends React.Component {
   constructor(props) {

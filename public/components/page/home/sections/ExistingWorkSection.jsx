@@ -26,7 +26,7 @@ import Language from './../../../language/Language';
 import { PageBoundary } from './../../Page';
 import { ImageSection, SplitSection, Split, ClearSection } from './../../../section/Section';
 import ContentBox from './../../../content/ContentBox';
-import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../typography/Typography';
+import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../../objects/typography/Typography';
 import { Button } from './../../../input/Input';
 import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
 import Image from './../../../image/Image';
@@ -37,7 +37,7 @@ import Window95, {
   ContextMenu, ContextMenuOption,
   Frame,
   AddressBar
-} from './../../../window/Window95';
+} from './../../../../object/window/Window95';
 
 const ExistingWorkFrame = (props) => {
   let fakeURL = props.href;
