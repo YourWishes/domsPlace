@@ -35,7 +35,30 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  "targets": {
+                    "node": "current",
+                    "browsers": [
+                      "Chrome >= 41",
+                      "FireFox >= 44",
+                      "Safari >= 7",
+                      "Explorer 11",
+                      "last 4 Edge versions"
+                    ]
+                  },
+                  "useBuiltIns": false
+                }
+              ],
+              "@babel/preset-react"
+            ]
+          }
+        }
       },
 
       {

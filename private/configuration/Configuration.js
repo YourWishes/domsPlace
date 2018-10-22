@@ -21,52 +21,59 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+const fs = require('fs');
+const CONFIG_PATH = './private/data/config.json';// TODO: Set this a... better way?
 
-//Imports
-const fs = require('fs');//Used for file based configurations (local testing)
-const CONFIG_PATH = './private/data/config.json';// TODO: Set this a different way?
-
-//Constructor
-class ConfigurationManager {
+class Configuration {
   constructor(app) {
     this.app = app;
     this.data = {};
+    this.isHeroku = false;
   }
 
-  loadConfig() {
-    //Is this a Heroku Server? I need a nicer way of doing this in the future
-    let process_variables = process.env;
+  getApp() { return this.app; }
+
+  async loadConfig(path) {
+    //First we need to check if this is Heroku or not...
+    let processVariabels = process.env;
     this.isHeroku = false;
     if(
-      process_variables !== typeof undefined &&
-      typeof process_variables.NODE_HOME !== typeof undefined &&
-      process_variables.NODE_HOME.indexOf("heroku") !== -1
+      processVariabels !== typeof undefined &&
+      typeof processVariabels.NODE_HOME !== typeof undefined &&
+      processVariabels.NODE_HOME.indexOf("heroku") !== -1
     ) {
       this.isHeroku = true;
     }
 
     //Read config data
-    if(!this.isHeroku) {
+    if(this.isHeroku) {
+    this.data = processVariabels;
+    } else {
       //TODO: Rather than use readSync, convert the whole function to async and use a library like fs-extra for async?
       let dataRaw = fs.readFileSync(CONFIG_PATH, 'utf8');
       let data = JSON.parse(dataRaw);
       if(!data) throw new Error("Failed to parse Config JSON! Check for an error and try again.");
       this.data = data;
-    } else {
-      this.data = process_variables;
     }
   }
 
-  getValueOf(key) {
+  has(key) {
+    let value = this.get(key);
+    if(typeof value === typeof undefined) return false;
+    if(!value) return false;
+    return value.length !== 0;
+  }
+
+  get(key) {
     if(this.isHeroku) {
       key = key.replace(/\./g, '_').toUpperCase();
       if(typeof this.data[key] === typeof undefined) return null;
       return this.data[key];
     }
-    return this.getValueOfRecursive(key.split("."));
+    return this.getRecursive(key.split("."));
   }
 
-  getValueOfRecursive(key_array, data_obj) {
+  getRecursive(key_array, data_obj) {
     if(typeof data_obj === typeof undefined) data_obj = this.data;
     if(typeof data_obj === typeof undefined) return null;
 
@@ -78,10 +85,10 @@ class ConfigurationManager {
     if(key_array.length > 1) {
       if(typeof o !== typeof {}) return null;
       key_array.shift();
-      return this.getValueOfRecursive(key_array, o);
+      return this.getRecursive(key_array, o);
     }
     return o;
   }
 }
 
-module.exports = ConfigurationManager;//Export
+module.exports = Configuration;

@@ -1,20 +1,22 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "node": "current",
-        "browsers": [
-          "Chrome >= 41",
-          "FireFox >= 44",
-          "Safari >= 7",
-          "Explorer 11",
-          "last 4 Edge versions"
-        ]
-      },
-      "useBuiltIns": false
-    }],
-    "react",
-    "babel-polyfill"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current",
+          "browsers": [
+            "Chrome >= 41",
+            "FireFox >= 44",
+            "Safari >= 7",
+            "Explorer 11",
+            "last 4 Edge versions"
+          ]
+        },
+        "useBuiltIns": false
+      }
+    ],
+    "@babel/preset-react"
   ],
   "ignore": [
     "node_modules"

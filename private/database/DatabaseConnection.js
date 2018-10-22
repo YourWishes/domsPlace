@@ -21,71 +21,57 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const
-  pgp = require('pg-promise')(),
-  fs = require('fs'),
-  path = require('path')
-;
+const pgp = require('pg-promise')();
+const fs = require('fs');
 
-const QUERIES_PATH = 'queries';
+const QUERIES_DIRECTORY = "queries";
 
 class DatabaseConnection {
   constructor(app) {
     this.app = app;
   }
 
-  getConfig() {return this.app.getConfig();}//Short Hand Method
+  getApp() { return this.app; }
+  getConfig() {return this.getApp().getConfig();}
 
-  getQueriesPath() {
-    return path.join(__dirname, QUERIES_PATH);
-  }
-
-  loadQueries() {
-    //Load Queries
-    let queries = {};
-
-    if(fs.existsSync(this.getQueriesPath())) {
-      let queryFiles = fs.readdirSync(this.getQueriesPath());
-      for(var i = 0; i < queryFiles.length; i++) {
-        let file = queryFiles[i];
-        let x = fs.readFileSync(path.join(this.getQueriesPath(), file), 'utf8');
-        queries[file.replace(".sql", "")] = x;
-      }
-    }
-
-    this.queries = queries;
-    return queries;
-  }
-
-  isConnected() {
+  isConnnected() {
     return typeof this.db !== typeof undefined;
   }
 
   async connect() {
-    await this.connectThen();
-  }
+    //Check Configuration
+    if(!this.getConfig().has("database.connection") && !this.getConfig().has("database.url")) throw new Error("Missing Database Connection URL!");
 
-  async connectThen() {
-    if(this.isConnected()) return true;
+    //Load queries into cache
+    let queries = {};
+    let types = fs.readdirSync(__dirname + '/' + QUERIES_DIRECTORY);
+    for(let i = 0; i < types.length; i++) {
+      //Now Scan each file in this directory
+      let dir = __dirname + '/' + QUERIES_DIRECTORY + '/' + types[i];
+      let dirContents = fs.readdirSync(dir);
+      for(let x = 0; x < dirContents.length; x++) {
+        //Now read each file within this dir..
+        let filePath = dir + '/' + dirContents[x];
+        console.log(filePath);
+        let query = fs.readFileSync(filePath, 'utf8');
 
-    if(
-      !this.getConfig().getValueOf("database.connection")
-      && !this.getConfig().getValueOf("database.url")
-    ) {
-      throw new Error("Missing DB Credentials.");
+        //Now Save our query as filename minus extension.
+        queries[dirContents[x].split('.')[0]] = query;
+      }
     }
 
-    this.db = pgp(
-      this.getConfig().getValueOf("database.connection") ||
-      this.getConfig().getValueOf("database.url")
-    );
+    this.queries = queries;
 
-    //Fire the event
-    if(typeof this.app.onDatabaseConnected === "function") {
-      await this.app.onDatabaseConnected(this);
-    }
+    //Connect to Database
+    this.db = await pgp( this.getConfig().get("database.connection") || this.getConfig().get("database.url") );
 
-    return true;
+    //Now run any "Create" queries
+    let keys = Object.keys(queries);
+    for(let i = 0; i < keys.length; i++) {
+      let k = keys[i];
+      if(!k.startsWith("Create")) return;
+      await this.none(k);
+    };
   }
 
   getQuery(name) {
@@ -121,6 +107,6 @@ class DatabaseConnection {
     let x = await this.db.query(q, data);
     return x;
   }
-};
+}
 
 module.exports = DatabaseConnection;

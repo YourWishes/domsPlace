@@ -23,8 +23,7 @@
 
 //Imports
 const
-  path = require('path'),
-  ConfigurationManager = require('./../configuration/ConfigurationManager'),
+  Configuration = require('./../config/Configuration'),
   DatabaseConnection = require('./../database/DatabaseConnection'),
   Server = require('./../server/Server'),
   Email = require('./../email/Email')
@@ -35,45 +34,44 @@ const PUBLIC_PATH = path.join(__dirname, '..', '..', 'dist');
 
 class App {
   constructor() {
-
+    this.config = new Configuration(this);
+    this.database = new DatabaseConnection(this);
+    this.server = new Server(this);
+    this.email = new Email(this);
   }
 
-  getConfig()   { return this.config; }
-  getDatabase() { return this.db; }
-  getPublicDirectory() { return PUBLIC_PATH; }
+  getConfig() { return this.config; }
+  getDatabase() { return this.database; }
   getServer() { return this.server; }
-  getAPI() { return this.getServer().getAPI(); }
   getEmail() {return this.email;}
 
   //Primary Functions
-  async start() {
-    //First, load our configuration.
+  async init() {
+    this.log('Starting App...');
+
+    //Load configuration...
+    this.log('Reading Configuration...');
     try {
-      console.log("Loading Configuration...");
-      this.config = new ConfigurationManager(this);
-      this.config.loadConfig();
-      console.log("...Done!");
+      await this.config.loadConfig();
     } catch(e) {
-      console.error("Failed to read config!");
-      throw new Error(e);
+      this.error('Failed to load configuration!');
+      this.error(e);
+      return;
     }
 
-    //Next, connect to the database.
+    //Connect to the Database
+    this.log('Connecting to the Database...');
     try {
-      console.log("Connecting to database...");
-      this.db = new DatabaseConnection(this);
-      this.db.loadQueries();//Load our prepared queries
-      await this.db.connect();//Connect to the DB.
-      console.log("...Done!");
+      await this.database.connect();
     } catch(e) {
-      console.error("Failed to connect to the database!");
-      throw new Error(e);
+      this.error('Failed to connect to database!');
+      this.error(e);
+      return;
     }
 
     //Connect to our SMTP Host (For sending mail)
     try {
-      console.log('Connecting to SMTP Server');
-      this.email = new Email(this);
+      this.log('Connecting to SMTP Server');
       await this.email.connect();
       console.log('...Done');
     } catch(e) {
@@ -84,19 +82,24 @@ class App {
     //Now we need to start the server. This provides both a nice interface, as
     //well as our API Handler (including 2auth callback urls)
     try {
-      console.log("Starting Server...");
-      this.server = new Server(this);
+      this.log("Starting Server...");
       await this.server.start();
       console.log("...Done!");
     } catch(e) {
       console.error("Failed to start the server!");
       throw new Error(e);
     }
-
   }
 
-  //Database Specific
-  onDatabaseConnected(db) { }
+  // Logging Functions //
+  log(e) {
+    //Will allow for extra logging
+    console.log(e)
+  }
+
+  error(e) {
+    console.error(e);
+  }
 }
 
 module.exports = App;

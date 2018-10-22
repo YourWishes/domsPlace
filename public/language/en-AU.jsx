@@ -3,7 +3,7 @@ import { LanguageTools } from './Language';
 
 import Policy from './policy-english';
 
-module.exports = {
+export default {
   "site": {
     "name": "domsPlace",
     "title": "domsPlace - Personal Site of Dominic Masters",

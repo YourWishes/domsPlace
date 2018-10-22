@@ -22,35 +22,33 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 'use strict';
-import 'babel-polyfill';
+import '@babel/polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 import { Provider } from 'react-redux';
-import RootReducer from './reducers/RootReducer'
+import RootReducer from './reducers/RootReducer';
 import Keyboard from './keyboard/Keyboard';
+
 
 //Import Stylesheet
 import Styles from './styles/index';
 
 //Import Base Component
-import App from './App';
+import App from './components/App';
 
 //Create our redux middleware
-const store = createStore(RootReducer);
-const unsubscribe = store.subscribe(() => {
-  console.log(store.getState());
-});
+const store = createStore(RootReducer, applyMiddleware(
+  createLogger({ collapsed: true })
+));
 
 //Start listening for key events
 Keyboard.register();
 
-ReactDOM.render(
-  (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  ),
-  document.getElementById('app')
-);
+ReactDOM.render((
+  <Provider store={store}>
+    <App />
+  </Provider>
+),document.getElementById('app'));

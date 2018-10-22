@@ -23,59 +23,55 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import Language from './../../language/Language';
+import { NavLink } from 'react-router-dom'
+import { PageBoundary } from './../page/Page';
 
-import Background from './background/Background';
-import Header from './header/Header';
-import Footer from './footer/Footer';
-import { HashRouter, BrowserRouter } from 'react-router-dom';
-import Routes from './page/Routes';
-import Favicon from './Favicon';
+const FooterLink = function(props) {
+  let key = "footer.links." + props.title;
+  return (
+    <NavLink to={ props.to } className="c-footer__link">
+      { Language.get(key) }
+    </NavLink>
+  );
+}
 
-class App extends React.Component {
+class Footer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onEnteringBound = this.onEntering.bind(this);
-  }
-
-  onEntering() {
-    this.refs.app.scroll({
-      top:  0,
-      left: 0,
-      behavior: 'smooth'
-    });
   }
 
   render() {
-    let clazz = "c-app";
-    if(this.props.menuOpen) clazz += " is-menu-open ";
+    return (
+      <footer className="c-footer">
+        <div className="c-footer__part">
+        </div>
 
-    let modal;
-    if(this.props.modal.open) clazz += " is-modal-open";
-    if(this.props.modal.modal) modal = this.props.modal.modal;
+        <PageBoundary>
+          <div className="c-footer__inner">
 
-    let children = (
-      <div className={clazz} ref="app">
-        <Favicon />
-        <Header />
-        { modal }
-        <Routes onEntering={this.onEnteringBound} />
-      </div>
+            <nav className="c-footer__links">
+              <FooterLink title="home" to="/" />
+              <FooterLink title="contact" to="/contact" />
+              <FooterLink title="privacy" to="/legal/privacy" />
+            </nav>
+
+            <div className="c-footer__copyright">
+              &copy; { new Date(1335830400000).getFullYear() }
+              ~
+              { new Date().getFullYear() } Dominic Masters
+            </div>
+          </div>
+        </PageBoundary>
+      </footer>
     );
-
-    if(false) {
-      return <HashRouter>{children}</HashRouter>;
-    } else {
-      return <BrowserRouter>{children}</BrowserRouter>;
-    }
   }
 }
 
 const mapStateToProps = function(state) {
   return {
-    menuOpen: state.menu.open,
-    modal: state.modal
+    code: state.language.code
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Footer);

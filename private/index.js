@@ -1,4 +1,3 @@
-'use strict';
 // Copyright (c) 2018 Dominic Masters
 //
 // MIT License
@@ -22,19 +21,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-//Import
-const
-  App = require('./app/App')
-;
+'use strict';
 
-//Create
+const App = require('./app/App');
+
+//Attempt to make a global "Async Handler" for the app itself
 const app = new App();
 
-//Create entire app wrapper for safe logging and exiting from crashes etc.
 (async () => {
-  //Start the app
-  return await app.start();
-})().then((e) => console.log).catch((e) => {
-  if(!e) return;
-  console.error(e);
+  //Initialize the app
+  await app.init();
+
+  //Start the main thread
+
+  //End the app
+})().then((e) => {
+  //Should never occur
+
+}).catch((e) => {
+  //On Error
+  if(e) console.error(e);
 });
