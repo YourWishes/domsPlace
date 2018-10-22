@@ -22,7 +22,7 @@
     background-size: 150% auto;
 
     &-video {
-      background-image: url('./../images/patterns/florida.svg');
+      background-image: url($s-asset--directory+'images/patterns/florida.svg');
     }
   }
 

@@ -62,11 +62,11 @@ $c-hamburger-menu--pos-y: 0%;
     }
 
     &--home {
-      background-image: url('./../images/patterns/game-show.svg');
+      background-image: url($s-asset--directory+'images/patterns/game-show.svg');
     }
 
     &--contact {
-      background-image: url('./../images/patterns/lemon-triangle.svg');
+      background-image: url($s-asset--directory+'images/patterns/lemon-triangle.svg');
     }
 
     &:hover:before {
