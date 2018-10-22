@@ -37,7 +37,7 @@ import Window95, {
   ContextMenu, ContextMenuOption,
   Frame,
   AddressBar
-} from './../../../../objects/window/Window95';
+} from '@objects/window/Window95';
 
 const ExistingWorkFrame = (props) => {
   let fakeURL = props.href;
@@ -113,7 +113,7 @@ export default (props) => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-work"
-      src={ require('./../../../../assets/images/patterns/arcade.svg') }
+      src={ require('@assets/images/patterns/arcade.svg') }
       loadable
       background
     >
@@ -139,7 +139,7 @@ export default (props) => {
           href="//www.kopalife.com/products/kube-customise"
           fromLeft="top"
           fromRight="bottom"
-          src={ require('./../../../../assets/images/work-showcase/kopalife.png') }
+          src={ require('@assets/images/work-showcase/kopalife.png') }
           title={ Language.get("pages.home.work.kopa.heading") }
           description={ Language.get("pages.home.work.kopa.description") }
         />
@@ -150,7 +150,7 @@ export default (props) => {
           fromLeft="right"
           fromRight="right"
           swap
-          src={ require('./../../../../assets/images/work-showcase/smai.svg') }
+          src={ require('@assets/images/work-showcase/smai.svg') }
           title={ Language.get("pages.home.work.smai.heading") }
           description={ Language.get("pages.home.work.smai.description") }
         />
@@ -161,7 +161,7 @@ export default (props) => {
           fromLeft="left"
           fromRight="left"
 
-          src={ require('./../../../../assets/images/work-showcase/ozhair.png') }
+          src={ require('@assets/images/work-showcase/ozhair.png') }
           title={ Language.get("pages.home.work.ozhair.heading") }
           description={ Language.get("pages.home.work.ozhair.description") }
         />

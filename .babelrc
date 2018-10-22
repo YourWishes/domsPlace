@@ -18,6 +18,9 @@
     ],
     "@babel/preset-react"
   ],
+  "plugins": [
+
+  ],
   "ignore": [
     "node_modules"
   ]

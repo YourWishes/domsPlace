@@ -32,7 +32,9 @@ module.exports = {
       '@public':  path.resolve(__dirname, './public'),
       '@objects': path.resolve(__dirname, './public/objects'),
       '@components': path.resolve(__dirname, './public/components'),
-      '@assets': path.resolve(__dirname, './public/assets')
+      '@assets': path.resolve(__dirname, './public/assets'),
+      '@pages': path.resolve(__dirname, './public/pages'),
+      '@common': path.resolve(__dirname, './common/')
     }
   },
 
@@ -63,6 +65,9 @@ module.exports = {
                 }
               ],
               "@babel/preset-react"
+            ],
+            "plugins": [
+              '@babel/plugin-syntax-dynamic-import'
             ]
           }
         }

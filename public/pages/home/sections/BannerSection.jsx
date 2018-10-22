@@ -23,46 +23,31 @@
 
 import React from 'react';
 import Language from '@public/language/Language';
-import Page, { PageBoundary } from '@components/page/Page';
-import Section, {  SplitSection, Split } from '@components/section/Section';
+import { PageBoundary } from '@components/page/Page';
+import { ImageSection } from '@components/section/Section';
 import FloatingContentBox from '@objects/content/FloatingContentBox';
-import ContentBox from '@objects/content/ContentBox';
-import Video from '@objects/video/Video';
-import { Title, Subtitle, Paragraph, Heading1 } from '@objects/typography/Typography';
+import { Title, Subtitle } from '@objects/typography/Typography';
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
 
 export default (props) => {
   return (
-    <Section className="p-home-page__promo p-home-page__promo-video">
-      <PageBoundary>
-        <SplitSection align="center">
-
-          <Split className="u-text-center" padded>
-            <ElementScrollFader>
-              <Video
-                image={ require('./../../../../assets/videos/bunny/big_buck_bunny.jpg') }
-                mp4={ require('./../../../../assets/videos/bunny/big_buck_bunny.mp4') }
-                controls
-              />
-            </ElementScrollFader>
-          </Split>
-
-          <Split className="u-text-center" padded>
-            <ElementScrollFader from="bottom">
-              <ContentBox box>
-                <Title>
-                  { Language.get("pages.home.video.heading") }
-                </Title>
-                <Paragraph>
-                  { Language.get("pages.home.video.paragraph") }
-                </Paragraph>
-              </ContentBox>
-            </ElementScrollFader>
-          </Split>
-
-        </SplitSection>
+    <ImageSection
+      className="p-home-page__banner"
+      src={ require('@assets/images/banners/about/glasses.svg') }
+      alt="domsPlace"
+      width="2400"
+      height="1200"
+      loadable
+    >
+      <PageBoundary full>
+        <FloatingContentBox position="middle center" size="large" className="u-text-center">
+          <ElementScrollFader from="bottom">
+            <Title>{ Language.get("pages.home.banner.title") }</Title>
+            <Subtitle className="u-responsive--small-up">{ Language.get("pages.home.banner.subtitle") }</Subtitle>
+          </ElementScrollFader>
+        </FloatingContentBox>
       </PageBoundary>
-    </Section>
+    </ImageSection>
   );
 }

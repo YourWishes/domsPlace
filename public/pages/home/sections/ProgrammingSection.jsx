@@ -23,43 +23,31 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Page from './../Page';
-import Language from '@public/language/Language'
+import Language from '@public/language/Language';
+import { PageBoundary } from '@components/page/Page';
+import { ImageSection } from '@components/section/Section';
+import ContentBox from '@objects/content/ContentBox';
+import { Title, Paragraph, Heading1 } from '@objects/typography/Typography';
+import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
-import BannerSection from './sections/BannerSection';
-import PromoVideoSection from './sections/PromoVideoSection';
-import ProgrammingSection from './sections/ProgrammingSection';
-import PlatformsSection from './sections/PlatformsSection';
-import ExistingWorkSection from './sections/ExistingWorkSection';
-
-const HomePage = (props) => {
-  //Return
+export default (props) => {
   return (
-    <Page style="home-page" className="p-home-page" title={0}>
-
-      { /* Banner */ }
-      <BannerSection />
-
-      { /* Promo Video
-      <PromoVideoSection />
-      */ }
-
-      {/* Programming */}
-      <ProgrammingSection />
-
-      {/* Platforms */}
-      <PlatformsSection />
-
-      {/* Existing Work */}
-      <ExistingWorkSection />
-    </Page>
+    <ImageSection
+      className="p-home-page__promo p-home-page__promo-programming"
+      src={ require('@assets/images/patterns/rhythm-heaven.svg') }
+      loadable
+      background
+    >
+      <PageBoundary small>
+        <ElementScrollFader from="bottom">
+          <ContentBox box>
+            <Heading1 className="u-text-center">
+              { Language.get("pages.home.programming.heading") }
+            </Heading1>
+            { Language.get("pages.home.programming.paragraph") }
+          </ContentBox>
+        </ElementScrollFader>
+      </PageBoundary>
+    </ImageSection>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  };
-}
-
-export default connect(mapStateToProps)(HomePage);

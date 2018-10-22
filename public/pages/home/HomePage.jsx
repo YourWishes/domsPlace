@@ -22,32 +22,44 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from '@public/language/Language';
-import { PageBoundary } from '@components/page/Page';
-import { ImageSection } from '@components/section/Section';
-import FloatingContentBox from '@objects/content/FloatingContentBox';
-import { Title, Subtitle } from '@objects/typography/Typography';
-import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
+import { connect } from 'react-redux';
+import Page from '@components/page/Page';
+import Language from '@public/language/Language'
 
+import BannerSection from './sections/BannerSection';
+import PromoVideoSection from './sections/PromoVideoSection';
+import ProgrammingSection from './sections/ProgrammingSection';
+import PlatformsSection from './sections/PlatformsSection';
+import ExistingWorkSection from './sections/ExistingWorkSection';
 
-export default (props) => {
+const HomePage = (props) => {
+  //Return
   return (
-    <ImageSection
-      className="p-home-page__banner"
-      src={ require('./../../../../assets/images/banners/about/glasses.svg') }
-      alt="domsPlace"
-      width="2400"
-      height="1200"
-      loadable
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <ElementScrollFader from="bottom">
-            <Title>{ Language.get("pages.home.banner.title") }</Title>
-            <Subtitle className="u-responsive--small-up">{ Language.get("pages.home.banner.subtitle") }</Subtitle>
-          </ElementScrollFader>
-        </FloatingContentBox>
-      </PageBoundary>
-    </ImageSection>
+    <Page style="home-page" className="p-home-page" title={0}>
+
+      { /* Banner */ }
+      <BannerSection />
+
+      { /* Promo Video
+      <PromoVideoSection />
+      */ }
+
+      {/* Programming */}
+      <ProgrammingSection />
+
+      {/* Platforms */}
+      <PlatformsSection />
+
+      {/* Existing Work */}
+      <ExistingWorkSection />
+    </Page>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    code: state.language.code
+  };
+}
+
+export default connect(mapStateToProps)(HomePage);

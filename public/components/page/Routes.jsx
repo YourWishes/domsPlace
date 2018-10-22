@@ -26,24 +26,28 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types'
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
 import Header from './../header/Header';
 import Footer from './../footer/Footer';
 
-//Pages
-import Homepage from './home/Homepage';
-import ContactPage from './contact/ContactPage';
+const PageLoading = (props) => {
+  if(props.error) return <span>Loading Error</span>;
+  if(props.pastDelay) return <span>Loading...</span>;
+  return null;
+};
 
-import PrivacyPolicyPage from './legal/privacy/PrivacyPolicyPage';
-
-const RouteWrapper = (props) => {
-  let newProps = Object.assign({}, props);
+export const RouteWrapper = (props) => {
   return (
     <Route {...props} render={() => {
-        let CustomTag = props.page;
+        let CustomLoadable = Loadable({
+          loader: props.page,
+          loading: PageLoading
+        });
+        let CustomTag = <span>Not loading</span>;
         return (
           <main className="c-main">
-            <CustomTag />
+            <CustomLoadable />
             <Footer />
           </main>
         );
@@ -57,7 +61,7 @@ class Routes extends React.Component {
   }
 
   render() {
-    const { match, location, history } = this.props;
+    const { match, location, history, children } = this.props;
 
     return (
       <Route>
@@ -71,10 +75,7 @@ class Routes extends React.Component {
             onEntering={ this.props.onEntering }
           >
             <Switch location={ location }>
-              <RouteWrapper exact path="/" page={ Homepage } />
-              <RouteWrapper exact path="/contact" page={ ContactPage } />
-
-              <RouteWrapper exact path="/legal/privacy" page={ PrivacyPolicyPage } />
+              { children }
             </Switch>
           </CSSTransition>
         </TransitionGroup>

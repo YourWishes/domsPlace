@@ -60,7 +60,7 @@ export default (props) => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-platforms"
-      src={ require('./../../../../assets/images/patterns/game-show.svg') }
+      src={ require('@assets/images/patterns/game-show.svg') }
       loadable
       background
     >
@@ -74,14 +74,14 @@ export default (props) => {
         <div className="p-home-page__brands">
           {/* Shopify */}
           <Platform
-            src={require('./../../../../assets/images/branding/shopify/shopify_glyph.svg')}
+            src={require('@assets/images/branding/shopify/shopify_glyph.svg')}
             from="left"
             to="//www.shopify.com"
             title={ Language.get("pages.home.platforms.shopify") }
           />
           {/* React */}
           <Platform
-            src={require('./../../../../assets/images/branding/react/react-logo.svg')}
+            src={require('@assets/images/branding/react/react-logo.svg')}
             from="top"
             to="//reactjs.org"
             title={ Language.get("pages.home.platforms.react") }
@@ -89,7 +89,7 @@ export default (props) => {
 
           {/* MonoGame */}
           <Platform
-            src={require('./../../../../assets/images/branding/monogame/monogame-logo.svg')}
+            src={require('@assets/images/branding/monogame/monogame-logo.svg')}
             from="bottom"
             to="http://www.monogame.net"
             title={ Language.get("pages.home.platforms.monogame") }
@@ -97,7 +97,7 @@ export default (props) => {
 
           {/* PGSQL */}
           <Platform
-            src={require('./../../../../assets/images/branding/pgsql/pgsql-logo.svg')}
+            src={require('@assets/images/branding/pgsql/pgsql-logo.svg')}
             from="right"
             to="//www.postgresql.org"
             title={ Language.get("pages.home.platforms.pgsql") }
@@ -105,7 +105,7 @@ export default (props) => {
 
           {/* NodeJS */}
           <Platform
-            src={require('./../../../../assets/images/branding/nodejs/nodejs-logo.svg')}
+            src={require('@assets/images/branding/nodejs/nodejs-logo.svg')}
             from="top"
             to="//nodejs.org"
             title={ Language.get("pages.home.platforms.nodejs") }
@@ -113,7 +113,7 @@ export default (props) => {
 
           {/* C# */}
           <Platform
-            src={require('./../../../../assets/images/branding/csharp/csharp-logo.svg')}
+            src={require('@assets/images/branding/csharp/csharp-logo.svg')}
             from="top"
             to="//docs.microsoft.com/en-us/dotnet/csharp/"
             title={ Language.get("pages.home.platforms.csharp") }
@@ -121,7 +121,7 @@ export default (props) => {
 
           {/* PHP */}
           <Platform
-            src={require('./../../../../assets/images/branding/php/php-logo.svg')}
+            src={require('@assets/images/branding/php/php-logo.svg')}
             from="top"
             to="//php.net"
             title={ Language.get("pages.home.platforms.php") }
@@ -129,7 +129,7 @@ export default (props) => {
 
           {/* Java */}
           <Platform
-            src={require('./../../../../assets/images/branding/java/java-logo.svg')}
+            src={require('@assets/images/branding/java/java-logo.svg')}
             from="top"
             to="//java.com"
             title={ Language.get("pages.home.platforms.java") }
@@ -137,7 +137,7 @@ export default (props) => {
 
           {/* neto */}
           <Platform
-            src={require('./../../../../assets/images/branding/neto/neto-logo.svg')}
+            src={require('@assets/images/branding/neto/neto-logo.svg')}
             from="bottom"
             to="//www.neto.com.au"
             title={ Language.get("pages.home.platforms.neto") }
@@ -145,7 +145,7 @@ export default (props) => {
 
           {/* MySQL */}
           <Platform
-            src={require('./../../../../assets/images/branding/mysql/mysql-logo.svg')}
+            src={require('@assets/images/branding/mysql/mysql-logo.svg')}
             from="bottom"
             to="//www.mysql.com"
             title={ Language.get("pages.home.platforms.mysql") }
@@ -153,7 +153,7 @@ export default (props) => {
 
           {/* Heroku */}
           <Platform
-            src={require('./../../../../assets/images/branding/heroku/heroku-logo.svg')}
+            src={require('@assets/images/branding/heroku/heroku-logo.svg')}
             from="bottom"
             to="//heroku.com"
             title={ Language.get("pages.home.platforms.heroku") }
@@ -161,7 +161,7 @@ export default (props) => {
 
           {/* OpenGL */}
           <Platform
-            src={require('./../../../../assets/images/branding/opengl/opengl-logo.svg')}
+            src={require('@assets/images/branding/opengl/opengl-logo.svg')}
             from="bottom"
             to="//www.opengl.org"
             title={ Language.get("pages.home.platforms.opengl") }
@@ -169,7 +169,7 @@ export default (props) => {
 
           {/* Discord */}
           <Platform
-            src={ require('./../../../../assets/images/branding/discord/discord-logo.svg') }
+            src={ require('@assets/images/branding/discord/discord-logo.svg') }
             from="right"
             to="//discordapp.com"
             title={ Language.get("pages.home.platforms.discord") }
@@ -177,7 +177,7 @@ export default (props) => {
 
           {/* Twitch */}
           <Platform
-            src={ require('./../../../../assets/images/branding/twitch/twitch-logo.svg') }
+            src={ require('@assets/images/branding/twitch/twitch-logo.svg') }
             from="right"
             to="//twitch.tv"
             title={ Language.get("pages.home.platforms.twitch") }
@@ -185,7 +185,7 @@ export default (props) => {
 
           {/* Twitter */}
           <Platform
-            src={require('./../../../../assets/images/branding/twitter/twitter-logo.svg')}
+            src={require('@assets/images/branding/twitter/twitter-logo.svg')}
             from="left"
             to="//twitter.com"
             title={ Language.get("pages.home.platforms.twitter") }
@@ -193,7 +193,7 @@ export default (props) => {
 
           {/* Google Cloud */}
           <Platform
-            src={ require('./../../../../assets/images/branding/google-cloud/google-cloud-logo.svg') }
+            src={ require('@assets/images/branding/google-cloud/google-cloud-logo.svg') }
             from="left"
             to="//console.cloud.google.com"
             title={ Language.get("pages.home.platforms.googlecloud") }

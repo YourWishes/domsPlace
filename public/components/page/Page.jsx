@@ -33,25 +33,23 @@ class Page extends React.Component {
   }
 
   render() {
+    let { title, style, className } = this.props;
+
     let clazzes = "c-page";
 
-    if(this.props.className) clazzes += " " + this.props.className;
+    if(className) clazzes += " " + className;
 
-    let title;
-    if(
-      (typeof this.props.title === typeof undefined ||
-      typeof this.props.title.length === typeof undefined ||
-      !this.props.title.length) && this.props.style != "home-page"
-    ) {
+    let titleHelmet;
+    if((!title || !title.length) && this.props.style != "home-page") {
       console.exception("This page (" + (this.props.style || this.props.className) + ") does not have a title!");
     } else {
-      title = <title>{ this.props.title }</title>
+      titleHelmet = <title>{ this.props.title }</title>
     }
 
     return (
       <div className={clazzes}>
         <Helmet defaultTitle={ Language.get("site.title") } titleTemplate={ Language.get("site.titleTemplate") }>
-          { title }
+          { titleHelmet }
         </Helmet>
         { this.props.children }
       </div>

@@ -25,15 +25,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Forms from '@common/Forms';
+
+//Actions
+import { openModal } from '@public/actions/ModalActions';
+
 //Components
-import Page, { PageBoundary } from './../Page';
+import Page, { PageBoundary } from '@components/page/Page';
 import Language from '@public/language/Language';
+import Section, {
+  BodySection,
+  ClearSection,
+  SplitSection,
+  Split
+} from '@components/section/Section';
 
 //Objects
-import ElementScrollFader from './../../../objects/animation/fade/ElementScrollFader';
-import ContentBox from './../../../objects/content/ContentBox';
-import { Title, Heading1, Paragraph } from './../../../objects/typography/Typography';
-//import Forms from './../../../common/Forms';
+import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
+import ContentBox from '@objects/content/ContentBox';
+import { Title, Heading1, Paragraph } from '@objects/typography/Typography';
 import Input, {
   Form,
   FormManager,
@@ -41,15 +51,8 @@ import Input, {
   TextArea,
   Label,
   ButtonGroup
-} from './../../../objects/input/Input';
-import Section, {
-  BodySection,
-  ClearSection,
-  SplitSection,
-  Split
-} from './../../section/Section';
-import { openModal } from './../../../actions/ModalActions';
-import Modal from './../../../objects/modal/Modal';
+} from '@objects/input/Input';
+import Modal from '@objects/modal/Modal';
 
 class ContactPage extends React.Component {
   constructor(props) {
