@@ -22,14 +22,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from './../../../language/Language';
+import Language from './../../../../language/Language';
 import { PageBoundary } from './../../Page';
 import { ImageSection, SplitSection, Split, ClearSection } from './../../../section/Section';
-import ContentBox from './../../../content/ContentBox';
+import ContentBox from './../../../../objects/content/ContentBox';
 import { Title, Subtitle, Paragraph, Heading1, Heading2 } from './../../../../objects/typography/Typography';
-import { Button } from './../../../input/Input';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
-import Image from './../../../image/Image';
+import { Button } from './../../../../objects/input/Input';
+import ElementScrollFader from './../../../../objects/animation/fade/ElementScrollFader';
+import Image from './../../../../objects/image/Image';
 
 import Window95, {
   TitleBar, Close, Minimize,
@@ -37,7 +37,7 @@ import Window95, {
   ContextMenu, ContextMenuOption,
   Frame,
   AddressBar
-} from './../../../../object/window/Window95';
+} from './../../../../objects/window/Window95';
 
 const ExistingWorkFrame = (props) => {
   let fakeURL = props.href;
@@ -113,7 +113,7 @@ export default (props) => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-work"
-      src={ require('./../../../images/patterns/arcade.svg') }
+      src={ require('./../../../../assets/images/patterns/arcade.svg') }
       loadable
       background
     >
@@ -139,7 +139,7 @@ export default (props) => {
           href="//www.kopalife.com/products/kube-customise"
           fromLeft="top"
           fromRight="bottom"
-          src={ require('./../../../images/work-showcase/kopalife.png') }
+          src={ require('./../../../../assets/images/work-showcase/kopalife.png') }
           title={ Language.get("pages.home.work.kopa.heading") }
           description={ Language.get("pages.home.work.kopa.description") }
         />
@@ -150,7 +150,7 @@ export default (props) => {
           fromLeft="right"
           fromRight="right"
           swap
-          src={ require('./../../../images/work-showcase/smai.svg') }
+          src={ require('./../../../../assets/images/work-showcase/smai.svg') }
           title={ Language.get("pages.home.work.smai.heading") }
           description={ Language.get("pages.home.work.smai.description") }
         />
@@ -161,7 +161,7 @@ export default (props) => {
           fromLeft="left"
           fromRight="left"
 
-          src={ require('./../../../images/work-showcase/ozhair.png') }
+          src={ require('./../../../../assets/images/work-showcase/ozhair.png') }
           title={ Language.get("pages.home.work.ozhair.heading") }
           description={ Language.get("pages.home.work.ozhair.description") }
         />

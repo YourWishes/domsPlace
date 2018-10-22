@@ -23,18 +23,18 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from './../../../language/Language';
+import Language from './../../../../language/Language';
 import { PageBoundary } from './../../Page';
 import { ImageSection } from './../../../section/Section';
-import ContentBox from './../../../content/ContentBox';
+import ContentBox from './../../../../objects/content/ContentBox';
 import { Title, Paragraph, Heading1 } from './../../../../objects/typography/Typography';
-import ElementScrollFader from './../../../animation/fade/ElementScrollFader';
+import ElementScrollFader from './../../../../objects/animation/fade/ElementScrollFader';
 
 export default (props) => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-programming"
-      src={ require('./../../../images/patterns/rhythm-heaven.svg') }
+      src={ require('./../../../../assets/images/patterns/rhythm-heaven.svg') }
       loadable
       background
     >

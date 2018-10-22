@@ -33,7 +33,7 @@ import Language from './../../../language/Language';
 import ElementScrollFader from './../../../objects/animation/fade/ElementScrollFader';
 import ContentBox from './../../../objects/content/ContentBox';
 import { Title, Heading1, Paragraph } from './../../../objects/typography/Typography';
-import Forms from './../../../common/Forms';
+//import Forms from './../../../common/Forms';
 import Input, {
   Form,
   FormManager,
@@ -41,7 +41,7 @@ import Input, {
   TextArea,
   Label,
   ButtonGroup
-} from './../../../input/Input';
+} from './../../../objects/input/Input';
 import Section, {
   BodySection,
   ClearSection,

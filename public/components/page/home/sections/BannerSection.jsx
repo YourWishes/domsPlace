@@ -22,10 +22,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from './../../../language/Language';
+import Language from './../../../../language/Language';
 import { PageBoundary } from './../../Page';
 import { ImageSection } from './../../../section/Section';
-import FloatingContentBox from './../../../content/FloatingContentBox';
+import FloatingContentBox from './../../../../objects/content/FloatingContentBox';
 import { Title, Subtitle } from './../../../../objects/typography/Typography';
 import ElementScrollFader from './../../../../objects/animation/fade/ElementScrollFader';
 
@@ -34,7 +34,7 @@ export default (props) => {
   return (
     <ImageSection
       className="p-home-page__banner"
-      src={ require('./../../../images/banners/about/glasses.svg') }
+      src={ require('./../../../../assets/images/banners/about/glasses.svg') }
       alt="domsPlace"
       width="2400"
       height="1200"

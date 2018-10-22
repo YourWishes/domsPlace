@@ -24,7 +24,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Frame from './Frame';
-import Language from './../language/Language';
+import Language from './../../language/Language';
 
 class AddressBar extends React.Component {
   constructor(props) {
