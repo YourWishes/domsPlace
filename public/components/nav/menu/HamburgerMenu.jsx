@@ -24,14 +24,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 import Language from '@public/language/Language';
 import * as MenuActions from '@public/actions/MenuActions';
 
-const HamburerMenuItem = function(props) {
+const HamburerMenuItem = (props) => {
+  let { lang, link, className } = props;
+  className = className || "";
+
   return (
-    <li className={"c-hamburger-menu__link c-hamburger-menu__link--"+props.link}>
+    <li {...props} className={`c-hamburger-menu__link c-hamburger-menu__link--${link} ${className}`}>
       <NavLink to={ props.to } className="c-hamburger-menu__link-link">
-        { Language.get(props.lang) }
+        { Language.get(lang) }
       </NavLink>
     </li>
   );
@@ -43,43 +47,38 @@ class HamburgerMenu extends React.Component {
   }
 
   render() {
+    let { open, className, toggleMenu } = this.props;
+
     let clazz = "c-hamburger-menu";
-    if(this.props.open) clazz += " is-open";
-    if(this.props.className) clazz += " " + this.props.className;
+    if(open) clazz += " is-open";
+    if(className) clazz += ` ${className}`;
 
     return (
       <div className={clazz}>
-        <button
-          type="button"
-          className="c-hamburger-menu__button"
-          onClick={this.props.toggleMenu}
-        >
-          <img
-            src={ require('./../../../assets/images/icons/hamburger.svg') }
-            className="c-hamburger-menu__icon"
-          />
+        <button type="button" className="c-hamburger-menu__button" onClick={toggleMenu}>
+          <img src={ require('@assets/images/icons/hamburger.svg') } className="c-hamburger-menu__icon" />
         </button>
 
-        <div className="c-hamburger-menu__menu">
+        <nav className="c-hamburger-menu__menu">
           <ul className="c-hamburger-menu__links">
             <HamburerMenuItem to="/" lang="navbar.home" link="home" />
             <HamburerMenuItem to="/contact" lang="navbar.contact" link="contact" />
           </ul>
-        </div>
+        </nav>
       </div>
     );
   }
 }
 
 
-const mapStateToProps = function(state) {
+const mapStateToProps = (state) => {
   return {
     open: state.menu.open,
     language: state.language.code
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     toggleMenu: function(theme) {
       dispatch(MenuActions.toggleMenu());

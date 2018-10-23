@@ -24,7 +24,7 @@
 import React from 'react';
 import Navbar from '@components/nav/navbar/Navbar';
 
-export default function(props) {
+export default (props) => {
   return (
     <header {...props} role="banner">
       <Navbar />
