@@ -25,6 +25,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import Styles from './HamburgerMenu.scss';
+
 import Language from '@public/language/Language';
 import * as MenuActions from '@public/actions/MenuActions';
 
