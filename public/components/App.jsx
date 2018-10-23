@@ -31,11 +31,25 @@ import Footer from './footer/Footer';
 import Routes, { RouteWrapper } from './page/Routes';
 import Favicon from './Favicon';
 
+//Routes Definitions
+const AppRoutes = (props) => {
+  return (
+    <React.Fragment>
+      <Routes onEntering={ props.onEntering }>
+        <RouteWrapper exact path="/" page={ () => import('@pages/home/HomePage') } />
+        <RouteWrapper exact path="/contact" page={ () => import('@pages/contact/ContactPage') } />
+
+        <RouteWrapper exact path="/legal/privacy" page={ () => import('@pages/legal/privacy/PrivacyPolicyPage') } />
+      </Routes>
+    </React.Fragment>
+  );
+};
+
+
+//Main App Wrapper
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onEnteringBound = this.onEntering.bind(this);
   }
 
   onEntering() {
@@ -47,18 +61,10 @@ class App extends React.Component {
   }
 
   render() {
-    let { className, menuOpen, modal } = this.props;
+    let { className } = this.props;
 
     //Generate base clazzes
     let clazz = "c-app";
-
-    //Menu Open?
-    if(menuOpen) clazz += " is-menu-open ";
-
-    //Fetch the modal from the store
-    let modalObject;
-    if(modal.open) clazz += " is-modal-open";
-    if(modal.modal) modalObject = modal.modal;
 
     //Append any other clazzes there may be.
     if(className) clazz += " " + className;
@@ -69,30 +75,14 @@ class App extends React.Component {
 
     return (
       <RouterType>
-        <div className={clazz} ref="app">
+        <div className={ clazz } ref="app">
           <Favicon />
           <Header />
-
-          { modalObject }
-
-          {/* Routes */}
-          <Routes onEntering={ this.onEnteringBound }>
-            <RouteWrapper exact path="/" page={ () => import('@pages/home/HomePage') } />
-            <RouteWrapper exact path="/contact" page={ () => import('@pages/contact/ContactPage') } />
-
-            <RouteWrapper exact path="/legal/privacy" page={ () => import('@pages/legal/privacy/PrivacyPolicyPage') } />
-          </Routes>
+          <AppRoutes onEntering={ () => this.onEntering() } />
         </div>
       </RouterType>
     );
   }
 }
 
-const mapStateToProps = function(state) {
-  return {
-    menuOpen: state.menu.open,
-    modal: state.modal
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

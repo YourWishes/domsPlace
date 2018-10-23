@@ -65,7 +65,7 @@ class Routes extends React.Component {
 
     return (
       <Route>
-        <TransitionGroup className="o-page-transition__container">
+        {/*<TransitionGroup className="o-page-transition__container">
           <CSSTransition
             key={ location.pathname }
             timeout={1000}
@@ -73,12 +73,12 @@ class Routes extends React.Component {
             mountOnEnter={ true }
             unmountOnExit={ true }
             onEntering={ this.props.onEntering }
-          >
+          >*/}
             <Switch location={ location }>
               { children }
             </Switch>
-          </CSSTransition>
-        </TransitionGroup>
+          {/*</CSSTransition>
+        </TransitionGroup>*/}
       </Route>
     );
   }
