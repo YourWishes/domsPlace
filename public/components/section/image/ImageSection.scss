@@ -7,6 +7,8 @@
  *  Version:
  *    1.1.0 - 2018/08/14
  */
+@import '~@styles/global';
+
 .c-image-section {
 
   &__image {
@@ -16,7 +18,7 @@
 
   &.is-full {
     position: relative;
-    
+
     .c-image-section__image {
       @include t-absolute-fill();
       object-fit: cover;

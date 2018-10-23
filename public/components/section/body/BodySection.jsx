@@ -22,11 +22,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
+import Styles from './BodySection.scss';
+
 import Section from './../Section';
 
 export default function(props) {
   let clazz = "c-body-section";
-  if(props.className) clazz += " " + props.className;
+  if(props.className) clazz += ` ${props.className}`;
 
   return (
     <Section {...props} className={clazz} />

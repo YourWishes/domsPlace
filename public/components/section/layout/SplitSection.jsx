@@ -22,32 +22,36 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
+import Styles from './SplitSection.scss';
+
 import Section from './../Section';
 
 export default (props) => {
-  let aligned = "stretched";
-  if(props.align) {
-    aligned = props.align;
-  }
+  let { align, className } = props;
+  let newProps = {...props};
 
-  let clazz = "c-split-section is-" + aligned;
-  if(props.className) clazz += " " + props.className;
+  align = align || "stretched";
 
+  let clazz = "c-split-section is-" + align;
+  if(className) clazz += ` ${className}`;
 
   return (
-    <Section {...props} className={clazz} />
+    <Section {...newProps} className={clazz} />
   )
 };
 
 const Split = function(props) {
+  let { padded, className, children } = props;
+
   let clazz = "c-split-section__split";
 
-  if(props.padded) clazz += " is-padded";
-  if(props.className) clazz += " "+props.className;
+  if(padded) clazz += " is-padded";
+  if(className) clazz += ` ${className}`;
 
   return (
     <div className={clazz}>
-      { props.children }
+      { children }
     </div>
   );
 }

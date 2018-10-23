@@ -22,6 +22,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
+import Styles from './ClearSection.scss';
+
 import Section from './../Section';
 
 export default (props) => {

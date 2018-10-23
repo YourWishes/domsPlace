@@ -10,7 +10,7 @@
  *  Version:
  *    1.1.0 - 2018/10/23
  */
-@import '@styles/global';
+@import '~@styles/global';
 
 $c-hamburger-menu--max: 200%;
 $c-hamburger-menu--pos-x: 100%;
@@ -65,11 +65,11 @@ $c-hamburger-menu--pos-y: 0%;
     }
 
     &--home {
-      background-image: url('@assets/images/patterns/game-show.svg');
+      background-image: url('~@assets/images/patterns/game-show.svg');
     }
 
     &--contact {
-      background-image: url('@assets/images/patterns/lemon-triangle.svg');
+      background-image: url('~@assets/images/patterns/lemon-triangle.svg');
     }
 
     &:hover:before {

@@ -22,7 +22,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import Styles from './ImageSection.scss';
+
 import Section from './../Section';
+
 import Image from '@objects/image/Image';
 
 export default function(props) {

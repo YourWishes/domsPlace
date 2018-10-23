@@ -12,6 +12,8 @@
  *  Version:
  *    1.1.0 - 2018/08/14
  */
+@import '~@styles/global';
+
 $c-navbar--link-thickness: 5px;
 
 .c-navbar {
@@ -26,8 +28,8 @@ $c-navbar--link-thickness: 5px;
 
 
   &__nav {
-    @extend %t-flexbox;
-    @include t-align-items(stretch);
+    display: flex;
+    align-items: stretch;
     @extend %t-dp--shadow;
     background: $s-color--navbar;
     color: white;
@@ -48,7 +50,7 @@ $c-navbar--link-thickness: 5px;
 
   //Links
   &__link {
-    @include t-align-items(center);
+    align-items: center;
     @extend %s-font--style-button;
     display: none;
     position: relative;
@@ -62,10 +64,10 @@ $c-navbar--link-thickness: 5px;
       height: 0px;
       left: 0;
       bottom: 0px;
-      @include t-translate-y(100%)
+      transform: translateY(100%);
       transition: height 0.2s $s-animation--ease-out;
 
-      content: " ";
+      content: "";
     }
 
     &.is-active:after {
@@ -96,7 +98,7 @@ $c-navbar--link-thickness: 5px;
     }
 
     &__link {
-      @include t-flexbox();
+      display: flex;
     }
   }
 

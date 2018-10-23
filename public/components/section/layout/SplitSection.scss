@@ -8,18 +8,20 @@
  *  Version:
  *    1.0.0 - 2018/05/28
  */
+@import '~@styles/global.scss';
+
 $c-split-section__split--padding: 1em;
 
 .c-split-section {
-  @extend %t-flexbox;
-  @include t-flex-wrap(wrap);
+  display: flex;
+  flex-wrap: wrap;
 
   &.is-stretched {
-    @include t-align-items(stretch);
+    align-items: stretch;
   }
 
   &.is-center {
-    @include t-align-items(center);
+    align-items: center;
   }
 
   &__split {
@@ -31,6 +33,6 @@ $c-split-section__split--padding: 1em;
   }
 
   @include t-media-query($s-small-up) {
-    @include t-flex-wrap(nowrap);
+    flex-wrap: nowrap;
   }
 }

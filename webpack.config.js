@@ -54,22 +54,14 @@ module.exports = {
                 {
                   "targets": {
                     "node": "current",
-                    "browsers": [
-                      "Chrome >= 41",
-                      "FireFox >= 44",
-                      "Safari >= 7",
-                      "Explorer 11",
-                      "last 4 Edge versions"
-                    ]
+                    "browsers": [ "Chrome >= 41", "FireFox >= 44", "Safari >= 7", "Explorer 11", "last 4 Edge versions" ]
                   },
                   "useBuiltIns": false
                 }
               ],
               "@babel/preset-react"
             ],
-            "plugins": [
-              '@babel/plugin-syntax-dynamic-import'
-            ]
+            "plugins": [ '@babel/plugin-syntax-dynamic-import' ]
           }
         }
       },

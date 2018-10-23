@@ -25,11 +25,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HashRouter, BrowserRouter } from 'react-router-dom';
 
-import Background from '@objects/background/Background';
+import Styles from './App.scss';
+
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import Routes, { RouteWrapper } from './page/Routes';
+import Routes, { RouteWrapper } from './page/route/Routes';
 import Favicon from './Favicon';
+
+import Background from '@objects/background/Background';
 
 //Routes Definitions
 const AppRoutes = (props) => {
@@ -67,7 +70,7 @@ class App extends React.Component {
     let clazz = "c-app";
 
     //Append any other clazzes there may be.
-    if(className) clazz += " " + className;
+    if(className) clazz += ` ${className}`;
 
     //For testing you can switch the router type
     let RouterType = BrowserRouter;
@@ -75,10 +78,13 @@ class App extends React.Component {
 
     return (
       <RouterType>
-        <div className={ clazz } ref="app">
+        <div {...this.props} className={ clazz } ref="app">
           <Favicon />
           <Header />
-          <AppRoutes onEntering={ () => this.onEntering() } />
+          <main>
+            <AppRoutes onEntering={ () => this.onEntering() } />
+          </main>
+          <Footer />
         </div>
       </RouterType>
     );

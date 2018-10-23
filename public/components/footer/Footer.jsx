@@ -34,7 +34,7 @@ import { PageBoundary } from '@components/page/Page';
 const FooterLink = (props) => {
   let { title, className } = props;
   return (
-    <NavLink {...props} className={"c-footer__link"+(className?` ${className}`:``}>
+    <NavLink {...props} className={"c-footer__link"+(className?` ${className}`:``)}>
       { Language.get(`footer.links.${title}`) }
     </NavLink>
   );
@@ -51,7 +51,7 @@ class Footer extends React.Component {
     let { className } = this.props;
 
     return (
-      <footer {...this.props} className={"c-footer"+(className?` ${className}`:``}>
+      <footer className={"c-footer"+(className?` ${className}`:``)}>
         <div className="c-footer__part">
         </div>
 

@@ -8,8 +8,11 @@
  *  Version:
  *    1.0.0 - 2018/05/05
  */
+@import '~@styles/global';
+
 .c-page {
-  @include t-flex-grow(1);
+  flex-grow: 1;
+
   &__boundary {
     max-width: $s-screen-boundary;
     margin: 0 auto;

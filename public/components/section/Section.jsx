@@ -23,27 +23,25 @@
 
 import React from 'react';
 
-export default class Section extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import Styles from './Section';
 
-  render() {
-    return (
-      <section className={
-          "c-section" +
-          (this.props.full?" is-full":"") +
-          (this.props.className ? " "+this.props.className : "")
-      }>
-        { this.props.children }
-      </section>
-    );
-  }
+export default (props) => {
+  let newProps = {...props};
+  let { full, className, children } = props;
+
+  ["full"].forEach(e => delete newProps[e]);
+
+  let clazz = "c-section";
+  if(full) clazz += " is-full";
+  if(className) clazz += ` ${className}`;
+
+  return (
+    <section {...newProps} className={clazz} />
+  );
 }
 
 import BodySection from './body/BodySection';
 import ClearSection from './layout/ClearSection';
-import FeaturedBlogSection from './blog/FeaturedBlogSection';
 import ImageSection from './image/ImageSection';
 import SplitSection, { Split }  from './layout/SplitSection';
 import VideoSection from './video/VideoSection';
@@ -51,7 +49,6 @@ import VideoSection from './video/VideoSection';
 export {
   BodySection,
   ClearSection,
-  FeaturedBlogSection,
   ImageSection,
   SplitSection,
   Split,

@@ -22,29 +22,35 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
+import Styles from './VideoSection.scss';
+
 import Section from './../Section';
+
 import Video from '@objects/video/Video';
 import Loader from '@objects/loading/Loader';
 
-class VideoSection extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default (props) => {
+  let { full, className, sources } = props;
+  let videoProps = {...props};
+  let sectionProps = {...props};
 
-  render() {
-    return (
-      <Section full={this.props.full} className="c-video-section">
-        <Video
-          className="c-video-section__video"
-          autoPlay
-          loop
-          fill
-          sources={ this.props.sources ? this.props.sources : this.props }
-        />
-        { this.props.children }
-      </Section>
-    );
-  }
+
+  [
+    "autoPlay", "fill", "loop", "sources"
+  ].forEach(e => delete sectionProps[e]);
+
+  delete videoProps.children;
+
+  if(typeof props.autoPlay === typeof undefined) props.autoPlay = true;
+  if(typeof props.loop === typeof undefined) props.loop = true;
+  if(typeof props.fill === typeof undefined) props.fill = true;
+
+
+  return (
+    <Section {...sectionProps} className={"c-video-section"+(className?` ${className}`:``)}>
+      <Video {...videoProps} className="c-video-section__video" sources={ sources ? sources : props } />
+      { children }
+    </Section>
+  );
 }
-
-export default VideoSection;

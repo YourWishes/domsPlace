@@ -25,9 +25,14 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
-import PageBoundary from '@components/page/PageBoundary';
+
+import Styles from './Navbar.scss';
+
 import Language from '@public/language/Language';
+
+import { PageBoundary } from '@components/page/Page';
 import HamburgerMenu from './../menu/HamburgerMenu';
+
 import Image from '@objects/image/Image';
 
 const NavbarLink = function(props) {

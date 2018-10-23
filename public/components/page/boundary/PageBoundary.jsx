@@ -23,14 +23,22 @@
 
 import React from 'react';
 
-export default function(props) {
-  let clazzes = "c-page__boundary";
+import Styles from './PageBoundary';
+
+export default (props) => {
+  let newProps = { ...props };
+  let { full, small, className } = props;
+
+  delete newProps.full;
+  delete newProps.small;
+
+  let clazzes = "c-page-boundary";
   if(props.full) clazzes += " is-full";
   if(props.small) clazzes += " is-small";
   if(props.className) clazzes += " " + props.className;
 
   return (
-    <div className={ clazzes }>
+    <div {...newProps} className={ clazzes }>
       { props.children }
     </div>
   );

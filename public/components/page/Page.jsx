@@ -24,8 +24,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
-import PageBoundary from './PageBoundary';
+
+import Styles from './Page.scss';
+
+//Publics
 import Language from '@public/language/Language';
+
+//Components
+import PageBoundary from './boundary/PageBoundary';
 
 class Page extends React.Component {
   constructor(props) {

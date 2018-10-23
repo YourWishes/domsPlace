@@ -28,9 +28,6 @@ import PropTypes from 'prop-types'
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
-import Header from './../header/Header';
-import Footer from './../footer/Footer';
-
 const PageLoading = (props) => {
   if(props.error) return <span>Loading Error</span>;
   if(props.pastDelay) return <span>Loading...</span>;
@@ -38,50 +35,27 @@ const PageLoading = (props) => {
 };
 
 export const RouteWrapper = (props) => {
-  return (
-    <Route {...props} render={() => {
-        let CustomLoadable = Loadable({
-          loader: props.page,
-          loading: PageLoading
-        });
-        let CustomTag = <span>Not loading</span>;
-        return (
-          <main className="c-main">
-            <CustomLoadable />
-            <Footer />
-          </main>
-        );
-    }}/>
-  );
+  let { page } = props.page;
+
+  let render = () => {
+    let CustomLoadable = Loadable({
+      loader: page,
+      loading: PageLoading
+    });
+    return <CustomLoadable />
+  };
+
+  return <Route {...props} render={render} />;
 };
 
-class Routes extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default withRouter((props) => {
+  const { match, location, history, children } = this.props;
 
-  render() {
-    const { match, location, history, children } = this.props;
-
-    return (
-      <Route>
-        {/*<TransitionGroup className="o-page-transition__container">
-          <CSSTransition
-            key={ location.pathname }
-            timeout={1000}
-            classNames="o-page-transition"
-            mountOnEnter={ true }
-            unmountOnExit={ true }
-            onEntering={ this.props.onEntering }
-          >*/}
-            <Switch location={ location }>
-              { children }
-            </Switch>
-          {/*</CSSTransition>
-        </TransitionGroup>*/}
-      </Route>
-    );
-  }
-}
-
-export default withRouter(Routes);
+  return (
+    <Route>
+      <Switch location={ location }>
+        { children }
+      </Switch>
+    </Route>
+  );
+});
