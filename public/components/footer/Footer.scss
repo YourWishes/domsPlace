@@ -20,7 +20,7 @@ $c-footer--link-hover-color: blue;
   padding-bottom: 10em;
   position: relative;
   overflow: hidden;
-  background-image: url($s-asset--directory+'images/banners/palms.svg');
+  background-image: url('@images/banners/palms.svg');
   background-size: cover;
 
   &__inner {

@@ -26,7 +26,7 @@ import Navbar from '@components/nav/navbar/Navbar';
 
 export default function(props) {
   return (
-    <header role="banner">
+    <header {...props} role="banner">
       <Navbar />
     </header>
   );

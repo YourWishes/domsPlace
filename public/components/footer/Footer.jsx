@@ -23,18 +23,24 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import FooterStyles from './Footer.scss';
+
 import Language from '@public/language/Language';
-import { NavLink } from 'react-router-dom'
+
 import { PageBoundary } from '@components/page/Page';
 
-const FooterLink = function(props) {
-  let key = "footer.links." + props.title;
+const FooterLink = (props) => {
+  let { title, className } = props;
   return (
-    <NavLink to={ props.to } className="c-footer__link">
-      { Language.get(key) }
+    <NavLink {...props} className={"c-footer__link"+(className?` ${className}`:``}>
+      { Language.get(`footer.links.${title}`) }
     </NavLink>
   );
 }
+
+const SITE_LAUNCH_TIMESTAMP = 1335830400000;
 
 class Footer extends React.Component {
   constructor(props) {
@@ -42,8 +48,10 @@ class Footer extends React.Component {
   }
 
   render() {
+    let { className } = this.props;
+
     return (
-      <footer className="c-footer">
+      <footer {...this.props} className={"c-footer"+(className?` ${className}`:``}>
         <div className="c-footer__part">
         </div>
 
@@ -57,7 +65,7 @@ class Footer extends React.Component {
             </nav>
 
             <div className="c-footer__copyright">
-              &copy; { new Date(1335830400000).getFullYear() }
+              &copy; { new Date(SITE_LAUNCH_TIMESTAMP).getFullYear() }
               ~
               { new Date().getFullYear() } Dominic Masters
             </div>
@@ -68,7 +76,7 @@ class Footer extends React.Component {
   }
 }
 
-const mapStateToProps = function(state) {
+const mapStateToProps = (state) => {
   return {
     code: state.language.code
   }

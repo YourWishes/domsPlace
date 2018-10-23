@@ -21,34 +21,31 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
-import '@babel/polyfill';
+/*
+ *  Common Stylesheet
+ *    Provides common element styling, particularly those that do not have a
+ *    component to go by.
+ *
+ *  Version:
+ *    2.0.0 - 2018/10/23
+ */
+@import './global.scss';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
-import { Provider } from 'react-redux';
-import RootReducer from './reducers/RootReducer';
-import Keyboard from './keyboard/Keyboard';
+//Elements
+@import './elements/all.scss';
+@import './elements/button.scss';
+@import './elements/html.scss';
+@import './elements/img.scss';
+@import './elements/inputs.scss';
 
+@import './elements/_a.scss';
+@import './elements/_body.scss';
+@import './elements/_headings.scss';
 
-//Import Common Elements Stylesheet
-import Styles from './styles/common';
+//Utilities
+@import './utilities/text-align.scss';
 
-//Import Base Component
-import App from './components/App';
+@import './utilities/_responsive.scss';
 
-//Create our redux middleware
-const store = createStore(RootReducer, applyMiddleware(
-  createLogger({ collapsed: true })
-));
-
-//Start listening for key events
-Keyboard.register();
-
-ReactDOM.render((
-  <Provider store={store}>
-    <App />
-  </Provider>
-),document.getElementById('app'));
+//Vendor
+@import './vendor/_fonts.scss';

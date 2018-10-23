@@ -34,7 +34,8 @@ module.exports = {
       '@components': path.resolve(__dirname, './public/components'),
       '@assets': path.resolve(__dirname, './public/assets'),
       '@pages': path.resolve(__dirname, './public/pages'),
-      '@common': path.resolve(__dirname, './common/')
+      '@common': path.resolve(__dirname, './common/'),
+      '@styles': path.resolve(__dirname, './public/styles')
     }
   },
 
