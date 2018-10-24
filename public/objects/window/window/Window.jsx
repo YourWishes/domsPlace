@@ -23,31 +23,11 @@
 
 import React from 'react';
 
-import Styles from './_window95.scss';
+import Styles from './Window.scss';
 
-import Window from './window/Window';
-
-import TitleBar, { Close, Minimize } from './TitleBar';
-import MenuBar, { MenuOption } from './MenuBar';
-import ContextMenu, { ContextMenuOption } from './ContextMenu';
-import Frame from './Frame';
-import AddressBar from './AddressBar';
-
-export default Window;
-
-export {
-  TitleBar,
-  Close,
-  Minimize,
-
-  MenuBar,
-  MenuOption,
-
-  ContextMenu,
-  ContextMenuOption,
-
-  Frame,
-  Window,
-
-  AddressBar
-}
+export default props => {
+  let { className } = props;
+  let clazz = "o-window";
+  if(className) clazz += ` ${className}`;
+  return <div {...props} className={clazz} />
+};
