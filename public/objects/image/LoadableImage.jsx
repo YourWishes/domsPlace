@@ -65,7 +65,12 @@ export default class LoadableImage extends React.Component {
     let { className, width, height } = this.props;
 
     let loader,imageSizer;
-    let image = <Image {...newProps} className="o-loadable-image__image" />;
+    let image = <Image
+      {...newProps}
+      className="o-loadable-image__image"
+      onLoad={() => this.onLoad()}
+      onError={() => this.onError()}
+    />;
 
     let clazz = "o-loadable-image";
 
