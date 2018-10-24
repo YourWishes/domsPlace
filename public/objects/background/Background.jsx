@@ -23,6 +23,8 @@
 
 import React from 'react';
 
+import Styles from './Background.scss';
+
 export default function(props) {
   let style = props.style || "test";
   let styleClassPrefix = "o-background--style-"+style;

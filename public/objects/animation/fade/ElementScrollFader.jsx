@@ -23,7 +23,9 @@
 
 import React from 'react';
 
-class ElementScrollFader extends React.Component {
+import Styles from './ElementScrollFader.scss';
+
+export default class ElementScrollFader extends React.Component {
   constructor(props) {
     super(props);
 
@@ -105,25 +107,17 @@ class ElementScrollFader extends React.Component {
   }
 
   render() {
-    let clazz = "o-element-scroll-fader";
+    let newProps = {...this.props};
+    let { from, visible, waiting, className } = this.props;
 
-    if(this.props.from) {
-      clazz += " from-" + this.props.from
-    } else {
-      clazz += " from-top";
-    }
-    if(this.state.visible || this.state.waiting) {
-      clazz += " is-visible";
-    }
+    from = from || "top";
 
-    if(this.props.className) clazz += " " + this.props.className;
+    ["from","visible","waiting"].forEach(e => delete newProps[e]);
 
-    return (
-      <div className={ clazz } ref="fader">
-        { this.props.children}
-      </div>
-    );
+    let clazz = `o-element-scroll-fader from-${from}`;
+    if(visible || waiting) clazz += " is-visible";
+    if(className) clazz += ` ${className}`;
+
+    return <div {...newProps} className={ clazz } ref="fader" />
   }
 }
-
-export default ElementScrollFader;
