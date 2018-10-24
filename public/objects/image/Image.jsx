@@ -24,120 +24,119 @@
 import React from 'react';
 import LoadableImage from './LoadableImage';
 
-export default class Image extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default (props) => {
+  let newProps = {...props};
 
-  onLoad(e) {
-    if(this.props.onLoad) this.props.onLoad(e);
-  }
+  let {
+    loadable, image, src, alt, width, height, sources, onLoad, onError,
+    maxWidth, maxHeight, images
+  } = props;
 
-  onError() {
-    if(this.props.onError) this.props.onErorr(e);
-  }
 
-  render() {
-    if(this.props.loadable) {
-      return <LoadableImage {...this.props} />;
+  [
+    "loadable", "image", "src", "alt", "width", "height", "sources", "onLoad",
+    "onError", "maxWidth", "maxHeight", "images"
+  ].forEach(e => delete newProps[e]);
+
+  width = parseInt(width);
+  maxWidth = parseInt(maxWidth);
+  height = parseInt(height);
+  maxHeight = parseInt(maxHeight);
+
+  if(loadable) return <LoadableImage {...props} />;
+
+  //Prop Manipulation
+  if(image) {
+    if(Array.isArray(image)) {
+      sources = sources || image;
+    } else {
+      src = src || image;
     }
+  }
 
-    let sourceProps = Object.assign({}, this.props);
+  if(src) {
+    if(src.images) sources = sources || src.images;
+    if(src.width) width = width || src.width;
+    if(src.height) height = height || src.height;
+  }
 
-    //Prop Manipulation
-    if(sourceProps.image) {
-      if(Array.isArray(sourceProps.image)) {
-        sourceProps.sources = sourceProps.image;
-      } else {
-        sourceProps.src = sourceProps.image;
+  //Image
+  sources = sources || {};
+  let sourceElements = [];
+
+  let defaultSrc = src;
+  let defaultAlt = alt;
+  let defaultWidth = width;
+  let defaultHeight = height;
+
+  if(sources) {
+    //Iterate over supplied sources
+    for(let i = 0; i < sources.length; i++) {
+      let source = sources[i];
+      let width = source.size || source.width;
+      let isLast = (i+1) === sources.length;
+
+      for(let scale = 1; scale <= 4; scale++) {//4 = max scales
+        let scaledWidth = Math.round(width / scale);
+        let o = {...source};
+        o.scale = scale;
+        o.isLast = isLast;
+        sources[scaledWidth] = sources[scaledWidth] || [];
+        sources[scaledWidth].push(o);
       }
     }
 
-    if(sourceProps.src) {
-      if(sourceProps.src.images) sourceProps.sources = sourceProps.src.images;
-      if(sourceProps.src.width) sourceProps.width = sourceProps.src.width;
-      if(sourceProps.src.height) sourceProps.height = sourceProps.src.height;
-    }
+    //Sort by size in descending order
+    let keys = Object.keys(sources);
+    keys.sort((l, r) => {
+      return parseInt(l) - parseInt(r);
+    });
 
-    //Image
-    let sourceElements = [];
-    let sources = {};
+    let breakNext = false;
+    for(let i = 0; i < keys.length; i++) {
+      if(breakNext) break;
+      let k = keys[i];//The pixel size
 
-    let defaultSrc = sourceProps.src;
-    let defaultAlt = sourceProps.alt;
-    let defaultWidth = sourceProps.width;
-    let defaultHeight = sourceProps.height;
+      let ss = sources[k];//Sources at this pixel resolution
+      let mediaQuery = `(max-width:${k}px)`;
+      let sss = [];
 
-    if(sourceProps.sources) {
-      //Iterate over supplied sources
-      for(let i = 0; i < sourceProps.sources.length; i++) {
-        let x = sourceProps.sources[i];
-        let width = x.size || x.width;
-        let isLast = (i+1) === sourceProps.sources.length;
-
-        for(let scale = 1; scale <= 4; scale++) {
-          let scaledWidth = Math.round(width / scale);
-          let o = Object.assign({}, x);
-          o.scale = scale;
-          o.isLast = isLast;
-          sources[scaledWidth] = sources[scaledWidth] || [];
-          sources[scaledWidth].push(o);
-        }
+      let isNextBreak = false;
+      if(maxWidth && (i+1 < keys.length)) {
+        if(keys[i+1] > parseInt(maxWidth)) isNextBreak = true;
+      }
+      if(isNextBreak) {
+        breakNext = true;
+        mediaQuery = `(min-width:${k}px)`;
       }
 
-      let keys = Object.keys(sources);
-      keys.sort((l, r) => {
-        return parseInt(l) - parseInt(r);
-      });
-      let breakNext = false;
-      for(let i = 0; i < keys.length; i++) {
-        if(breakNext) break;
-        let k = keys[i];//The pixel size
-
-        let ss = sources[k];//Sources at this pixel resolution
-        let mediaQuery = '(max-width:'+k+'px)';
-        let sss = [];
-
-        let isNextBreak = false;
-        if(this.props.maxWidth && (i+1 < keys.length)) {
-          if(keys[i+1] > parseInt(this.props.maxWidth)) isNextBreak = true;
-        }
-        if(isNextBreak) {
-          breakNext = true;
-          mediaQuery = '(min-width:'+k+'px)';
-        }
-
-        if(ss.length && ss[0].isLast) {
-          let prev = i > 0 ? keys[i-1] : 0;
-          mediaQuery = '(min-width:'+prev+'px)';
-        }
-
-        for(let x = 0; x < ss.length; x++) {
-          let scale = ss[x];
-          let source = scale.src || scale.path;
-          sss.push( source + (scale.scale && scale.scale!=1 ? " "+scale.scale+"x" : "") );
-        }
-
-        sourceElements.push(
-          <source media={mediaQuery} srcSet={ sss.join(", ") } key={i} />
-        );
+      if(ss.length && ss[0].isLast) {
+        let prev = i > 0 ? keys[i-1] : 0;
+        mediaQuery = `(min-width:${prev}px)`;
       }
-    }
 
-    return (
-      <picture>
-        { sourceElements }
-        <img
-          onLoad={ this.onLoad.bind(this) }
-          onError={ this.onError.bind(this) }
-          src={ defaultSrc }
-          alt={ defaultAlt }
-          className={ sourceProps.className }
-          width={ defaultWidth }
-          height={ defaultHeight }
-          title={sourceProps.title}
-        />
-      </picture>
-    );
+      for(let x = 0; x < ss.length; x++) {
+        let scale = ss[x];
+        let source = scale.src || scale.path;
+        sss.push( source + (scale.scale && scale.scale!=1 ? " "+scale.scale+"x" : "") );
+      }
+
+      sourceElements.push(<source media={mediaQuery} srcSet={sss.join(", ")} key={i} />);
+    }
   }
+
+  return (
+    <picture>
+      { sourceElements }
+      <img
+        {...newProps}
+        onLoad={ onLoad }
+        onError={ onError }
+        src={ defaultSrc }
+        alt={ defaultAlt }
+        width={ defaultWidth }
+        height={ defaultHeight }
+      />
+    </picture>
+  );
 }

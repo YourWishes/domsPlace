@@ -7,6 +7,8 @@
  *  Version:
  *    1.0.0 - 2018/07/11
  */
+@import '~@styles/global';
+
 @include t-keyframes(o-loadable-image--load-flash) {
   from {
     background: transparent;
@@ -31,7 +33,7 @@
 
   &.is-loading {
     position: relative;
-    
+
     @include t-animation-name(o-loadable-image--load-flash);
     @include t-animation-timing-function(linear);
     @include t-animation-duration(2s);

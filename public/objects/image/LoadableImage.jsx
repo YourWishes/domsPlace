@@ -22,11 +22,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
+import Styles from './LoadableImage.scss';
+
 import Image from './Image';
 import Loader from './../loading/Loader';
 import BoxSizer from './../layout/BoxSizer';
 
-class LoadableImage extends React.Component {
+export default class LoadableImage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -39,37 +42,49 @@ class LoadableImage extends React.Component {
   componentWillUnmount() {}
 
   onLoad() {
+    let { onLoad } = this.props;
+    if(onLoad) onLoad();
+
     this.setState({
       loading: false
     });
   }
 
   onError() {
+    let { onError } = this.props;
+    if(onError) onError();
+
     this.setState({
       loading: false
     });
   }
 
   render() {
-    let p = Object.assign({}, this.props);
-    p.loadable = false;
-    p.onLoad = this.onLoad.bind(this);
-    let image = <Image {...p} />;
+    let newProps = {...this.props};
+    let { loading } = this.state;
+    let { className, width, height } = this.props;
 
-    let loader,imageSizerDuringLoad;
+    let loader,imageSizer;
+    let image = <Image {...newProps} className="o-loadable-image__image" />;
 
-    if(this.state.loading) {
+    let clazz = "o-loadable-image";
+
+    if(loading) {
+      clazz += " is-loading";
       loader = <Loader />;
-      if(p.width && p.height) {
-        imageSizerDuringLoad = <BoxSizer ratioWidth={p.width} ratioHeight={p.height} />
+      if(width && height) {
+        imageSizer = <BoxSizer ratioWidth={width} ratioHeight={height} />
       }
+    } else {
+      clazz += " is-loaded";
     }
 
-    return (
-      <div className={"o-loadable-image " + (this.state.loading ? "is-loading" : "is-loaded")}>
-        { loader }
-        { imageSizerDuringLoad }
+    if(className) clazz += ` ${className}`;
 
+    return (
+      <div className={className}>
+        { loader }
+        { imageSizer }
         <div className="o-loadable-image__image-container">
           { image }
         </div>
@@ -77,5 +92,3 @@ class LoadableImage extends React.Component {
     );
   }
 }
-
-export default LoadableImage;
