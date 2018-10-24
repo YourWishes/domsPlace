@@ -42,7 +42,7 @@ import Section, {
 
 //Objects
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
-import ContentBox from '@objects/content/ContentBox';
+import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Heading1, Paragraph } from '@objects/typography/Typography';
 import Input, {
   Form,

@@ -25,7 +25,7 @@ import React from 'react';
 import Language from '@public/language/Language';
 import { PageBoundary } from '@components/page/Page';
 import { ImageSection, SplitSection, Split, ClearSection } from '@components/section/Section';
-import ContentBox from '@objects/content/ContentBox';
+import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Subtitle, Paragraph, Heading1, Heading2 } from '@objects/typography/Typography';
 import { Button } from '@objects/input/Input';
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';

@@ -23,15 +23,34 @@
 
 import React from 'react';
 
-export default (props) => {
-  let clazz = "o-content-box";
+import Styles from './FloatingContentBox';
 
-  if(props.box) clazz += " is-box"
-  if(props.className) clazz += " " + props.className;
+import ContentBox from './ContentBox';
+
+export default (props) => {
+  let newProps = {...props};
+  let { position, size, children, className } = props;
+
+  ["position","size","children"].forEach(e => delete newProps[e]);
+
+  let clazzes = "o-floating-content-box";
+
+  //Positions
+  position = position || "middle center";
+  clazzes += " " + position.split(" ").map(i => 'is-'+i).join(" ");
+
+  //Sizes`
+  size = size || "medium";
+  clazzes += ` is-${size}`;
+
+  //Custom Classes
+  if(className) clazzes += ` ${className}`;
 
   return (
-    <div className={clazz}>
-      {props.children}
-    </div>
+    <ContentBox {...newProps} className={ clazzes }>
+      <div className="o-floating-content-box__inner">
+        { children }
+      </div>
+    </ContentBox>
   );
-};
+}

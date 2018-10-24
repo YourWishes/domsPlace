@@ -32,8 +32,6 @@ import Footer from './footer/Footer';
 import Routes, { RouteWrapper } from './page/route/Routes';
 import Favicon from './Favicon';
 
-import Background from '@objects/background/Background';
-
 //Routes Definitions
 const AppRoutes = (props) => {
   return (

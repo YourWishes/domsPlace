@@ -26,7 +26,7 @@ import { connect } from 'react-redux';
 import Language from '@public/language/Language';
 import { PageBoundary } from '@components/page/Page';
 import { ImageSection } from '@components/section/Section';
-import ContentBox from '@objects/content/ContentBox';
+import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Paragraph, Heading1 } from '@objects/typography/Typography';
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 

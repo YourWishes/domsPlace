@@ -23,18 +23,17 @@
 
 import React from 'react';
 
-import Styles from './Background.scss';
+import Styles from './ContentBox';
 
-export default function(props) {
-  let style = props.style || "test";
-  let styleClassPrefix = "o-background--style-"+style;
-  let inners = [];
+export default (props) => {
+  let newProps = {...props};
+  let { className, box } = props;
+  
+  delete newProps.box;
 
-  return (
-    <div className={"o-background "+styleClassPrefix}>
-      <div className={"o-background__inner " + styleClassPrefix + "__inner" }>
-        { inners }
-      </div>
-    </div>
-  );
-}
+  let clazz = "o-content-box";
+  if(box) clazz += " is-box"
+  if(className) clazz += ` ${className}`;
+
+  return <div {...newProps} className={clazz} />;
+};
