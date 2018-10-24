@@ -21,25 +21,25 @@ $o-window--one-third: #{"33.333333333%"};//I needed greater accuracy than SCSS p
 
 @mixin o-window-border($thickness) {
   border: (3px * $thickness) solid black;
-  border-image-source: url($s-asset--directory+'images/window/window.svg');
+  border-image-source: url('~@assets/images/window/window.svg');
   border-image-slice: $o-window--one-third;
 }
 
 @mixin o-window-button($thickness) {
   border: (2px * $thickness) solid black;
-  border-image-source: url($s-asset--directory+'images/window/button.svg');
+  border-image-source: url('~@assets/images/window/button.svg');
   border-image-slice: $o-window--one-third;
   display: inline-block;
   background: $o-window--color-background;
 
   &:not(.is-disabled):active {
-    border-image-source: url($s-asset--directory+'images/window/button-inverted.svg');
+    border-image-source: url('~@assets/images/window/button-inverted.svg');
   }
 }
 
 @mixin o-window-frame($thickness) {
   border: (2px * $thickness) solid black;
-  border-image: url($s-asset--directory+'images/window/frame.svg') $o-window--one-third repeat;
+  border-image: url('~@assets/images/window/frame.svg') $o-window--one-third repeat;
 }
 
 //Classes
@@ -88,7 +88,7 @@ $o-window--one-third: #{"33.333333333%"};//I needed greater accuracy than SCSS p
       height: 14px * $o-window--scale;
       font-size: $o-window--font-size;
 
-      background-image: url($s-asset--directory+'images/window/icons.png');
+      background-image: url('~@assets/images/window/icons.png');
       background-position: 0px 0px;
       background-size: 48px*$o-window--scale 20px*$o-window--scale;
 
