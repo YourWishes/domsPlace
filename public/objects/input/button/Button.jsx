@@ -77,7 +77,7 @@ export default props => {
   return (
     <ElementType {...newProps} className={clazzes}>
       <span className={"o-btn__inner"+(style?` o-btn--style-${style}__inner`:"")}>
-        {contents}
+        { children }
       </span>
     </ElementType>
   );

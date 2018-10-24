@@ -24,28 +24,31 @@
 import React from 'react';
 import LoadableImage from './LoadableImage';
 
+const DPI_RATIOS = 4;
+
 export default (props) => {
   let newProps = {...props};
 
+  //Local Scope props
   let {
     loadable, image, src, alt, width, height, sources, onLoad, onError,
     maxWidth, maxHeight, images
   } = props;
 
-
+  //Delete bad props
   [
     "loadable", "image", "src", "alt", "width", "height", "sources", "onLoad",
     "onError", "maxWidth", "maxHeight", "images"
   ].forEach(e => delete newProps[e]);
 
-  width = parseInt(width);
-  maxWidth = parseInt(maxWidth);
-  height = parseInt(height);
-  maxHeight = parseInt(maxHeight);
+  width = parseInt(width) || undefined;
+  maxWidth = parseInt(maxWidth) || undefined;
+  height = parseInt(height) || undefined;
+  maxHeight = parseInt(maxHeight) || undefined;
 
   if(loadable) return <LoadableImage {...props} />;
 
-  //Prop Manipulation
+  //Has image prop? Image prop may be either an array of sources of a image.
   if(image) {
     if(Array.isArray(image)) {
       sources = sources || image;
@@ -61,7 +64,9 @@ export default (props) => {
   }
 
   //Image
-  sources = sources || {};
+  sources = sources || [];
+
+  let sourcesByWidth = {};
   let sourceElements = [];
 
   let defaultSrc = src;
@@ -69,60 +74,62 @@ export default (props) => {
   let defaultWidth = width;
   let defaultHeight = height;
 
-  if(sources) {
-    //Iterate over supplied sources
-    for(let i = 0; i < sources.length; i++) {
-      let source = sources[i];
-      let width = source.size || source.width;
-      let isLast = (i+1) === sources.length;
+  //Iterate over supplied sources
+  for(let i = 0; i < sources.length; i++) {
+    let source = sources[i];
+    let width = source.size || source.width;
+    let isLast = (i+1) === sources.length;
 
-      for(let scale = 1; scale <= 4; scale++) {//4 = max scales
-        let scaledWidth = Math.round(width / scale);
-        let o = {...source};
-        o.scale = scale;
-        o.isLast = isLast;
-        sources[scaledWidth] = sources[scaledWidth] || [];
-        sources[scaledWidth].push(o);
-      }
+    for(let scale = 1; scale <= DPI_RATIOS; scale++) {//4 = max scales
+      let scaledWidth = Math.round(width / scale);
+      let o = {...source};
+      o.scale = scale;//Inject scale (DPI ratio)
+      o.isLast = isLast;//Is Last used for min-width rather than max-width
+
+      let widthKey = `${scaledWidth}`;
+
+      //Create an array for this screen width
+      sourcesByWidth[widthKey] = sourcesByWidth[widthKey] || [];
+      sourcesByWidth[widthKey].push(o);//Add this source
+    }
+  }
+
+  //Sort by size in descending order
+  let keys = Object.keys(sourcesByWidth);
+  keys.sort((l, r) => {
+    return parseInt(l) - parseInt(r);
+  });
+
+  let breakNext = false;
+  for(let i = 0; i < keys.length; i++) {
+    if(breakNext) break;
+    let k = keys[i];//The pixel size
+
+    let ss = sourcesByWidth[k];//Sources at this pixel resolution (array of sources)
+    let mediaQuery = `(max-width:${k}px)`;//Media query
+    let sss = [];
+
+    let isNextBreak = false;
+    if(maxWidth && (i+1 < keys.length)) {
+      if(keys[i+1] > parseInt(maxWidth)) isNextBreak = true;
+    }
+    if(isNextBreak) {
+      breakNext = true;
+      mediaQuery = `(min-width:${k}px)`;
     }
 
-    //Sort by size in descending order
-    let keys = Object.keys(sources);
-    keys.sort((l, r) => {
-      return parseInt(l) - parseInt(r);
-    });
-
-    let breakNext = false;
-    for(let i = 0; i < keys.length; i++) {
-      if(breakNext) break;
-      let k = keys[i];//The pixel size
-
-      let ss = sources[k];//Sources at this pixel resolution
-      let mediaQuery = `(max-width:${k}px)`;
-      let sss = [];
-
-      let isNextBreak = false;
-      if(maxWidth && (i+1 < keys.length)) {
-        if(keys[i+1] > parseInt(maxWidth)) isNextBreak = true;
-      }
-      if(isNextBreak) {
-        breakNext = true;
-        mediaQuery = `(min-width:${k}px)`;
-      }
-
-      if(ss.length && ss[0].isLast) {
-        let prev = i > 0 ? keys[i-1] : 0;
-        mediaQuery = `(min-width:${prev}px)`;
-      }
-
-      for(let x = 0; x < ss.length; x++) {
-        let scale = ss[x];
-        let source = scale.src || scale.path;
-        sss.push( source + (scale.scale && scale.scale!=1 ? " "+scale.scale+"x" : "") );
-      }
-
-      sourceElements.push(<source media={mediaQuery} srcSet={sss.join(", ")} key={i} />);
+    if(ss.length && ss[0].isLast) {
+      let prev = i > 0 ? keys[i-1] : 0;
+      mediaQuery = `(min-width:${prev}px)`;
     }
+
+    for(let x = 0; x < ss.length; x++) {
+      let scale = ss[x];
+      let source = scale.src || scale.path;
+      sss.push( source + (scale.scale && scale.scale!=1 ? " "+scale.scale+"x" : "") );
+    }
+
+    sourceElements.push(<source media={mediaQuery} srcSet={sss.join(", ")} key={i} />);
   }
 
   return (

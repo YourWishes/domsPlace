@@ -28,36 +28,27 @@ import Section from './../Section';
 
 import Image from '@objects/image/Image';
 
-export default function(props) {
-  let image;
+export default props => {
+  let sectionProps = {...props};
+  let imageProps = {...props};
+
+  let { image, background, children, className } = props;
+
+  ["children", "background", "loadable"].forEach(e => delete sectionProps[e]);
+  ["image", "full", "children", "background"].forEach(e => delete imageProps[e]);
+
   let clazz = "c-image-section";
+  image = image || <Image {...imageProps} className="c-image-section__image" />;
 
-  if(props.image) {
-    image = props.image;
-  } else {
-    image = <Image
-      {...props}
-      children={null}
-      className="c-image-section__image"
-    />;
-  }
-
-  if(props.className) clazz += " " + props.className;
-
-  if(props.background) {
-    //Background Image Effect
-    clazz += " is-background";
-  }
+  if(className) clazz += ` ${className}`;
+  if(background) clazz += " is-background";
 
   return (
-    <Section
-      full={props.full}
-      className={ clazz }
-    >
+    <Section {...sectionProps} className={ clazz }>
       { image }
       <div className="c-image-section__content">
         <div className="c-image-section__content-inner">
-          { props.children }
+          { children }
         </div>
       </div>
     </Section>

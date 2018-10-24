@@ -29,17 +29,16 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 const PageLoading = (props) => {
-  if(props.error) return <span>Loading Error</span>;
-  if(props.pastDelay) return <span>Loading...</span>;
+  let { error, pastDelay } = props;
+  if(error) return <span>Loading Error</span>;
+  if(pastDelay) return <span>Loading...</span>;
   return null;
 };
 
 export const RouteWrapper = (props) => {
-  let { page } = props.page;
-
   let render = () => {
     let CustomLoadable = Loadable({
-      loader: page,
+      loader: props.page,
       loading: PageLoading
     });
     return <CustomLoadable />
@@ -49,7 +48,7 @@ export const RouteWrapper = (props) => {
 };
 
 export default withRouter((props) => {
-  const { match, location, history, children } = this.props;
+  const { match, location, history, children } = props;
 
   return (
     <Route>

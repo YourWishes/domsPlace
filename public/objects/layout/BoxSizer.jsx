@@ -28,6 +28,7 @@ import Styles from './BoxSizer.scss';
 export default props => {
   let newProps = {...props};
   let { ratioWidth, ratioHeight, className } = props;
+  ["ratioWidth","ratioHeight"].forEach(e => delete newProps[e]);
 
   let clazzes = "o-box-sizer";
   if(className) clazzes += ` ${className}`;
@@ -41,6 +42,6 @@ export default props => {
 
   //Box Sizer
   return (
-    <div {...props} className={classes} style={{ paddingBottom: `${height}%` }} />
+    <div {...newProps} className={clazzes} style={{ paddingBottom: `${height}%` }} />
   );
 };

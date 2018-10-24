@@ -63,6 +63,8 @@ export default class LoadableImage extends React.Component {
     let newProps = {...this.props};
     let { loading } = this.state;
     let { className, width, height } = this.props;
+    
+    ["loadable"].forEach(e => delete newProps[e]);
 
     let loader,imageSizer;
     let image = <Image
