@@ -9,6 +9,7 @@
  *  Version:
  *    1.0.0 - 2018/05/13
  */
+@import '~@styles/global';
 
 .o-input {
   @include t-input--style-dp();

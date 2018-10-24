@@ -23,10 +23,9 @@
 
 import React from 'react';
 
-export default function(props) {
+export default props => {
+  let { className } = props;
   return (
-    <div {...props} className={"o-btn-group" + (props.className ? " "+props.className : "")}>
-      {props.children}
-    </div>
+    <div {...props} className={"o-btn-group" + (className?` ${className}`:"")} />
   );
 }

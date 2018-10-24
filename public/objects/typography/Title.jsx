@@ -23,10 +23,7 @@
 
 import React from 'react';
 
-export default function(props) {
-  return (
-    <h1 className={ "o-title" + ( props.className ? " " + props.className : "") }>
-      { props.children }
-    </h1>
-  );
+export default props => {
+  let { className } = props;
+  return <h1 {...props} className={"o-title"+(className?` ${className}`: "")} />
 }

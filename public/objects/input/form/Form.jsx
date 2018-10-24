@@ -22,47 +22,54 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
+import Styles from './Form.scss';
+
+import FormGroup from './group/FormGroup';
 import Loader, { LoaderBackdrop } from '@objects/loading/Loader';
-import Input, { InputGroup, TextArea } from './../Input';
+import Input, { TextArea } from './../Input';
 
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
 
-    //Prepare our initial state
-    let s = {
-      ajax: props.ajax || false,
-      loader: props.loader || false,
-      loading: false,
-      onSubmit: props.onSubmit,
-      contentType: props.contentType || props.encType || "application/x-www-form-urlencoded",
-      manager: props.manager
-    };
+    let {
+      ajax, loader, onSubmit, contentType, encType, manager, action, method,
+      get, post
+    } = props;
+
+    contentType = contentType || encType ||  "application/x-www-form-urlencoded";
 
     //Determine action and method based off the internals
-    if(props.action) s.action = props.action;
-    if(props.method) s.method = props.method;
-
-    if(props.get) {
-      s.action = props.get;
-      s.method = "GET";
+    if(get) {
+      action = get;
+      method = "GET";
     }
 
-    if(props.post) {
-      s.action = props.post;
-      s.method = "POST";
+    if(post) {
+      action = post;
+      method = "POST";
     }
 
-    //Write our state to the component
-    this.state = s;
+    //Prepare our initial state
+    this.state = {
+      ajax,
+      loader,
+      loading: false,
+      onSubmit,
+      contentType,
+      manager
+    };
   }
 
   componentDidMount() {
-    if(this.props.manager) this.props.manager.addForm(this);
+    let { manager } = this.props;
+    if(manager) manager.addForm(this);
   }
 
   componentWillUnmount() {
-    if(this.props.manager) this.props.manager.removeForm(this);
+    let { manager } = this.props;
+    if(manager) manager.removeForm(this);
   }
 
   submit() {
@@ -70,14 +77,19 @@ export default class Form extends React.Component {
   }
 
   onSubmit(e) {
+    let {
+      ajax, onSubmit, action, submitting, method, mode, contentType
+    } = this.state;
+    let { manager } = this.props;
+
     //Is Ajax?
-    if(!this.state.ajax) {
-      return this.state.onSubmit ? this.state.onSubmit(e) : true;
+    if(!ajax) {
+      return onSubmit ? onSubmit(e) : true;
     }
 
-    if(e) e.preventDefault();
-    if(!this.state.action) return console.warning("This form has no action.");
-    if(this.state.submitting) return false;//Already submitting?
+    if(e && e.preventDefault) e.preventDefault();
+    if(!action) return console.warning("This form has no action.");
+    if(submitting) return false;//Already submitting?
 
     //Start submitting!
     this.setState({
@@ -87,30 +99,26 @@ export default class Form extends React.Component {
 
     //Prepare our data
     let data;
-    if(this.props.manager) {
-      data = this.props.manager.getFormData();
-    }
+    if(manager) data = manager.getFormData();
+    data = data || {};
 
-    if(this.state.contentType == "application/json") {
+    if(contentType == "application/json") {
       let dataJson = {};
-      data.forEach(function(value, key) {
+      data.forEach((value, key) => {
         dataJson[key] = value;
       });
       data = JSON.stringify(dataJson);
     }
 
     //Prepare our request.
-    fetch(this.state.action, {
-      method: this.state.method,
-      mode: this.state.mode,
+    fetch(action, {
+      method: method,
+      mode: mode,
       body: data,
       headers: {
-        "Content-Type": this.state.contentType
+        "Content-Type": contentType
       }
-    })
-      .then(this.onSubmitted.bind(this))
-      .catch(this.onError.bind(this))
-    ;
+    }).then(resp => this.onSubmitted(resp)).catch((e,a,b) => this.onError(e,a,b));
 
     return false;
   }
@@ -124,20 +132,19 @@ export default class Form extends React.Component {
       let is4xx = Math.floor(response.status / 400) === 1;
       if(is4xx) {
         return response[method]()
-          .then(this.onErrorText.bind(this))
-          .catch(this.onError.bind(this))
+          .then((e,a,b) => this.onErrorText(e,a,b))
+          .catch((e,a,b) => this.onError(e,a,b))
         ;
-      } else {
-        throw Error(response.statusText);
       }
+      throw Error(response.statusText);
     }
 
     if(this.props.onData) return this.props.onData(response);
 
     //Handle the old fashioned way (expect json)
     response[method]()
-      .then(this.onData.bind(this))
-      .catch(this.onError.bind(this))
+      .then(resp => this.onData(resp))
+      .catch((e,a,b) => this.onError(e,a,b))
     ;
   }
 
@@ -163,13 +170,16 @@ export default class Form extends React.Component {
   }
 
   render() {
+    let { className, children } = this.props;
+    let { loader, loading } = this.state;
+
     let clazz = "o-form";
-    if(this.props.className) clazz += " " + this.props.className;
+    if(className) clazz += ` ${className}`
 
     //Do I need a loader?
-    let loader;
-    if(this.state.loader && this.state.loading) {
-      loader = (
+    let loaderElement;
+    if(loader && loading) {
+      loaderElement = (
         <LoaderBackdrop className="o-form__loader">
           <Loader className="o-form__loader-spinner" />
         </LoaderBackdrop>
@@ -178,15 +188,14 @@ export default class Form extends React.Component {
 
     return (
       <form
+        {...this.props}
         ref="formDOM"
-        className={clazz}
+        className={ clazz }
         method={ this.state.method }
-        autoComplete={ this.props.autoComplete }
-        target={ this.props.target }
-        onSubmit={ this.onSubmit.bind(this) }
+        onSubmit={ (e) => this.onSubmit(e) }
       >
-        { this.props.children }
-        { loader }
+        { children }
+        { loaderElement }
       </form>
     );
   }
@@ -235,5 +244,6 @@ class FormManager {
 }
 
 export {
-  FormManager
+  FormManager,
+  FormGroup
 };

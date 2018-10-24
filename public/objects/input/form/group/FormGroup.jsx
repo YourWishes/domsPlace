@@ -23,14 +23,11 @@
 
 import React from 'react';
 
-export default function(props) {
+export default props => {
   let clazzes = "o-form__group";
-
-  if(props.className) clazzes += " " + props.className;
+  if(props.className) clazzes += ` ${props.className}`;
 
   return (
-    <div className={clazzes}>
-      { props.children }
-    </div>
+    <div {...props} className={clazzes} />
   );
 }

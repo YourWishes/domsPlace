@@ -24,81 +24,61 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default class Button extends React.Component {
-  constructor(props) {
-    super(props);
+import Styles from './Button.scss';
+
+export default props => {
+  let newProps = {...props};
+  let {
+    className, href, to, style, type, value, children,
+    error, danger, primary, warning, manager
+  } = newProps;
+
+  [
+    "style", "value", "href", "to", "children", "error", "danger", "primary",
+    "warning", "manager"
+  ].forEach(e => delete newProps[e]);
+
+  type = type || "button";
+  children = children || value;
+
+  if(primary) style = "primary";
+  if(warning) style = "warning";
+  if(error || danger) style = "danger";
+
+
+  let ElementType = "button";//Upper Camel-Case because of react requriements
+  let clazzes = "o-btn";
+
+  //Basic Element Determining
+  if(type) {
+    //Buttons and Input Buttons
+    clazzes += " is-button";
+
+  } else if(href) {
+    //Anchor Tags!
+    ElementType = "a";
+    clazzes += " is-link is-anchor";
+    newProps.href = to || href;
+
+  } else if(to) {
+    ElementType = NavLink;
+    clazzes += " is-link is-nav-link";
+    newProps.to = to || href;
+
+  } else {
+    //Everything Else (button without a type);
+    clazzes += " is-not-button";
+
   }
 
-  render() {
-    let ElementType = "button";//Upper Camel-Case because of react requriements
-    let clazzes = "o-btn";
-    let type = "button";
-    let contents;
-    let href;
-    let to;
-    let activeClassName;
-    let style;
+  if(style) clazzes += ` o-btn--style-${style}`;
+  if(className) clazzes += ` ${className}`;
 
-    //Basic Element Determining
-    if(this.props.type) {
-      //Buttons and Input Buttons
-      type = this.props.type;
-      clazzes += " is-button";
-    } else if(this.props.href) {
-      //Anchor Tags1
-      ElementType = "a";
-      href = this.props.href;
-      clazzes += " is-link is-anchor";
-    } else if(this.props.to) {
-      //React NavLink/Link
-      to = this.props.to;
-      ElementType = NavLink;
-      clazzes += " is-link is-nav-link";
-      activeClassName = "is-active";
-    } else {
-      //Everything Else (button without a type);
-      clazzes += " is-not-button";
-    }
-
-    if(this.props.value) {
-      contents = this.props.value;
-    } else {
-      contents = this.props.children;
-    }
-
-    //Determine Style
-    if(this.props.primary) {
-      style = "primary"
-    } else if(this.props.secondary) {
-      style = "secondary";
-    } else if(this.props.danger) {
-      style = "danger";
-    } else if(this.props.warning) {
-      style = "warning";
-    } else if(this.props.style) {
-      style = this.props.style;
-    }
-
-    //Style Clazzes
-    if(style) {
-      clazzes += " o-btn--style-"+style;
-    }
-
-    //Determine extra clazzes
-    if(this.props.className) this.clazzes += " "+this.props.className;
-
-    return (
-      <ElementType
-        {...this.props}
-        type={type}
-        className={clazzes}
-        href={href}
-        to={to}
-      >
-        <span className={ "o-btn__inner" + (style ? " o-btn--style-" + style + "__inner" : "") }>
-          {contents}
-        </span>
-      </ElementType>
-    );
-  }
+  return (
+    <ElementType {...newProps} className={clazzes}>
+      <span className={"o-btn__inner"+(style?` o-btn--style-${style}__inner`:"")}>
+        {contents}
+      </span>
+    </ElementType>
+  );
 }

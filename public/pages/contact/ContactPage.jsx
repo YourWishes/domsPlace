@@ -47,7 +47,7 @@ import { Title, Heading1, Paragraph } from '@objects/typography/Typography';
 import Input, {
   Form,
   FormManager,
-  InputGroup,
+  FormGroup,
   TextArea,
   Label,
   ButtonGroup
@@ -109,7 +109,7 @@ class ContactPage extends React.Component {
               onError={ this.onError.bind(this) }
               manager={ this.manager }
             >
-              <InputGroup test="First Group">
+              <FormGroup test="First Group">
                 <Label htmlFor="name">
                   { Language.get("pages.contact.name.label") }
                 </Label>
@@ -121,9 +121,9 @@ class ContactPage extends React.Component {
                   maxLength={ Forms.contact.name.maxLength }
                   manager={ this.manager }
                 />
-              </InputGroup>
+              </FormGroup>
 
-              <InputGroup >
+              <FormGroup >
                 <Label htmlFor="email">
                   { Language.get("pages.contact.email.label") }
                 </Label>
@@ -135,9 +135,9 @@ class ContactPage extends React.Component {
                   maxLength={ Forms.contact.email.maxLength }
                   manager={ this.manager }
                 />
-              </InputGroup>
+              </FormGroup>
 
-              <InputGroup>
+              <FormGroup>
                 <Label> htmlFor="message">
                   { Language.get("pages.contact.message.label") }
                 </Label>
@@ -150,7 +150,7 @@ class ContactPage extends React.Component {
                   maxLength={ Forms.contact.message.maxLength }
                   manager={ this.manager }
                 />
-              </InputGroup>
+              </FormGroup>
 
               <ButtonGroup>
                 <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />

@@ -25,11 +25,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Button } from './../input/Input';
+
+import Styles from './Modal.scss';
+
 import Language from '@public/language/Language';
 import { openModal, closeModal } from '@public/actions/ModalActions';
-import { Heading4 } from '@objects/typography/Typography';
 import Keyboard from '@public/keyboard/Keyboard';
+
+import { Button } from './../input/Input';
+import { Heading4 } from '@objects/typography/Typography';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -50,46 +54,33 @@ class Modal extends React.Component {
   }
 
   render() {
-    //Add necessary buttons
-    let buttons = [];
-    if(this.props.buttons) {
-      if(Array.isArray(buttons)) {
-        buttons.concat(this.props.buttons);
-      } else {
-        buttons.push(this.props.buttons);
-      }
-    }
+    let { buttons, closeModal, close, title, children, large, modal } = this.props;
 
-    if(this.props.close) {
-      buttons.push(<Button key="close" onClick={this.props.closeModal}>{ Language.get("modal.close") }</Button>);
+    //Add necessary buttons
+    buttons = buttons || [];
+    if(!Array.isArray(buttons)) buttons = [ buttons ];
+
+    if(close) {
+      buttons.push(<Button key="close" onClick={closeModal}>{ Language.get("modal.close") }</Button>);
     }
 
     //Inner divs
     let heading,body,footer;
-    if(this.props.title) {
+
+    if(title) {
       heading = (
         <div className="o-modal__box-heading">
-          <Heading4 className="o-modal__title">
-            { this.props.title }
-          </Heading4>
+          <Heading4 className="o-modal__title">\{ title }</Heading4>
         </div>
       );
     }
 
-    if(this.props.children) {
-      body = (
-        <div className="o-modal__box-body">
-          { this.props.children }
-        </div>
-      );
+    if(children) {
+      body = <div className="o-modal__box-body" children={ children } />;
     }
 
-    if(buttons) {
-      footer = (
-        <div className="o-modal__box-footer">
-          { buttons }
-        </div>
-      );
+    if(buttons && buttons.length) {
+      footer = <div className="o-modal__box-footer">{ buttons }</div>;
     }
 
     //Create our modal contents
@@ -97,11 +88,11 @@ class Modal extends React.Component {
       <div className="o-modal">
         <div className="o-modal__inner">
           {/* Provides both a good overlay, and a nice clickable area  */}
-          <div className="o-modal__backdrop" onClick={this.props.closeModal}>
+          <div className="o-modal__backdrop" onClick={closeModal}>
           </div>
 
           {/* Box itself, has a background and a shadow */}
-          <div className={"o-modal__box" + (this.props.large ? " is-large":"")}>
+          <div className={"o-modal__box"+(large ? " is-large":"")}>
             { heading }
             { body }
             { footer }
@@ -113,7 +104,7 @@ class Modal extends React.Component {
     //Display?
     let displayedContents = <div></div>;
 
-    if(this.props.modal.open) {
+    if(modal.open) {
       displayedContents = (
         <CSSTransition
           appear={true}

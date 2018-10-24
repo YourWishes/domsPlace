@@ -23,13 +23,9 @@
 
 import React from 'react';
 
-export default function(props) {
+export default props => {
   let clazz = "o-label";
-  if(props.className) clazz += " " + props.className;
+  if(props.className) clazz += ` ${props.className}`;
 
-  return (
-    <label htmlFor={ props.htmlFor } className={clazz}>
-      { props.children }
-    </label>
-  );
+  return <label {...props} className={clazz} />;
 }

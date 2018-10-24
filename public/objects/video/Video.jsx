@@ -36,32 +36,30 @@ export default class Video extends React.Component {
   constructor(props) {
     super(props);
 
+    let { autoPlay, loop, controls } = props;
+    if(typeof autoPlay === typeof undefined) autoPlay;
+    if(typeof loop === typeof undefined) loop;
+    if(typeof controls === typeof undefined) controls;
+
     //Initial State
     this.state = {
-      autoPlay: this.props.autoPlay,
-      loop: this.props.loop,
+      autoPlay: autoPlay,
+      loop: loop,
       loader: false,
-      controls: this.props.controls
+      controls: controls
     };
-
-    //Bound events (for removing event listeners)
-    this.onPlayingBound = this.onPlaying.bind(this);
-    this.onWaitingBound = this.onWaiting.bind(this);
-    this.onPauseBound = this.onPause.bind(this);
-    this.onSeekedBound = this.onSeeked.bind(this);
-    this.onLoadStartBound = this.onLoadStart.bind(this);
   }
 
   componentDidMount() {
-    this.refs.video.addEventListener('playing', this.onPlayingBound);
-    this.refs.video.addEventListener('waiting', this.onWaitingBound);
-    this.refs.video.addEventListener('seeked', this.onSeekedBound);
-    this.refs.video.addEventListener('pause', this.onPauseBound);
-    this.refs.video.addEventListener('loadstart', this.onLoadStartBound);
+    let { video } = this.refs;
+    video.addEventListener('playing',  () => this.onPlaying() );
+    video.addEventListener('waiting',  () => this.onWaiting() );
+    video.addEventListener('seeked',   () => this.onSeeked() );
+    video.addEventListener('pause',    () => this.onPause() );
+    video.addEventListener('loadstart',() => this.onLoadStart() );
   }
 
   componentWillUnmount() {
-
   }
 
   //Standard Events - https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Media_events
@@ -103,21 +101,22 @@ export default class Video extends React.Component {
 
   //React Render
   render() {
-    //TODO: Add state support, as well as functional controls.
+    let { autoPlay, loop } = this.state;
+    let newProps = {...this.props};
+    let { sources, className, gif, image } = this.props;
 
-    //Sources
-    let sources = [];
-    let sourceProps = this.props.sources ? this.props.sources : this.props;
+    sources = sources || [];
+    let sourceElements = [];
 
     for(let i = 0; i < VALID_SOURCES.length; i++) {
       let s = VALID_SOURCES[i];
       if(!sourceProps[s]) continue;
-      sources.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
+      sourceElements.push(<source type={"video/"+s} src={sourceProps[s]} key={s} />);
     }
 
     //Classes
     let clazz = "o-video";
-    if(this.props.className) clazz += " " + this.props.className;
+    if(className) clazz += ` ${className}`;
     if(sourceProps.image) clazz += " has-image";
     if(sourceProps.gif) clazz += " has-gif";
     if(this.state.autoplay) clazz += " is-autoplaying";

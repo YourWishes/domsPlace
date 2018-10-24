@@ -23,12 +23,14 @@
 
 import React from 'react';
 
+import Styles from './Input.scss';
+
+import Keyboard from '@public/keyboard/Keyboard';
+
 import Button from './button/Button';
 import ButtonGroup from './button/ButtonGroup';
-import Form, { FormManager } from './form/Form';
-import InputGroup from './group/InputGroup';
+import Form, { FormManager, FormGroup } from './form/Form';
 import Label from './label/Label';
-import Keyboard from '@public/keyboard/Keyboard';
 
 export default class Input extends React.Component {
   constructor(props) {
@@ -45,7 +47,8 @@ export default class Input extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.manager) this.props.manager.addInput(this);
+    let { manager } = this.props;
+    if(manager) manager.addInput(this);
     Keyboard.addListener(this);
   }
 
@@ -85,49 +88,44 @@ export default class Input extends React.Component {
   }
 
   render() {
-    let ElementType = "input";
-    let type = "text";
-    let value;
+    let newProps = {...this.props};
+    let {
+      value, className, type, children, style, error, danger, primary,
+      warning, manager
+    } = newProps;
+
+    //Clear bad props
+    [
+      "error", "danger", "primary", "warning", "manager", "style", "children"
+    ].forEach(e => delete newProps[e]);
+
+    //Prop defaults
+    type = type || "text";
+
+    //Gen classes
     let clazzes = "o-input";
     let innerClazzes = "o-input__inner";
-    let style;
-    let props = Object.assign({}, this.props);
-
-    //Determining
-    if(props.type) type = props.type;
 
     //Values
-    if(props.value) {
-      value = props.value;
-    } else {
-      value = props.children;
-    }
+    value = stateValue || value || children;
 
     //Style
-    if(props.style) {
-      style = props.style;
-    } else if(props.error || props.danger) {
-      style = "danger";
-    } else if(props.warning) {
-      style = "warning";
-    } else if(props.primary) {
-      style = "primary";
-    }
+    if(primary) style = "primary";
+    if(warning) style = "warning";
+    if(error || danger) style = "danger";
 
     //Classes
-    clazzes += " is-"+type;
+    clazzes += ` is-${type}`;
 
     if(style) {
-      clazzes += " o-input--style-"+style;
-      innerClazzes += " o-input--style-"+style+"__inner";
-    }
-    if(props.className) {
-      clazzes += " " + props.className;
-      innerClazzes += " " + props.className + "-element";
+      clazzes += ` o-input--style-${style}`;
+      innerClazzes += ` o-input--style-${style}__inner`;
     }
 
-    //Clear junk props
-    delete props.manager;
+    if(className) {
+      clazzes += ` ${className}`;
+      innerClazzes += ` ${className}-element`;
+    }
 
     //Now create the element
     let element;
@@ -139,27 +137,15 @@ export default class Input extends React.Component {
         className={props.className}
         value={this.state.value}
       />);
+    }
 
-    } else if(type == "textarea") {
-      element = (<textarea
-          {...props}
-          className={innerClazzes}
-          onChange={this.onChange.bind(this)}
-          onFocus={this.onFocus.bind(this)}
-          onBlur={this.onBlur.bind(this)}
-        >{ this.state.value }</textarea>
-      );
+    [ "onChange", "onFocus", "onBlur"].forEach(e => newProps[e] = this[e]);
 
+    //Text areas are slightly different
+    if(type == "textarea") {
+      element = <textarea {...newProps} className={innerClazzes} children={value} />
     } else {
-      element = (<ElementType
-        {...props}
-        onChange={this.onChange.bind(this)}
-        onFocus={this.onFocus.bind(this)}
-        onBlur={this.onBlur.bind(this)}
-        type={type}
-        value={ this.state.value }
-        className={innerClazzes}
-      />);
+      element = <input {...newProps} type={type} value={ value } className={innerClazzes} />;
     }
 
     return (
@@ -179,7 +165,7 @@ export {
   ButtonGroup,
   Form,
   FormManager,
-  InputGroup,
+  FormGroup,
   TextArea,
   Label
 };

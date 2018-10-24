@@ -24,9 +24,6 @@
 import React from 'react';
 
 export default function(props) {
-  return (
-    <p className={ "o-subtitle" + ( props.className ? " " + props.className : "") }>
-      { props.children }
-    </p>
-  );
+  let { className } = props;
+  return <p {...props} className={"o-subtitle"+(className?` ${className}`: "")} />;
 }

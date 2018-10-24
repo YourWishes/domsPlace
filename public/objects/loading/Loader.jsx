@@ -23,9 +23,11 @@
 
 import React from 'react';
 
-const Loader = function(props) {
+import Styles from './Loader.scss';
+
+const Loader = props => {
   return (
-    <span className={"o-loader"+(props.className?" "+props.className:"")}>
+    <span {...props} className={"o-loader"+(props.className?` ${props.className}`:"")}>
       <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" className="o-loader__image">
         <g fill="none" fillRule="evenodd">
           <g transform="translate(1 1)" strokeWidth="2">
@@ -39,11 +41,9 @@ const Loader = function(props) {
   );
 }
 
-const LoaderBackdrop = function(props) {
+const LoaderBackdrop = props => {
   return (
-    <div className={"o-loader__backdrop"+(props.className?" "+props.className:"")}>
-      { props.children }
-    </div>
+    <div {...props} className={"o-loader__backdrop"+(props.className?` ${props.className}`:"")} />
   );
 }
 

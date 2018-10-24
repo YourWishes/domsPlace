@@ -24,8 +24,6 @@
 import React from 'react';
 
 export default (props) => {
-  let clazz = "o-paragraph";
-  if(props.className) clazz += " "+props.className;
-
-  return <p {...props} className={clazz} />
+  let { className } = props;
+  return <p {...props} className={"o-paragraph"+(className?` ${className}`: "")} />;
 };

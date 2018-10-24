@@ -24,15 +24,15 @@
 import React from 'react';
 
 const Heading = (props) => {
-  let level = props.level || 1;
+  let { level, size, className } = props;
+
+  level = level || 1;
+  size = size || 1;
+
   let CustomTag = "h"+level;
-  let clazz = "o-heading o-heading--"+level;
-  if(props.className) clazz += " " + props.className;
-
-
-  return (
-    <CustomTag {...props} className={clazz} />
-  );
+  let clazz = `o-heading o-heading--${size}`;
+  if(className) clazz += ` ${className}`;
+  return <CustomTag {...props} className={clazz} />;
 }
 export default Heading;
 
@@ -44,10 +44,5 @@ const Heading5 = (props) => { return <Heading {...props} level="5" />; };
 const Heading6 = (props) => { return <Heading {...props} level="6" />; };
 
 export {
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6
+  Heading1, Heading2, Heading3, Heading4, Heading5, Heading6
 };
