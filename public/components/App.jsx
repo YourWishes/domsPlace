@@ -38,8 +38,7 @@ const AppRoutes = (props) => {
     <React.Fragment>
       <Routes onEntering={ props.onEntering }>
         <RouteWrapper exact path="/" page={ () => import('@pages/home/HomePage') } />
-        <RouteWrapper exact path="/contact" page={ () => import('@pages/contact/ContactPage') } />
-
+        <RouteWrapper exact path="/contact" page={ () => import ('@pages/contact/ContactPage') } />
         <RouteWrapper exact path="/legal/privacy" page={ () => import('@pages/legal/privacy/PrivacyPolicyPage') } />
       </Routes>
     </React.Fragment>

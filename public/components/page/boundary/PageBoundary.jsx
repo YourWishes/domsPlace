@@ -23,7 +23,7 @@
 
 import React from 'react';
 
-import Styles from './PageBoundary';
+import Styles from './PageBoundary.scss';
 
 export default (props) => {
   let newProps = { ...props };

@@ -37,7 +37,7 @@ export default class Input extends React.Component {
     super(props);
 
     this.state = {
-      value: props.value,
+      value: props.value || props.children || "",
       focused: false
     };
   }
@@ -90,13 +90,14 @@ export default class Input extends React.Component {
   render() {
     let newProps = {...this.props};
     let {
-      value, className, type, children, style, error, danger, primary,
+      className, type, children, style, error, danger, primary,
       warning, manager
     } = newProps;
 
     //Clear bad props
     [
-      "error", "danger", "primary", "warning", "manager", "style", "children"
+      "error", "danger", "primary", "warning", "manager", "style", "children",
+      "value"
     ].forEach(e => delete newProps[e]);
 
     //Prop defaults
@@ -105,9 +106,6 @@ export default class Input extends React.Component {
     //Gen classes
     let clazzes = "o-input";
     let innerClazzes = "o-input__inner";
-
-    //Values
-    value = stateValue || value || children;
 
     //Style
     if(primary) style = "primary";
@@ -128,29 +126,22 @@ export default class Input extends React.Component {
     }
 
     //Now create the element
-    let element;
-
     //First we need to switch things like submit and reset
-    if(type == "submit" || type == "reset" || type == "button") {
-      return (<Button
-        {...props}
-        className={props.className}
-        value={this.state.value}
-      />);
+    if(["submit","reset","button"].indexOf(type) !== -1) {
+      return <Button {...newProps} children={ this.state.value } />;
     }
 
-    [ "onChange", "onFocus", "onBlur"].forEach(e => newProps[e] = this[e]);
+    //Bind our event handlers for the input fields
+    [ "onChange", "onFocus", "onBlur" ].forEach(e => newProps[e] = this[e].bind(this));
+
+    let ElementType = "input";
 
     //Text areas are slightly different
-    if(type == "textarea") {
-      element = <textarea {...newProps} className={innerClazzes} children={value} />
-    } else {
-      element = <input {...newProps} type={type} value={ value } className={innerClazzes} />;
-    }
+    if(type == "textarea") ElementType = "textarea";
 
     return (
       <div className={clazzes}>
-        { element }
+        <ElementType {...newProps} type={type} className={innerClazzes} value={ this.state.value } />
       </div>
     )
   }

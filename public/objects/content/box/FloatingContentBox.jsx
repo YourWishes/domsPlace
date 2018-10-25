@@ -23,7 +23,7 @@
 
 import React from 'react';
 
-import Styles from './FloatingContentBox';
+import Styles from './FloatingContentBox.scss';
 
 import ContentBox from './ContentBox';
 

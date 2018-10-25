@@ -34,7 +34,7 @@ import Keyboard from './keyboard/Keyboard';
 
 
 //Import Common Elements Stylesheet
-import Styles from './styles/common';
+import Styles from './styles/common.scss';
 
 //Import Base Component
 import App from './components/App';

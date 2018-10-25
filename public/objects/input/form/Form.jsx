@@ -53,6 +53,8 @@ export default class Form extends React.Component {
 
     //Prepare our initial state
     this.state = {
+      action,
+      method,
       ajax,
       loader,
       loading: false,
@@ -88,7 +90,7 @@ export default class Form extends React.Component {
     }
 
     if(e && e.preventDefault) e.preventDefault();
-    if(!action) return console.warning("This form has no action.");
+    if(!action) return console.error("This form has no action.");
     if(submitting) return false;//Already submitting?
 
     //Start submitting!
@@ -170,8 +172,14 @@ export default class Form extends React.Component {
   }
 
   render() {
-    let { className, children } = this.props;
+    let newProps = {...this.props};
+    let { className, children } = newProps;
     let { loader, loading } = this.state;
+
+    [
+      "onSuccess", "onError", "loader", "loading", "ajax",
+      "onData", "contentType", "contenttype"
+    ].forEach(e => delete newProps[e]);
 
     let clazz = "o-form";
     if(className) clazz += ` ${className}`
@@ -188,7 +196,7 @@ export default class Form extends React.Component {
 
     return (
       <form
-        {...this.props}
+        {...newProps}
         ref="formDOM"
         className={ clazz }
         method={ this.state.method }

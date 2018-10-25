@@ -23,12 +23,12 @@
 
 import React from 'react';
 
-import Styles from './ContentBox';
+import Styles from './ContentBox.scss';
 
 export default (props) => {
   let newProps = {...props};
   let { className, box } = props;
-  
+
   delete newProps.box;
 
   let clazz = "o-content-box";

@@ -23,7 +23,7 @@
 
 import React from 'react';
 
-import Styles from './Section';
+import Styles from './Section.scss';
 
 export default (props) => {
   let newProps = {...props};

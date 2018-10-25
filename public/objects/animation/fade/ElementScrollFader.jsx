@@ -33,14 +33,15 @@ export default class ElementScrollFader extends React.Component {
       waiting: true,
       visible: false
     };
+
     this.onScrollBound = this.onScroll.bind(this);
-    this.updateRectangleBound = this.updateRectangle.bind(this);
     this.checkEffectBound = this.checkEffect.bind(this);
 
     this.rect = null;
   }
 
   componentDidMount() {
+    return;
     //Update rectangle
     if(this.rectTimer) clearInterval(this.rectTimer);
     this.rectTimer = setInterval(this.updateRectangleBound, 100);
@@ -54,12 +55,13 @@ export default class ElementScrollFader extends React.Component {
   }
 
   componentWillUnmount() {
+    return;
     this.detachListener();
   }
 
   //Used for rect calculation
   updateRectangle() {
-    if(!this.refs || !this.refs.fader) return;
+    if(!this.refs.fader) return;
     this.rect = this.refs.fader.getBoundingClientRect();
   }
 
@@ -77,22 +79,26 @@ export default class ElementScrollFader extends React.Component {
   }
 
   checkEffect() {
+    let { waiting, visible } = this.state;
+    let { onVisible } = this.props;
+
     if(typeof window === typeof undefined) return;
-    if(!this.refs || !this.refs.fader) return;
-    if(this.state.waiting) {
+    if(!this.refs.fader) return;
+    if(waiting) {
       this.setState({
         waiting: false
       });
     }
-    if(this.state.visible) return this.detachListener();
-
+    if(visible) return this.detachListener();
     if(!this.rect) this.updateRectangle();
 
     //Get bounds
     var rect = this.rect;
 
     //If our top is at least half way UP the page, show
-    if(rect.top > window.innerHeight / 1.5) return;
+    var doc = document.documentElement;
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    if(rect.top > top / 1.5) return;
 
     this.setState({
       visible: true
@@ -100,19 +106,20 @@ export default class ElementScrollFader extends React.Component {
 
     this.detachListener();//stop Listening
 
-    if(this.props.onVisible) {
-      this.props.onVisible(this.refs.fader);
-    }
+    if(onVisible) onVisible(this.refs.fader);
     return true;
   }
 
   render() {
     let newProps = {...this.props};
-    let { from, visible, waiting, className } = this.props;
+    let { from, className } = this.props;
+    let { visible, waiting } = this.state;
+
+    return <div {...newProps} />;
 
     from = from || "top";
 
-    ["from","visible","waiting"].forEach(e => delete newProps[e]);
+    ["from"].forEach(e => delete newProps[e]);
 
     let clazz = `o-element-scroll-fader from-${from}`;
     if(visible || waiting) clazz += " is-visible";
