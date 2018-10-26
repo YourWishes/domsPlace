@@ -54,15 +54,15 @@ class Modal extends React.Component {
   }
 
   render() {
-    let { buttons, closeModal, close, title, children, large, modal } = this.props;
+    let newProps = {...this.props};
+    let { buttons, closeModal, close, title, children, large, modal } = newProps;
+    ["onExited"].forEach(e => delete newProps[e]);
 
     //Add necessary buttons
     buttons = buttons || [];
     if(!Array.isArray(buttons)) buttons = [ buttons ];
 
-    if(close) {
-      buttons.push(<Button key="close" onClick={closeModal}>{ Language.get("modal.close") }</Button>);
-    }
+    if(close) buttons = [...buttons,<Button key="close" onClick={closeModal} children={Language.get("modal.close")} />];
 
     //Inner divs
     let heading,body,footer;
@@ -70,59 +70,40 @@ class Modal extends React.Component {
     if(title) {
       heading = (
         <div className="o-modal__box-heading">
-          <Heading4 className="o-modal__title">\{ title }</Heading4>
+          <Heading4 className="o-modal__title">{ title }</Heading4>
         </div>
       );
     }
-
-    if(children) {
-      body = <div className="o-modal__box-body" children={ children } />;
-    }
-
-    if(buttons && buttons.length) {
-      footer = <div className="o-modal__box-footer">{ buttons }</div>;
-    }
+    if(children) body = <div className="o-modal__box-body" children={ children } />;
+    if(buttons && buttons.length) footer = <div className="o-modal__box-footer">{ buttons }</div>;
 
     //Create our modal contents
-    let contents = (
-      <div className="o-modal">
-        <div className="o-modal__inner">
-          {/* Provides both a good overlay, and a nice clickable area  */}
-          <div className="o-modal__backdrop" onClick={closeModal}>
-          </div>
-
-          {/* Box itself, has a background and a shadow */}
-          <div className={"o-modal__box"+(large ? " is-large":"")}>
-            { heading }
-            { body }
-            { footer }
-          </div>
-        </div>
-      </div>
-    );
-
-    //Display?
-    let displayedContents = <div></div>;
+    let contents = <div />;
 
     if(modal.open) {
-      displayedContents = (
-        <CSSTransition
-          appear={true}
-          timeout={200}
-          classNames="o-modal__transition"
-          mountOnEnter={ true }
-          unmountOnExit={ true }
-          key="modal"
-        >
-          { contents }
-        </CSSTransition>
+      contents = (
+        <div className="o-modal">
+          <div className="o-modal__inner">
+            {/* Provides both a good overlay, and a nice clickable area  */}
+            <div className="o-modal__backdrop" onClick={closeModal} />
+
+            {/* Box itself, has a background and a shadow */}
+            <div className={"o-modal__box"+(large ? " is-large":"")}>
+              { heading }
+              { body }
+              { footer }
+            </div>
+          </div>
+        </div>
       );
     }
 
     //Wrap entire contents of modal in transitional container.
     return (
       <TransitionGroup className="o-modal__transition-container">
-        { displayedContents }
+        <CSSTransition appear={true} timeout={200} classNames="o-modal__transition" mountOnEnter={ true } unmountOnExit={ true } key="modal">
+          { contents }
+        </CSSTransition>
       </TransitionGroup>
     );
   }

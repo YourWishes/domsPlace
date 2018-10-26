@@ -35,13 +35,11 @@ import Favicon from './Favicon';
 //Routes Definitions
 const AppRoutes = (props) => {
   return (
-    <React.Fragment>
-      <Routes onEntering={ props.onEntering }>
-        <RouteWrapper exact path="/" page={ () => import('@pages/home/HomePage') } />
-        <RouteWrapper exact path="/contact" page={ () => import ('@pages/contact/ContactPage') } />
-        <RouteWrapper exact path="/legal/privacy" page={ () => import('@pages/legal/privacy/PrivacyPolicyPage') } />
-      </Routes>
-    </React.Fragment>
+    <Routes onEntering={ props.onEntering }>
+      <RouteWrapper exact path="/" page={ () => import('@pages/home/HomePage') } />
+      <RouteWrapper exact path="/contact" page={ () => import ('@pages/contact/ContactPage') } />
+      <RouteWrapper exact path="/legal/privacy" page={ () => import('@pages/legal/privacy/PrivacyPolicyPage') } />
+    </Routes>
   );
 };
 
@@ -61,12 +59,15 @@ class App extends React.Component {
   }
 
   render() {
-    let { className } = this.props;
+    let newProps=  {...this.props};
+    let { className, modal } = newProps;
+    ["dispatch"].forEach(e => delete newProps[e]);
 
     //Generate base clazzes
     let clazz = "c-app";
 
     //Append any other clazzes there may be.
+    if(modal.open) clazz += ' is-modal-open';
     if(className) clazz += ` ${className}`;
 
     //For testing you can switch the router type
@@ -75,7 +76,8 @@ class App extends React.Component {
 
     return (
       <RouterType>
-        <div {...this.props} className={ clazz } ref="app">
+        <div {...newProps} className={ clazz } ref="app">
+          { modal.modal }
           <Favicon />
           <Header />
           <main>
@@ -88,4 +90,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(state => {
+  return { modal: state.modal };
+})(App);
