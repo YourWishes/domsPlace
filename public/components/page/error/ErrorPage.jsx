@@ -22,42 +22,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import PropTypes from 'prop-types'
-import Loadable from 'react-loadable';
-import { withRouter } from 'react-router';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import ErrorPage from './../error/ErrorPage';
-import LoadingPage from './../loading/LoadingPage';
-
-const PageLoading = (props) => {
-  let { error, pastDelay } = props;
-  if(error) return <ErrorPage {...props} />;
-  if(pastDelay) return <LoadingPage {...props} />;
-  return null;
-};
-
-export const RouteWrapper = (props) => {
-  let render = () => {
-    let CustomLoadable = Loadable({
-      loader: props.page,
-      loading: PageLoading
-    });
-    return <CustomLoadable />
-  };
-
-  return <Route {...props} render={render} />;
-};
-
-export default withRouter((props) => {
-  const { match, location, history, children } = props;
-
+export default props => {
+  let { className } = props;
   return (
-    <Route>
-      <Switch location={ location }>
-        { children }
-      </Switch>
-    </Route>
+    <Page className="c-error-page">
+      An error occured! Try again later.
+    </Page>
   );
-});
+};

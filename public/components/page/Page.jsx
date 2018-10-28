@@ -41,13 +41,11 @@ class Page extends React.Component {
   render() {
     let { title, style, className } = this.props;
 
-    let clazzes = "c-page";
-
-    if(className) clazzes += " " + className;
+    let clazzes = `c-page ${className||""}`;
 
     let titleHelmet;
-    if((!title || !title.length) && this.props.style != "home-page") {
-      console.exception("This page (" + (this.props.style || this.props.className) + ") does not have a title!");
+    if((!title || !title.length) && style != "home-page") {
+      console.exception(`This page (${style||className}) does not have a title!`);
     } else {
       titleHelmet = <title>{ this.props.title }</title>
     }
