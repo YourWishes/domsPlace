@@ -25,7 +25,8 @@
 const
   Configuration = require('./../config/Configuration'),
   DatabaseConnection = require('./../database/DatabaseConnection'),
-  Server = require('./../server/Server')
+  Server = require('./../server/Server'),
+  Email = require('./../email/Email')
 ;
 
 class App {
@@ -33,12 +34,14 @@ class App {
     this.config = new Configuration(this);
     this.database = new DatabaseConnection(this);
     this.server = new Server(this);
+    this.email = new Email(this);
   }
 
   getConfig() { return this.config; }
   getDiscord() { return this.discord; }
   getDatabase() { return this.database; }
   getPalaise() { return this.palaise; }
+  getEmail() {return this.email;}
 
   async init() {
     this.log('Starting App...');
@@ -59,6 +62,16 @@ class App {
       await this.database.connect();
     } catch(e) {
       this.error('Failed to connect to database!');
+      this.error(e);
+      return;
+    }
+
+    //Connect to Email
+    this.log('Connecting to Email...');
+    try {
+      this.email.connect();
+    } catch(e) {
+      this.error('Failed to connect to email!');
       this.error(e);
       return;
     }
