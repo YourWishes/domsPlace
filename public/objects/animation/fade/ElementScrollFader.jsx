@@ -41,21 +41,10 @@ export default class ElementScrollFader extends React.Component {
   }
 
   componentDidMount() {
-    return;
-    //Update rectangle
-    if(this.rectTimer) clearInterval(this.rectTimer);
-    this.rectTimer = setInterval(this.updateRectangleBound, 100);
-
-    if(!this.initialCheckFunction) {
-      this.initialCheckFunction = setTimeout(this.checkEffectBound, 300);
-    }
-
     document.addEventListener('scroll', this.onScrollBound, true);
-    document.addEventListener("DOMContentLoaded", this.updateRectangleBound);
   }
 
   componentWillUnmount() {
-    return;
     this.detachListener();
   }
 
@@ -72,33 +61,24 @@ export default class ElementScrollFader extends React.Component {
   //Common functions
   detachListener() {
     document.removeEventListener('scroll', this.onScrollBound);
-    document.removeEventListener("DOMContentLoaded", this.updateRectangleBound);
-
-    if(this.rectTimer) clearInterval(this.rectTimer);
-    if(this.initialCheckFunction) clearTimeout(this.initialCheckFunction);
   }
 
   checkEffect() {
     let { waiting, visible } = this.state;
     let { onVisible } = this.props;
-
-    if(typeof window === typeof undefined) return;
     if(!this.refs.fader) return;
+
     if(waiting) {
       this.setState({
         waiting: false
       });
     }
     if(visible) return this.detachListener();
-    if(!this.rect) this.updateRectangle();
 
-    //Get bounds
-    var rect = this.rect;
+    let rect = this.refs.fader.getBoundingClientRect()
 
     //If our top is at least half way UP the page, show
-    var doc = document.documentElement;
-    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-    if(rect.top > top / 1.5) return;
+    if(rect.y > (window.innerHeight*0.75)) return;
 
     this.setState({
       visible: true
@@ -114,8 +94,6 @@ export default class ElementScrollFader extends React.Component {
     let newProps = {...this.props};
     let { from, className } = this.props;
     let { visible, waiting } = this.state;
-
-    return <div {...newProps} />;
 
     from = from || "top";
 

@@ -77,7 +77,7 @@ const ExistingWorkFrame = (props) => {
   );
 
   let box = (
-    <ElementScrollFader from={ props.fromRight }>
+    <ElementScrollFader from={ props.fromRight } test={ props.test }>
       <ContentBox box>
         <Heading2>{ props.title }</Heading2>
         { props.description }
@@ -142,6 +142,7 @@ export default (props) => {
           src={ require('@assets/images/work-showcase/kopalife.png') }
           title={ Language.get("pages.home.work.kopa.heading") }
           description={ Language.get("pages.home.work.kopa.description") }
+          test="true"
         />
 
         {/* SMAI */}
