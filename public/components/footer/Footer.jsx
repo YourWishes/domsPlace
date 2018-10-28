@@ -27,20 +27,16 @@ import { NavLink } from 'react-router-dom';
 
 import FooterStyles from './Footer.scss';
 
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 
 import { PageBoundary } from '@components/page/Page';
 
-const FooterLink = (props) => {
-  let { title, className } = props;
-  return (
-    <NavLink {...props} className={"c-footer__link"+(className?` ${className}`:``)}>
-      { Language.get(`footer.links.${title}`) }
-    </NavLink>
-  );
-}
-
 const SITE_LAUNCH_TIMESTAMP = 1335830400000;
+
+const FooterLink = props => {
+  let { title, className } = props;
+  return <NavLink {...props} className={`c-footer__link ${className||``}`} />;
+};
 
 class Footer extends React.Component {
   constructor(props) {
@@ -48,7 +44,7 @@ class Footer extends React.Component {
   }
 
   render() {
-    let { className } = this.props;
+    let { className, lang } = this.props;
 
     return (
       <footer className={"c-footer"+(className?` ${className}`:``)}>
@@ -59,9 +55,9 @@ class Footer extends React.Component {
           <div className="c-footer__inner">
 
             <nav className="c-footer__links">
-              <FooterLink title="home" to="/" />
-              <FooterLink title="contact" to="/contact" />
-              <FooterLink title="privacy" to="/legal/privacy" />
+              <FooterLink to="/" children={ lang.footer.links.home } />
+              <FooterLink to="/contact" children={ lang.footer.links.contact } />
+              <FooterLink to="/legal/privacy" children={ lang.footer.links.privacy } />
             </nav>
 
             <div className="c-footer__copyright">
@@ -76,10 +72,4 @@ class Footer extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  }
-}
-
-export default connect(mapStateToProps)(Footer);
+export default withLanguage(Footer);

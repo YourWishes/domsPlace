@@ -24,63 +24,56 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { withLanguage } from '@public/language/Language';
+import * as MenuActions from '@public/actions/MenuActions';
 
 import Styles from './HamburgerMenu.scss';
 
-import Language from '@public/language/Language';
-import * as MenuActions from '@public/actions/MenuActions';
-
-const HamburerMenuItem = (props) => {
+const HamburerMenuItem = props => {
   let { lang, link, className } = props;
-  className = className || "";
 
   return (
-    <li {...props} className={`c-hamburger-menu__link c-hamburger-menu__link--${link} ${className}`}>
-      <NavLink to={ props.to } className="c-hamburger-menu__link-link">
-        { Language.get(lang) }
+    <li
+      {...props}
+      className={`c-hamburger-menu__link c-hamburger-menu__link--${link} ${className||""}`}
+    >
+      <NavLink to={ props.to } className="c-hamburger-menu__link-link">{ lang }
       </NavLink>
     </li>
   );
 }
 
-class HamburgerMenu extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const HamburgerMenu = props => {
+  let { open, className, toggleMenu, lang } = props;
 
-  render() {
-    let { open, className, toggleMenu } = this.props;
+  let clazz = "c-hamburger-menu";
+  if(open) clazz += " is-open";
+  if(className) clazz += ` ${className}`;
 
-    let clazz = "c-hamburger-menu";
-    if(open) clazz += " is-open";
-    if(className) clazz += ` ${className}`;
+  return (
+    <div className={clazz}>
+      <button type="button" className="c-hamburger-menu__button" onClick={toggleMenu}>
+        <img src={ require('@assets/images/icons/hamburger.svg') } className="c-hamburger-menu__icon" />
+      </button>
 
-    return (
-      <div className={clazz}>
-        <button type="button" className="c-hamburger-menu__button" onClick={toggleMenu}>
-          <img src={ require('@assets/images/icons/hamburger.svg') } className="c-hamburger-menu__icon" />
-        </button>
-
-        <nav className="c-hamburger-menu__menu">
-          <ul className="c-hamburger-menu__links">
-            <HamburerMenuItem to="/" lang="navbar.home" link="home" />
-            <HamburerMenuItem to="/contact" lang="navbar.contact" link="contact" />
-          </ul>
-        </nav>
-      </div>
-    );
-  }
+      <nav className="c-hamburger-menu__menu">
+        <ul className="c-hamburger-menu__links">
+          <HamburerMenuItem to="/" lang={lang.navbar.home} link="home" />
+          <HamburerMenuItem to="/contact" lang={lang.navbar.contact} link="contact" />
+        </ul>
+      </nav>
+    </div>
+  );
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    open: state.menu.open,
-    language: state.language.code
+    open: state.menu.open
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     toggleMenu: function(theme) {
       dispatch(MenuActions.toggleMenu());
@@ -88,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HamburgerMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(withLanguage(HamburgerMenu));

@@ -22,68 +22,58 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { withRouter } from 'react-router';
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 
-import Styles from './Navbar.scss';
+import { withLanguage } from '@public/language/Language';
 
-import Language from '@public/language/Language';
+import Styles from './Navbar.scss';
 
 import { PageBoundary } from '@components/page/Page';
 import HamburgerMenu from './../menu/HamburgerMenu';
 
 import Image from '@objects/image/Image';
 
-const NavbarLink = function(props) {
+const NavbarLink = props => {
+  let { to, exact, title } = props;
+
   return (
-    <NavLink to={ props.to } className="c-navbar__link" activeClassName="is-active" exact={props.exact}>
-      { Language.get("navbar." + props.title) }
+    <NavLink to={ to } className="c-navbar__link" activeClassName="is-active" exact={ exact }>
+      { title }
     </NavLink>
+  );
+};
+
+
+const Navbar = props => {
+  let { lang } = props;
+
+  return (
+    <section className="c-navbar is-stuck">
+      <PageBoundary>
+        <nav className="c-navbar__nav">
+
+          {/* Logo */}
+          <NavLink to="/" className="c-navbar__logo-container" activeClassName="is-active">
+            <Image
+              src={ require('@assets/images/logo.svg') }
+              className="c-navbar__logo"
+              alt={ lang.site.name  }
+              title={ lang.site.name }
+              width="780"
+              height="200"
+            />
+          </NavLink>
+
+          {/* Desktop / Tablet Screen Links */}
+          <NavbarLink to="/" title={lang.navbar.home} exact />
+          <NavbarLink to="/contact" title={lang.navbar.contact} exact />
+
+          {/* Hamburger Menu for smaller screens */}
+          <HamburgerMenu className="c-navbar__hamburger" />
+        </nav>
+      </PageBoundary>
+    </section>
   );
 }
 
-
-class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <section className="c-navbar is-stuck">
-        <PageBoundary>
-          <nav className="c-navbar__nav">
-
-            {/* Logo */}
-            <NavLink to="/" className="c-navbar__logo-container" activeClassName="is-active">
-              <Image
-                src={ require('./../../../assets/images/logo.svg') }
-                className="c-navbar__logo"
-                alt={ Language.get("site.name") }
-                title={ Language.get("site.name") }
-                width="780"
-                height="200"
-              />
-            </NavLink>
-
-            {/* Desktop / Tablet Screen Links */}
-            <NavbarLink to="/" title="home" exact />
-            <NavbarLink to="/contact" title="contact" exact />
-
-            {/* Hamburger Menu for smaller screens */}
-            <HamburgerMenu className="c-navbar__hamburger" />
-          </nav>
-        </PageBoundary>
-      </section>
-    );
-  }
-}
-
-const mapStateToProps = function(state) {
-  return {
-    code: state.language.code
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(Navbar));
+export default withLanguage(Navbar);

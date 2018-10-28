@@ -21,12 +21,9 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import Language from './../language/Language';
-
 export const SET_LANGUAGE = "SET_LANGUAGE";
-export const LANGUAGES = Language.getLanguages();
 
-export function setLanguage(language) {
+export const setLanguage = language => {
   return {
     type: SET_LANGUAGE,
     code: language

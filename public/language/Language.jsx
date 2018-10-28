@@ -21,9 +21,13 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import React from 'react';
+import { connect } from 'react-redux';
+import LanguageActions from './../actions/LanguageActions';
+
 import enAU from './en-AU.jsx';
 
-const LANGUAGES = {
+export const LANGUAGES = {
   'en-AU': enAU
 }
 
@@ -70,17 +74,30 @@ class Language {
     return Object.keys(LANGUAGES);
   }
 }
-
 const lang = new Language();
-
 export default lang;
 
-const LanguageTools = {
+export const LanguageTools = {
   random: function(someArray) {
     return someArray[Math.floor(Math.random() * someArray.length)];
   }
 }
 
-export {
-  LanguageTools
-}
+export const withLanguage = Wrapped => {
+  let LanguageWrapper = props => {
+    return <Wrapped {...props} />;
+  };
+
+  return connect(state => {
+    return {
+      language: state.language.code,
+      lang: lang.data
+    }
+  }, dispatch => {
+    return {
+      setLanguage: language => {
+        dispatch(LanguageActions.setLanguage(language));
+      }
+    };
+  })(LanguageWrapper);
+};
