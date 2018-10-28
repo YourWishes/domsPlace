@@ -12,4 +12,6 @@
 
 .c-app {
   overflow-x: hidden;//Temporary until I find time to find the overflowing element
+  width: 100vw;
+  min-height: 100vh;
 }
