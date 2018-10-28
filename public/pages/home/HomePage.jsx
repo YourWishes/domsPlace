@@ -22,9 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
 import Page from '@components/page/Page';
-import Language from '@public/language/Language'
 
 import BannerSection from './sections/BannerSection';
 import PromoVideoSection from './sections/PromoVideoSection';
@@ -32,7 +30,7 @@ import ProgrammingSection from './sections/ProgrammingSection';
 import PlatformsSection from './sections/PlatformsSection';
 import ExistingWorkSection from './sections/ExistingWorkSection';
 
-const HomePage = (props) => {
+export default props => {
   //Return
   return (
     <Page style="home-page" className="p-home-page" title={0}>
@@ -52,14 +50,7 @@ const HomePage = (props) => {
 
       {/* Existing Work */}
       <ExistingWorkSection />
+
     </Page>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  };
-}
-
-export default connect(mapStateToProps)(HomePage);

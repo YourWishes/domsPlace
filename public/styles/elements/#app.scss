@@ -21,15 +21,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
-import { withLanguage} from '@public/language/Language';
-import Page from '@components/page/Page';
-
-export default withLanguage(props => {
-  let { className, lang } = props;
-  return (
-    <Page className={`c-error-page ${className||""}`} title={lang.pages.error.title}>
-      <p>{ lang.pages.error.body }</p>
-    </Page>
-  );
-});
+#app {
+  overflow: hidden;
+  max-width: 100vw;
+}

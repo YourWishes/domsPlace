@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 import { PageBoundary } from '@components/page/Page';
 import { ImageSection, SplitSection, Split } from '@components/section/Section';
 import FloatingContentBox from '@objects/content/box/FloatingContentBox';
@@ -56,7 +56,8 @@ const Platform = (props) => {
   );
 };
 
-export default (props) => {
+export default withLanguage(props => {
+  let { lang } = props;
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-platforms"
@@ -67,7 +68,7 @@ export default (props) => {
       <PageBoundary>
         <ElementScrollFader from="left">
           <Title className="u-text-center p-home-page__brands-title">
-            { Language.get("pages.home.platforms.heading") }
+            { lang.pages.home.platforms.heading }
           </Title>
         </ElementScrollFader>
 
@@ -77,14 +78,14 @@ export default (props) => {
             src={require('@assets/images/branding/shopify/shopify_glyph.svg')}
             from="left"
             to="//www.shopify.com"
-            title={ Language.get("pages.home.platforms.shopify") }
+            title={ lang.pages.home.platforms.shopify }
           />
           {/* React */}
           <Platform
             src={require('@assets/images/branding/react/react-logo.svg')}
             from="top"
             to="//reactjs.org"
-            title={ Language.get("pages.home.platforms.react") }
+            title={ lang.pages.home.platforms.react }
           />
 
           {/* MonoGame */}
@@ -92,7 +93,7 @@ export default (props) => {
             src={require('@assets/images/branding/monogame/monogame-logo.svg')}
             from="bottom"
             to="http://www.monogame.net"
-            title={ Language.get("pages.home.platforms.monogame") }
+            title={ lang.pages.home.platforms.monogame }
           />
 
           {/* PGSQL */}
@@ -100,7 +101,7 @@ export default (props) => {
             src={require('@assets/images/branding/pgsql/pgsql-logo.svg')}
             from="right"
             to="//www.postgresql.org"
-            title={ Language.get("pages.home.platforms.pgsql") }
+            title={ lang.pages.home.platforms.pgsql }
           />
 
           {/* NodeJS */}
@@ -108,7 +109,7 @@ export default (props) => {
             src={require('@assets/images/branding/nodejs/nodejs-logo.svg')}
             from="top"
             to="//nodejs.org"
-            title={ Language.get("pages.home.platforms.nodejs") }
+            title={ lang.pages.home.platforms.nodejs }
           />
 
           {/* C# */}
@@ -116,7 +117,7 @@ export default (props) => {
             src={require('@assets/images/branding/csharp/csharp-logo.svg')}
             from="top"
             to="//docs.microsoft.com/en-us/dotnet/csharp/"
-            title={ Language.get("pages.home.platforms.csharp") }
+            title={ lang.pages.home.platforms.csharp }
           />
 
           {/* PHP */}
@@ -124,7 +125,7 @@ export default (props) => {
             src={require('@assets/images/branding/php/php-logo.svg')}
             from="top"
             to="//php.net"
-            title={ Language.get("pages.home.platforms.php") }
+            title={ lang.pages.home.platforms.php }
           />
 
           {/* Java */}
@@ -132,7 +133,7 @@ export default (props) => {
             src={require('@assets/images/branding/java/java-logo.svg')}
             from="top"
             to="//java.com"
-            title={ Language.get("pages.home.platforms.java") }
+            title={ lang.pages.home.platforms.java }
           />
 
           {/* neto */}
@@ -140,7 +141,7 @@ export default (props) => {
             src={require('@assets/images/branding/neto/neto-logo.svg')}
             from="bottom"
             to="//www.neto.com.au"
-            title={ Language.get("pages.home.platforms.neto") }
+            title={ lang.pages.home.platforms.neto }
           />
 
           {/* MySQL */}
@@ -148,7 +149,7 @@ export default (props) => {
             src={require('@assets/images/branding/mysql/mysql-logo.svg')}
             from="bottom"
             to="//www.mysql.com"
-            title={ Language.get("pages.home.platforms.mysql") }
+            title={ lang.pages.home.platforms.mysql }
           />
 
           {/* Heroku */}
@@ -156,7 +157,7 @@ export default (props) => {
             src={require('@assets/images/branding/heroku/heroku-logo.svg')}
             from="bottom"
             to="//heroku.com"
-            title={ Language.get("pages.home.platforms.heroku") }
+            title={ lang.pages.home.platforms.heroku }
           />
 
           {/* OpenGL */}
@@ -164,7 +165,7 @@ export default (props) => {
             src={require('@assets/images/branding/opengl/opengl-logo.svg')}
             from="bottom"
             to="//www.opengl.org"
-            title={ Language.get("pages.home.platforms.opengl") }
+            title={ lang.pages.home.platforms.opengl }
           />
 
           {/* Discord */}
@@ -172,7 +173,7 @@ export default (props) => {
             src={ require('@assets/images/branding/discord/discord-logo.svg') }
             from="right"
             to="//discordapp.com"
-            title={ Language.get("pages.home.platforms.discord") }
+            title={ lang.pages.home.platforms.discord }
           />
 
           {/* Twitch */}
@@ -180,7 +181,7 @@ export default (props) => {
             src={ require('@assets/images/branding/twitch/twitch-logo.svg') }
             from="right"
             to="//twitch.tv"
-            title={ Language.get("pages.home.platforms.twitch") }
+            title={ lang.pages.home.platforms.twitch }
           />
 
           {/* Twitter */}
@@ -188,7 +189,7 @@ export default (props) => {
             src={require('@assets/images/branding/twitter/twitter-logo.svg')}
             from="left"
             to="//twitter.com"
-            title={ Language.get("pages.home.platforms.twitter") }
+            title={ lang.pages.home.platforms.twitter }
           />
 
           {/* Google Cloud */}
@@ -196,16 +197,16 @@ export default (props) => {
             src={ require('@assets/images/branding/google-cloud/google-cloud-logo.svg') }
             from="left"
             to="//console.cloud.google.com"
-            title={ Language.get("pages.home.platforms.googlecloud") }
+            title={ lang.pages.home.platforms.googlecloud }
           />
         </div>
 
         <ElementScrollFader from="bottom">
           <Subtitle className="u-text-center p-home-page__brands-title">
-            { Language.get("pages.home.platforms.footer") }
+            { lang.pages.home.platforms.footer }
           </Subtitle>
         </ElementScrollFader>
       </PageBoundary>
     </ImageSection>
   );
-}
+});

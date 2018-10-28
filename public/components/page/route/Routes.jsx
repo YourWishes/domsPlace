@@ -28,8 +28,8 @@ import { withRouter } from 'react-router';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import ErrorPage from './../error/ErrorPage';
-import LoadingPage from './../loading/LoadingPage';
+import ErrorPage from '@pages/error/ErrorPage';
+import LoadingPage from '@pages/loading/LoadingPage';
 
 const PageLoading = (props) => {
   let { error, pastDelay } = props;

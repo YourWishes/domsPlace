@@ -28,7 +28,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Styles from './Modal.scss';
 
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 import { openModal, closeModal } from '@public/actions/ModalActions';
 import Keyboard from '@public/keyboard/Keyboard';
 
@@ -55,14 +55,14 @@ class Modal extends React.Component {
 
   render() {
     let newProps = {...this.props};
-    let { buttons, closeModal, close, title, children, large, modal } = newProps;
+    let { buttons, closeModal, close, title, children, large, modal, lang } = newProps;
     ["onExited"].forEach(e => delete newProps[e]);
 
     //Add necessary buttons
     buttons = buttons || [];
     if(!Array.isArray(buttons)) buttons = [ buttons ];
 
-    if(close) buttons = [...buttons,<Button key="close" onClick={closeModal} children={Language.get("modal.close")} />];
+    if(close) buttons = [...buttons, <Button key="close" onClick={closeModal} children={ lang.modal.close } />];
 
     //Inner divs
     let heading,body,footer;
@@ -111,8 +111,7 @@ class Modal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    modal: state.modal,
-    language: state.language
+    modal: state.modal
   };
 }
 
@@ -123,4 +122,4 @@ const mapDispatchToProps = (dispatch) => {
   },dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default connect(mapStateToProps, mapDispatchToProps)(withLanguage(Modal));

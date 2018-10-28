@@ -22,33 +22,33 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
 import Frame from './Frame';
-import Language from './../../language/Language';
+import { withLanguage } from '@public/language/Language';
 
 class AddressBar extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  onChange() {
-
+  onChange(e) {
+    if(this.props.onChange) this.props.onChange(e);
   }
 
   render() {
+    let { href, lang } = this.props;
     let clazz = "o-window__address-bar";
 
     return (
       <div className={clazz}>
         <span className="o-window__address-bar-title">
-          { Language.get("window.address") }
+          { lang.window.address }
         </span>
         <Frame className="o-window__address-bar-frame">
           <input
             type="text"
-            value={this.props.href}
+            value={ href }
             className="o-window__input o-window__address-bar-input"
-            onChange={ this.onChange.bind(this) }
+            onChange={e => this.onChange(e)}
           />
         </Frame>
       </div>
@@ -56,10 +56,4 @@ class AddressBar extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    code: state.language.code
-  };
-}
-
-export default connect(mapStateToProps)(AddressBar);
+export default withLanguage(AddressBar);

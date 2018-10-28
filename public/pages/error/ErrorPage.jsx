@@ -22,34 +22,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { withLanguage } from '@public/language/Language';
-import { PageBoundary } from '@components/page/Page';
-import { ImageSection } from '@components/section/Section';
-import FloatingContentBox from '@objects/content/box/FloatingContentBox';
-import { Title, Subtitle } from '@objects/typography/Typography';
-import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
+import { withLanguage} from '@public/language/Language';
 
+import Page, { PageBoundary } from '@components/page/Page';
+import { ClearSection} from '@components/section/Section';
+import { Title } from '@objects/typography/Typography';
 
 export default withLanguage(props => {
-  let { lang } = props;
-
+  let { className, lang } = props;
   return (
-    <ImageSection
-      className="p-home-page__banner"
-      src={ require('@assets/images/banners/about/glasses.svg') }
-      alt="domsPlace"
-      width="2400"
-      height="1200"
-      loadable
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <ElementScrollFader from="bottom" >
-            <Title>{ lang.pages.home.banner.title }</Title>
-            <Subtitle className="u-responsive--small-up">{ lang.pages.home.banner.subtitle }</Subtitle>
-          </ElementScrollFader>
-        </FloatingContentBox>
+    <Page className={`c-error-page ${className||""}`} title={lang.pages.error.title}>
+      <ClearSection />
+      <PageBoundary>
+        <Title className="u-text-center">{ lang.pages.error.body }</Title>
       </PageBoundary>
-    </ImageSection>
+      <ClearSection />
+    </Page>
   );
 });
