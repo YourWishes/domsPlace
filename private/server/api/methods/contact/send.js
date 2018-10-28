@@ -35,7 +35,7 @@ const ERRORS = {
 
 module.exports = class Send extends APIHandler {
   constructor(api) {
-    super(api, ['POST'], '/contact/send');
+    super(api, ['GET', 'POST'], '/contact/send');
   }
 
   async handle(request) {

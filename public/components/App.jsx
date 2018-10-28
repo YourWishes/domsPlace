@@ -72,6 +72,7 @@ class App extends React.Component {
 
     //For testing you can switch the router type
     let RouterType = BrowserRouter;
+    console.log(process.env.NODE_ENV);
     if(true) RouterType = HashRouter;
 
     return (

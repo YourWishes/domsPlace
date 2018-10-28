@@ -26,9 +26,10 @@ const
   fs = require('fs')
 ;
 
-const API_BASE = '/api';
+const API_BASE = path.resolve(__dirname, 'methods');
+const API_URL_BASE = '/api';
 
-class API {
+module.exports = class API {
   constructor(server) {
     this.server = server;
     this.handlers = [];
@@ -44,49 +45,42 @@ class API {
   addHandler(handler) {this.handlers.push(handler);}
 
   registerHandlers() {
-    for(let i = 0; i < this.handlers.length; i++) {
-      let handler = this.handlers[i];
+    this.handlers.forEach(handler => {
+      handler.getMethods().forEach(method => {
+        method = method.toLowerCase();
 
-      //Now we  need to register each of the paths to each of the methods!
-      for(let x = 0; x < handler.getMethods().length; x++) {
-        let method = handler.getMethods()[x].toLowerCase();
         //For each method, there's perhaps multiple paths (e.g. post /test, get /test, post /ayy, get /ayy)
-        for(let y = 0; y < handler.getPaths().length; y++) {
-          let path = handler.getPaths()[y];
-          let url = API_BASE;
+        handler.getPaths().forEach(path => {
+          let url = API_URL_BASE;
           if(!path.startsWith('/')) url += '/';
           url += path;
 
           this.getExpress()[method](url, handler.onMethod.bind(handler));
           console.log('Registering ' + url + '...');
-        }
-      }
-    }
+        });
+      });
+    });
   }
 
   loadHandlers() {
-    let dir = path.join(__dirname, 'methods');
-    this.loadHandlersInDirectory(dir);
+    this.loadHandlersInDirectory(API_BASE);
     this.registerHandlers();
   }
 
   loadHandlersInDirectory(dir) {
     let assets = fs.readdirSync(dir);
-    for(let i = 0; i < assets.length; i++) {
-      let asset = assets[i];
+    assets.forEach(asset => {
       let assetPath = path.join(dir, asset);
       let stats = fs.statSync(assetPath);
       if(stats.isDirectory()) {
         this.loadHandlersInDirectory(assetPath  );
-        continue;
+        return;
       }
 
       let method = require(assetPath);
       let instance = new method(this);
 
       this.addHandler(instance);
-    }
+    });
   }
 }
-
-module.exports = API;

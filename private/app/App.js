@@ -25,27 +25,21 @@
 const
   Configuration = require('./../config/Configuration'),
   DatabaseConnection = require('./../database/DatabaseConnection'),
-  Server = require('./../server/Server'),
-  Email = require('./../email/Email')
+  Server = require('./../server/Server')
 ;
-
-//Constants
-const PUBLIC_PATH = path.join(__dirname, '..', '..', 'dist');
 
 class App {
   constructor() {
     this.config = new Configuration(this);
     this.database = new DatabaseConnection(this);
     this.server = new Server(this);
-    this.email = new Email(this);
   }
 
   getConfig() { return this.config; }
+  getDiscord() { return this.discord; }
   getDatabase() { return this.database; }
-  getServer() { return this.server; }
-  getEmail() {return this.email;}
+  getPalaise() { return this.palaise; }
 
-  //Primary Functions
   async init() {
     this.log('Starting App...');
 
@@ -69,26 +63,17 @@ class App {
       return;
     }
 
-    //Connect to our SMTP Host (For sending mail)
+    //Start the server
+    this.log('Starting Server...');
     try {
-      this.log('Connecting to SMTP Server');
-      await this.email.connect();
-      console.log('...Done');
+      await this.server.init();
     } catch(e) {
-      console.error("Failed to setup emails!");
-      throw new Error(e);
+      this.error('Failed to start server!');
+      this.error(e);
+      return;
     }
 
-    //Now we need to start the server. This provides both a nice interface, as
-    //well as our API Handler (including 2auth callback urls)
-    try {
-      this.log("Starting Server...");
-      await this.server.start();
-      console.log("...Done!");
-    } catch(e) {
-      console.error("Failed to start the server!");
-      throw new Error(e);
-    }
+    this.log('App ready');
   }
 
   // Logging Functions //

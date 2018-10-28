@@ -44,17 +44,16 @@ class DatabaseConnection {
 
     //Load queries into cache
     let queries = {};
-    let types = fs.readdirSync(__dirname + '/' + QUERIES_DIRECTORY);
+    let queryDir = `${__dirname}/${QUERIES_DIRECTORY}`
+    let types = fs.readdirSync(queryDir);
     for(let i = 0; i < types.length; i++) {
       //Now Scan each file in this directory
-      let dir = __dirname + '/' + QUERIES_DIRECTORY + '/' + types[i];
+      let dir = `${queryDir}/${types[i]}`;
       let dirContents = fs.readdirSync(dir);
       for(let x = 0; x < dirContents.length; x++) {
         //Now read each file within this dir..
-        let filePath = dir + '/' + dirContents[x];
-        console.log(filePath);
+        let filePath = `${dir}/${dirContents[x]}`;
         let query = fs.readFileSync(filePath, 'utf8');
-
         //Now Save our query as filename minus extension.
         queries[dirContents[x].split('.')[0]] = query;
       }

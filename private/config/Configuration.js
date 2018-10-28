@@ -36,14 +36,10 @@ class Configuration {
   async loadConfig(path) {
     //First we need to check if this is Heroku or not...
     let processVariabels = process.env;
-    this.isHeroku = false;
-    if(
-      processVariabels !== typeof undefined &&
-      typeof processVariabels.NODE_HOME !== typeof undefined &&
+    this.isHeroku = (
+      processVariabels && processVariabels.NODE_HOME &&
       processVariabels.NODE_HOME.indexOf("heroku") !== -1
-    ) {
-      this.isHeroku = true;
-    }
+    );
 
     //Read config data
     if(this.isHeroku) {

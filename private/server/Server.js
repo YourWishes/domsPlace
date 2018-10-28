@@ -21,21 +21,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-//Imports
 const
   http = require('http'),
-  https = require('https'),
   express = require('express'),
   bodyParser = require('body-parser'),
   fs = require('fs'),
   path = require('path'),
   webpack = require('webpack'),
-  CompilerOptions = require('./WebpackCompilerOptions'),
-  API = require('./../api/API')
+  WebpackCompiler = require('./../webpack/WebpackCompiler'),
+  API = require('./api/API')
 ;
 
-//Constants
-const LANDING_FILE = 'index.html';
+const SERVE_FOLDER = path.resolve(`${__dirname}/../../dist`);
 
 class Server {
   constructor(app) {
@@ -43,47 +40,21 @@ class Server {
 
     //Server settings
     this.ip =
-      app.getConfig().getValueOf("IP") ||
-      app.getConfig().getValueOf("ip") ||
-      app.getConfig().getValueOf("server.ip") ||
-      app.getConfig().ip ||
+      app.getConfig().get("IP") ||
+      app.getConfig().get("server.ip") ||
       process.env.ip ||
       process.env.IP ||
       null
     ;
+
     this.port =
-      app.getConfig().getValueOf("PORT") ||
-      app.getConfig().getValueOf("port") ||
-      app.getConfig().getValueOf("server.port") ||
-      app.getConfig().port ||
+      app.getConfig().get("PORT") ||
+      app.getConfig().get("port") ||
+      app.getConfig().get("server.port") ||
       process.env.port ||
       process.env.PORT ||
       80
     ;
-
-    this.useHTTPS = app.getConfig().getValueOf("ssl") && app.getConfig().getValueOf("ssl.enable")
-    if(this.useHTTPS) {
-      this.portHTTPS = this.config.ssl.port || 443;
-      if(!this.config.ssl.key) {
-        throw new Error("Invalid SSL Key in Server Configuration");
-      }
-      if(!this.config.ssl.cert) {
-        throw new Error("Invalid SSL Cert in Server Configuration");
-      }
-
-      //TODO: Clean this up, don't use static files (use path.join etc) and should these be flat files?
-      let keyFile = __dirname+'./../'+this.config.ssl.key;
-      let certFile = __dirname+'./../'+this.config.ssl.cert;
-      if(!fs.existsSync(keyFile)) {
-        throw new Error("Key file \"" + keyFile + "\" doesn't exist!");
-      }
-      if(!fs.existsSync(certFile)) {
-        throw new Error("Key file \"" + certFile + "\" doesn't exist!");
-      }
-
-      this.key = fs.readFileSync(keyFile, 'utf8');
-      this.cert = fs.readFileSync(certFile, 'utf8');
-    }
 
     //Setup the express wrapper.
     this.express = express();
@@ -92,160 +63,65 @@ class Server {
     this.express.use(bodyParser.json({
       type:'application/json' // to support JSON-encoded bodies
     }));
+
     this.express.use(bodyParser.urlencoded({
       extended: true
     }));
 
     //Serve Static Files
-    this.express.use(express.static('./dist'));
+    this.express.use(express.static(SERVE_FOLDER));
 
-    //API Handler
+    //Register API Handlers
     this.api = new API(this);
     this.api.loadHandlers();
 
-    //Finally our catcher for all other enquiries
-    this.express.get('*', this.onGetRequest.bind(this));
+    //Setup fallback GET request
+    this.express.get('*', (req,res) => this.onGetRequest(req,res));
 
+    //Setup our webpack compiler
+    this.compiler = webpack(WebpackCompiler());
+  }
+
+  getExpress() {return this.express;}
+  getApp() {return this.app;}
+  getHTTP() {return this.http;}
+
+  async init() {
     //Create our HTTP and (if needed HTTPS) server(s)
     this.http = http.createServer(this.express);
-    this.http.on('error', this.onServerError.bind(this));
+    this.http.on('error', e => this.onServerError(e));
 
-    if(this.isHTTPS()) {
-      if(!this.key) throw new Error("Can't start server, missing SSL Key");
-      if(!this.cert) throw new Error("Can't start server, missing SSL Cert");
+    //Start the compiler watching
+    this.watcher = this.compiler.watch({}, (e,s) => this.onWatchChange(e,s));
 
-      this.https = https.createServer({
-        key: this.key,
-        cert: this.cert
-      }, this.express);
-      this.https.on('error', this.onServerError.bind(this));
-    }
-
-    //Create our bundler
-    this.compiler = webpack(CompilerOptions(this, this.app));
-  }
-
-  getConfig() {return this.config;}
-  getIP() {return this.ip; }
-  getPort() {return this.port;}
-  isHTTPS() {return this.useHTTPS;}
-  getHTTPSPort() {return this.portHTTPS;}
-  getKey() {return this.key;}
-  getCertificate() {return this.cert;}
-  getLandingFile() {return path.join(this.app.getPublicDirectory(), LANDING_FILE);}
-  getExpress() {return this.express;}
-  getAPI() {return this.api;}
-  getApp() {return this.app;}
-
-  isRunning() {
-    if(typeof this.http !== typeof undefined) {
-      return this.http.listening;
-    }
-    return false;
-  }
-
-  async start() {
-    if(typeof this.startPromise !== typeof undefined) {
-      await this.startPromise();
-      return;
-    }
-    this.startPromise = new Promise(this.startServerPromise.bind(this));//Lazy Programming FTW
-    await this.startPromise;
-  }
-
-  startServerPromise(resolve, reject) {
-    this.startResolve = resolve;
-    this.startReject = reject;
-
-    let options = {
+    //Start Listening
+    this.http.listen({
       host: this.ip,
       port: this.port
-    };
-
-    //Create our webpack watcher
-    this.watcher = this.compiler.watch({
-
-    }, this.onWatchChange.bind(this));
-
-    //Start the HTTP Server
-    this.http.listen(options, this.onServerStart.bind(this));
-
-    //HTTPS?
-    if(this.https) {
-      this.https.listen(options, this.portHTTPS);
-    }
+    }, e => this.onServerStart(e));
   }
 
-  onServerStart() {
-    this.bound = this.http.address();
-    this.startResolve(this);
+  //Events
+  onServerStart(e) {
+    this.boundAddress = this.http.address();
   }
 
   onServerError(e) {
-    console.log("A Server Error occured!");
-    this.startReject(e);
-    this.stop();
-    throw new Error(e);
-  }
-
-
-  async stop() {
-    if(typeof this.stopPromise !== typeof undefined) {
-      await this.stopPromise;
-      return;
-    }
-    this.stopPromise = new Promse(this.stopPromise.bind(this));
-    await this.stopPromise;
-    delete this.http;
-    delete this.https;
-    delete this.stopPromise;
-    delete this.watcher;
-  }
-
-  stopPromise(resolve, reject) {
-    this.stopResolve = resolve;
-    this.stopReject = reject;
-
-    if(typeof this.watcher !== typeof undefined) {
-      this.watcher.close(() => {
-      });
-    }
-
-    try {
-      this.http.close(this.onHTTPClosed.bind(this));
-    } catch(e) {
-      this.stopReject(e);
-    }
-  }
-
-  onHTTPClosed() {
-    if(typeof this.https === typeof undefined) {
-      this.resolve();
-      return;
-    }
-
-    try {
-      this.https.close(this.onHTTPSClosed.bind(this));
-    } catch(e) {
-      this.stopReject(e);
-    }
-  }
-
-  onHTTPSClosed() {
-    this.resolve();
-  }
-
-  onWatchChange(error, stats) {
-    if(error || (stats.compilation.errors && stats.compilation.errors.length)) {
-      console.error(error || stats.compilation.errors);
-    } else {
-      console.log("Server compiled!");
-    }
+    console.error('Error');
+    console.error(e);
   }
 
   onGetRequest(req, res) {
-    //Used as our "catch all get requests"
-    res.sendFile(this.getLandingFile());
+    let file = path.resolve(`${SERVE_FOLDER}/index.html`);
+    res.sendFile(file);
+  }
+
+  onWatchChange(error,stats) {
+    if(error || (stats.compilation.errors && stats.compilation.errors.length)) {
+      return this.app.error(error || stats.compilation.errors);
+    }
+
+    this.app.log("Server Compiled!");
   }
 }
 
