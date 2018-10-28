@@ -38,7 +38,7 @@ export default props => {
     "warning", "manager"
   ].forEach(e => delete newProps[e]);
 
-  type = type || "button";
+  type = type;
   children = children || value;
 
   if(primary) style = "primary";
@@ -67,8 +67,8 @@ export default props => {
 
   } else {
     //Everything Else (button without a type);
+    type = "button";
     clazzes += " is-not-button";
-
   }
 
   if(style) clazzes += ` o-btn--style-${style}`;
