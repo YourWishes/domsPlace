@@ -23,6 +23,7 @@
 
 import React from 'react';
 import { withLanguage} from '@public/language/Language';
+import Page from '@components/page/Page';
 
 export default withLanguage(props => {
   let { className, lang } = props;

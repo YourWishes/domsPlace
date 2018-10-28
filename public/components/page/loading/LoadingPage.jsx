@@ -26,7 +26,7 @@ import { withLanguage } from '@public/language/Language';
 
 import Styles from './LoadingPage.scss';
 
-import Page from '@components/Page/Page';
+import Page from '@components/page/Page';
 import Loader from '@objects/loading/Loader';
 
 
