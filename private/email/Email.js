@@ -32,38 +32,38 @@ class Email {
   getConfig() {return this.getApp().getConfig();}
   getTransporter() {return this.transport;}
 
-  getDestinationName() {return this.getConfig().getValueOf("smtp.destination.name");}
-  getDestinationEmail() {return this.getConfig().getValueOf("smtp.destination.email");}
-  getSourceName() {return this.getConfig().getValueOf("smtp.source.name");}
-  getSourceEmail() {return this.getConfig().getValueOf("smtp.source.email");}
+  getDestinationName() {return this.getConfig().get("smtp.destination.name");}
+  getDestinationEmail() {return this.getConfig().get("smtp.destination.email");}
+  getSourceName() {return this.getConfig().get("smtp.source.name");}
+  getSourceEmail() {return this.getConfig().get("smtp.source.email");}
 
   connect() {
-    if(!this.getConfig().getValueOf("smtp.host")) throw new Error("Missing SMTP Host Config");
-    if(!this.getConfig().getValueOf("smtp.username")) throw new Error("Missing SMTP Username Config");
-    if(!this.getConfig().getValueOf("smtp.password")) throw new Error("Missing SMTP Password Config");
+    if(!this.getConfig().has("smtp.host")) throw new Error("Missing SMTP Host Config");
+    if(!this.getConfig().has("smtp.username")) throw new Error("Missing SMTP Username Config");
+    if(!this.getConfig().has("smtp.password")) throw new Error("Missing SMTP Password Config");
 
     //We require some info about the person who handles the mailing.
-    if(!this.getConfig().getValueOf("smtp.destination.name")) throw new Error("Missing SMTP Destination Name Config");
-    if(!this.getConfig().getValueOf("smtp.destination.email")) throw new Error("Missing SMTP Destination Email Config");
-    if(!this.getConfig().getValueOf("smtp.source.name")) throw new Error("Missing SMTP Source Name Config");
-    if(!this.getConfig().getValueOf("smtp.source.email")) throw new Error("Missing SMTP Source Email Config");
+    if(!this.getConfig().has("smtp.destination.name")) throw new Error("Missing SMTP Destination Name Config");
+    if(!this.getConfig().has("smtp.destination.email")) throw new Error("Missing SMTP Destination Email Config");
+    if(!this.getConfig().has("smtp.source.name")) throw new Error("Missing SMTP Source Name Config");
+    if(!this.getConfig().has("smtp.source.email")) throw new Error("Missing SMTP Source Email Config");
 
     let ssl = false;
     let port = 587;
 
-    if(this.getConfig().getValueOf("smtp.ssl")) {
+    if(this.getConfig().get("smtp.ssl")) {
       ssl = true
       port = 465;
     }
-    port = this.getConfig().getValueOf("smtp.port") || port;
+    port = this.getConfig().get("smtp.port") || port;
 
     this.transport = nodemailer.createTransport({
-      host: this.getConfig().getValueOf("smtp.host"),
+      host: this.getConfig().get("smtp.host"),
       port: port,
       secure: ssl,
       auth: {
-        user: this.getConfig().getValueOf("smtp.username"),
-        pass: this.getConfig().getValueOf("smtp.password")
+        user: this.getConfig().get("smtp.username"),
+        pass: this.getConfig().get("smtp.password")
       }
     });
   }
