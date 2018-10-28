@@ -140,7 +140,6 @@ export default props => {
           src={ require('@assets/images/work-showcase/kopalife.png') }
           title={ Language.get("pages.home.work.kopa.heading") }
           description={ Language.get("pages.home.work.kopa.description") }
-          test="true"
         />
 
         {/* SMAI */}

@@ -42,7 +42,7 @@ export default (props) => {
     >
       <PageBoundary full>
         <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <ElementScrollFader from="bottom" test="yes">
+          <ElementScrollFader from="bottom" >
             <Title>{ Language.get("pages.home.banner.title") }</Title>
             <Subtitle className="u-responsive--small-up">{ Language.get("pages.home.banner.subtitle") }</Subtitle>
           </ElementScrollFader>

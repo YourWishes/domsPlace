@@ -24,7 +24,7 @@
 import React from 'react';
 import LoadableImage from './LoadableImage';
 
-const DPI_RATIOS = 4;
+const DPI_RATIOS = [1,2,4];
 
 export default (props) => {
   let newProps = {...props};
@@ -66,6 +66,11 @@ export default (props) => {
   //Image
   sources = sources || [];
 
+  //Sort the sources by their size
+  sources.sort((l,r) => {
+    return (l.size||l.width) - (r.size||r.width);
+  });
+
   let sourcesByWidth = {};
   let sourceElements = [];
 
@@ -78,49 +83,55 @@ export default (props) => {
   for(let i = 0; i < sources.length; i++) {
     let source = sources[i];
     let width = source.size || source.width;
-    let isLast = (i+1) === sources.length;
 
-    for(let scale = 1; scale <= DPI_RATIOS; scale++) {//4 = max scales
-      let scaledWidth = Math.round(width / scale);
+    //Thanks to maxWidth prop we need to check if this iteration is the last.
+    let maxWidthBreak = false;
+    if(maxWidth && i > 0) {
+      if(width >= maxWidth) maxWidthBreak = true;
+    }
+
+
+    DPI_RATIOS.forEach(ratio => {
+      let scaledWidth = Math.round(width / ratio);
+
+      //Don't scale less than the smallest image (i.e. 200px@1x shouldn't be 50@4x)
+      if(scaledWidth < (sources[0].size||sources[0].width)) return false;
+
       let o = {...source};
-      o.scale = scale;//Inject scale (DPI ratio)
-      o.isLast = isLast;//Is Last used for min-width rather than max-width
-
-      let widthKey = `${scaledWidth}`;
+      o.scale = ratio;//Inject scale (DPI ratio)
 
       //Create an array for this screen width
+      let widthKey = `${scaledWidth}`;
       sourcesByWidth[widthKey] = sourcesByWidth[widthKey] || [];
       sourcesByWidth[widthKey].push(o);//Add this source
-    }
+    });
+
+    //Was this the last iteration?
+    if(maxWidthBreak) break;
   }
 
-  //Sort by size in descending order
+  //Sort by size in ascending order
   let keys = Object.keys(sourcesByWidth);
   keys.sort((l, r) => {
     return parseInt(l) - parseInt(r);
   });
 
-  let breakNext = false;
+  //let breakNext = false;
   for(let i = 0; i < keys.length; i++) {
-    if(breakNext) break;
     let k = keys[i];//The pixel size
 
     let ss = sourcesByWidth[k];//Sources at this pixel resolution (array of sources)
-    let mediaQuery = `(max-width:${k}px)`;//Media query
+    if(!ss.length) continue;
+
+    let mediaQuery;//Media query
     let sss = [];
 
-    let isNextBreak = false;
-    if(maxWidth && (i+1 < keys.length)) {
-      if(keys[i+1] > parseInt(maxWidth)) isNextBreak = true;
-    }
-    if(isNextBreak) {
-      breakNext = true;
+    //Try and make this media query be max width by the next key
+    if(i+1 < keys.length) {
+      let nextKey = keys[i+1];
+      mediaQuery = `(max-width:${nextKey}px)`;
+    } else {
       mediaQuery = `(min-width:${k}px)`;
-    }
-
-    if(ss.length && ss[0].isLast) {
-      let prev = i > 0 ? keys[i-1] : 0;
-      mediaQuery = `(min-width:${prev}px)`;
     }
 
     for(let x = 0; x < ss.length; x++) {

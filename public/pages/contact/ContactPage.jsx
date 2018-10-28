@@ -109,7 +109,7 @@ class ContactPage extends React.Component {
               onError={ this.onError.bind(this) }
               manager={ this.manager }
             >
-              <FormGroup test="First Group">
+              <FormGroup>
                 <Label htmlFor="name">
                   { Language.get("pages.contact.name.label") }
                 </Label>
