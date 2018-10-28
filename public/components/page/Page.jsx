@@ -24,50 +24,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
+import { withLanguage } from '@public/language/Language';
 
 import Styles from './Page.scss';
-
-//Publics
-import Language from '@public/language/Language';
 
 //Components
 import PageBoundary from './boundary/PageBoundary';
 
-class Page extends React.Component {
-  constructor(props) {
-    super(props);
+export default withLanguage(props => {
+  let { title, style, className, lang, children } = props;
+
+  let clazzes = `c-page ${className||""}`;
+
+  let titleHelmet;
+  if((!title || !title.length) && style != "home-page") {
+    console.exception(`This page (${style||className}) does not have a title!`);
+  } else {
+    titleHelmet = <title>{ title }</title>
   }
 
-  render() {
-    let { title, style, className } = this.props;
-
-    let clazzes = `c-page ${className||""}`;
-
-    let titleHelmet;
-    if((!title || !title.length) && style != "home-page") {
-      console.exception(`This page (${style||className}) does not have a title!`);
-    } else {
-      titleHelmet = <title>{ this.props.title }</title>
-    }
-
-    return (
-      <div className={clazzes}>
-        <Helmet defaultTitle={ Language.get("site.title") } titleTemplate={ Language.get("site.titleTemplate") }>
-          { titleHelmet }
-        </Helmet>
-        { this.props.children }
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = function(state) {
-  return {
-    code: state.language.code
-  }
-}
-
-export default connect(mapStateToProps)(Page);
+  return (
+    <div className={clazzes}>
+      <Helmet defaultTitle={ lang.site.title } titleTemplate={ lang.site.titleTemplate }>
+        { titleHelmet }
+      </Helmet>
+      { children }
+    </div>
+  );
+});
 
 export {
   PageBoundary

@@ -27,8 +27,4 @@ import Styles from './ClearSection.scss';
 
 import Section from './../Section';
 
-export default (props) => {
-  let clazz = "c-clear-section";
-  if(props.className) clazz += " " + props.className;
-  return <Section {...props} className={clazz} />;
-};
+export default props => <Section {...props} className={`c-clear-section ${props.className||""}`} />;

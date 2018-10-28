@@ -22,12 +22,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { withLanguage} from '@public/language/Language';
 
-export default props => {
-  let { className } = props;
+export default withLanguage(props => {
+  let { className, lang } = props;
   return (
-    <Page className="c-error-page">
-      An error occured! Try again later.
+    <Page className={`c-error-page ${className||""}`} title={lang.pages.error.title}>
+      <p>{ lang.pages.error.body }</p>
     </Page>
   );
-};
+});

@@ -31,24 +31,19 @@ import Video from '@objects/video/Video';
 import Loader from '@objects/loading/Loader';
 
 export default (props) => {
-  let { full, className, sources } = props;
+  let { full, className, sources, children } = props;
   let videoProps = {...props};
   let sectionProps = {...props};
 
-
-  [
-    "autoPlay", "fill", "loop", "sources"
-  ].forEach(e => delete sectionProps[e]);
-
-  delete videoProps.children;
+  [ "autoPlay", "fill", "loop", "sources" ].forEach(e => delete sectionProps[e]);
+  [ "children" ].forEach(e => delete videoProps[e]);
 
   if(typeof props.autoPlay === typeof undefined) props.autoPlay = true;
   if(typeof props.loop === typeof undefined) props.loop = true;
   if(typeof props.fill === typeof undefined) props.fill = true;
 
-
   return (
-    <Section {...sectionProps} className={"c-video-section"+(className?` ${className}`:``)}>
+    <Section {...sectionProps} className={`c-video-section ${className|""}`}>
       <Video {...videoProps} className="c-video-section__video" sources={ sources ? sources : props } />
       { children }
     </Section>

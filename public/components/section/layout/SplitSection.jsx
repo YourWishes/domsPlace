@@ -29,31 +29,27 @@ import Section from './../Section';
 
 export default (props) => {
   let { align, className } = props;
-  let newProps = {...props};
-
   align = align || "stretched";
 
   let clazz = "c-split-section is-" + align;
   if(className) clazz += ` ${className}`;
 
   return (
-    <Section {...newProps} className={clazz} />
+    <Section {...props} className={clazz} />
   )
 };
 
-const Split = function(props) {
+const Split = props => {
+  let newProps = {...props};
   let { padded, className, children } = props;
 
-  let clazz = "c-split-section__split";
+  ["padded"].forEach(e => delete newProps[e]);
 
+  let clazz = "c-split-section__split";
   if(padded) clazz += " is-padded";
   if(className) clazz += ` ${className}`;
 
-  return (
-    <div className={clazz}>
-      { children }
-    </div>
-  );
+  return <div {...newProps} className={clazz} />;
 }
 
 

@@ -22,6 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+import { withLanguage } from '@public/language/Language';
 
 import Styles from './LoadingPage.scss';
 
@@ -29,12 +30,12 @@ import Page from '@components/Page/Page';
 import Loader from '@objects/loading/Loader';
 
 
-export default props => {
-  let { className } = props;
-  
+export default withLanguage(props => {
+  let { className, lang } = props;
+
   return (
-    <Page className={`o-loading-page ${className||''}`} title="Loading...">
+    <Page className={`o-loading-page ${className||''}`} title={lang.pages.loading.title}>
       <Loader />
     </Page>
   );
-};
+});

@@ -29,13 +29,12 @@ export default (props) => {
   let newProps = { ...props };
   let { full, small, className } = props;
 
-  delete newProps.full;
-  delete newProps.small;
+  ["full","small"].forEach(e => delete newProps[e]);
 
   let clazzes = "c-page-boundary";
-  if(props.full) clazzes += " is-full";
-  if(props.small) clazzes += " is-small";
-  if(props.className) clazzes += " " + props.className;
+  if(full) clazzes += " is-full";
+  if(small) clazzes += " is-small";
+  if(className) clazzes += ` ${className}`
 
   return (
     <div {...newProps} className={ clazzes }>

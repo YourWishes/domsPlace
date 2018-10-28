@@ -204,6 +204,15 @@ export default {
       "title": "Privacy Policy",
       "heading": "Privacy Policy",
       "policy": Policy
+    },
+
+    "error": {
+      "title": "Uh-Oh!",
+      "body": "An error occured! Try again later."
+    },
+
+    "loading": {
+      "title": "Please Wait..."
     }
   },
 

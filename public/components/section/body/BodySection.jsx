@@ -27,11 +27,4 @@ import Styles from './BodySection.scss';
 
 import Section from './../Section';
 
-export default function(props) {
-  let clazz = "c-body-section";
-  if(props.className) clazz += ` ${props.className}`;
-
-  return (
-    <Section {...props} className={clazz} />
-  );
-};
+export default props => <Section {...props} className={`c-body-section ${props.className||""}`} />;

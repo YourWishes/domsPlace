@@ -25,7 +25,7 @@ import React from 'react';
 
 import Styles from './Section.scss';
 
-export default (props) => {
+export default props => {
   let newProps = {...props};
   let { full, className, children } = props;
 
@@ -35,9 +35,7 @@ export default (props) => {
   if(full) clazz += " is-full";
   if(className) clazz += ` ${className}`;
 
-  return (
-    <section {...newProps} className={clazz} />
-  );
+  return <section {...newProps} className={clazz} />;
 }
 
 import BodySection from './body/BodySection';
