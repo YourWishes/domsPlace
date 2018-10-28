@@ -40,32 +40,35 @@ import Window95, {
 } from '@objects/window/Window95';
 
 const ExistingWorkFrame = (props) => {
-  let fakeURL = props.href;
-  if(!fakeURL.startsWith("http") && typeof window !== typeof undefined) {
-    fakeURL = window.location.protocol + fakeURL;
-  }
+  let {
+    fakeURL, href, title, src, fromRight, fromLeft, description, swap,
+  } = props;
+
+  fakeURL = fakeURL || href;
+
+  if(!fakeURL.startsWith("http")) fakeURL = window.location.protocol+fakeURL;
 
   let fakeWindow = (
-    <ElementScrollFader from={props.fromLeft}>
+    <ElementScrollFader from={swap?fromRight:fromLeft}>
       <Window95>
         <TitleBar buttons={[
           <Minimize key="Minimize" disabled />,
           <Close key="close" disabled />
         ]}>
-          { props.title }
+          { title }
         </TitleBar>
 
         <MenuBar>
           <MenuOption title="File" disabled />
-          <MenuOption title="Visit Page" href={ props.href } target="_blank" />
+          <MenuOption title="Visit Page" href={ href } target="_blank" />
         </MenuBar>
 
         <AddressBar href={fakeURL} />
         <Frame>
-          <a href={ props.href} target="_blank" className="p-home-page__work-link">
+          <a href={ href} target="_blank" className="p-home-page__work-link">
             <Image
-              src={props.src}
-              alt={props.title}
+              src={ src }
+              alt={ title }
               loadable
               className="p-home-page__work-link-image"
               maxWidth="600"
@@ -77,10 +80,10 @@ const ExistingWorkFrame = (props) => {
   );
 
   let box = (
-    <ElementScrollFader from={ props.fromRight } test={ props.test }>
+    <ElementScrollFader from={swap?fromLeft:fromRight }>
       <ContentBox box>
-        <Heading2>{ props.title }</Heading2>
-        { props.description }
+        <Heading2>{ title }</Heading2>
+        { description }
       </ContentBox>
     </ElementScrollFader>
   );
@@ -96,20 +99,15 @@ const ExistingWorkFrame = (props) => {
 
   return (
     <SplitSection align="center">
-      <Split padded>
-        { left }
-      </Split>
-
-      <Split padded>
-        { right }
-      </Split>
+      <Split padded children={left} />
+      <Split padded children={ right } />
     </SplitSection>
   );
 };
 
 
 
-export default (props) => {
+export default props => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-work"
@@ -156,12 +154,22 @@ export default (props) => {
           description={ Language.get("pages.home.work.smai.description") }
         />
 
-      {/* Oz Hair and Beauty */}
+        {/* Cocksox */}
+        <ExistingWorkFrame
+          href="//www.cocksox.com/"
+          fromLeft="bottom"
+          fromRight="top"
+          src={ require('@assets/images/work-showcase/cocksox.png') }
+          title={ Language.get("pages.home.work.cocksox.heading") }
+          description={ Language.get("pages.home.work.cocksox.description") }
+        />
+
+        {/* Oz Hair and Beauty */}
         <ExistingWorkFrame
           href="//www.ozhairandbeauty.com/"
           fromLeft="left"
           fromRight="left"
-
+          swap
           src={ require('@assets/images/work-showcase/ozhair.png') }
           title={ Language.get("pages.home.work.ozhair.heading") }
           description={ Language.get("pages.home.work.ozhair.description") }
