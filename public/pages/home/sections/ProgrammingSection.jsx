@@ -23,14 +23,15 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 import { PageBoundary } from '@components/page/Page';
 import { ImageSection } from '@components/section/Section';
 import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Paragraph, Heading1 } from '@objects/typography/Typography';
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
-export default (props) => {
+export default withLanguage(props => {
+  let { lang } = props;
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-programming"
@@ -42,12 +43,12 @@ export default (props) => {
         <ElementScrollFader from="bottom">
           <ContentBox box>
             <Heading1 className="u-text-center">
-              { Language.get("pages.home.programming.heading") }
+              { lang.pages.home.programming.heading }
             </Heading1>
-            { Language.get("pages.home.programming.paragraph") }
+            { lang.pages.home.programming.paragraph }
           </ContentBox>
         </ElementScrollFader>
       </PageBoundary>
     </ImageSection>
   );
-}
+});

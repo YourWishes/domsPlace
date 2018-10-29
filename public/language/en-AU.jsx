@@ -163,7 +163,7 @@ export default {
           </Fragment> ); }
         },
         "footer": "Want me for your next project?",
-        "footer-button": "Contact Me"
+        "footerButton": "Contact Me"
       }
     },
 

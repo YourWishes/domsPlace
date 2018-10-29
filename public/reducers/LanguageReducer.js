@@ -28,7 +28,7 @@ const initialState = {
   code: Language.getLanguage()
 };
 
-function language(state, action) {
+export default (state, action) => {
   if(typeof state === typeof undefined) {
     state = initialState;
   }
@@ -42,6 +42,4 @@ function language(state, action) {
     default:
       return state;
   }
-}
-
-export default language;
+};

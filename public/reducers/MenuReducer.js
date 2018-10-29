@@ -31,7 +31,7 @@ const initialState = {
   open: false
 }
 
-const menu = function(state, action) {
+export default (state, action) => {
   if(typeof state === typeof undefined) {
     state = initialState;
   }
@@ -47,5 +47,3 @@ const menu = function(state, action) {
       return state;
   }
 }
-
-export default menu;

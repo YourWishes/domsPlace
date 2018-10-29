@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 import { PageBoundary } from '@components/page/Page';
 import { ImageSection, SplitSection, Split, ClearSection } from '@components/section/Section';
 import ContentBox from '@objects/content/box/ContentBox';
@@ -107,7 +107,9 @@ const ExistingWorkFrame = (props) => {
 
 
 
-export default props => {
+export default withLanguage(props => {
+  let { lang } = props;
+
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-work"
@@ -120,10 +122,10 @@ export default props => {
         <ElementScrollFader from="left">
           <ContentBox box>
             <Heading1 className="u-text-center">
-              { Language.get("pages.home.work.heading") }
+              { lang.pages.home.work.heading }
             </Heading1>
             <Paragraph>
-              { Language.get("pages.home.work.paragraph") }
+              { lang.pages.home.work.paragraph }
             </Paragraph>
           </ContentBox>
         </ElementScrollFader>
@@ -138,8 +140,8 @@ export default props => {
           fromLeft="top"
           fromRight="bottom"
           src={ require('@assets/images/work-showcase/kopalife.png') }
-          title={ Language.get("pages.home.work.kopa.heading") }
-          description={ Language.get("pages.home.work.kopa.description") }
+          title={ lang.pages.home.work.kopa.heading }
+          description={ lang.pages.home.work.kopa.description }
         />
 
         {/* SMAI */}
@@ -149,8 +151,8 @@ export default props => {
           fromRight="right"
           swap
           src={ require('@assets/images/work-showcase/smai.svg') }
-          title={ Language.get("pages.home.work.smai.heading") }
-          description={ Language.get("pages.home.work.smai.description") }
+          title={ lang.pages.home.work.smai.heading }
+          description={ lang.pages.home.work.smai.description }
         />
 
         {/* Cocksox */}
@@ -159,8 +161,8 @@ export default props => {
           fromLeft="bottom"
           fromRight="top"
           src={ require('@assets/images/work-showcase/cocksox.png') }
-          title={ Language.get("pages.home.work.cocksox.heading") }
-          description={ Language.get("pages.home.work.cocksox.description") }
+          title={ lang.pages.home.work.cocksox.heading }
+          description={ lang.pages.home.work.cocksox.description }
         />
 
         {/* Oz Hair and Beauty */}
@@ -170,8 +172,8 @@ export default props => {
           fromRight="left"
           swap
           src={ require('@assets/images/work-showcase/ozhair.png') }
-          title={ Language.get("pages.home.work.ozhair.heading") }
-          description={ Language.get("pages.home.work.ozhair.description") }
+          title={ lang.pages.home.work.ozhair.heading }
+          description={ lang.pages.home.work.ozhair.description }
         />
       </PageBoundary>
 
@@ -180,9 +182,9 @@ export default props => {
 
         <ElementScrollFader from="bottom">
           <ContentBox box className="u-text-center">
-            <Subtitle>{ Language.get("pages.home.work.footer") }</Subtitle>
+            <Subtitle>{ lang.pages.home.work.footer }</Subtitle>
             <Button size="large" to="/contact">
-              { Language.get("pages.home.work.footer-button") }
+              { lang.pages.home.work.footerButton }
             </Button>
           </ContentBox>
         </ElementScrollFader>
@@ -191,4 +193,4 @@ export default props => {
       </PageBoundary>
     </ImageSection>
   );
-}
+});

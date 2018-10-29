@@ -39,7 +39,7 @@ const Platform = (props) => {
   if(props.to) {
     children = (
       <a href={props.to} target="_blank" className="p-home-page__brands-link" title={props.title}>
-        {image}
+        { image }
       </a>
     );
   } else {

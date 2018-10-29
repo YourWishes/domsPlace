@@ -32,7 +32,7 @@ import { openModal } from '@public/actions/ModalActions';
 
 //Components
 import Page, { PageBoundary } from '@components/page/Page';
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 import Section, {
   BodySection,
   ClearSection,
@@ -75,13 +75,14 @@ class ContactPage extends React.Component {
 
   onError(e, a, b) {
     this.props.openModal(
-      <Modal close title={Language.get("pages.contact.error")}>
+      <Modal close title={ this.props.lang.pages.contact.error }>
         { e }
       </Modal>
     );
   }
 
   render() {
+    let { lang } = this.props;
 
     //Form
     let inners;
@@ -90,8 +91,8 @@ class ContactPage extends React.Component {
       inners = (
         <ElementScrollFader from="bottom">
           <ContentBox box className="u-text-center">
-            <Heading1>{ Language.get("pages.contact.success.heading") }</Heading1>
-            <Paragraph>{ Language.get("pages.contact.success.paragraph") }</Paragraph>
+            <Heading1>{ lang.pages.contact.success.heading }</Heading1>
+            <Paragraph>{ lang.pages.contact.success.paragraph }</Paragraph>
           </ContentBox>
         </ElementScrollFader>
       );
@@ -105,18 +106,18 @@ class ContactPage extends React.Component {
               contentType="application/json"
               ajax
               loader
-              onSuccess={ this.onSuccess.bind(this) }
-              onError={ this.onError.bind(this) }
+              onSuccess={ (e) => this.onSuccess(e) }
+              onError={ (e) => this.onError(e) }
               manager={ this.manager }
             >
               <FormGroup>
                 <Label htmlFor="name">
-                  { Language.get("pages.contact.name.label") }
+                  { lang.pages.contact.name.label }
                 </Label>
                 <Input
                   name="name"
                   type="text"
-                  placeholder={ Language.get("pages.contact.name.placeholder") }
+                  placeholder={ lang.pages.contact.name.placeholder }
                   required={ Forms.contact.name.required }
                   maxLength={ Forms.contact.name.maxLength }
                   manager={ this.manager }
@@ -125,12 +126,12 @@ class ContactPage extends React.Component {
 
               <FormGroup >
                 <Label htmlFor="email">
-                  { Language.get("pages.contact.email.label") }
+                  { lang.pages.contact.email.label }
                 </Label>
                 <Input
                   name="email"
                   type="email"
-                  placeholder={ Language.get("pages.contact.email.placeholder") }
+                  placeholder={ lang.pages.contact.email.placeholder }
                   required={ Forms.contact.email.required }
                   maxLength={ Forms.contact.email.maxLength }
                   manager={ this.manager }
@@ -139,11 +140,11 @@ class ContactPage extends React.Component {
 
               <FormGroup>
                 <Label> htmlFor="message">
-                  { Language.get("pages.contact.message.label") }
+                  { lang.pages.contact.message.label }
                 </Label>
                 <TextArea
                   name="message"
-                  placeholder={ Language.get("pages.contact.message.placeholder") }
+                  placeholder={ lang.pages.contact.message.placeholder }
                   rows="8"
                   className="p-contact-page__message"
                   required={ Forms.contact.message.required }
@@ -153,8 +154,8 @@ class ContactPage extends React.Component {
               </FormGroup>
 
               <ButtonGroup>
-                <Input type="submit" value={ Language.get("pages.contact.send") } primary="true" />
-                <Input type="reset" value={ Language.get("pages.contact.reset") } />
+                <Input type="submit" value={ lang.pages.contact.send } primary="true" />
+                <Input type="reset" value={ lang.pages.contact.reset } />
               </ButtonGroup>
             </Form>
           </BodySection>
@@ -163,14 +164,14 @@ class ContactPage extends React.Component {
     }
 
     return (
-      <Page style="contact-page" className="p-contact-page" title={ Language.get("pages.contact.title") }>
+      <Page style="contact-page" className="p-contact-page" title={ lang.pages.contact.title }>
         <ClearSection />
         <PageBoundary small>
           <ElementScrollFader from="left">
             <ContentBox box className="u-text-center">
-              <Title>{ Language.get("pages.contact.heading") }</Title>
+              <Title>{ lang.pages.contact.heading }</Title>
               <Paragraph>
-                { Language.get("pages.contact.paragraph") }
+                { lang.pages.contact.paragraph }
               </Paragraph>
             </ContentBox>
           </ElementScrollFader>
@@ -186,16 +187,12 @@ class ContactPage extends React.Component {
   }
 }
 
-const mapStateToProps = function(state) {
-  return {
-    code: state.language.code
-  }
-}
+const mapStateToProps = state => {return {}};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     openModal: openModal
   },dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withLanguage(ContactPage));

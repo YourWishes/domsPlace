@@ -23,33 +23,25 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 
 import Page, { PageBoundary } from '@components/page/Page';
 import { BodySection, ClearSection } from '@components/section/Section';
 
 import { Title } from '@objects/typography/Typography';
 
-const PrivacyPolicyPage = (props) => {
+export default withLanguage(props => {
+  let { lang } = props;
   return (
-    <Page style="privacy-policy" className="p-privacy-policy" title={ Language.get("pages.privacy.title") }>
+    <Page style="privacy-policy" className="p-privacy-policy" title={ lang.pages.privacy.title }>
       <PageBoundary small>
         <ClearSection />
         <BodySection>
-          <Title>{ Language.get("pages.privacy.heading") }</Title>
-          { Language.get("pages.privacy.policy") }
+          <Title>{ lang.pages.privacy.heading }</Title>
+          { lang.pages.privacy.policy }
         </BodySection>
         <ClearSection />
       </PageBoundary>
     </Page>
   );
-};
-
-
-const mapStateToProps = function(state) {
-  return {
-    code: state.language.code
-  }
-}
-
-export default connect(mapStateToProps)(PrivacyPolicyPage);
+});

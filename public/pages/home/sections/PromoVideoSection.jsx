@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Language from '@public/language/Language';
+import { withLanguage } from '@public/language/Language';
 import Page, { PageBoundary } from '@components/page/Page';
 import Section, {  SplitSection, Split } from '@components/section/Section';
 import ContentBox from '@objects/content/box/ContentBox';
@@ -32,7 +32,9 @@ import { Title, Subtitle, Paragraph, Heading1 } from '@objects/typography/Typogr
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
 
-export default (props) => {
+export default withLanguage(props => {
+  let { lang } = props;
+
   return (
     <Section className="p-home-page__promo p-home-page__promo-video">
       <PageBoundary>
@@ -52,10 +54,10 @@ export default (props) => {
             <ElementScrollFader from="bottom">
               <ContentBox box>
                 <Title>
-                  { Language.get("pages.home.video.heading") }
+                  { lang.pages.home.video.heading }
                 </Title>
                 <Paragraph>
-                  { Language.get("pages.home.video.paragraph") }
+                  { lang.pages.home.video.paragraph }
                 </Paragraph>
               </ContentBox>
             </ElementScrollFader>
@@ -65,4 +67,4 @@ export default (props) => {
       </PageBoundary>
     </Section>
   );
-}
+});

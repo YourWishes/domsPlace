@@ -30,7 +30,7 @@ const initialState = {
   open: false
 }
 
-const modal = function(state, action) {
+export default (state, action) => {
   if(typeof state === typeof undefined) {
     state = initialState;
   }
@@ -47,5 +47,3 @@ const modal = function(state, action) {
       return state;
   }
 }
-
-export default modal;

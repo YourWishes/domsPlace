@@ -38,36 +38,33 @@ class Language {
 
   setLanguage(lang) {
     this.langName = lang;
-    this.data = LANGUAGES[lang];
+    this.dataRaw = LANGUAGES[lang];
+
+    //Now parse
+    this.data = this.parseRecursive(this.dataRaw);
   }
 
   getLanguage() {
     return this.langName;
   }
 
-  get(key) {
-    if(typeof key === typeof undefined)  return "Key \"undefined\".";
-    let j = this.getRecursive(key.split("."));
-    if(typeof j === typeof undefined || j == null) return "Missing \"" + key + "\"";
-    return j;
-  }
-
-  getRecursive(key_array, data_obj) {
-    if(typeof data_obj === typeof undefined) data_obj = this.data;
-    if(typeof data_obj === typeof undefined) return null;
-
-    let k = key_array[0];
-    let o = data_obj[k];
-    if(typeof o === typeof undefined) return null;
-    if(typeof o === 'function') o = o();
-
-    //Awesome
-    if(key_array.length > 1) {
-      if(typeof o !== "object") return null;
-      key_array.shift();
-      return this.getRecursive(key_array, o);
-    }
-    return o;
+  parseRecursive(o) {
+    let keys = Object.keys(o);
+    let p = {};
+    keys.forEach(key => {
+      let d = o[key];
+      if(typeof d === typeof undefined) d = null;
+      if(typeof d === 'function') {
+        p[key] = d();
+        return;
+      }
+      if(typeof d === 'string') {
+        p[key] = d;
+        return;
+      }
+      p[key] = this.parseRecursive(d);
+    });
+    return p;
   }
 
   getLanguages() {
