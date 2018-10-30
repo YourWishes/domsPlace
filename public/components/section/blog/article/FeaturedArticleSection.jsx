@@ -24,7 +24,7 @@
 import React from 'react';
 
 
-import Section from '@components/section/Section';
+import BannerImageSection from '@sections/image/banner/BannerImageSection';
 
 import Image from '@objects/image/Image';
 import ContentBox from '@objects/content/box/ContentBox';
@@ -36,11 +36,11 @@ export default props => {
   let { article } = props;
 
   return (
-    <Section className="c-featured-article">
-      <Image
-        src={ require('@assets/images/photo.jpg') }
-        className="c-featured-article__image"
-      />
+    <BannerImageSection
+      className="c-featured-article"
+      src={ require('@assets/images/photo.jpg') } alt={ article.title }
+      loadable
+    >
       <Title className="c-featured-article__title">
         { article.title }
       </Title>
@@ -48,6 +48,6 @@ export default props => {
       <Paragraph className="c-featured-article__description">
         { article.shortDescription }
       </Paragraph>
-    </Section>
+    </BannerImageSection>
   );
 };

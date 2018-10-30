@@ -22,29 +22,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { withLanguage } from '@public/language/Language';
-import { PageBoundary } from '@components/page/Page';
-import { BannerImageSection } from '@sections/Section';
-import FloatingContentBox from '@objects/content/box/FloatingContentBox';
-import { Title, Subtitle } from '@objects/typography/Typography';
 
+import ImageSection from './../ImageSection';
+import Styles from './BannerImageSection.scss';
 
-export default withLanguage(props => {
-  let { lang } = props;
+export default props => {
+  let { className, imageClassName } = props;
 
-  return (
-    <BannerImageSection
-      className="p-home-page__banner"
-      src={ require('@assets/images/banners/about/glasses.svg') }
-      alt="domsPlace"
-      width="2400" height="1200" loadable
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <Title>{ lang.pages.home.banner.title }</Title>
-          <Subtitle>{ lang.pages.home.banner.subtitle }</Subtitle>
-        </FloatingContentBox>
-      </PageBoundary>
-    </BannerImageSection>
-  );
-});
+  return <ImageSection
+    {...props} className={`c-banner-section ${className||""}`}
+    imageClassName={`c-banner-section__image ${imageClassName||""}`}
+  />;
+};

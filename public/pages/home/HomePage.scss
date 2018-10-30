@@ -12,14 +12,6 @@
 @import '~@styles/global';
 
 .p-home-page {
-  &__banner {
-    &-image {
-      object-fit: cover;
-
-      height: 80vh;
-    }
-  }
-
   &__banner,
   &__promo {
     position: relative;

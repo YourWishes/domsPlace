@@ -14,9 +14,12 @@ Plans to add are:
  - More Social integration and show off my social pages
  - Faster loading (SVG Backgrounds are quite large)
  - ~~Responsive Image Loading~~
- - Async Image/Video loading for content (no point just yet)
+ - ~~Async Image/Video loading for content (no point just yet)~~
  - ~~Async page offsetting,~~ as well as proper loading templates
  - Improved SEO
  - Reduce Divitis
  - Restore previously removed page transitions
- - Convert some of the SVGs into responsive PNGs
+ - ~~Convert some of the SVGs into responsive PNGs~~ Unsure if I'll stick with this permanently
+ - Work on Async Sections
+ - Proper Server
+ - Adjust the order import order so to help CSS Overrides.
