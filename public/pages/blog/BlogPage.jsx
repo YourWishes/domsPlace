@@ -31,7 +31,9 @@ import FeaturedArticleSection from '@sections/blog/article/FeaturedArticleSectio
 const TestBlogData = {
   handle: "test-blog",
   title: "Test Blog Article",
-  shortDescription: "Read how the latest lorem ipsum is dolor sit amet for business owners."
+  url: '/',
+  image: require('@assets/images/photo.jpg'),
+  shortDescription: "Read how the latest lorem ipsum is dolor sit amet for business owners..."
 };
 
 export default withLanguage(props => {

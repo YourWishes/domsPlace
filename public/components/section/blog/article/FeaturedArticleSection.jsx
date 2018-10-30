@@ -25,8 +25,10 @@ import React from 'react';
 
 
 import BannerImageSection from '@sections/image/banner/BannerImageSection';
+import { PageBoundary } from '@components/page/Page';
 
 import Image from '@objects/image/Image';
+import Button from '@objects/input/button/Button';
 import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Paragraph } from '@objects/typography/Typography';
 
@@ -38,16 +40,23 @@ export default props => {
   return (
     <BannerImageSection
       className="c-featured-article"
-      src={ require('@assets/images/photo.jpg') } alt={ article.title }
-      loadable
+      src={ article.image } alt={ article.title } loadable
     >
-      <Title className="c-featured-article__title">
-        { article.title }
-      </Title>
+      <PageBoundary className="c-featured-article__content" full>
 
-      <Paragraph className="c-featured-article__description">
-        { article.shortDescription }
-      </Paragraph>
+        <ContentBox box className="c-featured-article__header">
+          <Title className="c-featured-article__title">
+            { article.title }
+          </Title>
+        </ContentBox>
+
+        <ContentBox box className="c-featured-article__body">
+          <Paragraph className="c-featured-article__description">
+            { article.shortDescription }
+          </Paragraph>
+        </ContentBox>
+
+      </PageBoundary>
     </BannerImageSection>
   );
 };
