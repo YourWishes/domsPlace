@@ -23,9 +23,9 @@
 
 import React from 'react';
 
-import Styles from './FloatingContentBox.scss';
-
 import ContentBox from './ContentBox';
+
+import Styles from './FloatingContentBox.scss';
 
 export default (props) => {
   let newProps = {...props};

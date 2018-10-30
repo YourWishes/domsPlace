@@ -22,32 +22,25 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { withLanguage } from '@public/language/Language';
-import { PageBoundary } from '@components/page/Page';
-import { ImageSection } from '@components/section/Section';
-import FloatingContentBox from '@objects/content/box/FloatingContentBox';
-import { Title, Subtitle } from '@objects/typography/Typography';
 
+import { withLanguage } from '@public/language/Language';
+import Page, { PageBoundary } from '@components/page/Page';
+
+import FeaturedArticleSection from '@sections/blog/article/FeaturedArticleSection';
+
+const TestBlogData = {
+  handle: "test-blog",
+  title: "Test Blog Article",
+  shortDescription: "Read how the latest lorem ipsum is dolor sit amet for business owners."
+};
 
 export default withLanguage(props => {
   let { lang } = props;
 
   return (
-    <ImageSection
-      className="p-home-page__banner"
-      imageClassName="p-home-page__banner-image"
-      src={ require('@assets/images/banners/about/glasses.svg') }
-      alt="domsPlace"
-      width="2400"
-      height="1200"
-      loadable
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <Title>{ lang.pages.home.banner.title }</Title>
-          <Subtitle>{ lang.pages.home.banner.subtitle }</Subtitle>
-        </FloatingContentBox>
-      </PageBoundary>
-    </ImageSection>
+    <Page style="blog-page" className="p-blog-page" title={ lang.pages.blog.title }>
+      {/* First (Featured) Blog */}
+      <FeaturedArticleSection article={ TestBlogData } />
+    </Page>
   );
 });

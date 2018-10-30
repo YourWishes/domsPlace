@@ -32,13 +32,14 @@ export default props => {
   let sectionProps = {...props};
   let imageProps = {...props};
 
-  let { image, background, children, className } = props;
+  let { image, background, children, className, imageClassName } = props;
 
-  ["children", "background", "loadable"].forEach(e => delete sectionProps[e]);
-  ["image", "full", "children", "background"].forEach(e => delete imageProps[e]);
+  ["children", "background", "loadable", "imageClassName"].forEach(e => delete sectionProps[e]);
+  ["image", "full", "children", "background", "imageClassName"].forEach(e => delete imageProps[e]);
 
   let clazz = "c-image-section";
-  image = image || <Image {...imageProps} className="c-image-section__image" />;
+  let imageClazz = `c-image-section__image ${imageClassName||""}`;
+  image = image || <Image {...imageProps} className={imageClazz} />;
 
   if(className) clazz += ` ${className}`;
   if(background) clazz += " is-background";

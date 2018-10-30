@@ -218,8 +218,8 @@ $o-window--one-third: #{"33.333333333%"};//I needed greater accuracy than SCSS p
   }
 
   &__address-bar {
-    @extend %t-flexbox;
-    @include t-align-items(center);
+    display: flex;
+    align-items: center;
 
     &-title {
       display: block;
@@ -227,7 +227,7 @@ $o-window--one-third: #{"33.333333333%"};//I needed greater accuracy than SCSS p
     }
 
     &-frame {
-      @include t-flex-basis(100%);
+      flex-basis: 100%;
     }
   }
 

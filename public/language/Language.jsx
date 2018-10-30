@@ -23,7 +23,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import LanguageActions from './../actions/LanguageActions';
+import * as LanguageActions from './../actions/LanguageActions';
 
 import enAU from './en-AU.jsx';
 

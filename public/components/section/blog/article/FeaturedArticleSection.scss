@@ -1,0 +1,43 @@
+/*
+ *  Featured Blog Section
+ *    Section for featuring a large blog item.
+ *
+ *  Version:
+ *    1.0.0 - 2018/10/30
+ */
+@import '~@styles/global';
+
+$c-featured-article--background: rgba(0,0,0,0.5);
+$c-featured-article--color: white;
+$c-featured-article--padding: 15px;
+
+.c-featured-article {
+  position: relative;
+
+  &__image {
+    display: block;
+    width: 100%;
+    min-height: 75vh;
+    object-fit: cover;
+  }
+
+  &__title,
+  &__description {
+    position: absolute;
+    margin: 0;
+    padding: 0.25em;
+    color: $c-featured-article--color;
+    background: $c-featured-article--background;
+  }
+
+  &__title {
+    top: 2.5em;
+    left: 0.25em;
+  }
+
+  &__description {
+    bottom: 0.5em;
+    right: 0.5em;
+    max-width: 250px;
+  }
+}

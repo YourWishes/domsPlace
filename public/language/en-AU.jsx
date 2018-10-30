@@ -12,6 +12,7 @@ export default {
 
   "navbar": {
     "home": "Home",
+    "blog": "Blog",
     "contact": "Contact"
   },
 
@@ -162,7 +163,7 @@ export default {
             </p>
           </Fragment> ); }
         },
-        "footer": "Want me for your next project?",
+        "footer": "Want to get in touch?",
         "footerButton": "Contact Me"
       }
     },
@@ -213,6 +214,10 @@ export default {
 
     "loading": {
       "title": "Please Wait..."
+    },
+
+    "blog": {
+      "title": "Blog"
     }
   },
 

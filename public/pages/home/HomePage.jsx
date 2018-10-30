@@ -22,8 +22,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Page from '@components/page/Page';
 
+import Styles from './HomePage.scss';
+
+import Page from '@components/page/Page';
 import BannerSection from './sections/BannerSection';
 import PromoVideoSection from './sections/PromoVideoSection';
 import ProgrammingSection from './sections/ProgrammingSection';
@@ -37,10 +39,6 @@ export default props => {
 
       { /* Banner */ }
       <BannerSection />
-
-      { /* Promo Video
-      <PromoVideoSection />
-      */ }
 
       {/* Programming */}
       <ProgrammingSection />

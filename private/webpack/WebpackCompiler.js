@@ -79,7 +79,8 @@ module.exports = (isDev) => {
         '@assets': `${base}/public/assets`,
         '@pages': `${base}/public/pages`,
         '@common': `${base}/common`,
-        '@styles': `${base}/public/styles`
+        '@styles': `${base}/public/styles`,
+        '@sections': `${base}/public/components/section`
       }
     },
 

@@ -22,32 +22,32 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { withLanguage } from '@public/language/Language';
-import { PageBoundary } from '@components/page/Page';
-import { ImageSection } from '@components/section/Section';
-import FloatingContentBox from '@objects/content/box/FloatingContentBox';
-import { Title, Subtitle } from '@objects/typography/Typography';
 
 
-export default withLanguage(props => {
-  let { lang } = props;
+import Section from '@components/section/Section';
+
+import Image from '@objects/image/Image';
+import ContentBox from '@objects/content/box/ContentBox';
+import { Title, Paragraph } from '@objects/typography/Typography';
+
+import Styles from './FeaturedArticleSection.scss';
+
+export default props => {
+  let { article } = props;
 
   return (
-    <ImageSection
-      className="p-home-page__banner"
-      imageClassName="p-home-page__banner-image"
-      src={ require('@assets/images/banners/about/glasses.svg') }
-      alt="domsPlace"
-      width="2400"
-      height="1200"
-      loadable
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <Title>{ lang.pages.home.banner.title }</Title>
-          <Subtitle>{ lang.pages.home.banner.subtitle }</Subtitle>
-        </FloatingContentBox>
-      </PageBoundary>
-    </ImageSection>
+    <Section className="c-featured-article">
+      <Image
+        src={ require('@assets/images/photo.jpg') }
+        className="c-featured-article__image"
+      />
+      <Title className="c-featured-article__title">
+        { article.title }
+      </Title>
+
+      <Paragraph className="c-featured-article__description">
+        { article.shortDescription }
+      </Paragraph>
+    </Section>
   );
-});
+};

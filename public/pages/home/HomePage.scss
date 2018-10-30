@@ -4,17 +4,25 @@
  *
  *  Dependencies:
  *    styles/settings/responsive.scss
- *    styles/tools/_flex.scss
  *    styles/tools/_responsive.scss
  *
  *  Version:
  *    1.1.0 - 2018/08/14
  */
+@import '~@styles/global';
+
 .p-home-page {
+  &__banner {
+    &-image {
+      object-fit: cover;
+
+      height: 80vh;
+    }
+  }
+
   &__banner,
   &__promo {
     position: relative;
-    //@extend %t-dp--shadow-3d;
   }
 
   &__promo {
@@ -22,15 +30,15 @@
     background-size: 150% auto;
 
     &-video {
-      background-image: url($s-asset--directory+'images/patterns/florida.svg');
+      background-image: url('~@assets/images/patterns/florida.svg');
     }
   }
 
   &__brands {
-    @extend %t-flexbox;
-    @include t-align-items(stretch);
-    @include t-justify-content(space-between);
-    @include t-flex-wrap(wrap);
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
     &-title {
     }
