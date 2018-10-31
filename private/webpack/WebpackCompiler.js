@@ -112,6 +112,7 @@ module.exports = (isDev) => {
 
         {
           test: /\.scss$|\.css$/i,
+          exclude: /node_modules/,
           use: isDev ? (
             [ "style-loader", "css-loader", 'sass-loader' ]
           ) : (
@@ -121,6 +122,7 @@ module.exports = (isDev) => {
 
         {
           test: /\.svg$|\.webm$|\.mp4$/i,
+          exclude: /node_modules/,
           use: [{
             loader: "file-loader",
             options: { name: "[path][name].[ext]", context: 'public' }
@@ -129,6 +131,7 @@ module.exports = (isDev) => {
 
         {
           test: /\.jpe?g$|\.gif$|\.png$/i,
+          exclude: /node_modules/,
           use: [{
             loader: "responsive-loader",
             options: {

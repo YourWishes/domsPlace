@@ -36,11 +36,11 @@ class App {
     this.database = new DatabaseConnection(this);
     this.server = new Server(this);
     this.email = new Email(this);
-    this.store = new CacheStore(this);
+    //this.store = new CacheStore(this);
   }
 
   getConfig() { return this.config; }
-  getCacheStore() {return this.store;}
+  //getCacheStore() {return this.store;}
   getDiscord() { return this.discord; }
   getDatabase() { return this.database; }
   getPalaise() { return this.palaise; }
