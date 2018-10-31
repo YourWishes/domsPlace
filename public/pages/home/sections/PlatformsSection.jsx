@@ -70,112 +70,111 @@ export default withLanguage(props => {
         <ElementScrollFader from="bottom" className="p-home-page__brands">
           {/* Shopify */}
           <Platform
-            src={require('@assets/images/branding/shopify/logo.png')}
+            src={require('@assets/images/branding/shopify/shopify_glyph.svg')}
             to="//www.shopify.com"
             title={ lang.pages.home.platforms.shopify }
           />
-
           {/* React */}
           <Platform
-            src={require('@assets/images/branding/react/logo.png')}
+            src={require('@assets/images/branding/react/react-logo.svg')}
             to="//reactjs.org"
             title={ lang.pages.home.platforms.react }
           />
 
           {/* MonoGame */}
           <Platform
-            src={require('@assets/images/branding/monogame/logo.png')}
+            src={require('@assets/images/branding/monogame/monogame-logo.svg')}
             to="http://www.monogame.net"
             title={ lang.pages.home.platforms.monogame }
           />
 
           {/* PGSQL */}
           <Platform
-            src={require('@assets/images/branding/pgsql/logo.png')}
+            src={require('@assets/images/branding/pgsql/pgsql-logo.svg')}
             to="//www.postgresql.org"
             title={ lang.pages.home.platforms.pgsql }
           />
 
           {/* NodeJS */}
           <Platform
-            src={require('@assets/images/branding/nodejs/logo.png')}
+            src={require('@assets/images/branding/nodejs/nodejs-logo.svg')}
             to="//nodejs.org"
             title={ lang.pages.home.platforms.nodejs }
           />
 
           {/* C# */}
           <Platform
-            src={require('@assets/images/branding/csharp/logo.png')}
+            src={require('@assets/images/branding/csharp/csharp-logo.svg')}
             to="//docs.microsoft.com/en-us/dotnet/csharp/"
             title={ lang.pages.home.platforms.csharp }
           />
 
           {/* PHP */}
           <Platform
-            src={require('@assets/images/branding/php/logo.png')}
+            src={require('@assets/images/branding/php/php-logo.svg')}
             to="//php.net"
             title={ lang.pages.home.platforms.php }
           />
 
           {/* Java */}
           <Platform
-            src={require('@assets/images/branding/java/logo.png')}
+            src={require('@assets/images/branding/java/java-logo.svg')}
             to="//java.com"
             title={ lang.pages.home.platforms.java }
           />
 
           {/* neto */}
           <Platform
-            src={require('@assets/images/branding/neto/logo.png')}
+            src={require('@assets/images/branding/neto/neto-logo.svg')}
             to="//www.neto.com.au"
             title={ lang.pages.home.platforms.neto }
           />
 
           {/* MySQL */}
           <Platform
-            src={require('@assets/images/branding/mysql/logo.png')}
+            src={require('@assets/images/branding/mysql/mysql-logo.svg')}
             to="//www.mysql.com"
             title={ lang.pages.home.platforms.mysql }
           />
 
           {/* Heroku */}
           <Platform
-            src={require('@assets/images/branding/heroku/logo.png')}
+            src={require('@assets/images/branding/heroku/heroku-logo.svg')}
             to="//heroku.com"
             title={ lang.pages.home.platforms.heroku }
           />
 
           {/* OpenGL */}
           <Platform
-            src={require('@assets/images/branding/opengl/logo.png')}
+            src={require('@assets/images/branding/opengl/opengl-logo.svg')}
             to="//www.opengl.org"
             title={ lang.pages.home.platforms.opengl }
           />
 
           {/* Discord */}
           <Platform
-            src={ require('@assets/images/branding/discord/logo.png') }
+            src={ require('@assets/images/branding/discord/discord-logo.svg') }
             to="//discordapp.com"
             title={ lang.pages.home.platforms.discord }
           />
 
           {/* Twitch */}
           <Platform
-            src={ require('@assets/images/branding/twitch/logo.png') }
+            src={ require('@assets/images/branding/twitch/twitch-logo.svg') }
             to="//twitch.tv"
             title={ lang.pages.home.platforms.twitch }
           />
 
           {/* Twitter */}
           <Platform
-            src={require('@assets/images/branding/twitter/logo.png')}
+            src={require('@assets/images/branding/twitter/twitter-logo.svg')}
             to="//twitter.com"
             title={ lang.pages.home.platforms.twitter }
           />
 
           {/* Google Cloud */}
           <Platform
-            src={ require('@assets/images/branding/google-cloud/logo.png') }
+            src={ require('@assets/images/branding/google-cloud/google-cloud-logo.svg') }
             to="//console.cloud.google.com"
             title={ lang.pages.home.platforms.googlecloud }
           />
