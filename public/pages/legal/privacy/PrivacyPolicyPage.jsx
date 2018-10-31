@@ -35,15 +35,20 @@ import Styles from './PrivacyPolicyPage.scss';
 export default withLanguage(props => {
   let { lang } = props;
   return (
-    <Page style="privacy-policy" className="p-privacy-policy" title={ lang.pages.privacy.title }>
+    <Page
+      style="privacy-policy"
+      className="p-privacy-policy"
+      title={ lang.pages.privacy.title }
+      background={ require('@assets/images/patterns/schoolbell.svg') }
+    >
       <ClearSection />
       <PageBoundary small>
         <BodySection>
           <Title>{ lang.pages.privacy.heading }</Title>
           { lang.pages.privacy.policy }
         </BodySection>
-        <ClearSection />
       </PageBoundary>
+      <ClearSection />
     </Page>
   );
 });
