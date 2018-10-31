@@ -66,7 +66,7 @@ const Navbar = props => {
 
           {/* Desktop / Tablet Screen Links */}
           <NavbarLink to="/" title={lang.navbar.home} exact />
-          <NavbarLink to="/blog" title={lang.navbar.blog} exact />
+          {/*<NavbarLink to="/blog" title={lang.navbar.blog} exact />*/}
           <NavbarLink to="/contact" title={lang.navbar.contact} exact />
 
           {/* Hamburger Menu for smaller screens */}
