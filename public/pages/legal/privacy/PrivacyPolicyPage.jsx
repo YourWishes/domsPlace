@@ -36,8 +36,8 @@ export default withLanguage(props => {
   let { lang } = props;
   return (
     <Page style="privacy-policy" className="p-privacy-policy" title={ lang.pages.privacy.title }>
+      <ClearSection />
       <PageBoundary small>
-        <ClearSection />
         <BodySection>
           <Title>{ lang.pages.privacy.heading }</Title>
           { lang.pages.privacy.policy }
