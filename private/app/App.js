@@ -26,7 +26,8 @@ const
   Configuration = require('./../config/Configuration'),
   DatabaseConnection = require('./../database/DatabaseConnection'),
   Server = require('./../server/Server'),
-  Email = require('./../email/Email')
+  Email = require('./../email/Email'),
+  CacheStore = require('./../cache/CacheStore')
 ;
 
 class App {
@@ -35,9 +36,11 @@ class App {
     this.database = new DatabaseConnection(this);
     this.server = new Server(this);
     this.email = new Email(this);
+    this.store = new CacheStore(this);
   }
 
   getConfig() { return this.config; }
+  getCacheStore() {return this.store;}
   getDiscord() { return this.discord; }
   getDatabase() { return this.database; }
   getPalaise() { return this.palaise; }

@@ -24,6 +24,12 @@ export default {
     }
   },
 
+  "blog": {
+    "article": {
+      "readMore": "Read More"
+    }
+  },
+
   "pages": {
     "home": {
       "banner": {

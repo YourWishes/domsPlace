@@ -22,11 +22,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import Styles from './ImageSection.scss';
+import { NavLink } from 'react-router-dom';
 
 import Section from './../Section';
-
 import Image from '@objects/image/Image';
+
+import Styles from './ImageSection.scss';
 
 export default props => {
   let sectionProps = {...props};
@@ -35,6 +36,7 @@ export default props => {
   let { image, background, children, className, imageClassName } = props;
 
   ["children", "background", "loadable", "imageClassName"].forEach(e => delete sectionProps[e]);
+
   ["image", "full", "children", "background", "imageClassName"].forEach(e => delete imageProps[e]);
 
   let clazz = "c-image-section";
@@ -49,6 +51,7 @@ export default props => {
       { image }
       <div className="c-image-section__content">
         <div className="c-image-section__content-inner">
+          <a href="//google.com" className="c-image-section__content-link" />
           { children }
         </div>
       </div>

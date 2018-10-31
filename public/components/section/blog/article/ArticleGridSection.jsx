@@ -23,28 +23,28 @@
 
 import React from 'react';
 
-import { withLanguage } from '@public/language/Language';
-import Page, { PageBoundary } from '@components/page/Page';
+import { PageBoundary } from '@components/page/Page';
 
-import FeaturedArticleSection from '@sections/blog/article/FeaturedArticleSection';
-import ArticleGridSection from '@sections/blog/article/ArticleGridSection';
+import Section from '@sections/Section';
 
-const TestBlogData = {
-  handle: "test-blog",
-  title: "Test Blog Article",
-  url: '/',
-  image: require('@assets/images/photo.jpg'),
-  shortDescription: "Read how the latest lorem ipsum is dolor sit amet for business owners..."
-};
+import ArticleThumbnail from '@objects/blog/article/ArticleThumbnail';
 
-export default withLanguage(props => {
-  let { lang } = props;
+import Styles from './ArticleGridSection.scss';
+
+export default props => {
+  let { className, articles } = props;
+  articles = articles || [];
 
   return (
-    <Page style="blog-page" className="p-blog-page" title={ lang.pages.blog.title }>
-      {/* First (Featured) Blog */}
-      <FeaturedArticleSection article={ TestBlogData } />
-      <ArticleGridSection articles={[ TestBlogData, TestBlogData, TestBlogData, TestBlogData, TestBlogData]} />
-    </Page>
+    <Section className={`c-article-grid ${className||""}`}>
+      <PageBoundary className="c-article-grid__grid">
+        { articles.map((article,index) => {
+          return <ArticleThumbnail
+            key={index} article={article} index={index}
+            className="c-article-grid__article"
+          />
+        }) }
+      </PageBoundary>
+    </Section>
   );
-});
+}

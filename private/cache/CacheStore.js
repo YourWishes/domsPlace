@@ -21,30 +21,48 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
+const NodeCache = require('node-cache');
 
-import { withLanguage } from '@public/language/Language';
-import Page, { PageBoundary } from '@components/page/Page';
+class CacheStore {
+  constructor(app, ttl) {
+    if(!ttl) ttl = 60*60;
 
-import FeaturedArticleSection from '@sections/blog/article/FeaturedArticleSection';
-import ArticleGridSection from '@sections/blog/article/ArticleGridSection';
+    this.app = app;
+    this.store = new NodeCache({
+      stdTTL: ttl,
+      checkperiod: ttl * 0.2,
+      useClones: false
+    });
+  }
 
-const TestBlogData = {
-  handle: "test-blog",
-  title: "Test Blog Article",
-  url: '/',
-  image: require('@assets/images/photo.jpg'),
-  shortDescription: "Read how the latest lorem ipsum is dolor sit amet for business owners..."
-};
+  getApp() {return this.app;}
+  getStore() {return this.store;}
+  getDatabase() {return this.app.getDatabase();}
 
-export default withLanguage(props => {
-  let { lang } = props;
+  async get(key, prom) {
+    let value = this.store.get(key);
+    if(typeof value !== typeof undefined) return value;
 
-  return (
-    <Page style="blog-page" className="p-blog-page" title={ lang.pages.blog.title }>
-      {/* First (Featured) Blog */}
-      <FeaturedArticleSection article={ TestBlogData } />
-      <ArticleGridSection articles={[ TestBlogData, TestBlogData, TestBlogData, TestBlogData, TestBlogData]} />
-    </Page>
-  );
-});
+    value = await prom();
+    this.store.set(key, value);
+    return value;
+  }
+
+  del(keysOrKey) {
+    let keys = keysOrKey;
+    if(!Array.isArray(keysOrKey)) keys = [keys];
+    this.store.del(keys);
+  }
+
+  //Database related stores
+  async getFromDatabase(key, query, params, method) {
+    if(typeof params === typeof undefined) params = {};
+    if(typeof method === typeof undefined) method = "any";
+
+    return await this.get(key, async () => {
+      return await this.database[method](query, params);
+    });
+  }
+}
+
+module.exports = CacheStore;
