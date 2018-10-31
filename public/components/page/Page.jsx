@@ -26,16 +26,19 @@ import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
 import { withLanguage } from '@public/language/Language';
 
-import Styles from './Page.scss';
+import Image from '@objects/image/Image';
 
-//Components
 import PageBoundary from './boundary/PageBoundary';
 
-export default withLanguage(props => {
-  let { title, style, className, lang, children } = props;
+import Styles from './Page.scss';
 
+export default withLanguage(props => {
+  let { title, style, className, lang, children, background } = props;
+
+  //Switch classes
   let clazzes = `c-page ${className||""}`;
 
+  //Setup page title
   let titleHelmet;
   if((!title || !title.length) && style != "home-page") {
     console.exception(`This page (${style||className}) does not have a title!`);
@@ -43,11 +46,19 @@ export default withLanguage(props => {
     titleHelmet = <title>{ title }</title>
   }
 
+  //Extras
+  let bg;
+  if(background) {
+    bg = <Image src={ background } className="c-page__background" loadable />;
+    clazzes += ' has-background';
+  }
+
   return (
     <div className={clazzes}>
       <Helmet defaultTitle={ lang.site.title } titleTemplate={ lang.site.titleTemplate }>
         { titleHelmet }
       </Helmet>
+      { bg }
       { children }
     </div>
   );

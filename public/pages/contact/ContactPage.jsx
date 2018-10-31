@@ -25,34 +25,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Forms from '@common/Forms';
-
 //Actions
 import { openModal } from '@public/actions/ModalActions';
 
 //Components
 import Page, { PageBoundary } from '@components/page/Page';
 import { withLanguage } from '@public/language/Language';
-import Section, {
-  BodySection,
-  ClearSection,
-  SplitSection,
-  Split
-} from '@components/section/Section';
+import { ClearSection } from '@components/section/Section';
 
 //Objects
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Heading1, Paragraph } from '@objects/typography/Typography';
-import Input, {
-  Form,
-  FormManager,
-  FormGroup,
-  TextArea,
-  Label,
-  ButtonGroup
-} from '@objects/input/Input';
 import Modal from '@objects/modal/Modal';
+import { FormManager } from '@objects/input/Input';
+
+import ContactForm from './form/ContactForm';
+
+import Styles from './ContactPage.scss';
 
 class ContactPage extends React.Component {
   constructor(props) {
@@ -61,16 +51,12 @@ class ContactPage extends React.Component {
     //Form Manager (For the form and elements)
     this.manager = new FormManager();
 
-    this.state = {
-      sent: false
-    };
+    this.state = { sent: false };
   }
 
   onSuccess(data) {
     if(data !== true) return this.onError(data);
-    this.setState({
-      sent: true
-    });
+    this.setState({ sent: true });
   }
 
   onError(e, a, b) {
@@ -83,16 +69,17 @@ class ContactPage extends React.Component {
 
   render() {
     let { lang } = this.props;
+    let { sent } = this.state;
 
     //Form
     let inners;
-    if(this.state.sent) {
+    if(sent) {
       //Sent Display
       inners = (
         <ElementScrollFader from="bottom">
           <ContentBox box className="u-text-center">
-            <Heading1>{ lang.pages.contact.success.heading }</Heading1>
-            <Paragraph>{ lang.pages.contact.success.paragraph }</Paragraph>
+            <Heading1 children={ lang.pages.contact.success.heading } />
+            <Paragraph children={ lang.pages.contact.success.paragraph } />
           </ContentBox>
         </ElementScrollFader>
       );
@@ -100,73 +87,27 @@ class ContactPage extends React.Component {
       //Form
       inners = (
         <ElementScrollFader from="right">
-          <BodySection>
-            <Form
-              post="/api/contact/send"
-              contentType="application/json"
-              ajax
-              loader
+          <ContentBox box>
+            <ContactForm
               onSuccess={ (e) => this.onSuccess(e) }
               onError={ (e) => this.onError(e) }
               manager={ this.manager }
-            >
-              <FormGroup>
-                <Label htmlFor="name">
-                  { lang.pages.contact.name.label }
-                </Label>
-                <Input
-                  name="name"
-                  type="text"
-                  placeholder={ lang.pages.contact.name.placeholder }
-                  required={ Forms.contact.name.required }
-                  maxLength={ Forms.contact.name.maxLength }
-                  manager={ this.manager }
-                />
-              </FormGroup>
-
-              <FormGroup >
-                <Label htmlFor="email">
-                  { lang.pages.contact.email.label }
-                </Label>
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder={ lang.pages.contact.email.placeholder }
-                  required={ Forms.contact.email.required }
-                  maxLength={ Forms.contact.email.maxLength }
-                  manager={ this.manager }
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label> htmlFor="message">
-                  { lang.pages.contact.message.label }
-                </Label>
-                <TextArea
-                  name="message"
-                  placeholder={ lang.pages.contact.message.placeholder }
-                  rows="8"
-                  className="p-contact-page__message"
-                  required={ Forms.contact.message.required }
-                  maxLength={ Forms.contact.message.maxLength }
-                  manager={ this.manager }
-                />
-              </FormGroup>
-
-              <ButtonGroup>
-                <Input type="submit" value={ lang.pages.contact.send } primary="true" />
-                <Input type="reset" value={ lang.pages.contact.reset } />
-              </ButtonGroup>
-            </Form>
-          </BodySection>
+            />
+          </ContentBox>
         </ElementScrollFader>
       );
     }
 
     return (
-      <Page style="contact-page" className="p-contact-page" title={ lang.pages.contact.title }>
+      <Page
+        style="contact-page"
+        className="p-contact-page"
+        title={ lang.pages.contact.title }
+        background={ require('@assets/images/patterns/lemon-triangle.svg') }
+      >
         <ClearSection />
         <PageBoundary small>
+
           <ElementScrollFader from="left">
             <ContentBox box className="u-text-center">
               <Title>{ lang.pages.contact.heading }</Title>
@@ -175,11 +116,8 @@ class ContactPage extends React.Component {
               </Paragraph>
             </ContentBox>
           </ElementScrollFader>
-
-          <br />
-          <br />
-
           { inners }
+
         </PageBoundary>
         <ClearSection />
       </Page>
