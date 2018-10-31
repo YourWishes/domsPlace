@@ -30,6 +30,8 @@ import { BodySection, ClearSection } from '@components/section/Section';
 
 import { Title } from '@objects/typography/Typography';
 
+import Styles from './PrivacyPolicyPage.scss';
+
 export default withLanguage(props => {
   let { lang } = props;
   return (
