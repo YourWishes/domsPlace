@@ -113,7 +113,7 @@ export default withLanguage(props => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-work"
-      src={ require('@assets/images/patterns/arcade.svg') }
+      src={ require('@assets/images/banners/hills-night.svg') }
       loadable
       background
     >

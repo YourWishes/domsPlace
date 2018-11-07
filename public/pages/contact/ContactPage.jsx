@@ -86,7 +86,14 @@ class ContactPage extends React.Component {
     } else {
       //Form
       inners = (
-        <ElementScrollFader from="right">
+        <ElementScrollFader from="left">
+          <ContentBox box className="u-text-center">
+            <Title>{ lang.pages.contact.heading }</Title>
+            <Paragraph>
+              { lang.pages.contact.paragraph }
+            </Paragraph>
+          </ContentBox>
+
           <ContentBox box>
             <ContactForm
               onSuccess={ (e) => this.onSuccess(e) }
@@ -103,22 +110,10 @@ class ContactPage extends React.Component {
         style="contact-page"
         className="p-contact-page"
         title={ lang.pages.contact.title }
-        background={ require('@assets/images/patterns/lemon-triangle.svg') }
+        background={ require('@assets/images/banners/sunset.svg') }
       >
         <ClearSection />
-        <PageBoundary small>
-
-          <ElementScrollFader from="left">
-            <ContentBox box className="u-text-center">
-              <Title>{ lang.pages.contact.heading }</Title>
-              <Paragraph>
-                { lang.pages.contact.paragraph }
-              </Paragraph>
-            </ContentBox>
-          </ElementScrollFader>
-          { inners }
-
-        </PageBoundary>
+        <PageBoundary small children={inners} />
         <ClearSection />
       </Page>
     );

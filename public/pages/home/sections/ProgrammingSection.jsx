@@ -35,7 +35,7 @@ export default withLanguage(props => {
   return (
     <ImageSection
       className="p-home-page__promo p-home-page__promo-programming"
-      src={ require('@assets/images/patterns/rhythm-heaven.svg') }
+      src={ require('@assets/images/patterns/florida.svg') }
       loadable
       background
     >

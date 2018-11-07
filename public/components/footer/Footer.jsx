@@ -25,11 +25,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import FooterStyles from './Footer.scss';
-
 import { withLanguage } from '@public/language/Language';
 
 import { PageBoundary } from '@components/page/Page';
+import ImageSection from '@sections/image/ImageSection';
+
+import ContentBox from '@objects/content/box/ContentBox';
+
+import FooterStyles from './Footer.scss';
 
 const SITE_LAUNCH_TIMESTAMP = 1335830400000;
 
@@ -47,26 +50,29 @@ class Footer extends React.Component {
     let { className, lang } = this.props;
 
     return (
-      <footer className={"c-footer"+(className?` ${className}`:``)}>
-        <div className="c-footer__part">
-        </div>
+      <footer className={`c-footer ${className||""}`}>
+        <ImageSection
+          className="c-footer__inner"
+          src={ require('@assets/images/patterns/schoolbell.svg') }
+          loadable
+          background
+        >
+          <PageBoundary full>
+            <ContentBox box className="u-text-center">
+              <nav className="c-footer__links">
+                <FooterLink to="/" children={ lang.footer.links.home } />
+                <FooterLink to="/contact" children={ lang.footer.links.contact } />
+                <FooterLink to="/legal/privacy" children={ lang.footer.links.privacy } />
+              </nav>
 
-        <PageBoundary>
-          <div className="c-footer__inner">
-
-            <nav className="c-footer__links">
-              <FooterLink to="/" children={ lang.footer.links.home } />
-              <FooterLink to="/contact" children={ lang.footer.links.contact } />
-              <FooterLink to="/legal/privacy" children={ lang.footer.links.privacy } />
-            </nav>
-
-            <div className="c-footer__copyright">
-              &copy; { new Date(SITE_LAUNCH_TIMESTAMP).getFullYear() }
-              ~
-              { new Date().getFullYear() } Dominic Masters
-            </div>
-          </div>
-        </PageBoundary>
+              <div className="c-footer__copyright">
+                &copy; { new Date(SITE_LAUNCH_TIMESTAMP).getFullYear() }
+                ~
+                { new Date().getFullYear() } Dominic Masters
+              </div>
+            </ContentBox>
+          </PageBoundary>
+        </ImageSection>
       </footer>
     );
   }
