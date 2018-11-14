@@ -25,7 +25,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { withLanguage } from '@public/language/Language';
-import BannerImageSection from '@sections/image/banner/BannerImageSection';
+import Section from '@sections/Section';
 import { PageBoundary } from '@components/page/Page';
 
 import Image from '@objects/image/Image';
@@ -39,26 +39,29 @@ export default withLanguage(props => {
   let { article, lang } = props;
 
   return (
-    <BannerImageSection
-      className="c-featured-article"
-      src={ article.image } alt={ article.title } loadable
-    >
-      <PageBoundary className="c-featured-article__content" full>
+    <Section>
+      <PageBoundary>
+        <article role="article" itemScope itemType="http://schema.org/Article" className="c-featured-article">
+          <ContentBox box className="c-featured-article__content">
+            <NavLink to={ article.url } className="c-featured-article__box is-image">
+              <Image src={ article.image } className="c-featured-article__image" maxWidth="800" />
+            </NavLink>
 
-        <ContentBox box className="c-featured-article__header">
-          <Title className="c-featured-article__title">
-            <NavLink to={ article.url } children={ article.title} />
-          </Title>
-        </ContentBox>
+            <div className="c-featured-article__box is-content">
+              <ContentBox box className="c-featured-article__heading">
+                <NavLink to={ article.url }>
+                  <Title itemProp="name" className="c-featured-article__title">
+                    { article.title }
+                  </Title>
+                </NavLink>
+              </ContentBox>
 
-        <ContentBox box className="c-featured-article__body">
-          <Paragraph className="c-featured-article__description">
-            { article.shortDescription }&nbsp;
-            <NavLink to={ article.url } children={ lang.blog.article.readMore } />
-          </Paragraph>
-        </ContentBox>
-
+              <Paragraph itemProp="description" children={ article.description } />
+              <NavLink itemProp="sameAs" to={ article.url } children={ lang.blog.article.readMore } />
+            </div>
+          </ContentBox>
+        </article>
       </PageBoundary>
-    </BannerImageSection>
+    </Section>
   );
 });

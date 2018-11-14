@@ -9,6 +9,7 @@
 @import '~@styles/global';
 
 .c-article-grid {
+
   &__grid {
     display: flex;
     flex-wrap: wrap;
@@ -19,15 +20,22 @@
     width: 100%;
   }
 
-  @include t-media-query($s-xsmall-up) {
+  @include t-media-query($s-small-up) {
+    &__grid {
+      padding: 1em 0;
+    }
+
     &__article {
       width: 50%;
-    }
-  }
+      padding: 1em 2em;
 
-  @include t-media-query($s-small-up) {
-    &__article {
-      width: (100%/3);
+      &:nth-child(odd) {
+        padding-right: 1em;
+      }
+
+      &:nth-child(even) {
+        padding-left: 1em;
+      }
     }
   }
 }

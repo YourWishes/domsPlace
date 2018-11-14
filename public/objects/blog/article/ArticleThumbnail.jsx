@@ -47,31 +47,36 @@ export default withLanguage(props => {
   }
 
   return (
-    <article className={`o-article-thumbnail ${className||""}`}>
-      <NavLink to={article.url} className="o-article-thumbnail__header">
-        {/* Image */}
-        <Image
-          src={article.image} alt={article.title} loadable
-          className="o-article-thumbnail__image"
-          maxWidth="250"
-        />
+    <article
+      className={`o-article-thumbnail ${className||""}`}
+      role="article" itemScope itemType="http://schema.org/Article"
+    >
+      <ContentBox box>
+        <NavLink to={article.url} className="o-article-thumbnail__header">
+          {/* Image */}
+          <Image
+            src={article.image} alt={article.title} loadable
+            className="o-article-thumbnail__image"
+            maxWidth="250"
+          />
 
-        {/* Title */}
-        <FloatingContentBox box position={pos} className="o-article-thumbnail__title-box">
-          <Heading2 className="o-article-thumbnail__title">
-            { article.title }
-          </Heading2>
-        </FloatingContentBox>
-      </NavLink>
-
-      <ContentBox className="o-article-thumbnail__content">
-        <Paragraph>
-          { article.shortDescription }
-        </Paragraph>
-
-        <NavLink to={ article.url }>
-          { lang.blog.article.readMore }
+          {/* Title */}
+          <FloatingContentBox box position={pos} className="o-article-thumbnail__title-box">
+            <Heading2 className="o-article-thumbnail__title" itemProp="name" >
+              { article.title }
+            </Heading2>
+          </FloatingContentBox>
         </NavLink>
+
+        <div className="o-article-thumbnail__content" >
+          <Paragraph itemProp="description">
+            { article.shortDescription }
+          </Paragraph>
+
+          <NavLink to={ article.url } itemProps="sameAs">
+            { lang.blog.article.readMore }
+          </NavLink>
+        </div>
       </ContentBox>
     </article>
   );
