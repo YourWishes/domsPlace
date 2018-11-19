@@ -27,24 +27,28 @@ const
   DatabaseConnection = require('./../database/DatabaseConnection'),
   Server = require('./../server/Server'),
   Email = require('./../email/Email'),
-  CacheStore = require('./../cache/CacheStore')
+  CacheStore = require('./../cache/CacheStore'),
+
+  Articles = require('./../blog/Articles')
 ;
 
 class App {
   constructor() {
     this.config = new Configuration(this);
     this.database = new DatabaseConnection(this);
+
+    this.articles = new Articles(this);
+
     this.server = new Server(this);
     this.email = new Email(this);
-    //this.store = new CacheStore(this);
   }
 
   getConfig() { return this.config; }
-  //getCacheStore() {return this.store;}
-  getDiscord() { return this.discord; }
   getDatabase() { return this.database; }
-  getPalaise() { return this.palaise; }
   getEmail() {return this.email;}
+  getServer() {return this.server;}
+
+  getArticles() {return this.articles;}
 
   async init() {
     this.log('Starting App...');
@@ -90,6 +94,28 @@ class App {
     }
 
     this.log('App ready');
+    console.log(await this.articles.getArticlesByPage(2, 20));
+  }
+
+  // Common Functions //
+  createHandle(str) {
+    //Creates a human handle for the supplied string, this won't take any kind
+    //of existing checks into account, be sure to append a numeric value to the
+    //end of this string such as app.createHandle("test")+"-2";
+    str = str.toLowerCase();
+    ['"', "'", "\\", "(", ")", "[", "]"].forEach(e => str = str.replace(e, ""));
+
+    str = str.replace(/\W+/g, "-");
+
+    if (str.charAt(str.length - 1) == "-") {
+      str = str.replace(/-+\z/, "");
+    }
+
+    if (str.charAt(0) == "-") {
+      str = str.replace(/\A-+/, "");
+    }
+
+    return str;
   }
 
   // Logging Functions //

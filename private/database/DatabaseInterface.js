@@ -21,52 +21,15 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const NodeCache = require('node-cache');
+const CacheStore = require('./../cache/CacheStore');
 
-class CacheStore {
-  constructor(app, ttl) {
-    if(!ttl) ttl = 60*60;
-
+module.exports = class DatabaseInterface {
+  constructor(app) {
     this.app = app;
-    this.store = new NodeCache({
-      stdTTL: ttl,
-      checkperiod: ttl * 0.2,
-      useClones: false
-    });
+    this.store = new CacheStore(app);
   }
 
   getApp() {return this.app;}
-  getStore() {return this.store;}
   getDatabase() {return this.app.getDatabase();}
-
-  async get(key, prom) {
-    let value = this.store.get(key);
-    if(typeof value !== typeof undefined) return value;
-
-    value = await prom();
-    this.store.set(key, value);
-    return value;
-  }
-
-  del(keysOrKey) {
-    let keys = keysOrKey;
-    if(!Array.isArray(keysOrKey)) keys = [keys];
-    this.store.del(keys);
-  }
-
-  flush() {
-    this.store.flushAll();
-  }
-
-  //Database related stores
-  async getFromDatabase(key, query, params, method) {
-    if(typeof params === typeof undefined) params = {};
-    if(typeof method === typeof undefined) method = "any";
-
-    return await this.get(key, async () => {
-      return await this.getDatabase()[method](query, params);
-    });
-  }
+  getStore() {return this.store;}
 }
-
-module.exports = CacheStore;

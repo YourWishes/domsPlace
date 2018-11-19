@@ -21,52 +21,30 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const NodeCache = require('node-cache');
+const
+  APIHandler = require('./../../APIHandler'),
+  sanitizeHtml = require('sanitize-html')
+;
 
-class CacheStore {
-  constructor(app, ttl) {
-    if(!ttl) ttl = 60*60;
+const ERRORS = {
+  tooMany: "Cannot return this many"
+};
 
-    this.app = app;
-    this.store = new NodeCache({
-      stdTTL: ttl,
-      checkperiod: ttl * 0.2,
-      useClones: false
-    });
+module.exports = class GetBlogArticles extends APIHandler {
+  constructor(api) {
+    super(api, ['GET'], '/blog');
   }
 
-  getApp() {return this.app;}
-  getStore() {return this.store;}
-  getDatabase() {return this.app.getDatabase();}
+  async handle(request) {
+    let page, perPage;
+    if(request.hasInteger("page")) page = request.getInteger("page");
+    if(request.hasInteger("perPage")) perPage = request.getInteger("perPage");
 
-  async get(key, prom) {
-    let value = this.store.get(key);
-    if(typeof value !== typeof undefined) return value;
+    perPage = Math.min(Math.max(perPage, 0), 20);
 
-    value = await prom();
-    this.store.set(key, value);
-    return value;
-  }
-
-  del(keysOrKey) {
-    let keys = keysOrKey;
-    if(!Array.isArray(keysOrKey)) keys = [keys];
-    this.store.del(keys);
-  }
-
-  flush() {
-    this.store.flushAll();
-  }
-
-  //Database related stores
-  async getFromDatabase(key, query, params, method) {
-    if(typeof params === typeof undefined) params = {};
-    if(typeof method === typeof undefined) method = "any";
-
-    return await this.get(key, async () => {
-      return await this.getDatabase()[method](query, params);
-    });
+    return {
+      ok: true,
+      data: await request.getApp().getArticles().getArticlesByPage(page, perPage)
+    };
   }
 }
-
-module.exports = CacheStore;

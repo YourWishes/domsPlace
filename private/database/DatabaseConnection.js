@@ -68,12 +68,13 @@ class DatabaseConnection {
     let keys = Object.keys(queries);
     for(let i = 0; i < keys.length; i++) {
       let k = keys[i];
-      if(!k.startsWith("Create")) return;
+      if(!k.toLowerCase().startsWith("create")) continue;
       await this.none(k);
     };
   }
 
   getQuery(name) {
+    if(!this.queries[name]) throw new Error("No Query by that name exists");
     return this.queries[name];
   }
 
