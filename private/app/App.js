@@ -94,7 +94,6 @@ class App {
     }
 
     this.log('App ready');
-    console.log(await this.articles.getArticlesByPage(2, 20));
   }
 
   // Common Functions //

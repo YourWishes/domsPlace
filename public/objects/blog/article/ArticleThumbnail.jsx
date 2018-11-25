@@ -73,7 +73,7 @@ export default withLanguage(props => {
             { article.shortDescription }
           </Paragraph>
 
-          <NavLink to={ article.url } itemProps="sameAs">
+          <NavLink to={ article.url } itemProp="sameAs">
             { lang.blog.article.readMore }
           </NavLink>
         </div>

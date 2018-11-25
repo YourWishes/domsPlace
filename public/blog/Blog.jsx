@@ -21,36 +21,44 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
-import '@babel/polyfill';
-
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
-import { Provider } from 'react-redux';
-import RootReducer from './reducers/RootReducer';
-import promiseMiddleware from 'redux-promise-middleware';
-import Keyboard from './keyboard/Keyboard';
+import { get } from '@public/api/api';
 
+export const withBlogTemplate = WrappedComponent => {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
 
-//Import Common Elements Stylesheet
-import Styles from './styles/common.scss';
+      this.state = {
+        pending: false,
+        error: undefined,
+        pages: undefined,
+        articles: undefined
+      };
+    }
 
-//Import Base Component
-import App from './components/App';
+    componentDidMount() {
+      let { page, perPage } = this.props.match.params;
+      page = page || 1;
+      perPage = perPage || 7;
 
-//Create our redux middleware
-const store = createStore(RootReducer, applyMiddleware(
-  promiseMiddleware(),
-  createLogger({ collapsed: true })
-));
+      this.setState({ pending: true, page, perPage });
+      get('blog', { page, perPage }).then(blog => {
+        let { articles, pages } = blog;
 
-//Start listening for key events
-Keyboard.register();
+        articles.forEach(article => {
+          article.url = `/blogs/articles/${article.handle}`
+          article.image = require(`@assets/images/${article.image}`);
+        });
 
-ReactDOM.render((
-  <Provider store={store}>
-    <App />
-  </Provider>
-),document.getElementById('app'));
+        this.setState({ pending: undefined, error: undefined, articles, pages });
+      }).catch(e => {
+        this.setState({ pending: undefined, error: e });
+      });
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} {...this.state}  />;
+    }
+  }
+};

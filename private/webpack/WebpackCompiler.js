@@ -29,7 +29,7 @@ const
   SharpLoader = require('responsive-loader/sharp'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   CompressionPlugin = require("compression-webpack-plugin"),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  TerserPlugin = require('terser-webpack-plugin'),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
   OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 ;
@@ -44,7 +44,7 @@ module.exports = (isDev) => {
   let config = {
     devtool: 'source-map',
     entry: [ `${base}/public/index.jsx` ],
-    output: { path: `${base}/dist`, filename: "app.js" },
+    output: { path: `${base}/dist`, filename: "app.js", publicPath: '/' },
     mode: isDev ? 'development' : 'production',
     resolve: {
       modules: [`${base}/node_modules`, `${base}/public`],
@@ -153,7 +153,7 @@ module.exports = (isDev) => {
       ]
     };
   } else {
-    let UglifyPluginConfig = new UglifyJsPlugin({
+    let TerserPluginConfig = new TerserPlugin({
       test: /\.js($|\?)/i
     });
 
@@ -172,7 +172,7 @@ module.exports = (isDev) => {
       optimization: {
         minimize: true,
         minimizer: [
-          UglifyPluginConfig,
+          TerserPluginConfig,
           MiniCssExtractConfig,
           new OptimizeCSSAssetsPlugin({}),
         ]

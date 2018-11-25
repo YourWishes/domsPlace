@@ -24,32 +24,40 @@
 import React from 'react';
 
 import { withLanguage } from '@public/language/Language';
+import { withBlogTemplate} from '@public/blog/Blog';
 import Page, { PageBoundary } from '@components/page/Page';
 
 import FeaturedArticleSection from '@sections/blog/article/FeaturedArticleSection';
 import ArticleGridSection from '@sections/blog/article/ArticleGridSection';
 import ClearSection from '@sections/layout/ClearSection';
 
+import Loader from '@objects/loading/Loader';
+import Pagination from '@objects/pagination/Pagination';
+
 import Styles from './BlogPage.scss';
 
-const TestBlogData = {
-  handle: "test-blog",
-  title: "Test Blog Article",
-  url: '/',
-  image: require('@assets/images/photo.jpg'),
-  shortDescription: `Read how the latest lorem ipsum is dolor sit amet for business owners...`,
-  description: `Est magna esse amet admodum est ex noster elit quem probant, id qui minim
-  possumus, ut esse enim esse senserit. Ullamco quae quis incurreret dolore.
-  Laborum est ingeniis, quibusdam fugiat non deserunt adipisicing.Nam quid velit
-  aut litteris, laborum export incididunt admodum et nam fabulas instituendarum,
-  id nam praesentibus. Aliquip anim consequat, est export commodo praetermissum, e
-  ab multos ingeniis ut ipsum ab laborum de tamen. Sed quem proident fidelissimae,
-  quae te singulis o ita sint culpa qui ingeniis, e export officia. Quem vidisse
-  ut quis aliqua.`
-};
+export default withBlogTemplate(withLanguage(props => {
+  let { lang, articles, page, pages, pending, error } = props;
 
-export default withLanguage(props => {
-  let { lang } = props;
+  console.log(props);
+
+  let children;
+
+  if(error) error = "An error occured";
+  if(pending) pending = <Loader />;
+
+  if(articles && articles.length) {
+    children = (
+      <React.Fragment>
+        <FeaturedArticleSection article={ articles.shift() } />
+        <ArticleGridSection articles={ articles } />
+        <Pagination page={ page } pages={ pages } to="/blog/$page" />
+      </React.Fragment>
+    );
+  }
+
+  /*
+  */
 
   return (
     <Page
@@ -57,9 +65,10 @@ export default withLanguage(props => {
       background={require('@assets/images/banners/sunset.svg')}
     >
       <ClearSection />
-      {/* First (Featured) Blog */}
-      <FeaturedArticleSection article={ TestBlogData } />
-      <ArticleGridSection articles={[ TestBlogData, TestBlogData, TestBlogData, TestBlogData, TestBlogData]} />
+      { error }
+      { pending }
+      { children }
+      <ClearSection />
     </Page>
   );
-});
+}));

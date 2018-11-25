@@ -46,6 +46,12 @@ module.exports = class Articles extends DatabaseInterface {
     );
   }
 
+  async getArticlesPageCount(perPage) {
+    if(!perPage) perPage = 10;
+    let count = await this.getArticlesCount(perPage);
+    return Math.ceil(count/perPage);
+  }
+
   async getArticlesByPage(page, perPage) {
     if(!page) page = 1;
     if(!perPage) perPage = 10;

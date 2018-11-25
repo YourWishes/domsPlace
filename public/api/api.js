@@ -21,36 +21,37 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
-import '@babel/polyfill';
+import queryString from 'query-string';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
-import { Provider } from 'react-redux';
-import RootReducer from './reducers/RootReducer';
-import promiseMiddleware from 'redux-promise-middleware';
-import Keyboard from './keyboard/Keyboard';
+export const getUrl = request => {
+  request = request || "";
+  request = request.split('#');
 
+  let r = "";
+  if(request.length) r = request[0].toLowerCase();
 
-//Import Common Elements Stylesheet
-import Styles from './styles/common.scss';
+  let slash = '/';
+  if(r.startsWith('/')) slash = '';
 
-//Import Base Component
-import App from './components/App';
+  return `/api${slash}${r}`;
+}
 
-//Create our redux middleware
-const store = createStore(RootReducer, applyMiddleware(
-  promiseMiddleware(),
-  createLogger({ collapsed: true })
-));
+export const get = async (url, params) => {
+  url = url || "";
 
-//Start listening for key events
-Keyboard.register();
+  //Generate URL from query string
+  let paramString = queryString.stringify(params);
+  url = getUrl(url);
+  if(url.indexOf('?') !== -1) {
+    url += `&${paramString}`;
+  } else {
+    url += `?${paramString}`;
+  }
 
-ReactDOM.render((
-  <Provider store={store}>
-    <App />
-  </Provider>
-),document.getElementById('app'));
+  //Now make our fetch request.
+  let res = await fetch(url, {
+    crossDomain:true
+  });
+  if(res.status >= 400) throw new Error(`Server Responded with ${res.status}`);
+  return await res.json();
+};

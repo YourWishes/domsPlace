@@ -39,12 +39,12 @@ const PageLoading = (props) => {
 };
 
 export const RouteWrapper = (props) => {
-  let render = () => {
+  let render = subProps => {
     let CustomLoadable = Loadable({
       loader: props.page,
       loading: PageLoading
     });
-    return <CustomLoadable />
+    return <CustomLoadable {...props} {...subProps} />
   };
 
   return <Route {...props} render={render} />;
@@ -53,11 +53,5 @@ export const RouteWrapper = (props) => {
 export default withRouter((props) => {
   const { match, location, history, children } = props;
 
-  return (
-    <Route>
-      <Switch location={ location }>
-        { children }
-      </Switch>
-    </Route>
-  );
+  return <Switch {...props} />;
 });

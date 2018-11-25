@@ -44,7 +44,10 @@ module.exports = class GetBlogArticles extends APIHandler {
 
     return {
       ok: true,
-      data: await request.getApp().getArticles().getArticlesByPage(page, perPage)
+      data: {
+        pages: await request.getApp().getArticles().getArticlesPageCount(perPage),
+        articles: await request.getApp().getArticles().getArticlesByPage(page, perPage)
+      }
     };
   }
 }
