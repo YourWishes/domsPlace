@@ -1,0 +1,25 @@
+@import '~@styles/global';
+
+$c-error-panel--padding: 1em;
+
+.c-error-panel {
+  max-width: 750px;
+  border: $s-color--input-default__border;
+
+  &__heading {
+    padding: $c-error-panel--padding;
+    background: $s-color--input-danger__top;
+    border-bottom: $s-color--input-default__border;
+
+    &-title {
+      color: $s-color--input-primary__text;
+      margin: 0;
+    }
+  }
+
+  &__body {
+    margin: 0;
+    background: $s-color--background;
+    padding: $c-error-panel--padding;
+  }
+}

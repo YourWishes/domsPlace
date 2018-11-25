@@ -24,6 +24,20 @@
 import React from 'react';
 import { get } from '@public/api/api';
 
+const TestBlogArticle = id => {
+  return {
+    id, handle: 'test-blog-article', title: 'My Title',
+    image: 'photo.jpg',
+    shortDescription: "Some short description that goes here too so let's write.",
+    description: "This is my longer example description lorem ipsum dolor sit amet."
+  }
+};
+
+const TestBlogs = {
+  pages: 20/7,
+  articles: [...Array(20).keys()].map(TestBlogArticle)
+}
+
 export const withBlogTemplate = WrappedComponent => {
   return class extends React.Component {
     constructor(props) {
@@ -43,7 +57,7 @@ export const withBlogTemplate = WrappedComponent => {
       perPage = perPage || 7;
 
       this.setState({ pending: true, page, perPage });
-      get('blog', { page, perPage }).then(blog => {
+      get('blog', { page, perPage }, TestBlogs).then(blog => {
         let { articles, pages } = blog;
 
         articles.forEach(article => {
@@ -53,6 +67,7 @@ export const withBlogTemplate = WrappedComponent => {
 
         this.setState({ pending: undefined, error: undefined, articles, pages });
       }).catch(e => {
+        console.error(e);
         this.setState({ pending: undefined, error: e });
       });
     }

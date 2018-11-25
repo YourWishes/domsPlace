@@ -27,6 +27,7 @@ import { withLanguage } from '@public/language/Language';
 import { withBlogTemplate} from '@public/blog/Blog';
 import Page, { PageBoundary } from '@components/page/Page';
 
+import ErrorSection from '@sections/error/ErrorSection';
 import FeaturedArticleSection from '@sections/blog/article/FeaturedArticleSection';
 import ArticleGridSection from '@sections/blog/article/ArticleGridSection';
 import ClearSection from '@sections/layout/ClearSection';
@@ -39,11 +40,8 @@ import Styles from './BlogPage.scss';
 export default withBlogTemplate(withLanguage(props => {
   let { lang, articles, page, pages, pending, error } = props;
 
-  console.log(props);
-
   let children;
-
-  if(error) error = "An error occured";
+  if(error) error = <ErrorSection title={lang.blog.error.title} body={lang.blog.error.body} error={error} />;
   if(pending) pending = <Loader />;
 
   if(articles && articles.length) {
@@ -55,9 +53,6 @@ export default withBlogTemplate(withLanguage(props => {
       </React.Fragment>
     );
   }
-
-  /*
-  */
 
   return (
     <Page

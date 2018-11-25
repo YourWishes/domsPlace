@@ -25,17 +25,16 @@ import React from 'react';
 import { withLanguage} from '@public/language/Language';
 
 import Page, { PageBoundary } from '@components/page/Page';
-import { ClearSection} from '@components/section/Section';
+import { ClearSection } from '@components/section/Section';
+import ErrorSection from '@sections/error/ErrorSection';
 import { Title } from '@objects/typography/Typography';
 
 export default withLanguage(props => {
-  let { className, lang } = props;
+  let { className, error, lang } = props;
   return (
-    <Page className={`c-error-page ${className||""}`} title={lang.pages.error.title}>
+    <Page className={`c-error-page ${className||""}`} title={ lang.pages.error.title }>
       <ClearSection />
-      <PageBoundary>
-        <Title className="u-text-center">{ lang.pages.error.body }</Title>
-      </PageBoundary>
+      <ErrorSection error={ error || lang.pages.error.body } />
       <ClearSection />
     </Page>
   );

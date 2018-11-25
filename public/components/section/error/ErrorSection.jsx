@@ -21,44 +21,22 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import queryString from 'query-string';
+import React from 'react';
 
-export const getUrl = request => {
-  request = request || "";
-  request = request.split('#');
+import Section from './../Section';
+import PageBoundary from '@components/page/boundary/PageBoundary';
+import ErrorPanel from '@components/error/ErrorPanel';
 
-  let r = "";
-  if(request.length) r = request[0].toLowerCase();
+import Styles from './ErrorSection.scss';
 
-  let slash = '/';
-  if(r.startsWith('/')) slash = '';
+export default props => {
+  let { className } = props;
 
-  return `/api${slash}${r}`;
-}
-
-export const get = async (url, params, test) => {
-  url = url || "";
-
-  if(process.env.NODE_ENV === 'development') {
-    console.log('testing mode');
-    return await new Promise((resolve,reject) => {
-      setTimeout(e => resolve(test), 1000);
-    });
-  }
-
-  //Generate URL from query string
-  let paramString = queryString.stringify(params);
-  url = getUrl(url);
-  if(url.indexOf('?') !== -1) {
-    url += `&${paramString}`;
-  } else {
-    url += `?${paramString}`;
-  }
-
-  //Now make our fetch request.
-  let res = await fetch(url, {
-    crossDomain:true
-  });
-  if(res.status >= 400) throw new Error(`Server Responded with ${res.status}`);
-  return await res.json();
+  return (
+    <Section className={`c-error-section ${className||""}`}>
+      <PageBoundary>
+        <ErrorPanel {...props} className="c-error-section__panel" />
+      </PageBoundary>
+    </Section>
+  );
 };

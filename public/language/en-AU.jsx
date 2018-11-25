@@ -25,9 +25,18 @@ export default {
   },
 
   "blog": {
+    "error": {
+      "title": "Failed to get the blog",
+      "body": "Failed to get the blogs and articles from the server, please try again later or refresh your browser."
+    },
     "article": {
       "readMore": "Read More"
     }
+  },
+
+  "error": {
+    "title": "An error occured.",
+    "body": "An error occured, please try again later."
   },
 
   "pages": {

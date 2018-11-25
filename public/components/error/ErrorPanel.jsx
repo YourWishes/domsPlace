@@ -21,44 +21,25 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import queryString from 'query-string';
+import React from 'react';
+import { withLanguage } from '@public/language/Language';
 
-export const getUrl = request => {
-  request = request || "";
-  request = request.split('#');
+import Styles from './ErrorPanel.scss';
 
-  let r = "";
-  if(request.length) r = request[0].toLowerCase();
+export default withLanguage(props => {
+  let { className, error, title, body, lang } = props;
 
-  let slash = '/';
-  if(r.startsWith('/')) slash = '';
+  title = title || error.title || lang.error.title;
+  body = body || error.body || error || lang.error.body;
 
-  return `/api${slash}${r}`;
-}
-
-export const get = async (url, params, test) => {
-  url = url || "";
-
-  if(process.env.NODE_ENV === 'development') {
-    console.log('testing mode');
-    return await new Promise((resolve,reject) => {
-      setTimeout(e => resolve(test), 1000);
-    });
-  }
-
-  //Generate URL from query string
-  let paramString = queryString.stringify(params);
-  url = getUrl(url);
-  if(url.indexOf('?') !== -1) {
-    url += `&${paramString}`;
-  } else {
-    url += `?${paramString}`;
-  }
-
-  //Now make our fetch request.
-  let res = await fetch(url, {
-    crossDomain:true
-  });
-  if(res.status >= 400) throw new Error(`Server Responded with ${res.status}`);
-  return await res.json();
-};
+  return (
+    <div className={`c-error-panel ${className||""}`}>
+      <div className="c-error-panel__heading">
+        <h2 className="c-error-panel__heading-title">{ title }</h2>
+      </div>
+      <p className="c-error-panel__body">
+        { body }
+      </p>
+    </div>
+  );
+});
