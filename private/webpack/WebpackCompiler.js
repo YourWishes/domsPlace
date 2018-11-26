@@ -113,7 +113,7 @@ module.exports = (isDev) => {
             loader: "responsive-loader",
             options: {
               adapter: SharpLoader,
-              sizes: [250, 500, 750, 1000, 1500, 2000, 2500],
+              sizes: [500, 1000, 2500],
               name: "[path][name]_[width]x.[ext]",
               context: 'public'
             }
