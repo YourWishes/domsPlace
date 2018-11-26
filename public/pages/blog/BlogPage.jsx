@@ -39,9 +39,10 @@ import Styles from './BlogPage.scss';
 
 export default withBlogTemplate(withLanguage(props => {
   let { lang, articles, page, pages, pending, error } = props;
+  let l = lang.pages.blog;
 
   let children;
-  if(error) error = <ErrorSection title={lang.blog.error.title} body={lang.blog.error.body} error={error} />;
+  if(error) error = <ErrorSection title={l.error.title} body={l.error.body} error={error} />;
   if(pending) pending = <Loader />;
 
   if(articles && articles.length) {
@@ -49,21 +50,23 @@ export default withBlogTemplate(withLanguage(props => {
       <React.Fragment>
         <FeaturedArticleSection article={ articles.shift() } />
         <ArticleGridSection articles={ articles } />
-        <Pagination page={ page } pages={ pages } to="/blog/$page" />
+        <Pagination
+          className="p-blog-page__pagination" page={ page } pages={ pages }
+          to="/blog/$page"
+        />
       </React.Fragment>
     );
   }
 
   return (
     <Page
-      style="blog-page" className="p-blog-page" title={ lang.pages.blog.title }
+      style="blog-page" className="p-blog-page" title={ error ? l.error.title : l.title }
       background={require('@assets/images/banners/sunset.svg')}
     >
       <ClearSection />
       { error }
       { pending }
       { children }
-      <ClearSection />
     </Page>
   );
 }));

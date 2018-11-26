@@ -111,7 +111,7 @@ class ContactPage extends React.Component {
         style="contact-page"
         className="p-contact-page"
         title={ lang.pages.contact.title }
-        background={ require('@assets/images/banners/sunset.svg') }
+        background={ require('@assets/images/banners/hills-night.svg') }
       >
         <ClearSection />
         <PageBoundary small children={inners} />

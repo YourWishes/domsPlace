@@ -40,7 +40,8 @@ const AppRoutes = (props) => {
       <RouteWrapper exact path="/contact" page={ () => import ('@pages/contact/ContactPage') } />
       <RouteWrapper exact path="/legal/privacy" page={ () => import('@pages/legal/privacy/PrivacyPolicyPage') } />
 
-      <RouteWrapper exact path="/blog/:page?" page={ () => import('@pages/blog/BlogPage') } />
+      <RouteWrapper exact path="/blog/:page?" page={ ()=>import('@pages/blog/BlogPage') } />
+      <RouteWrapper exact path="/blog/article/:article?" page={ ()=>import('@pages/blog/article/ArticlePage') } />
     </Routes>
   );
 };

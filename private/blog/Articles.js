@@ -36,13 +36,13 @@ module.exports = class Articles extends DatabaseInterface {
 
   async getArticleById(id) {
     return await this.store.getFromDatabase(
-      `getArticleById_${id}`, `getArticleById`, {id}, 'one'
+      `getArticleById_${id}`, `getArticleById`, {id}, 'oneOrNone'
     );
   }
 
   async getArticleByHandle(handle) {
     return await this.store.getFromDatabase(
-      `getArticleByHandle_${handle}`, `getArticleByHandle`, {handle}, 'one'
+      `getArticleByHandle_${handle}`, `getArticleByHandle`, {handle}, 'oneOrNone'
     );
   }
 

@@ -38,6 +38,14 @@ const TestBlogs = {
   articles: [...Array(20).keys()].map(TestBlogArticle)
 }
 
+//Functions for normalization
+const NormalizeArticle = article => {
+  article.url = `/blog/article/${article.handle}`;
+  article.image = require(`@assets/images/${article.image}`);
+  return article;
+};
+
+//Template Wrappers
 export const withBlogTemplate = WrappedComponent => {
   return class extends React.Component {
     constructor(props) {
@@ -59,12 +67,7 @@ export const withBlogTemplate = WrappedComponent => {
       this.setState({ pending: true, page, perPage });
       get('blog', { page, perPage }, TestBlogs).then(blog => {
         let { articles, pages } = blog;
-
-        articles.forEach(article => {
-          article.url = `/blogs/articles/${article.handle}`
-          article.image = require(`@assets/images/${article.image}`);
-        });
-
+        articles.forEach(NormalizeArticle);
         this.setState({ pending: undefined, error: undefined, articles, pages });
       }).catch(e => {
         console.error(e);
@@ -77,3 +80,34 @@ export const withBlogTemplate = WrappedComponent => {
     }
   }
 };
+
+
+export const withArticleTemplate = WrappedComponent => {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        pending: true,
+        error: undefined,
+        article: undefined
+      };
+    }
+
+    componentDidMount() {
+      let { article } = this.props.match.params;
+      this.setState({ pending: true });
+      get('blog/article', { article }, TestBlogArticle(1)).then(article => {
+        NormalizeArticle(article);
+        this.setState({ pending: undefined, error: undefined, article });
+      }).catch(error => {
+        console.error(error);
+        this.setState({ pending: undefined, error });
+      });
+    }
+
+    render() {
+      return <WrappedComponent {...this.props} {...this.state} />;
+    }
+  }
+}

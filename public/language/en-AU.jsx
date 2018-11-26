@@ -25,10 +25,6 @@ export default {
   },
 
   "blog": {
-    "error": {
-      "title": "Failed to get the blog",
-      "body": "Failed to get the blogs and articles from the server, please try again later or refresh your browser."
-    },
     "article": {
       "readMore": "Read More"
     }
@@ -231,7 +227,19 @@ export default {
     },
 
     "blog": {
-      "title": "Blog"
+      "title": "Blog",
+      "error": {
+        "title": "Failed to get the blog",
+        "body": "Failed to get the blogs and articles from the server, please try again later or refresh your browser."
+      }
+    },
+
+    "article": {
+      "title": "Article",
+      "error": {
+        "title": "Failed to get article",
+        "body": "Failed to get the article from the server, please try again later or refresh your browser."
+      }
     }
   },
 

@@ -44,7 +44,10 @@ export default withLanguage(props => {
         <article role="article" itemScope itemType="http://schema.org/Article" className="c-featured-article">
           <ContentBox box className="c-featured-article__content">
             <NavLink to={ article.url } className="c-featured-article__box is-image">
-              <Image src={ article.image } className="c-featured-article__image" maxWidth="800" />
+              <Image
+                src={ article.image } className="c-featured-article__image"
+                maxWidth="800" loadable
+              />
             </NavLink>
 
             <div className="c-featured-article__box is-content">

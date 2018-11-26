@@ -11,7 +11,7 @@
 @import '~@styles/global';
 
 .c-page {
-  flex-grow: 1;
+  min-height: 80vh;
 
   &.has-background {
     position: relative;

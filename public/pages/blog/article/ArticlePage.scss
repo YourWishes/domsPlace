@@ -1,0 +1,43 @@
+@import '~@styles/global';
+
+$p-article-page--spacing: 1.5em;
+
+.p-article-page {
+  &__article {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+  }
+
+  &__header,
+  &__picture,
+  &__description
+  {
+    width: 100%;
+  }
+
+  &__picture {
+    position: relative;
+
+    &-image {width: 100%;}
+    &-box {
+      position: sticky;
+      top:0;
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    position: relative;
+    &__header {
+      margin-bottom: $p-article-page--spacing;
+    }
+    &__picture {
+      width: 40%;
+      padding-right: $p-article-page--spacing;
+    }
+    &__description {
+      width: 60%;
+      padding-left: $p-article-page--spacing;
+    }
+  }
+}

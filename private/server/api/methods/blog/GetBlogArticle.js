@@ -21,44 +21,32 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import queryString from 'query-string';
+const
+  APIHandler = require('./../../APIHandler'),
+  sanitizeHtml = require('sanitize-html')
+;
 
-export const getUrl = request => {
-  request = request || "";
-  request = request.split('#');
-
-  let r = "";
-  if(request.length) r = request[0].toLowerCase();
-
-  let slash = '/';
-  if(r.startsWith('/')) slash = '';
-
-  return `/api${slash}${r}`;
-}
-
-export const get = async (url, params, test) => {
-  url = url || "";
-
-  if(process.env.NODE_ENV === 'development') {
-    console.log('testing mode');
-    return await new Promise((resolve,reject) => {
-      //setTimeout(e => resolve(test), 1000);
-    });
-  }
-
-  //Generate URL from query string
-  let paramString = queryString.stringify(params);
-  url = getUrl(url);
-  if(url.indexOf('?') !== -1) {
-    url += `&${paramString}`;
-  } else {
-    url += `?${paramString}`;
-  }
-
-  //Now make our fetch request.
-  let res = await fetch(url, {
-    crossDomain:true
-  });
-  if(res.status >= 400) throw new Error(`Server Responded with ${res.status}`);
-  return await res.json();
+const ERRORS = {
+  missingHandle: "Missing article handle.",
+  notFound: "Cannot find that article."
 };
+
+module.exports = class GetBlogArticle extends APIHandler {
+  constructor(api) {
+    super(api, ['GET'], '/blog/article');
+  }
+
+  async handle(request) {
+    if(!request.hasString('article', 128)) return { ok: false, data: ERRORS.missingHandle };
+
+    let handle = request.getApp().createHandle(request.getString('article', 128));
+    let article = await request.getApp().getArticles().getArticleByHandle(handle);
+
+    if(!article) return { ok: false, data: ERRORS.notFound };
+
+    return {
+      ok: true,
+      data: article
+    };
+  }
+}
