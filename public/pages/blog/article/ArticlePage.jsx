@@ -33,7 +33,7 @@ import ClearSection from '@sections/layout/ClearSection';
 
 import Loader from '@objects/loading/Loader';
 import ContentBox from '@objects/content/box/ContentBox';
-import { Title, Paragraph } from '@objects/typography/typography';
+import { Title, Paragraph } from '@objects/typography/Typography';
 import Image from '@objects/image/Image';
 
 import Styles from './ArticlePage.scss';
