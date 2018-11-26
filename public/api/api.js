@@ -42,7 +42,7 @@ export const get = async (url, params, test) => {
   if(process.env.NODE_ENV === 'development') {
     console.log('testing mode');
     return await new Promise((resolve,reject) => {
-      //setTimeout(e => resolve(test), 1000);
+      setTimeout(e => resolve(test), 1000);
     });
   }
 
@@ -56,9 +56,7 @@ export const get = async (url, params, test) => {
   }
 
   //Now make our fetch request.
-  let res = await fetch(url, {
-    crossDomain:true
-  });
+  let res = await fetch(url);
   if(res.status >= 400) throw new Error(`Server Responded with ${res.status}`);
   return await res.json();
 };
