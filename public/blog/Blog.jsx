@@ -41,7 +41,7 @@ const TestBlogs = {
 //Functions for normalization
 const NormalizeArticle = article => {
   article.url = `/blog/article/${article.handle}`;
-  article.image = require(`@assets/images/${article.image}`);
+  article.image = require(`@assets/${article.image}`);
   return article;
 };
 

@@ -59,7 +59,7 @@ export default withLanguage(props => {
                 </NavLink>
               </ContentBox>
 
-              <Paragraph itemProp="description" children={ article.description } />
+              <Paragraph itemProp="description" children={ article.shortDescription } />
               <NavLink itemProp="sameAs" to={ article.url } children={ lang.blog.article.readMore } />
             </div>
           </ContentBox>
