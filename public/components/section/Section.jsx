@@ -37,20 +37,3 @@ export default props => {
 
   return <section {...newProps} className={clazz} />;
 }
-
-import BodySection from './body/BodySection';
-import ClearSection from './layout/ClearSection';
-import ImageSection from './image/ImageSection';
-import BannerImageSection from './image/banner/BannerImageSection';
-import SplitSection, { Split }  from './layout/SplitSection';
-import VideoSection from './video/VideoSection';
-
-export {
-  BodySection,
-  ClearSection,
-  ImageSection,
-  BannerImageSection,
-  SplitSection,
-  Split,
-  VideoSection
-}

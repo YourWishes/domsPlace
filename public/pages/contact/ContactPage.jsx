@@ -28,10 +28,13 @@ import { bindActionCreators } from 'redux';
 //Actions
 import { openModal } from '@public/actions/ModalActions';
 
+//High Order Components
+import { withLanguage } from '@public/language/Language';
+
 //Components
 import Page, { PageBoundary } from '@components/page/Page';
-import { withLanguage } from '@public/language/Language';
-import { ClearSection } from '@components/section/Section';
+import ClearSection from '@sections/layout/ClearSection';
+import ContactForm from './form/ContactForm';
 
 //Objects
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
@@ -39,8 +42,6 @@ import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Heading1, Paragraph } from '@objects/typography/Typography';
 import Modal from '@objects/modal/Modal';
 import { FormManager } from '@objects/input/Input';
-
-import ContactForm from './form/ContactForm';
 
 import Styles from './ContactPage.scss';
 

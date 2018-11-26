@@ -23,8 +23,6 @@
 
 import React from 'react';
 
-import Styles from './HomePage.scss';
-
 import Page from '@components/page/Page';
 import BannerSection from './sections/BannerSection';
 import PromoVideoSection from './sections/PromoVideoSection';
@@ -32,10 +30,17 @@ import ProgrammingSection from './sections/ProgrammingSection';
 import PlatformsSection from './sections/PlatformsSection';
 import ExistingWorkSection from './sections/ExistingWorkSection';
 
+import Styles from './HomePage.scss';
+
 export default props => {
   //Return
   return (
-    <Page style="home-page" className="p-home-page" title={0}>
+    <Page
+      style="home-page"
+      className="p-home-page"
+      title={0}
+      background={ require('@assets/images/banners/about/glasses.svg') }
+    >
 
       { /* Banner */ }
       <BannerSection />

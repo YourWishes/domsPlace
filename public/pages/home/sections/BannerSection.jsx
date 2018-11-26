@@ -23,8 +23,10 @@
 
 import React from 'react';
 import { withLanguage } from '@public/language/Language';
+
 import { PageBoundary } from '@components/page/Page';
-import { BannerImageSection } from '@sections/Section';
+import BannerSection from '@sections/banner/BannerSection';
+
 import FloatingContentBox from '@objects/content/box/FloatingContentBox';
 import { Title, Subtitle } from '@objects/typography/Typography';
 
@@ -33,18 +35,11 @@ export default withLanguage(props => {
   let { lang } = props;
 
   return (
-    <BannerImageSection
-      className="p-home-page__banner"
-      src={ require('@assets/images/banners/about/glasses.svg') }
-      alt="domsPlace"
-      width="2400" height="1200" loadable
-    >
-      <PageBoundary full>
-        <FloatingContentBox position="middle center" size="large" className="u-text-center">
-          <Title>{ lang.pages.home.banner.title }</Title>
-          <Subtitle>{ lang.pages.home.banner.subtitle }</Subtitle>
-        </FloatingContentBox>
-      </PageBoundary>
-    </BannerImageSection>
+    <BannerSection className="p-home-page__banner" width="3" height="1">
+      <FloatingContentBox position="middle center" size="large" className="u-text-center">
+        <Title>{ lang.pages.home.banner.title }</Title>
+        <Subtitle>{ lang.pages.home.banner.subtitle }</Subtitle>
+      </FloatingContentBox>
+    </BannerSection>
   );
 });

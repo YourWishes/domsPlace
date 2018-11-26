@@ -25,7 +25,7 @@ import React from 'react';
 import { withLanguage} from '@public/language/Language';
 
 import Page, { PageBoundary } from '@components/page/Page';
-import { ClearSection } from '@components/section/Section';
+import ClearSection from '@sections/layout/ClearSection';
 import ErrorSection from '@sections/error/ErrorSection';
 import { Title } from '@objects/typography/Typography';
 

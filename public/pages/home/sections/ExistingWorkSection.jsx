@@ -23,8 +23,12 @@
 
 import React from 'react';
 import { withLanguage } from '@public/language/Language';
+
 import { PageBoundary } from '@components/page/Page';
-import { ImageSection, SplitSection, Split, ClearSection } from '@components/section/Section';
+import Section from '@sections/Section';
+import SplitSection, { Split } from '@sections/layout/SplitSection';
+import ClearSection from '@sections/layout/ClearSection';
+
 import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Subtitle, Paragraph, Heading1, Heading2 } from '@objects/typography/Typography';
 import { Button } from '@objects/input/Input';
@@ -111,12 +115,7 @@ export default withLanguage(props => {
   let { lang } = props;
 
   return (
-    <ImageSection
-      className="p-home-page__promo p-home-page__promo-work"
-      src={ require('@assets/images/banners/hills-night.svg') }
-      loadable
-      background
-    >
+    <Section className="p-home-page__promo p-home-page__promo-work">
       {/* Title */}
       <PageBoundary small>
         <ElementScrollFader from="left">
@@ -191,6 +190,6 @@ export default withLanguage(props => {
 
         <ClearSection />{/* Space a bit */}
       </PageBoundary>
-    </ImageSection>
+    </Section>
   );
 });

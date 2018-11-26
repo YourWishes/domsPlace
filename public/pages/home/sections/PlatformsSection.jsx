@@ -22,9 +22,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
+
 import { withLanguage } from '@public/language/Language';
+
 import { PageBoundary } from '@components/page/Page';
-import { ImageSection, SplitSection, Split } from '@components/section/Section';
+import Section from '@sections/Section';
+import SplitSection, { Split } from '@sections/layout/SplitSection';
+
 import FloatingContentBox from '@objects/content/box/FloatingContentBox';
 import ContentBox from '@objects/content/box/ContentBox';
 import Image from '@objects/image/Image';
@@ -54,12 +58,7 @@ const Platform = props => {
 export default withLanguage(props => {
   let { lang } = props;
   return (
-    <ImageSection
-      className="p-home-page__promo p-home-page__promo-platforms"
-      src={ require('@assets/images/banners/palms.svg') }
-      loadable
-      background
-    >
+    <Section className="p-home-page__promo p-home-page__promo-platforms">
       <PageBoundary>
         <ElementScrollFader >
           <Title className="u-text-center p-home-page__brands-title">
@@ -186,6 +185,6 @@ export default withLanguage(props => {
           </Subtitle>
         </ElementScrollFader>
       </PageBoundary>
-    </ImageSection>
+    </Section>
   );
 });

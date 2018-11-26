@@ -22,34 +22,31 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { withLanguage } from '@public/language/Language';
+import Section from './../Section';
 
-import Page, { PageBoundary } from '@components/page/Page';
-import BodySection from '@sections/body/BodySection';
-import ClearSection from '@sections/layout/ClearSection';
+import { PageBoundary } from '@components/page/Page';
+import BoxSizer from '@objects/layout/BoxSizer';
 
-import { Title } from '@objects/typography/Typography';
+import Styles from './BannerSection.scss';
 
-import Styles from './PrivacyPolicyPage.scss';
+export default props => {
+  let { className, width, height, children } = props;
 
-export default withLanguage(props => {
-  let { lang } = props;
   return (
-    <Page
-      style="privacy-policy"
-      className="p-privacy-policy"
-      title={ lang.pages.privacy.title }
-      background={ require('@assets/images/patterns/schoolbell.svg') }
-    >
-      <ClearSection />
-      <PageBoundary small>
-        <BodySection>
-          <Title>{ lang.pages.privacy.heading }</Title>
-          { lang.pages.privacy.policy }
-        </BodySection>
-      </PageBoundary>
-      <ClearSection />
-    </Page>
+    <Section {...props} className={`c-banner-section ${className||""}`}>
+      {/* Mobile Box Sizer */}
+      <BoxSizer
+        className="c-banner-section__sizer for-mobile"
+        ratioWidth={1} ratioHeight={1}
+      />
+
+      {/* Desktop Box Sizer */}
+      <BoxSizer
+        className="c-banner-section__sizer for-desktop"
+        ratioWidth={3} ratioHeight={1}
+      />
+
+      <PageBoundary children={children} />
+    </Section>
   );
-});
+};

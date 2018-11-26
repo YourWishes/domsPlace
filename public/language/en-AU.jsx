@@ -150,8 +150,7 @@ export default {
                 Requiring a strong and versitile mobile browsing experience, as
                 well as many fast and easy to use filtering systems to help
                 search through their range to find the perfect fit for each pair
-                of underpants. I built on Shopify while working at
-                <a target="_blank" href="//processcreative.com.au">
+                of underpants. I built on Shopify while working at <a target="_blank" href="//processcreative.com.au">
                   Process Creative
                 </a>
               </p>

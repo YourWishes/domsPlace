@@ -23,8 +23,11 @@
 
 import React from 'react';
 import { withLanguage } from '@public/language/Language';
+
 import Page, { PageBoundary } from '@components/page/Page';
-import Section, {  SplitSection, Split } from '@components/section/Section';
+import Section from '@sections/Section';
+import SplitSection, { Split } from '@sections/layout/SplitSection';
+
 import ContentBox from '@objects/content/box/ContentBox';
 import FloatingContentBox from '@objects/content/box/FloatingContentBox';
 import Video from '@objects/video/Video';

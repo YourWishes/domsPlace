@@ -24,31 +24,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withLanguage } from '@public/language/Language';
+
 import { PageBoundary } from '@components/page/Page';
-import { ImageSection } from '@components/section/Section';
+import Section from '@sections/Section';
+
 import ContentBox from '@objects/content/box/ContentBox';
 import { Title, Paragraph, Heading1 } from '@objects/typography/Typography';
 import ElementScrollFader from '@objects/animation/fade/ElementScrollFader';
 
 export default withLanguage(props => {
   let { lang } = props;
+  let l = lang.pages.home.programming;
+
   return (
-    <ImageSection
-      className="p-home-page__promo p-home-page__promo-programming"
-      src={ require('@assets/images/patterns/florida.svg') }
-      loadable
-      background
-    >
+    <Section className="p-home-page__promo p-home-page__promo-programming">
       <PageBoundary small>
         <ElementScrollFader from="bottom">
           <ContentBox box>
             <Heading1 className="u-text-center">
-              { lang.pages.home.programming.heading }
+              { l.heading }
             </Heading1>
-            { lang.pages.home.programming.paragraph }
+            { l.paragraph }
           </ContentBox>
         </ElementScrollFader>
       </PageBoundary>
-    </ImageSection>
+    </Section>
   );
 });
