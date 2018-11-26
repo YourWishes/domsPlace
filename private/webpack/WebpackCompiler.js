@@ -26,9 +26,9 @@ const
   fs = require('fs'),
 
   webpack = require('webpack'),
-  SharpLoader = require('responsive-loader/sharp'),
+  JimpLoader = require('responsive-loader/jimp'),
+  //SharpLoader = require('responsive-loader/sharp'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  CompressionPlugin = require("compression-webpack-plugin"),
   TerserPlugin = require('terser-webpack-plugin'),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
   OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
@@ -75,7 +75,7 @@ module.exports = (isDev) => {
                   {
                     "targets": {
                       "node": "current",
-                      "browsers": [ "Chrome >= 41", "FireFox >= 44", "Safari >= 7", "Explorer 11", "last 4 Edge versions" ]
+                      "browsers": [ "Chrome >= 41", "FireFox >= 44", "Safari >= 7", "Explorer 11", "last 2 Edge versions" ]
                     },
                     "useBuiltIns": false
                   }
@@ -112,7 +112,7 @@ module.exports = (isDev) => {
           use: [{
             loader: "responsive-loader",
             options: {
-              adapter: SharpLoader,
+              //adapter: SharpLoader,
               sizes: [500, 1000, 2500],
               name: "[path][name]_[width]x.[ext]",
               context: 'public'
