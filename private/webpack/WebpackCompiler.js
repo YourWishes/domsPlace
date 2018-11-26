@@ -27,7 +27,7 @@ const
 
   webpack = require('webpack'),
   JimpLoader = require('responsive-loader/jimp'),
-  //SharpLoader = require('responsive-loader/sharp'),
+  SharpLoader = require('responsive-loader/sharp'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin'),
   MiniCssExtractPlugin = require("mini-css-extract-plugin"),
@@ -67,7 +67,7 @@ module.exports = (isDev) => {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
+            loader: 'babel-loader?cacheDirectory',
             options: {
               presets: [
                 [
@@ -154,7 +154,9 @@ module.exports = (isDev) => {
     };
   } else {
     let TerserPluginConfig = new TerserPlugin({
-      test: /\.js($|\?)/i
+      test: /\.js($|\?)/i,
+      cache: true,
+      parallel: true,
     });
 
     let MiniCssExtractConfig = new MiniCssExtractPlugin({
