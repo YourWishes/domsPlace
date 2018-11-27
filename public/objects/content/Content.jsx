@@ -21,29 +21,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Paragraph } from './../typography/Typography';
 
-const Heading = props => {
-  let { level, size, className } = props;
-
-  level = level || 1;
-  size = size || 1;
-
-  let CustomTag = "h"+level;
-  let clazz = `o-heading o-heading--${size}`;
-  if(className) clazz += ` ${className}`;
-  return <CustomTag {...props} className={clazz} />;
+const DoLine = content => {
+  //TODO: Support things like hyperlinks etc.
+  return <Fragment>{ content }</Fragment>
 };
 
+const DoNewline = content => <Fragment>{ DoLine(content) }<br /></Fragment>;
+const DoParagraph = content => <Paragraph children={ content.split('\n').map(e => DoNewline(e)) } />;
 
-const Heading1 = (props) => { return <Heading {...props} level="1" />; };
-const Heading2 = (props) => { return <Heading {...props} level="2" />; };
-const Heading3 = (props) => { return <Heading {...props} level="3" />; };
-const Heading4 = (props) => { return <Heading {...props} level="4" />; };
-const Heading5 = (props) => { return <Heading {...props} level="5" />; };
-const Heading6 = (props) => { return <Heading {...props} level="6" />; };
+export default props => {
+  let { content, children } = props;
+  content = content || children || "";
 
-export default Heading;
-export {
-  Heading1, Heading2, Heading3, Heading4, Heading5, Heading6
+  return (
+    <Fragment>
+      { content.split('\n\n').map(e => DoParagraph(e)) }
+    </Fragment>
+  );
 };

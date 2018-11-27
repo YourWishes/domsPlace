@@ -23,7 +23,6 @@
 
 import React from 'react';
 
-export default (props) => {
-  let { className } = props;
-  return <p {...props} className={"o-paragraph"+(className?` ${className}`: "")} />;
+export default props => {
+  return <p {...props} className={`o-paragraph ${props.className||""}`} />;
 };

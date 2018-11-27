@@ -23,17 +23,19 @@
 
 import React from 'react';
 
+import Content from './../Content';
 import Styles from './ContentBox.scss';
 
 export default (props) => {
   let newProps = {...props};
-  let { className, box } = props;
+  let { className, box, content } = props;
 
-  delete newProps.box;
+  ["box","content"].forEach(e => delete newProps[e]);
 
   let clazz = "o-content-box";
   if(box) clazz += " is-box"
   if(className) clazz += ` ${className}`;
+  if(content) newProps.children = <Content content={content} />
 
   return <div {...newProps} className={clazz} />;
 };

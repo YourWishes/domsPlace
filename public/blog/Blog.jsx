@@ -27,9 +27,9 @@ import { get } from '@public/api/api';
 const TestBlogArticle = id => {
   return {
     id, handle: 'test-blog-article', title: 'My Title',
-    image: 'photo.jpg',
+    image: 'blogs/dombot-redevelopment/banner.jpg',
     shortDescription: "Some short description that goes here too so let's write.",
-    description: "This is my longer example description lorem ipsum dolor sit amet."
+    description: "This is my longer example description lorem ipsum dolor sit amet.\nNewline\n\nNew Paragraph\n\nhttps://hyperlink.com"
   }
 };
 

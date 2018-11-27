@@ -70,11 +70,10 @@ export default withArticleTemplate(withLanguage(props => {
           </div>
 
           {/* Description */}
-          <ContentBox box itemProp="description" className="p-article-page__description">
-            <Paragraph>
-              { article.description || article.shortDescription }
-            </Paragraph>
-          </ContentBox>
+          <ContentBox
+            box itemProp="description" className="p-article-page__description"
+            content={ article.description || article.shortDescription }
+          />
         </article>
       </PageBoundary>
     );
