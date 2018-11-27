@@ -39,7 +39,7 @@ const ERRORS = {
 
 module.exports = class GetBlogArticle extends APIHandler {
   constructor(api) {
-    super(api, ['PUT', 'GET'], '/blog/update');
+    super(api, ['PUT'], '/blog/article');
   }
 
   async handle(request) {
