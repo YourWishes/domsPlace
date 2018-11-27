@@ -23,15 +23,6 @@
 
 const APIHandler = require('./../../APIHandler');
 
-const ERRORS = {
-  password: 'Missing, or invalid password',
-  title: 'Missing or invalid title',
-  image: 'Missing or invalid image',
-  shortDescription: 'Missing or invalid Short Description',
-  description: 'Missing or invalid description',
-  internal: 'An internal error occurred'
-};
-
 const LENGTHS = {
   title: 128,
   image: 512,
@@ -39,9 +30,16 @@ const LENGTHS = {
   description: 65536
 };
 
+const ERRORS = {
+  password: 'Missing, or invalid password',
+  missingHandle: "Missing article handle.",
+  notFound: "Cannot find that article.",
+  internal: 'An internal error occurred'
+};
+
 module.exports = class GetBlogArticle extends APIHandler {
   constructor(api) {
-    super(api, ['POST'], '/blog/article');
+    super(api, ['PUT', 'GET'], '/blog/update');
   }
 
   async handle(request) {
@@ -51,36 +49,27 @@ module.exports = class GetBlogArticle extends APIHandler {
     if(password !== request.getApp().getConfig().get('admin.password')) return { ok: 401, data: ERRORS.password };
     //Everything after this point should be fine to keep.
 
-    if(!request.hasString('title', LENGTHS.title)) return { ok: false, data: ERRORS.title };
-    if(!request.hasString('image', LENGTHS.image)) return { ok: false, data: ERRORS.image };
-    if(!request.hasString('shortDescription', LENGTHS.shortDescription)) return { ok: false, data: ERRORS.shortDescription };
-    if(!request.hasString('description', LENGTHS.description)) return { ok: false, data: ERRORS.description };
+    if(!request.hasString('article', 128)) return { ok: false, data: ERRORS.missingHandle };
 
-    let title = request.getString('title', LENGTHS.title);
-    let image = request.getString('image', LENGTHS.image);
-    let shortDescription = request.getString('shortDescription', LENGTHS.shortDescription);
-    let description = request.getString('description', LENGTHS.description);
+    let handle = request.getApp().createHandle(request.getString('article', 128));
+    let article = await request.getApp().getArticles().getArticleByHandle(handle);
+    if(!article) return { ok: 404, data: ERRORS.notFound };
 
-    //Generate a handle
-    let handle;
-    let iteration = -1;
-    while(!handle) {
-      let testingHandle = request.getApp().createHandle(`${title}${iteration>0?iteration:''}`);
-      iteration++;
-      let existingArticle = await request.getApp().getArticles().getArticleByHandle(testingHandle);
-      if(existingArticle) continue;
-      handle = testingHandle;
-    }
+    if(request.hasString('title', LENGTHS.title)) article.title = request.getString('title', LENGTHS.title);
+    if(request.hasString('image', LENGTHS.image)) article.image = request.getString('image', LENGTHS.image);
+    if(request.hasString('shortDescription', LENGTHS.shortDescription)) article.shortDescription = request.getString('shortDescription', LENGTHS.shortDescription);
+    if(request.hasString('description', LENGTHS.description)) article.description = request.getString('description', LENGTHS.description);
 
-    //Create the article
-    let article;
     try {
-      article = await request.getApp().getArticles().addArticle(handle, title, image, shortDescription, description);
+      await request.getApp().getArticles().updateArticle(article);
     } catch(e) {
       console.error(e);
       return { ok: 500, data: ERRORS.internal };
     }
 
-    return { ok: 201, data: article };
+    return {
+      ok: true,
+      data: article
+    };
   }
 }

@@ -65,6 +65,7 @@ module.exports = class Articles extends DatabaseInterface {
   }
 
 
+
   async addArticle(handle, title, image, shortDescription, description, date) {
     if(!date) date = new Date();
     let article = await this.getDatabase().one('addArticle', {
@@ -72,5 +73,13 @@ module.exports = class Articles extends DatabaseInterface {
     });
     this.store.flush();//In future support my wildcard syntax to make this no longer necessary.
     return article;
+  }
+
+
+
+  async updateArticle(article) {
+    let newArticle = await this.getDatabase().one('updateArticle', article);
+    this.store.flush();
+    return newArticle;
   }
 }

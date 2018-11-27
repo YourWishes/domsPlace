@@ -1,0 +1,12 @@
+UPDATE
+  "BlogArticles"
+SET
+  "title"=${title},
+  "image"=${image},
+  "shortDescription"=${shortDescription},
+  "description"=${description}
+WHERE
+  "id"=${id}
+RETURNING
+  *
+;

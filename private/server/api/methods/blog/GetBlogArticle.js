@@ -39,7 +39,7 @@ module.exports = class GetBlogArticle extends APIHandler {
     let handle = request.getApp().createHandle(request.getString('article', 128));
     let article = await request.getApp().getArticles().getArticleByHandle(handle);
 
-    if(!article) return { ok: false, data: ERRORS.notFound };
+    if(!article) return { ok: 404, data: ERRORS.notFound };
 
     return {
       ok: true,
