@@ -26,11 +26,24 @@ import { Paragraph } from './../typography/Typography';
 
 const DoLine = content => {
   //TODO: Support things like hyperlinks etc.
-  return <Fragment>{ content }</Fragment>
+  let parts = [];
+  let currentBuffer = ``;
+  let bits = content.split(' ');
+  for(let i = 0; i < bits.length; i++) {
+    let s = bits[i];
+    if(s.startsWith('https://') || s.startsWith('http://')) {
+      parts.push(<a href={s} key={`href${i}`}>{ s }</a>);
+    } else {
+      parts.push(s);
+    }
+    if(i < (bits.length-1)) parts.push(' ');
+  }
+  return <Fragment>{ parts }</Fragment>
 };
 
-const DoNewline = content => <Fragment>{ DoLine(content) }<br /></Fragment>;
-const DoParagraph = content => <Paragraph children={ content.split('\n').map(e => DoNewline(e)) } />;
+const DoParagraph = content => <Paragraph children={ content.split('\n').map(e => {
+  return <Fragment key={e}>{ DoLine(e) }<br /></Fragment>
+})} />;
 
 export default props => {
   let { content, children } = props;
@@ -38,7 +51,9 @@ export default props => {
 
   return (
     <Fragment>
-      { content.split('\n\n').map(e => DoParagraph(e)) }
+      { content.split('\n\n').map(e => {
+        return <Fragment key={e}>{ DoParagraph(e) }</Fragment>
+      }) }
     </Fragment>
   );
 };
