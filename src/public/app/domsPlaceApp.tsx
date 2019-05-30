@@ -21,19 +21,27 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import './../styles/theme';
 
-const compiler = new domsPlaceCompiler();
+import * as React from 'react';
+import { App, Router } from '@yourwishes/app-simple-react/dist/public';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+import { domsPlaceState } from './../state/';
+import { domsPlaceActions } from './../actions/';
+import { domsPlaceReducer } from './../reducer/';
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+import { Layout } from './../components/layout/layout';
+
+export class domsPlaceApp extends App<domsPlaceState, domsPlaceActions> {
+  constructor() {
+    super("domsPlace");
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+  getReducer() { return domsPlaceReducer; }
+
+  getComponent() {
+    return (
+      <Layout history={this.history} />
+    );
+  }
 }

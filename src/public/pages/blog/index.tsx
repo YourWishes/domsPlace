@@ -21,19 +21,30 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+import { BlogBanner } from './sections/banner/';
+import { FeaturedArticle } from './sections/featured-article/';
+import { ArticleList } from './sections/article-list/';
+import { Articles } from './../../data/articles/';
+import { PageWrapper } from './../../components/page/wrapper/';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+import './styles.scss';
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+export class BlogPage extends React.Component<any> {
+  constructor(props:any) {
+    super(props);
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+  render() {
+    let articles = [...Articles];
+
+    return <PageWrapper title="Blog">
+      <BlogBanner />
+      <FeaturedArticle article={articles.shift()} />
+      <ArticleList articles={articles} />
+    </PageWrapper>;
+  }
 }
+
+export default BlogPage;

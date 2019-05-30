@@ -21,19 +21,15 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import { BlogArticle } from './../../types/';
 
-const compiler = new domsPlaceCompiler();
+import { Articles as Articles2018 } from './2018/';
+import { Articles as Articles2019 } from './2019/';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export const Articles:BlogArticle[] = [
+  ...Articles2019,
+  ...Articles2018
+];
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const getArticleByHandle = (handle:string) => Articles.find(article => article.handle == handle);
+export const getArticleURL = (article:BlogArticle) => `/blog/article/${article.handle}`;

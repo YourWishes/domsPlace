@@ -1,0 +1,55 @@
+//Families
+$s-font--family-default: 'Nanum Gothic', Arial, Helvetica, sans-serif;
+$s-font--family-heading: 'Bitter', serif;
+
+//Sizes
+$s-font--size-default: 16px;
+
+$s-font--size-title: 2.5em;
+$s-font--size-title-large: 3.5em;
+$s-font--size-1: 2.25em;
+$s-font--size-2: 1.75em;
+$s-font--size-3: 1.5em;
+$s-font--size-4: 1.25em;
+$s-font--size-5: 1.1em;
+$s-font--size-6: 0.9em;
+
+
+//Weights:
+$s-font--weight-default: 400;
+$s-font--weight-bold: 600;
+
+//Line Heights
+$s-font--line-height--default: 1.4em;
+
+
+// Typography Sets //
+%s-font--heading {
+  font-family: $s-font--family-heading;
+  font-size: $s-font--size-default;
+  font-weight: $s-font--weight-bold;
+}
+
+%s-font--heading-1 {
+  font-size: $s-font--size-1;
+}
+
+%s-font--heading-2 {
+  font-size: $s-font--size-2;
+}
+
+%s-font--heading-3 {
+  font-size: $s-font--size-3;
+}
+
+%s-font--heading-4 {
+  font-size: $s-font--size-4; 
+}
+
+%s-font--heading-5 {
+  font-size: $s-font--size-5;
+}
+
+%s-font--heading-6 {
+  font-size: $s-font--size-6;
+}

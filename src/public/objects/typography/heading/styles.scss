@@ -1,0 +1,28 @@
+@import './../../../styles/global';
+
+.o-heading {
+  @extend %s-font--heading;
+  margin: 0.4em 0 0.5em;
+
+  @for $i from 1 through 6 {
+    &.is-size-#{$i} { @extend %s-font--heading-#{$i}; }
+  }
+}
+
+.o-title {
+  @extend %s-font--heading;
+  font-size: $s-font--size-title;
+
+  + .o-subtitle {
+    margin-top: -1em;
+    margin-bottom: 1em;
+  }
+}
+
+@include t-media-query($s-small-up) {
+  .o-title {
+    &.is-large {
+      font-size: $s-font--size-title-large;
+    }
+  }
+}

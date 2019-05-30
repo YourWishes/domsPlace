@@ -21,19 +21,16 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Loader, ImageSource } from '@yourwishes/app-simple-react/dist/public';
 
-const compiler = new domsPlaceCompiler();
+export type BlogArticleComponentProps = any;
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+export interface BlogArticle {
+  title:string,
+  date:Date,
+  description:Loader<BlogArticleComponentProps>,
+  short:() => React.ReactChild,
+  handle:string,
+  image:ImageSource
 }

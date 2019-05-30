@@ -21,19 +21,33 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export const Star = (props:{star:number}) => {
+  return (
+    <div className={`c-star-background__star is-star-${props.star+1}`}>
+      <div className="c-star-background__star-image" />
+    </div>
+  );
+};
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+export class StarBackground extends React.Component<any,any> {
+  constructor(props:any) {
+    super(props);
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+  render() {
+    let stars =[];
+    for(let i = 0; i < 12; i++) stars.push(<Star key={i} star={i} />);
+
+    return (
+      <div className="c-star-background">
+        <div className="c-star-background__inner">
+          { stars }
+        </div>
+      </div>
+    );
+  }
 }

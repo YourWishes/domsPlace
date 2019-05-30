@@ -1,0 +1,65 @@
+@import './../../../../styles/global';
+
+.c-home-banner {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+
+  &__boundary {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 2em 0;
+  }
+
+  &__content {
+    padding: 1em;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+
+    &-title,&-subtitle,&-paragraph { text-align: center; }
+
+    &-title {margin-top:0;}
+    &-paragraph { max-width: 450px; }
+  }
+
+  &__picture {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    max-height: 400px;
+    overflow: hidden;
+    margin: 0 auto;
+
+    border-radius: $s-radius--medium;
+
+    &-image {width: 100%; }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__boundary {
+      display: flex;
+    }
+
+    &__picture,
+    &__content {
+      padding: 1em;
+      margin: 0;
+    }
+
+    &__content {
+      &-title,&-subtitle,&-paragraph { text-align: left; }
+    }
+  }
+
+  @include t-media-query($s-large-up) {
+    &__content {
+    }
+
+    &__picture {
+      //max-width: 600px;
+      //max-height: 700px;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+//Pixel size definitions
+$s-screen-xsmall: 500px;
+$s-screen-small: 750px;
+$s-screen-medium: 1000px;
+$s-screen-large: 1250px;
+$s-screen-xlarge: 1500px;
+
+//Size definitions
+$s-xsmall: 'xsmall';
+$s-small: 'small';
+$s-medium: 'medium';
+$s-large: 'large';
+$s-xlarge: 'xlarge';
+
+//Groups
+$s-xsmall-up: 'xsmall-up';
+$s-small-up: 'small-up';
+$s-medium-up: 'medium-up';
+$s-large-up: 'large-up';
+$s-xlarge-up: 'xlarge-up';
+
+//Breakpoints
+$s-breakpoints: (
+  $s-xsmall-up  '(min-width: #{$s-screen-xsmall})',
+  $s-small-up   '(min-width: #{$s-screen-small})',
+  $s-medium-up  '(min-width: #{$s-screen-medium})',
+  $s-large-up   '(min-width: #{$s-screen-large})',
+  $s-xlarge-up  '(min-width: #{$s-screen-xlarge})'
+);

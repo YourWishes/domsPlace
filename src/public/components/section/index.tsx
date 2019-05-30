@@ -21,19 +21,12 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+export interface SectionProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+};
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const Section = (props:SectionProps) => (
+  <section {...props} className={`c-section ${props.className||""}`} />
+);

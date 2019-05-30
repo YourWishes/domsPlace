@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Dominic Masters
+// Copyright (c) 2018 Dominic Masters
 //
 // MIT License
 //
@@ -21,19 +21,10 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+'use strict';
 
-const compiler = new domsPlaceCompiler();
-
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+import { domsPlaceApp } from './app/domsPlaceApp';
+const app = new domsPlaceApp();
+setTimeout(() => {
+  app.render();
+}, 0*1000);

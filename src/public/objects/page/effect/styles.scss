@@ -1,0 +1,24 @@
+@import './../../../styles/global';
+
+@keyframes o-page-effect--fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(1vh);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.o-page-effect {
+  opacity: 0;
+
+  &.is-loading { opacity: 1; }
+
+  &.is-loaded {
+    animation: o-page-effect--fade-in forwards $s-animation--time-long $s-animation--ease-out;
+    animation-delay: $s-animation--time-long;//Animation delay to try and hide the "flicker" when a component loads
+  }
+}

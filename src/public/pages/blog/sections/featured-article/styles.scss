@@ -1,0 +1,115 @@
+@import './../../../../styles/global';
+
+$c-featured-article--content-p-height: 200px;
+
+.c-featured-article {
+  margin-bottom: $s-gutter--small;
+
+  &__boundary {
+    position: relative;
+  }
+
+  &__title {
+    position: absolute;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: $s-gutter--xsmall;
+    margin: 0;
+    max-width: 500px;
+  }
+
+  &__content {
+    padding: 0 $s-gutter--xsmall;
+
+    p {
+      max-height: $c-featured-article--content-p-height;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      &:nth-child(n+2) { display: none; }
+    }
+  }
+
+  &__picture {
+    display: block;
+    max-width: 500px;
+
+    &-image {
+      width: 100%;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    &__title {
+      position: absolute;
+      right: 0;
+      text-align: right;
+    }
+
+    &__btn {
+      width: auto;
+      position: absolute;
+      right: $s-gutter--medium;
+      top: 300px;
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    margin-bottom: $s-gutter--xlarge;
+    
+    &__boundary {
+      padding-bottom: $s-gutter--xlarge;
+    }
+
+    &__content {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: $c-featured-article--content-p-height;
+
+      p:nth-child(n+2) { display: block; }
+      p:nth-child(n+3) { display: none; }
+    }
+
+    &__btn {
+      right: auto;
+      top: auto;
+      bottom: $s-gutter--xlarge + $s-gutter--small;
+      left: $s-gutter--small;;
+    }
+  }
+
+  @include t-media-query($s-medium-up) {
+    &__boundary {
+      padding-bottom: $s-gutter--large;
+    }
+
+    &__btn {
+      bottom: $s-gutter--large - $s-gutter--small;
+    }
+
+    &__title {
+      top: 100px;
+      text-align: left;
+    }
+
+    &__content {
+      width: 500px;
+      bottom: 100px;
+
+      p:nth-child(n+3) { display: block; }
+    }
+  }
+
+  @include t-media-query($s-large-up) {
+    &__picture {
+      transform: translateX(-50px);
+    }
+  }
+}

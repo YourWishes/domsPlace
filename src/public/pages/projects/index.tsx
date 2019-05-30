@@ -21,19 +21,25 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { TextContentSection } from './../../sections/content/text/';
+import { Title } from './../../objects/typography/heading/';
 
-const compiler = new domsPlaceCompiler();
-
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+export class ProjectsPage extends React.Component<any> {
+  constructor(props:any) {
+    super(props);
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+  render() {
+    return (
+      <TextContentSection>
+        <Title>Projects</Title>
+        <p>
+          Coming soon! I'm sorry for the delay!
+        </p>
+      </TextContentSection>
+    );
+  }
+};
+
+export default ProjectsPage;

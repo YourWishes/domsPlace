@@ -1,0 +1,74 @@
+@import './../../../styles/global';
+
+.c-footer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: $s-gutter--small;
+  background: $s-color--background-footer;
+
+  &__logo {
+    display: none;
+    width: 100%;
+  }
+
+  &__copyright,&__navigation {
+    width: 100%;
+    font-size: 0.8em;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+
+  &__navigation {
+    &-link {
+      display: inline-block;
+      position: relative;
+
+      + #{&} {
+        margin-left: 1em;
+
+        &::before {
+          content: "|";
+          display: inline-block;
+          position: absolute;
+          left: 0;
+          transform: translateX(-0.5em) translateX(-50%);
+        }
+      }
+    }
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    &__logo {
+      display: block;
+      width: 100%;
+
+      img {
+        width: 120px;
+        margin: 0 auto;
+      }
+    }
+
+    &__copyright,&__navigation {
+      width: auto;
+      margin: 0;
+    }
+  }
+
+  /* Specific for the footer, I want the logo to go down and be centered */
+  @media screen and (min-width: 620px) {
+    &__logo {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: auto;
+
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

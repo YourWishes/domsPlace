@@ -21,19 +21,33 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+import { BannerSection } from './sections/banner/';
+import { ProgrammerSection } from './sections/programmer/';
+import { ShopifySection } from './sections/shopify/';
+import { WebDevSection } from './sections/webdev/';
+import { TechStackSection } from './sections/tech/';
+import { ContactSection } from './sections/contact/';
+import { PageWrapper } from './../../components/page/wrapper/';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+export class AboutPage extends React.Component<any> {
+  constructor(props:any) {
+    super(props);
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+  render() {
+    return <PageWrapper title="About Me">
+      <BannerSection />
+
+      <ProgrammerSection />
+      <ShopifySection />
+      <WebDevSection />
+
+      <TechStackSection />
+      <ContactSection />
+    </PageWrapper>
+  }
 }
+
+export default AboutPage;

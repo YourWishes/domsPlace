@@ -21,19 +21,26 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+import { Title } from './../../../../objects/typography/heading/';
+import { PageBoundary } from './../../../../objects/page/boundary/';
+import { Section } from './../../../../components/section/';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+import './styles.scss';
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
+export const BannerSection = () => (
+  <Section className="c-about-banner">
+    <PageBoundary className="c-about-banner__boundary">
+      <div className="c-about-banner__pad" />
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+      <header role="banner" className="c-about-banner__content">
+        <Title large className="c-about-banner__title">About Me</Title>
+        <p className="c-about-banner__blurb">
+          I'm just a nerd with a passion for coding, coffee, and video games.<br/>
+          Programming since before the internet was cool.
+        </p>
+      </header>
+    </PageBoundary>
+  </Section>
+);

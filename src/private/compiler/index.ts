@@ -21,19 +21,30 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import { SimpleReactCompiler } from '@yourwishes/app-simple-react';
 
-const compiler = new domsPlaceCompiler();
+const gtag = `<script type="text/javascript" async src="https://www.googletagmanager.com/gtag/js?id=UA-66393210-1"></script>
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-66393210-1');
+</script>`;
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+const content = `
+  Please Wait...
+`;
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+export class domsPlaceCompiler extends SimpleReactCompiler {
+  constructor() {
+    super({
+      title: 'domsPlace - Personal Site of Dominic Masters',
+      keywords: 'domsplace, programming, gaming, shopify, livestreaming, dominic, masters, dom',
+      description: 'domsPlace is the home of programmer and developer Dominic Masters, specialising in eCommerce and full-stack development solutions for a wide range of platforms, primarily Shopify.',
+      app_handle: 'domsPlace',
+      language: 'en-AU',
+      gtag,
+      page_content: content
+    });
   }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
 }

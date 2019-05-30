@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Dominic Masters
+// Copyright (c) 2018 Dominic Masters
 //
 // MIT License
 //
@@ -19,21 +19,22 @@
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { BlogArticle } from './../../../../types/';
 
-const compiler = new domsPlaceCompiler();
-
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const DomBotRedevelopment:BlogArticle = {
+  title: 'DomBot Redevelopment',
+  date: new Date('2018-11-26T21:56:15.920Z'),
+  description: () => import('./Article'),
+  short: () => (
+    <p>
+      Sharing music between long distance friends is easier than ever with my
+      updated Music bot. Learn about it's development and how I plan to improve
+      it in the future.
+    </p>
+  ),
+  handle: 'dombot-redevelopment',
+  image: require('./banner.jpg')
+};

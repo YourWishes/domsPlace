@@ -21,19 +21,24 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Section } from './../../../../components/section/';
+import { PageBoundary } from './../../../../objects/page/boundary/';
+import { Heading2 } from './../../../../objects/typography/heading/';
+import { Button } from './../../../../objects/widgets/button/';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export const ContactSection = () => (
+  <Section className="c-contact-section">
+    <PageBoundary size="small" className="c-contact-section__boundary">
+      <Heading2>Get in touch</Heading2>
+      <p>
+        Want to get in touch, pick my brain or just have a chat?<br />
+        Head over to my contact page and feel free to reach out.
+      </p>
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+      <Button to="/contact" large>Contact Me</Button>
+    </PageBoundary>
+  </Section>
+);

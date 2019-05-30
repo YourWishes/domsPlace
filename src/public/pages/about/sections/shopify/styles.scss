@@ -1,0 +1,72 @@
+@import './../../../../styles/global';
+
+.c-shopify-section {
+  margin-bottom: $s-gutter--large;
+
+  &__boundary {}
+  &__content { padding: 0 $s-gutter--small; }
+  &__title { text-align: center; }
+
+  &__mosaic {
+    position: relative;
+    width: 100%;
+
+    &-pad {
+      width: 100%;
+      padding-bottom: 80%;
+    }
+
+    &-box {
+      position: absolute;
+      transition: all $s-animation--time-fast $s-animation--ease-out;
+
+      &:nth-child(1) {
+        bottom: 10%;
+        left: 15%;
+        width: 50%;
+        z-index: 3;
+
+        &:hover { transform: translateY(-0.5em); }
+      }
+
+      &:nth-child(2) {
+        bottom: 20%;
+        left: 25%;
+        width: 45%;
+
+        &:hover { transform: translateX(-0.5em); }
+      }
+
+      &:nth-child(3) {
+        width: 50%;
+        right: 5%;
+        top: 25%;
+
+        &:hover { transform: translate(0.5em, -0.5em); }
+      }
+
+      &-image { width: 100%; }
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__boundary {
+      display: flex;
+      align-items: center;
+    }
+
+    &__title { text-align: left; }
+
+    &__mosaic { width: 50%; order: 10; }
+    &__content {
+      width: 50%;
+      p { padding-left: $s-gutter--medium; }
+    }
+  }
+
+  @include t-media-query($s-medium-up) {
+    &__content {
+      transform: translate(13%, -20%);
+    }
+  }
+}

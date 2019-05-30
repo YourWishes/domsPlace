@@ -19,21 +19,23 @@
 // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { BlogArticle } from './../../../../types/';
 
-const compiler = new domsPlaceCompiler();
-
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const SiteRebuild2019:BlogArticle = {
+  title: 'New Site Rebuild',
+  date: new Date('2018-11-26T21:56:15.920Z'),
+  description: () => import('./Article'),
+  short: () => (
+    <p>
+      After a lengthy build process, and fixing many bugs in my low level app
+      framework, I have finally launched my updated web design. Read about my
+      thought process and how I came to this design, and all the developmental
+      troubles through the process.
+    </p>
+  ),
+  handle: 'site-redesign',
+  image: require('./banner.jpg')
+};

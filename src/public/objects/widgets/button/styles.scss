@@ -1,0 +1,71 @@
+@import './../../../styles/global';
+
+.o-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-align: center;
+  background: $s-color--primary;
+  border: $s-outline--medium solid $s-color--primary;
+  font-weight: $s-font--weight-default;
+  transition: background $s-animation--time-fast $s-animation--ease-out;
+
+  &:hover {
+    background: $s-color--primary-hover;
+    text-decoration: none;
+  }
+
+  &[disabled],&.is-disabled {
+    cursor: not-allowed;
+    background: $s-color--disabled;
+    color: $s-color--disabled-text;
+    border-color: $s-color--disabled;
+    .o-loader * { stroke: $s-color--disabled-text; }
+  }
+
+  &.is-loading {
+    position: relative;
+    color: transparent;
+
+    .o-loader {
+      height: calc(100% - 1em);
+    }
+  }
+
+  &.is-large {
+    padding: 1em 2em;
+    font-weight: $s-font--weight-bold;
+
+    &.is-loading .o-loader { height: calc(100% - 2em); }
+  }
+}
+
+
+//Button group
+.o-btn-group {
+  .o-btn {
+    width: 100%;
+    display: block;
+
+    + .o-btn {
+      margin-top: 0.5em;
+    }
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    display: flex;
+    flex-wrap: wrap;
+
+    .o-btn {
+      width: calc(50% - 0.5em);
+
+      + .o-btn {
+        margin-top: 0;
+        margin-left: 0.5em;
+      }
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    .o-btn { width: auto; }
+  }
+}

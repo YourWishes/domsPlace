@@ -21,19 +21,29 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
 
-const compiler = new domsPlaceCompiler();
+const DefaultTitle = document.title;
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export interface PageWrapperProps {
+  children:React.ReactNode,
+  title:string
+};
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
+export const PageWrapper = (props:PageWrapperProps) => {
+  let { title, children } = props;
+
+  if(title == null) {
+    title = DefaultTitle;
   } else {
-    console.log('Compiling Webpack for Development');
+    title = `${title} - domsPlace`
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+  return <>
+    <Helmet>
+      <title>{ title }</title>
+    </Helmet>
+    { children }
+  </>;
+};

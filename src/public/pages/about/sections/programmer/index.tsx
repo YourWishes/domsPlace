@@ -21,19 +21,27 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Section } from './../../../../components/section/';
+import { PageBoundary } from './../../../../objects/page/boundary/';
+import { Heading2 } from './../../../../objects/typography/heading/';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export const ProgrammerSection = () => (
+  <Section className="c-programmer-section">
+    <PageBoundary size="small" className="c-programmer-section__boundary">
+      <Heading2>Programmer</Heading2>
+      <p>
+        I am a programmer, born and bred. I have been programming since I was
+        around 11 years old and continue to advance my skills more and more
+        everyday.
+      </p>
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+      <p>
+        Programming is my work and my passion. With over 15 years of experience,
+        and countless lines of code written, there isn't much I can't develop.
+      </p>
+    </PageBoundary>
+  </Section>
+);

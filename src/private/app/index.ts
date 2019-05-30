@@ -21,19 +21,37 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import { App } from '@yourwishes/app-base';
+import { ServerModule } from '@yourwishes/app-server';
+import { ReactModule } from '@yourwishes/app-react';
+import { ISimpleReactApp, SimpleReactModule } from '@yourwishes/app-simple-react';
+import { IEmailApp, EmailModule } from '@yourwishes/app-email';
+import { domsPlaceModule } from './../module/';
 
-const compiler = new domsPlaceCompiler();
+import { domsPlaceCompiler } from './../compiler/';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export class domsPlaceApp extends App implements ISimpleReactApp, IEmailApp {
+  server:ServerModule;
+  email:EmailModule;
+  react:ReactModule;
+  simpleReact:SimpleReactModule;
+  domsPlace:domsPlaceModule;
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+  constructor() {
+    super();
+
+    this.server = new ServerModule(this);
+    this.email = new EmailModule(this);
+    this.react = new ReactModule(this);
+    this.simpleReact = new SimpleReactModule(this);
+    this.domsPlace = new domsPlaceModule(this);
+
+    [
+      this.server, this.email, this.react, this.simpleReact, this.domsPlace
+    ].forEach(e => this.modules.addModule(e));
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+  getCompiler() {
+    return new domsPlaceCompiler();
+  }
 }

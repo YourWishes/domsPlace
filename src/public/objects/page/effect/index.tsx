@@ -21,19 +21,27 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { withLoader, withLoaderProps } from '@yourwishes/app-simple-react/dist/public';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+export interface PageEffectProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, withLoaderProps {
 }
+
+export const PageEffectComponent = (props:PageEffectProps) => {
+  let { loading, error, loaded, className } = props;
+  let np = {...props};
+  ['loading','loaded','error','simulate'].forEach(e => delete np[e]);
+
+  let ec = '';
+  if(loading) ec = 'is-loading';
+  if(loaded) ec = 'is-loaded';
+  if(error) ec = 'has-error';
+
+  return (
+    <div {...np} className={`${className||""} o-page-effect ${ec}`} />
+  );
+}
+
+export const PageEffect = (loadKey:string) => withLoader<PageEffectProps>(loadKey, PageEffectComponent);

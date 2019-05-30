@@ -21,19 +21,31 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import { Module } from '@yourwishes/app-base';
+import { domsPlaceApp } from './../app/';
+import { sendContact } from './../api/';
 
-const compiler = new domsPlaceCompiler();
+export const CONFIG_CONTACT = 'domsplace.contact';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export class domsPlaceModule extends Module {
+  app:domsPlaceApp;
+  contact:string;
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
+  constructor(app:domsPlaceApp) {
+    super(app);
+
+    app.server.api.addAPIHandler(new sendContact());
   }
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+  loadPackage() {return require('./../../../package.json');}
+
+  async init(): Promise<void> {
+    let { config } = this.app;
+    if(!config.has(CONFIG_CONTACT)) throw new Error("Missing contact reciving details from configuration!");
+
+    this.contact = config.get(CONFIG_CONTACT);
+  }
+
+  async destroy(): Promise<void> {
+  }
 }

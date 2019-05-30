@@ -21,19 +21,16 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+import { Section, SectionProps } from './../../../components/section/';
+import { PageBoundary, Size } from './../../../objects/page/boundary/';
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const TextContentSection = (props:SectionProps) => (
+  <Section {...props} className={`c-text-section ${props.className}`}>
+    <PageBoundary size={Size.SMALL}>
+      {props.children}
+    </PageBoundary>
+  </Section>
+);

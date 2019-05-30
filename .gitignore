@@ -60,4 +60,5 @@ typings/
 dist/
 /package-lock.json
 /dist
-/private/data
+src/private/data
+/nbproject/private/

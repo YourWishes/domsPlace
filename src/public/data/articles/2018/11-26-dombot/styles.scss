@@ -1,0 +1,27 @@
+@import './../../../../styles/global';
+
+.c-dbr {
+  &__image {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: $s-gutter--large;
+  }
+
+  &__description {}
+
+  @include t-media-query($s-small-up) {
+    padding-top: $s-gutter--large;
+
+    &__image {
+      display: inline-block;
+      float: left;
+      max-width: 370px;
+      margin: 0 $s-gutter--small $s-gutter--small 0;
+    }
+
+    &__description {
+      display: inline;
+    }
+  }
+}

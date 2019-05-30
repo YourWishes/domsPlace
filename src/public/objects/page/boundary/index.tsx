@@ -21,19 +21,36 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import './styles.scss';
 
-const compiler = new domsPlaceCompiler();
+export enum Size { SMALL = 'small', MEDIUM = 'medium', LARGE = 'large' };
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export type PageWrapperProps = (
+  {
+    size?:Size|string,
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
+    medium?:boolean,
+    small?:boolean,
+    large?:boolean
+  } &
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+);
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const PageBoundary = (props:PageWrapperProps) => {
+  let {
+    size, className, small, medium, large
+  } = props;
+
+  let np = {...props};
+  ['small','medium','large'].forEach(e => delete np[e]);
+
+  size = size || Size.LARGE;
+
+  if(small) size = Size.SMALL;
+  if(medium) size = Size.MEDIUM;
+  if(large) size = Size.LARGE;
+
+  let clazz = `o-page-wrapper is-size-${size} ${className||""}`;
+  return <div {...np} className={clazz} />
+};

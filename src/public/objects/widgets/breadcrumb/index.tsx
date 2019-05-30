@@ -21,19 +21,38 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Link } from '@yourwishes/app-simple-react/dist/public';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
+export interface BreacrumbCrumbProps {
+  title:string, to:string
+}
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+export interface BreadcrumbProps {
+  className?:string
+  crumbs:BreacrumbCrumbProps[]
+}
+
+
+export const BreadcrumbCrumb = (props:BreacrumbCrumbProps) => (
+  <li className="o-breadcrumb__list-item">
+    <Link to={ props.to } className="o-breadcrumb__list-item-link" activeClassName="is-active" exact>
+      { props.title }
+    </Link>
+  </li>
+);
+
+export const Breadcrumb = (props:BreadcrumbProps) => {
+  let crumbs = [
+    {to:'/',title:'Home'}, ...props.crumbs
+  ].map((crumb,i) => <BreadcrumbCrumb {...crumb} key={'crumb'+i} />);
+
+  return (
+    <nav className={`o-breadcrumb ${props.className||""}`}>
+      <ul className="o-breadcrumb__list">{ crumbs }</ul>
+    </nav>
+  );
 }

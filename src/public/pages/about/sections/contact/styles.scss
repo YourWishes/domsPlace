@@ -1,0 +1,13 @@
+@import './../../../../styles/global';
+
+.c-contact-section {
+  &__boundary {
+    padding: $s-gutter--xlarge $s-gutter--small;
+    text-align: center;
+    
+    p {
+      max-width: 500px;
+      margin: $s-gutter--medium auto;
+    }
+  }
+}

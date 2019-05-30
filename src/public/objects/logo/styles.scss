@@ -1,0 +1,10 @@
+@import './../../styles/global';
+
+.o-logo {
+  display: block;
+
+  &__image {
+    display: block;
+    width: 100%;
+  }
+}

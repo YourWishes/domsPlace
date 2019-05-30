@@ -21,19 +21,26 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export interface LoaderProps {
+  className?:string
+}
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
+export const Loader = (props:LoaderProps) => {
+  return (
+    <span className={`o-loader ${props.className||""}`}>
+      <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" className="o-loader__image">
+        <g fill="none" fillRule="evenodd">
+          <g transform="translate(1 1)" strokeWidth="2">
+            <circle strokeOpacity=".75" cx="18" cy="18" r="18" />
+              <path id="test" d="M36 18c0-9.94-8.06-18-18-18">
+            </path>
+          </g>
+        </g>
+      </svg>
+    </span>
+  );
 }

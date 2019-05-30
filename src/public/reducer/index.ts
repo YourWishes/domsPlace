@@ -21,19 +21,9 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import { combineReducers } from 'redux';
+import { domsPlaceActions } from './../actions/';
+import { domsPlaceState } from './../state/';
 
-const compiler = new domsPlaceCompiler();
-
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
-
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const domsPlaceReducer = combineReducers<domsPlaceState,domsPlaceActions>({
+});

@@ -21,19 +21,35 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Section } from './../../../../components/section';
+import { Title } from './../../../../objects/typography/heading/';
+import { PageBoundary } from './../../../../objects/page/boundary/';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export const BlogBanner = () => {
+  return (
+    <Section className="c-blog-banner">
+      <PageBoundary size="medium" className="c-blog-banner__boundary">
+        <Title className="c-blog-banner__title">
+          Dom's blog of things code and not
+        </Title>
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
+        <div className="c-blog-banner__text">
+          <p>
+            Welcome to my blog, read some of my personal notes here, and see
+            what I'm currently working on. Otherwise just take a look at some
+            interesting things I've done.
+          </p>
 
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+          <p>
+            You may even learn a thing or two. I like to travel and code and I
+            always take my office with me wherever. I am enjoy finding new ways
+            to do what I do best, code.
+          </p>
+        </div>
+      </PageBoundary>
+    </Section>
+  );
+};

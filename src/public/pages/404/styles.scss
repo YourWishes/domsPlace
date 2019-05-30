@@ -1,0 +1,20 @@
+@import './../../styles/global';
+
+.c-404-page {
+  padding: $s-gutter--xlarge $s-gutter--small;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__content {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__buttons {
+    margin-top: $s-gutter--large;
+    justify-content: center;
+  }
+}

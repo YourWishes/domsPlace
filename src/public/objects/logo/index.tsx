@@ -21,19 +21,19 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const domsPlaceCompiler = require('./dist/private/compiler/').domsPlaceCompiler;
+import * as React from 'react';
+import { Link, Image } from '@yourwishes/app-simple-react/dist/public';
 
-const compiler = new domsPlaceCompiler();
+import './styles.scss';
 
-module.exports = env => {
-  let isProduction = (env && env.production) ? true : false;
+export interface LogoProps {
+  className?:string
+};
 
-  if(isProduction) {
-    console.log('Compiling Webpack for Production');
-  } else {
-    console.log('Compiling Webpack for Development');
-  }
-
-  let config = compiler.generateConfiguration(isProduction);
-  return config;
-}
+export const Logo = (props:LogoProps) => {
+  return (
+    <Link to="/" className={`o-logo ${props.className||""}`}>
+      <Image src={require('./../../assets/logo.svg')} className="o-logo__image" />
+    </Link>
+  );
+};

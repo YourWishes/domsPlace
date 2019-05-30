@@ -1,0 +1,51 @@
+@import './../../../styles/global';
+
+.o-input {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5em 1em;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  vertical-align: bottom;
+
+  border: $s-outline--medium solid $s-color--primary;
+  background: transparent;
+  color: inherit;
+  transition: border $s-animation--time-fast $s-animation--ease-out;
+
+  //Pseudo's
+  &::placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+
+  //States
+  &:hover,&:focus {
+    border-color: $s-color--primary-hover;
+    &::placeholder { opacity: 0.7; }
+  }
+
+  &[disabled],&.is-disabled {
+    cursor: not-allowed;
+    background: rgba($s-color--disabled, 0.7);
+    color: $s-color--disabled-text;
+    border-color: $s-color--disabled;
+    &::placeholder {opacity: 0.5;}
+  }
+
+  &:focus {}
+  &:active {}
+
+  //Types
+  &.is-textarea {
+    max-width: 100%;
+  }
+
+  //Nexts
+  + #{&}, + .o-btn, + .o-btn-group {
+    margin-top: $s-gutter--small;
+  }
+}

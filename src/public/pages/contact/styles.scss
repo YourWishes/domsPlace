@@ -1,0 +1,67 @@
+@import './../../styles/global';
+
+.p-contact {
+  &__form {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    position: relative;
+  }
+
+  &__boundary { padding: $s-gutter--medium 0 $s-gutter--xlarge; }
+
+  &__submit,
+  &__result {
+    transition: all $s-animation--time-long $s-animation--ease-out;
+  }
+
+  &__submit.has-submitted {
+    opacity: 0;
+    transform: translateY(-50%);
+    visibility: hidden;
+  }
+
+  &__result {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+    transform: translate(-50%, 0%);
+    visibility: hidden;
+    text-align: center;
+    max-width: 400px;
+
+    &.has-submitted {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      visibility: visible;
+    }
+  }
+
+  //Typography
+  &__title { text-align: center; margin-top: 0;}
+
+  &__content {
+    text-align: center;
+  }
+
+  //Layout
+  &__split {
+  }
+
+  &__content,&__fields {
+    padding: 0 $s-gutter--small;
+  }
+
+  @include t-media-query($s-small-up) {
+    &__split {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    &__content,&__fields {
+      text-align: left;
+      width: 50%;
+    }
+  }
+}
