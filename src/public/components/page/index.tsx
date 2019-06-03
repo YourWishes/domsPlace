@@ -55,7 +55,7 @@ export class PageAnimatedRouteWrapper extends React.Component<PageProps> {
   }
 };
 
-export const PageLoading = (props:PageProps) => {
+export const PageLoading = () => {
   return (
     <div className="c-page__loader">
       <LoaderObject className="c-page__loader-element" />
