@@ -6,98 +6,52 @@
   100% { opacity: 1;}
 }
 
-$c-header--spacing: $s-gutter--small;
-
 .c-header {
-  padding: $c-header--spacing;
-  z-index: $s-z--header;
-
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: $s-gutter--small $s-gutter--xsmall;
 
-  &__time{
-    font-size: 0.75em;
-    position: absolute;
-
-    &-colon { animation: 2s c-header--time-tick infinite step-end; }
+  &__hamburger,
+  &__time {
+    flex-basis: (100% - 55%) / 2;
   }
 
   &__logo {
     width: 100%;
+    flex-basis: 55%;
 
     img {
-      width: 60%;
-      max-width: 250px;
+      display: block;
+      max-width: 175px;
       margin: 0 auto;
     }
   }
 
-  &__social {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: $s-gutter--xsmall;
-
-    &-icon {
-      display: flex;
-      align-items: center;
-      margin: 0 0.5em;
-
-      &-image {
-        width: 2em;
-        height: 2em;
-        padding: 0.25em;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-
-      &-label {
-        display: none;
-        max-width: 0;
-        overflow: hidden;
-        transition: all $s-animation--time-medium $s-animation--ease-out;
-      }
-
-      &:hover > .c-header__social-icon-label {
-        max-width: 100px;
-        padding-left: 0.5em;
-      }
-
-      /* Social Specific Styles */
-      &.is-github #{&}-image { background: $s-social--github-background; }
-    }
+  &__time {
+    text-align: right;
+    padding: $s-gutter--xsmall;
+    &-colon { animation: 2s c-header--time-tick infinite step-end; }
   }
+
+  &__nav { display: none; }
+
 
   @include t-media-query($s-xsmall-up) {
     padding: 0;
+    flex-direction: column;
+    background: $s-color--background-footer;
+
+    &__nav {
+      display: flex;
+      flex-grow: 1;
+    }
+
+    &__hamburger,
+    &__time {
+      flex-basis: auto;
+      display: none;
+    }
+
     &__logo { display: none; }
-
-    &__time{
-      font-size: 1em;
-      top: $c-header--spacing;
-      left: $c-header--spacing;
-    }
-
-    &__social {
-      position: absolute;
-      top: $c-header--spacing;
-      right: $c-header--spacing;
-      width: auto;
-      margin-top: 0;
-
-      &-icon {
-        padding: 0.5em 0;
-        margin: 0;
-        padding-right: $s-gutter--small;
-
-        &:first-child { padding-top: 0; }
-        &:last-child { padding-bottom: 0; }
-
-        &-image { width: 2.5em; height: 2.5em; }
-        &-label { display: inline-block; }
-      }
-    }
   }
 }

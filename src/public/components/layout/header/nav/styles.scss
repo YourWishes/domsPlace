@@ -1,0 +1,55 @@
+@import './../../../../styles/global';
+
+.c-header-nav {
+  $self: &;
+
+  display: flex;
+  flex-direction: column;
+  width: 75px;
+
+  &__link {
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+
+    border: 0.2em solid transparent;
+
+
+    &,&-inner {
+      transition: all $s-animation--time-fast $s-animation--ease-out;
+    }
+
+    &-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      height: 100%;
+      width: 100%;
+
+      font-family: $s-font--family-heading;
+    }
+
+    &:hover #{$self}__link-inner {
+      transform: translateX(5%);
+    }
+
+    &.is-active {
+      border-right-color: $s-color--primary;
+    }
+  }
+
+  &__nav {
+
+  }
+
+  @include t-media-query($s-small-up) {
+    width: 100px;
+    &__link-inner { font-size: $s-font--size-4; }
+  }
+
+  @include t-media-query($s-large-up) {
+    width: 125px;
+  }
+}

@@ -16,7 +16,7 @@
     &-enter,&-exit {
       transition: 1s $s-animation--ease-in-out;
 
-      //&-active .c-page__effect { overflow-y: visible; }
+      &-active .c-page__effect { overflow-y: visible; }
     }
 
     &-enter {
@@ -29,7 +29,7 @@
       }
     }
 
-    &-exit {
+    /*&-exit {
       position: absolute;
       transform: translateY(0%);
       top: 0;
@@ -39,6 +39,6 @@
         transform: translateY(-100vh);
         opacity: 0;
       }
-    }
+    }*/
   }
 }

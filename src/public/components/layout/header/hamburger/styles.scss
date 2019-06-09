@@ -1,0 +1,71 @@
+@import './../../../../styles/global';
+
+.c-hamburger {
+  $self: &;
+
+  &__btn {
+    display: inline-block;
+    padding: $s-gutter--xsmall;
+
+    &-inner {
+      position: relative;
+    }
+
+    &-icon{
+      transition: all $s-animation--time-fast $s-animation--ease-out;
+      z-index: $s-z--menu + 1;
+
+      &.is-close {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        heigth: 100%;
+        opacity: 0;
+      }
+    }
+
+    #{$self}.is-open & {
+      &-icon {
+        opacity: 0;
+        &.is-close { opacity: 1; }
+      }
+    }
+  }
+
+  &__menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transform: translateX(-100%);
+    transition: all $s-animation--time-fast $s-animation--ease-out;
+    z-index: $s-z--menu;
+
+    &-body {
+      width: 100%;
+      height: 100%;
+      background: white;
+      max-width: 300px;
+      padding-top: $s-gutter--large;
+    }
+
+    #{$self}.is-open & {
+      transform: translateX(0);
+      &-body {
+        box-shadow: 0px 0px 2em rgba(0,0,0,0.9);
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: $s-gutter--small $s-gutter--small;
+    border-left: 0.4em solid transparent;
+    color: black;
+
+    &.is-active { border-color: $s-color--primary; }
+  }
+}

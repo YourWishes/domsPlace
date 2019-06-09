@@ -38,7 +38,7 @@ export interface LayoutProps {
   history:History
 };
 
-class LayoutComponent extends React.Component<LayoutProps> {
+export class LayoutComponent extends React.Component<LayoutProps> {
   view:HTMLDivElement;
 
   constructor(props:LayoutProps) {
@@ -61,28 +61,31 @@ class LayoutComponent extends React.Component<LayoutProps> {
         <>
           <StarBackground />
           <div className="c-layout">
-            <Header className="c-layout__header" />
 
-            <div className="c-layout__view" ref={e => this.view = e}>
-              <AnimatedSwitch
-                timeout={1000} classNames="c-page__transition"
-                onEntering={() => this.onTransitionStart()}
-                onEntered={() => this.onTransitionEnd()}
-              >
-                <Page exact path="/" name="home" />
-                <Page exact path="/about" name="about" />
-                <Page exact path="/contact" name="contact" />
-                <Page exact path="/projects" name="projects" />
+            {/* Header and Layout Wrapper */}
+            <div className="c-layout__inner">
+              <Header className="c-layout__header" />
 
-                <Page exact path="/legal/privacy" name="privacy" />
+              <div className="c-layout__view" ref={e => this.view = e}>
+                <AnimatedSwitch
+                  timeout={1000} classNames="c-page__transition"
+                  onEntering={() => this.onTransitionStart()}
+                  onEntered={() => this.onTransitionEnd()}
+                >
+                  <Page exact path="/" name="home" />
+                  <Page exact path="/about" name="about" />
+                  <Page exact path="/contact" name="contact" />
+                  <Page exact path="/projects" name="projects" />
 
-                <Page exact path="/blog" name="blog" />
-                <Page exact path="/blog/article/:handle" name="article" />
+                  <Page exact path="/legal/privacy" name="privacy" />
 
-                <Page path="/" name="404" />
-              </AnimatedSwitch>
+                  <Page exact path="/blog" name="blog" />
+                  <Page exact path="/blog/article/:handle" name="article" />
+                </AnimatedSwitch>
+              </div>
             </div>
 
+            {/* Footer */}
             <Footer className="c-layout__footer" />
           </div>
         </>
@@ -90,4 +93,3 @@ class LayoutComponent extends React.Component<LayoutProps> {
     )
   }
 }
-export const Layout = LayoutComponent;

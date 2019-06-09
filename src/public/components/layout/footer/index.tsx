@@ -59,11 +59,11 @@ export class Footer extends React.Component<FooterProps, FooterState> {
   render() {
     return (
       <footer {...this.props} className={`c-footer ${this.props.className||""}`}>
-        <Logo className="c-footer__logo" />
-
         <span className="c-footer__copyright">
           &copy; 2012 ~ { this.state.now.getFullYear() } Dominic Masters
         </span>
+
+        <Logo className="c-footer__logo" />
 
         <nav className="c-footer__navigation">
           <FooterLink to="/contact">Contact Me</FooterLink>

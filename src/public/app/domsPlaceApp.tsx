@@ -30,7 +30,7 @@ import { domsPlaceState } from './../state/';
 import { domsPlaceActions } from './../actions/';
 import { domsPlaceReducer } from './../reducer/';
 
-import { Layout } from './../components/layout/layout';
+import { LayoutComponent } from './../components/layout/layout';
 
 export class domsPlaceApp extends App<domsPlaceState, domsPlaceActions> {
   constructor() {
@@ -41,7 +41,7 @@ export class domsPlaceApp extends App<domsPlaceState, domsPlaceActions> {
 
   getComponent() {
     return (
-      <Layout history={this.history} />
+      <LayoutComponent history={this.history} />
     );
   }
 }

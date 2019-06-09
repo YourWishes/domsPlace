@@ -22,62 +22,62 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Link, Image } from '@yourwishes/app-simple-react/dist/public';
 import { Logo } from './../../../objects/logo/';
+import { HamburgerMenu } from './hamburger/';
+import { HeaderNav } from './nav/';
 
 import './styles.scss';
 
-//Social Icon
-export interface HeaderSocialIconProps {
-  to:string,
-  className?:string,
-  icon:string,
-  title:string
-};
-export const HeaderSocialIcon = (props:HeaderSocialIconProps) => (
-  <Link to={props.to} className={`c-header__social-icon ${props.className||""} is-${props.icon}`}>
-    <Image src={ require('./../../../assets/icons/icon-'+props.icon+'.svg') } className="c-header__social-icon-image" />
-    <span className="c-header__social-icon-label">
-      { props.title }
-    </span>
-  </Link>
-);
+export const Links = [
+  { title: 'Home', exact: true, to: '/' },
+  { title: 'About', exact: true, to: '/about' },
+  { title: 'Blog', exact: true, to: '/blog' },
+  { title: 'Contact', to: '/contact' }
+];
 
-//Header
+
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> { }
-export interface HeaderState { now:Date }
+export interface HeaderState {
+  now:Date
+}
 
 export class Header extends React.Component<HeaderProps, HeaderState> {
-  interval:NodeJS.Timeout;
+  time:NodeJS.Timeout;
 
   constructor(props:HeaderProps) {
     super(props);
-    this.state = { now: new Date() }
+
+    this.state = {
+      now: new Date()
+    };
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.setState({ now: new Date() }), 1000);
+    this.time = setInterval(() => {
+      this.setState({ now: new Date() });
+    }, 500);
   }
 
   componentWillUnmount() {
-    if(this.interval) clearInterval(this.interval);
+    if(this.time) clearInterval(this.time);
   }
 
   render() {
     let { className } = this.props;
     let { now } = this.state;
+
+    let pz = (n:number) => (`${n}`).padStart(2,'0');
+
     return (
       <header {...this.props} className={`c-header ${className||""}`}>
-        <time dateTime={now.toString()} className="c-header__time">
-          { now.getHours() }<span className="c-header__time-colon">:</span>{ `${now.getMinutes()}`.padStart(2, '0') }
-        </time>
-
+        <HamburgerMenu className="c-header__hamburger" links={Links}  />
         <Logo className="c-header__logo" />
+        <HeaderNav className="c-header__nav" links={Links}  />
 
-        <div className="c-header__social">
-          <HeaderSocialIcon to="//github.com/YourWishes" icon="github" title="GitHub" />
-        </div>
+        <span className="c-header__time">
+          {pz(now.getHours())}<span className="c-header__time-colon">:</span>{pz(now.getMinutes())}
+        </span>
       </header>
     );
   }
-};
+}

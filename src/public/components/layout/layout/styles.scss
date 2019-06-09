@@ -16,18 +16,27 @@ $c-layout--menu-width: 275px;
   @include t-media-query($s-xsmall-up) {
     display: flex;
     flex-direction: column;
+    max-height: 100%;
+
+    &__inner {
+      display: flex;
+      width: 100%;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
 
     &__view {
-      position: relative;
-      flex: 1;
-      overflow: hidden;
+      //position: relative;
+      flex-basis: 100%;
+      flex-grow: 1;
+      //overflow: hidden;
     }
 
     &__header {
-      position: absolute;
-      top: 0;
-      left: 0;
+      width: auto;
     }
+
+    &__footer { }
   }
 
 

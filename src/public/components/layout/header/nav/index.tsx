@@ -22,38 +22,40 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Link, Image, ImageProps } from '@yourwishes/app-simple-react/dist/public';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { HomePageBanner } from './sections/banner/';
-import { PageWrapper } from './../../components/page/wrapper';
-
+import { Link } from '@yourwishes/app-simple-react/dist/public';
 import './styles.scss';
 
-export interface NavBoxProps extends ImageProps, RouteComponentProps {
-  to:string
-};
+export interface HeaderNavLinkProps {
+  to:string,
+  title:string,
+  exact?:boolean
+}
 
-export const NavBox = withRouter<NavBoxProps>((props:NavBoxProps) => {
-  let { to, location, alt } = props
-  if(location.pathname.indexOf(to) === 0) to = "/";
+export const HeaderNavLink = (props:HeaderNavLinkProps) => {
+
   return (
-    <Link to={to} title={alt} className="p-home__nav-block">
-      <Image {...props} className="p-home__nav-block-image" />
+    <Link
+      className="c-header-nav__link" to={props.to} title={props.title}
+      activeClassName="is-active" exact={props.exact}
+    >
+      <span className="c-header-nav__link-inner">
+        { props.title }
+      </span>
     </Link>
   );
-});
-
-
-export class HomePage extends React.Component<any> {
-  constructor(props:any) {
-    super(props);
-  }
-
-  render() {
-    return <PageWrapper title={null}>
-      <HomePageBanner />
-    </PageWrapper>;
-  }
 };
 
-export default HomePage;
+export interface HeaderNavProps {
+  className?:string,
+  links:HeaderNavLinkProps[]
+};
+
+export const HeaderNav = (props:HeaderNavProps) => {
+  let { className, links } = props;
+
+  return <nav className={`c-header-nav ${className||""}`}>
+    { links.map((link,i) =>
+      <HeaderNavLink {...link} key={i} />
+    )}
+  </nav>
+};
