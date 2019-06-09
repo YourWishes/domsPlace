@@ -28,11 +28,17 @@ import { HeaderNav } from './nav/';
 
 import './styles.scss';
 
+
 export const Links = [
   { title: 'Home', exact: true, to: '/' },
   { title: 'About', exact: true, to: '/about' },
   { title: 'Blog', exact: true, to: '/blog' },
   { title: 'Contact', to: '/contact' }
+];
+
+
+export const Social = [
+  { title: 'GitHub', to: '//github.com/YourWishes', src: require('./../../../assets/icons/icon-github.svg') }
 ];
 
 
@@ -70,9 +76,9 @@ export class Header extends React.Component<HeaderProps, HeaderState> {
 
     return (
       <header {...this.props} className={`c-header ${className||""}`}>
-        <HamburgerMenu className="c-header__hamburger" links={Links}  />
+        <HamburgerMenu className="c-header__hamburger" links={Links} social={Social} />
         <Logo className="c-header__logo" />
-        <HeaderNav className="c-header__nav" links={Links}  />
+        <HeaderNav className="c-header__nav" links={Links} social={Social} />
 
         <span className="c-header__time">
           {pz(now.getHours())}<span className="c-header__time-colon">:</span>{pz(now.getMinutes())}

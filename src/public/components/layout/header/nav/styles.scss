@@ -40,8 +40,30 @@
     }
   }
 
-  &__nav {
+  &__nav {}
 
+  &__social {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+
+    align-content: flex-end;
+    justify-content: space-between;
+
+    padding: $s-gutter--small;
+
+    &-link {
+      width: 50%;
+      width: calc(50% - #{$s-gutter--xsmall / 2});
+      margin-top: $s-gutter--xsmall;
+      padding: $s-gutter--xsmall;
+      border-radius: 100%;
+      transition: all $s-animation--time-fast $s-animation--ease-out;
+
+      &:hover { transform: scale(1.05); }
+      
+      &.is-github { background: $s-social--github-background; }
+    }
   }
 
   @include t-media-query($s-small-up) {

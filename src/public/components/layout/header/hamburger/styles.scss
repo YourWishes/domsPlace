@@ -68,4 +68,24 @@
 
     &.is-active { border-color: $s-color--primary; }
   }
+
+  &__social {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    &-link {
+      display: block;
+      width: 20%;
+      width: calc(20% - #{$s-gutter--xsmall / 2});
+      margin-top: $s-gutter--xsmall;
+      padding: $s-gutter--xsmall;
+      border-radius: 100%;
+
+      &.is-github { background: $s-social--github-background; }
+
+      + #{&} { margin-left: calc(#{$s-gutter--xsmall} + 0); }
+    }
+  }
 }

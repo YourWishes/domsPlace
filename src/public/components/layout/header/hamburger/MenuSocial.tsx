@@ -22,30 +22,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Link, Image } from '@yourwishes/app-simple-react/dist/public';
-import { HeaderNavLink, HeaderNavLinkProps } from './HeaderNavLink';
-import { HeaderNavSocial, HeaderNavSocialProps } from './HeaderNavSocial';
 
-import './styles.scss';
+import { Link, Image, ImageSource } from '@yourwishes/app-simple-react/dist/public';
 
-export interface HeaderNavProps {
-  className?:string,
-  links:HeaderNavLinkProps[],
-  social:HeaderNavSocialProps[]
+export interface MenuSocialProps {
+  to:string,
+  title?:string,
+  src:ImageSource
 };
 
-export const HeaderNav = (props:HeaderNavProps) => {
-  let { className, links, social } = props;
+export const MenuSocial = (props:MenuSocialProps) => {
+  let { to, title, src } = props;
 
-  return <nav className={`c-header-nav ${className||""}`}>
-    { links.map((link,i) =>
-      <HeaderNavLink {...link} key={i} />
-    )}
-
-    <div className="c-header-nav__social">
-      { social.map((sc,i) =>
-        <HeaderNavSocial {...sc} key={i} />
-      )}
-    </div>
-  </nav>
+  return (
+    <Link to={to} title={title} className={`c-hamburger__social-link is-${title.toLowerCase()}`}>
+      <Image src={src} className="c-hamburger__social-link-image" />
+    </Link>
+  );
 };

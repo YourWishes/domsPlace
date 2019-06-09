@@ -22,27 +22,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Image, Link, LinkProps } from '@yourwishes/app-simple-react/dist/public/';
+import { Image } from '@yourwishes/app-simple-react/dist/public/';
+import { MenuLink, MenuLinkProps } from './MenuLink';
+import { MenuSocial, MenuSocialProps } from './MenuSocial';
 
 import './styles.scss';
 
-
-export interface MenuLinkProps extends LinkProps {
-  to:string,
-  title:string,
-  exact?:boolean
-};
-
-export const MenuLink = (props:MenuLinkProps) => {
-  return (
-    <Link className="c-hamburger__link" {...props} activeClassName="is-active">
-      { props.title }
-    </Link>
-  );
-};
-
-
-export interface HamburgerMenuProps { className?:string, links:MenuLinkProps[] }
+export interface HamburgerMenuProps { className?:string, links:MenuLinkProps[], social:MenuSocialProps[] }
 export interface HamburgerMenuState { open:boolean }
 
 export class HamburgerMenu extends React.Component<HamburgerMenuProps, HamburgerMenuState> {
@@ -75,12 +61,11 @@ export class HamburgerMenu extends React.Component<HamburgerMenuProps, Hamburger
   }
 
   onItemClick(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    console.log('oof');
     this.setState({ open: false });
   }
 
   render () {
-    let { className, links } = this.props;
+    let { className, links, social } = this.props;
     let { open } = this.state;
 
     return (
@@ -101,9 +86,11 @@ export class HamburgerMenu extends React.Component<HamburgerMenuProps, Hamburger
 
         <div className="c-hamburger__menu" ref={e => this.menu = e }>
           <div className="c-hamburger__menu-body">
-            { links.map((link,i) =>
-              <MenuLink {...link} key={i} onClick={e => this.onItemClick(e)} />
-            )}
+            { links.map((link,i) => <MenuLink {...link} key={i} onClick={e => this.onItemClick(e)} /> )}
+
+            <div className="c-hamburger__social">
+              { social.map((sc,i) => <MenuSocial {...sc} key={i} />) }
+            </div>
           </div>
         </div>
       </nav>
