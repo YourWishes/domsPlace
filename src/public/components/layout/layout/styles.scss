@@ -13,6 +13,10 @@ $c-layout--menu-width: 275px;
   &__header,&__footer { width: 100%; }
   &__view { position: relative; }
 
+  &__inner {
+    body.is-route-changing & { overflow: hidden; }
+  }
+
   @include t-media-query($s-xsmall-up) {
     display: flex;
     flex-direction: column;
@@ -41,5 +45,5 @@ $c-layout--menu-width: 275px;
 
 
   //Entering transition
-  &.is-not-ready { opacity: 0; }
+  //&.is-not-ready { opacity: 0; }
 }

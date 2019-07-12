@@ -32,8 +32,7 @@ import './styles.scss';
 export const Links = [
   { title: 'Home', exact: true, to: '/' },
   { title: 'About', exact: true, to: '/about' },
-  { title: 'Blog', exact: true, to: '/blog' },
-  { title: 'Contact', to: '/contact' }
+  { title: 'Blog', exact: true, to: '/blog' }
 ];
 
 

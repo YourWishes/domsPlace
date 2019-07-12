@@ -42,18 +42,29 @@ export interface ArticleProps {
 
 export const ArticleLoader = (props:ArticleProps) => <Loader />;
 
-export class ArticlePage extends React.Component<any> {
+export interface ArticlePageState {
+  handle:string
+}
+
+export class ArticlePage extends React.Component<any, ArticlePageState> {
   constructor(props:any) {
     super(props);
+
+    let handle = '';
+    if(props && props.match && props.match.params) {
+      handle = props.match.params.handle || handle;
+    }
+
+    this.state = { handle };
   }
 
   render() {
+    console.log('Rendering');
     //Find article by handle
     let article:BlogArticle;
 
-    let handle = this.props.match.params.handle as string;
+    let handle = this.state.handle;
     if(handle && handle.length) article = getArticleByHandle(handle);
-
     if(!article) return <NotFoundPage />;
 
     let url = getArticleURL(article);

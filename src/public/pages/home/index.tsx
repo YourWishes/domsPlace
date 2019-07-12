@@ -33,7 +33,7 @@ export interface NavBoxProps extends ImageProps, RouteComponentProps {
   to:string
 };
 
-export const NavBox = withRouter<NavBoxProps>((props:NavBoxProps) => {
+export const NavBox = withRouter<NavBoxProps,any>((props:NavBoxProps) => {
   let { to, location, alt } = props
   if(location.pathname.indexOf(to) === 0) to = "/";
   return (

@@ -14,11 +14,23 @@
 
 .o-page-effect {
   opacity: 0;
+  transform: translateY(1vh);
+  transition:
+    opacity $s-animation--time-long $s-animation--ease-out,
+    transform $s-animation--time-long $s-animation--ease-out
+  ;
+  transition-delay: 200ms;
 
-  &.is-loading { opacity: 1; }
+  &.is-loading {
+    transition: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   &.is-loaded {
-    animation: o-page-effect--fade-in forwards $s-animation--time-long $s-animation--ease-out;
-    animation-delay: $s-animation--time-long;//Animation delay to try and hide the "flicker" when a component loads
+    opacity: 1;
+    transform: translate(0);
+    //animation: o-page-effect--fade-in forwards $s-animation--time-long $s-animation--ease-out;
+    //animation-delay: $s-animation--time-long;//Animation delay to try and hide the "flicker" when a component loads
   }
 }

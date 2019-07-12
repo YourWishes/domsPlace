@@ -31,13 +31,13 @@ import './styles.scss';
 
 //Title can be either a string (a title), or null (to indicate that this is a
 //title-less page (e.g. the Home Page would be considered title-less)
-export interface PageProps extends AnimatedRouteProps<any> {
+export interface PageProps extends AnimatedRouteProps {
   name:string,
   load?:undefined
 }
 
-export class PageAnimatedRouteWrapper extends React.Component<PageProps> {
-  constructor(props:PageProps) {
+export class PageAnimatedRouteWrapper extends React.Component<any> {
+  constructor(props:any) {
     super(props);
   }
 
@@ -63,7 +63,7 @@ export const PageLoading = () => {
   );
 };
 
-export class Page extends React.Component<PageProps> {
+export class Page extends React.Component<any> {
   constructor(props:PageProps) {
     super(props);
   }
@@ -72,9 +72,13 @@ export class Page extends React.Component<PageProps> {
     let { name } = this.props;
 
     return <AnimatedRoute
-      {...this.props} load={() => import(`./../../pages/${name}/`)}
-      loadKey={`pages/${name}`} className={`c-page--${name} p-${name}`}
-      animateWrapper={PageAnimatedRouteWrapper as any} loading={PageLoading}
+      {...this.props} className={`c-page--${name} p-${name}`}
+
+      animateWrapper={PageAnimatedRouteWrapper as any}
+      classNames="c-page__transition"
+
+      loading={PageLoading} loadKey={`pages/${name}`}
+      load={() => import(`./../../pages/${name}/`)}
     />;
   }
 }

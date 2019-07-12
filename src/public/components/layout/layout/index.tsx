@@ -24,7 +24,7 @@
 
 import * as React from 'react';
 import { History } from 'history';
-import { AnimatedSwitch, Router } from '@yourwishes/app-simple-react/dist/public';
+import { AnimatedSwitch, Router, Link } from '@yourwishes/app-simple-react/dist/public';
 import { StarBackground } from './../../background/stars/';
 import { Header } from './../header/';
 import { Footer } from './../footer/';
@@ -32,6 +32,7 @@ import { Page } from './../../page/';
 
 import './styles.scss';
 
+const CLASS_ROUTE_CHANGE = 'is-route-changing';
 
 //Paths (this will generate the necessary pages)
 export interface LayoutProps {
@@ -48,14 +49,23 @@ export class LayoutComponent extends React.Component<LayoutProps> {
   //We use these to let the body know we're changing routes, which is a fake
   //way of stopping a user changing the route mid transition.
   onTransitionStart() {
-    document.body.classList.add('is-route-changing');
+    if(document.body.classList.contains(CLASS_ROUTE_CHANGE)) return;
+    console.log('Transition Start');
+    document.body.classList.add(CLASS_ROUTE_CHANGE);
   }
 
   onTransitionEnd() {
-    document.body.classList.remove('is-route-changing');
+    if(!document.body.classList.contains(CLASS_ROUTE_CHANGE)) return;
+    console.log('Transition End');
+    document.body.classList.remove(CLASS_ROUTE_CHANGE);
   }
 
   render() {
+    let PageProps = {
+      onEnter: e => this.onTransitionStart(),
+      onEntered: e => this.onTransitionEnd(),
+      timeout: 2*1000
+    }
     return (
       <Router history={this.props.history}>
         <>
@@ -67,20 +77,16 @@ export class LayoutComponent extends React.Component<LayoutProps> {
               <Header className="c-layout__header" />
 
               <div className="c-layout__view" ref={e => this.view = e}>
-                <AnimatedSwitch
-                  timeout={1000} classNames="c-page__transition"
-                  onEntering={() => this.onTransitionStart()}
-                  onEntered={() => this.onTransitionEnd()}
-                >
-                  <Page exact path="/" name="home" />
-                  <Page exact path="/about" name="about" />
-                  <Page exact path="/contact" name="contact" />
-                  <Page exact path="/projects" name="projects" />
+                <AnimatedSwitch>
+                  <Page {...PageProps} exact path="/" name="home" />
+                  <Page {...PageProps} exact path="/about" name="about" />
+                  <Page {...PageProps} exact path="/contact" name="contact" />
+                  <Page {...PageProps} exact path="/projects" name="projects" />
 
-                  <Page exact path="/legal/privacy" name="privacy" />
+                  <Page {...PageProps} exact path="/legal/privacy" name="privacy" />
 
-                  <Page exact path="/blog" name="blog" />
-                  <Page exact path="/blog/article/:handle" name="article" />
+                  <Page {...PageProps} exact path="/blog" name="blog" />
+                  <Page {...PageProps} exact path="/blog/article/:handle" name="article" />
                 </AnimatedSwitch>
               </div>
             </div>
@@ -90,6 +96,6 @@ export class LayoutComponent extends React.Component<LayoutProps> {
           </div>
         </>
       </Router>
-    )
+    );
   }
 }
