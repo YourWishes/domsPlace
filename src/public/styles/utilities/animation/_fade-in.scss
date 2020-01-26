@@ -1,8 +1,0 @@
-@keyframes u-fade-in--keyframes {
-  from { opacity: 0; }
-  to { opacity:1; }
-}
-
-.u-fade-in {
-  animation: u-fade-in--keyframes forwards $s-animation--time-long $s-animation--ease-out;
-}

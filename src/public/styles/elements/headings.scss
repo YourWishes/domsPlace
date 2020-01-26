@@ -1,7 +1,0 @@
-//Size Specific classes
-@for $i from 1 through 6 {
-  h#{$i} {
-    @extend %s-font--heading;
-    @extend %s-font--heading-#{$i};
-  }
-}
