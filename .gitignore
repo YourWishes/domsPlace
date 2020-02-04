@@ -63,3 +63,5 @@ dist/
 /dist
 src/private/data
 /nbproject/private/
+public/
+.cache
