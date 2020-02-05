@@ -1,0 +1,21 @@
+org: yourwishes
+service: domsplace
+
+frameworkVersion: ">=1.26.0"
+
+package:
+  excludeDevDependencies: false
+  individually: true
+  include:
+    - public/**
+
+plugins:
+  - serverless-plugin-include-dependencies
+  - serverless-finch
+
+custom:
+  client:
+    bucketName: domsplace-${self:provider.stage}-${self:provider.region}-public
+    distributionFolder: frontned/public/
+    indexDocument: index.html
+    errorDocument: index.html

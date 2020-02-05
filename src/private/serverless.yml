@@ -7,7 +7,7 @@ package:
   excludeDevDependencies: false
   individually: true
   include:
-    - backend/dist/**
+    - dist/**
 
 provider:
   name: aws
@@ -26,26 +26,20 @@ provider:
 
 functions:
   ping:
-    handler: backend/dist/index.ping
+    handler: dist/index.ping
     events:
       - http: ANY ping
   sendMail:
-    handler: backend/dist/functions/mail/send.sendMail
+    handler: dist/functions/mail/send.sendMail
     events:
       - http: ANY mail/send
 
 plugins:
   - serverless-plugin-include-dependencies
   - serverless-offline
-  - serverless-finch
 
 custom:
   ssm: '/aws/reference/secretsmanager/prod.domsPlace.'
-  client:
-    bucketName: domsplace-${self:provider.stage}-${self:provider.region}-public
-    distributionFolder: frontned/public/
-    indexDocument: index.html
-    errorDocument: index.html
   serverless-offline:
     disableCookieValidation: true
     port: 3001

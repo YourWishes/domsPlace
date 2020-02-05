@@ -11,6 +11,8 @@ cache:
 matrix:
   include:
     - env: PROJECT=src/private/
+  include:
+    - env: PROJECT=src/public/
 
 install:
   - cd $PROJECT
