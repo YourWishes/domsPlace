@@ -111,7 +111,7 @@ export const IconGrid = ({ icons, title, ...props }:IconGridProps) => (
 
     <IconGridGrid delay="long" from="bottom">
       <IconGridInner>
-        { icons ? icons.map((icon,i) => <IconGridIcon index={i} {...icon} />) : null }
+        { icons ? icons.map((icon,i) => <IconGridIcon key={i} index={i} {...icon} />) : null }
       </IconGridInner>
     </IconGridGrid>
   </IconGridWrapper>

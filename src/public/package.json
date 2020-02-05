@@ -1,6 +1,6 @@
 {
-  "name": "domsplace",
-  "version": "7.0.0",
+  "name": "domsplace-frontend",
+  "version": "8.0.0",
   "description": "Personal website for Dominic \"YourWishes\" Masters.",
   "scripts": {
     "build": "gatsby build",
@@ -26,7 +26,6 @@
   },
   "homepage": "https://domsplace.com",
   "dependencies": {
-    "@types/react-helmet": "^5.0.15",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.39",
@@ -51,6 +50,7 @@
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^4.4.2",
+    "@types/react-helmet": "^5.0.15",
     "@types/yup": "^0.26.29"
   },
   "browserslist": [

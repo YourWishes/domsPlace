@@ -83,7 +83,7 @@ export type StackedMosaicProps = BoundaryProps & {
 export const StackedMosaic = ({ title, body, images, ...p }:StackedMosaicProps) => (
   <StackedMosaicWrapper {...p}>
     <StackedMosaicGrid>
-      {images.map((e,i) => <StackedMosaicTile {...e} index={i+1} />)}
+      {images.map((e,i) => <StackedMosaicTile key={i} {...e} index={i+1} />)}
     </StackedMosaicGrid>
     
     

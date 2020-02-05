@@ -5,6 +5,7 @@ import { Button, ButtonGroup } from '@objects/interactive/Button';
 import * as yup from 'yup';
 import { Panel } from '@objects/feedback/Panel';
 import { Heading2 } from '@objects/typography/Heading';
+import { sendMail } from '@api/SendMail';
 
 export interface ContactFormProps {
 
@@ -27,7 +28,13 @@ export const ContactForm = (props:ContactFormProps) => {
   const onSubmit = async (data:any) => {
     setPending(true);
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    //await new Promise(resolve => setTimeout(resolve, 3000));
+
+    await sendMail(
+      '',
+      '',
+      ''
+    );
     
     setPending(false);
     setSuccess(true);
