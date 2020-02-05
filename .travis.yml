@@ -27,4 +27,4 @@ deploy:
     - yarn deploy
   skip_cleanup: true
   on:
-    branch: gatsby
+    branch: master
