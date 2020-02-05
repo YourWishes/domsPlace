@@ -18,7 +18,6 @@ install:
   - yarn install
 
 script:
-  - cd $PROJECT
   - yarn test
   - yarn build  
 
@@ -27,5 +26,5 @@ deploy:
   script:
     - yarn deploy
   skip_cleanup: true
-#on:
-# branch: master
+  on:
+    branch: gatsby
