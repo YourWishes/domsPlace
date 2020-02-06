@@ -1,0 +1,53 @@
+org: yourwishes
+service: domsplace
+
+frameworkVersion: ">=1.26.0"
+
+package:
+  excludeDevDependencies: false
+  individually: true
+  include:
+    - dist/**
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, "prod"}
+  region: ap-southeast-2
+  memorySize: 512
+  deploymentBucket:
+    name: domsplace-${self:provider.stage}-${self:provider.region}-private
+  environment:
+    EMAIL_HOST: ${self:custom.variables.email.host}
+    EMAIL_PORT: ${self:custom.variables.email.port}
+    EMAIL_USER: ${self:custom.variables.email.user}
+    EMAIL_PASS: ${self:custom.variables.email.pass}
+    EMAIL_DEST: ${self:custom.variables.email.dest}
+
+functions:
+  ping:
+    handler: dist/functions/ping/ping.ping
+    events:
+      - http:
+          method: GET
+          path: ping
+          cors: true
+  sendMail:
+    handler: dist/functions/mail/send.sendMail
+    events:
+        - http:
+            method: POST
+            path: mail/send
+            cors: true
+
+plugins:
+  - serverless-plugin-include-dependencies
+  - serverless-offline
+
+custom:
+  ssm: '/aws/reference/secretsmanager/prod.domsPlace.'
+  serverless-offline:
+    disableCookieValidation: true
+    port: 3001
+  variables:
+    email: ${ssm:${self:custom.ssm}email~true}

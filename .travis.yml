@@ -1,0 +1,32 @@
+language: node_js
+
+node_js:
+  - "10.16.3"
+  
+cache:
+  yarn: true
+  directories:
+  - node_modules
+
+matrix:
+  include:
+    - env: PROJECT=src/private/
+  include:
+    - env: PROJECT=src/public/
+
+install:
+  - cd $PROJECT
+  - yarn global add serverless
+  - yarn install
+
+script:
+  - yarn test
+  - yarn build  
+
+deploy:
+  provider: script
+  script:
+    - yarn deploy
+  skip_cleanup: true
+  on:
+    branch: master
