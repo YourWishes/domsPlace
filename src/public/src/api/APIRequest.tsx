@@ -1,6 +1,5 @@
 export const APIRequest = (url:string, body?:object) => {
   return fetch(`https://api.domsplace.com/v1/${url}`, {
-    //mode: 'no-cors',
     method: body ? 'POST' : 'GET',
     body: body ? JSON.stringify(body) : null,
     headers: {

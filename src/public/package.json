@@ -8,7 +8,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "deploy": "serverless client deploy --no-confirm",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "test": "echo \"No tests defined\""
   },
   "repository": {
     "type": "git",
