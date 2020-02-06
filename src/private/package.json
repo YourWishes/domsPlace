@@ -9,7 +9,7 @@
     "start:dev": "cross-env NODE_ENV=development \"serverless offline --port 3001\"",
     "start": "npm run start:prod",
     "watch": "npm run start:dev",
-    "deploy": "echo \"Building private\"",
+    "deploy": "serverless deploy",
     "test": "yarn jest"
   },
   "repository": {
@@ -34,7 +34,7 @@
     "serverless-plugin-include-dependencies": "^3.2.1"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^25.1.1",
     "@types/node": "^12.7.1",
     "@types/nodemailer": "^6.2.1",
     "cross-env": "^5.2.0",

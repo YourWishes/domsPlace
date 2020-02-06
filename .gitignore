@@ -63,3 +63,4 @@ typings/
 /nbproject/private/
 .vscode
 .serverless
+.cache

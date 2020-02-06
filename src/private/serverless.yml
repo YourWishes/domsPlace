@@ -26,13 +26,19 @@ provider:
 
 functions:
   ping:
-    handler: dist/index.ping
+    handler: dist/functions/ping/ping.ping
     events:
-      - http: ANY ping
+      - http:
+          method: GET
+          path: ping
+          cors: true
   sendMail:
     handler: dist/functions/mail/send.sendMail
     events:
-      - http: ANY mail/send
+        - http:
+            method: POST
+            path: mail/send
+            cors: true
 
 plugins:
   - serverless-plugin-include-dependencies

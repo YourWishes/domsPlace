@@ -7,7 +7,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "deploy": "echo \"Building public\"",
+    "deploy": "serverless client deploy",
     "clean": "gatsby clean"
   },
   "repository": {
@@ -27,6 +27,7 @@
   },
   "homepage": "https://domsplace.com",
   "dependencies": {
+    "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.39",
@@ -47,11 +48,14 @@
     "yup": "^0.28.1"
   },
   "devDependencies": {
+    "serverless": "^1.63.0",
+    "serverless-finch": "^2.5.2",
+    "serverless-plugin-include-dependencies": "^4.0.1",
     "@types/node": "^13.5.0",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
-    "@types/styled-components": "^4.4.2",
     "@types/react-helmet": "^5.0.15",
+    "@types/styled-components": "^4.4.2",
     "@types/yup": "^0.26.29"
   },
   "browserslist": [

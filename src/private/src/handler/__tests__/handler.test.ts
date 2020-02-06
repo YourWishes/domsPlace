@@ -1,4 +1,4 @@
-import { withHandler, APICallable } from './../handler';
+import { withHandler, APICallable, DEFAULT_HEADERS } from './../handler';
 
 describe('withHandler', () => {
   it('should wrap an async function into a serverless callbackable function', () => {
@@ -28,7 +28,7 @@ describe('withHandler', () => {
     await new Promise(resolve => setImmediate(resolve));
 
     expect(fn).toHaveBeenCalledWith(null, { body: '"Hello World"', statusCode: 200,
-      headers: { 'Content-Type': 'application/json'}
+      headers: DEFAULT_HEADERS
     });
   });
 

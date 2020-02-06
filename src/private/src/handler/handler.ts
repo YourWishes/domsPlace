@@ -1,3 +1,9 @@
+export const DEFAULT_HEADERS = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Credentials': true
+}
+
 export type APIResponse = {
   statusCode?:number;
   body:any;
@@ -28,42 +34,36 @@ export interface APIEvent<T=any> {
 
 export const withHandler = <T=any>(callable:APICallable<T>) => {
   return (event?:APIEvent<T>, context?, callback?) => {
-    if(event && event.headers && event.headers['Content-Type']) {
-      let contentType = event.headers['Content-Type'];
-      if(contentType.indexOf('application/json') !== -1) {
-        try {
-          let body:T = JSON.parse(event.body as any);
-          event.body = body;
-        } catch(e) {
-          callback(null, {
-            statusCode: 400,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify('Invalid body')
-          })
-        }
-      }
+    try {
+      if(!event) throw new Error();
+      if(event.body) event.body = JSON.parse(event.body as any) as T;
+    } catch(e) {
+      console.error(e);
+      callback(null, {
+        statusCode: 400, headers: DEFAULT_HEADERS,
+        body: JSON.stringify('Invalid body')
+      });
     }
 
     return callable(event, context).then(d => {
-      if(callback) {
-        let contentType = (d.headers ? d.headers['Content-Type']:null) ||'application/json';
-        let json = contentType == 'application/json';
+      if(!callback) return d;
+      let contentType = (d.headers?d.headers['Content-Type']:null) ||'application/json';
+      let json = contentType.includes('application/json');
 
-        callback(null, {
-          ...d,
-          body: json ? JSON.stringify(d.body) : d.body,
-          statusCode: d.statusCode || 200,
-          headers: {
-            ...(d.headers||{}),
-            "Content-Type": contentType
-          }
-        });
-      }
+      callback(null, {
+        ...d,
+        body: json ? JSON.stringify(d.body) : d.body,
+        statusCode: d.statusCode || 200,
+        headers: {
+          ...DEFAULT_HEADERS,
+          ...(d.headers||{})
+        }
+      });
 
       return d;
     }).catch(ex => {
       if(callback) {
-        callback(null, { statusCode: 500, body: null, });
+        callback(null, { statusCode: 500, body: null, headers: DEFAULT_HEADERS });
       }
       throw ex;
     })

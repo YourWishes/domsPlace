@@ -10,15 +10,12 @@ export interface sendMailParams {
 }
 
 export const sendMail = withHandler<sendMailParams>(async (e,c) => {
-  //Required
-  if(!e || !e.body) return { statusCode: 400, body: 'Missing Contact Details' };
+  if(!e.body) return { statusCode: 400, body: 'Missing Contact Details' };
 
   let { name, email, message } = e.body;
-
   if(!name) return { statusCode: 400, body: 'Missing Contact Name' };
   if(!email) return { statusCode: 400, body: 'Missing Contact Email' };
   if(!message) return { statusCode: 400, body: 'Missing Contact Message' };
-
 
   //Validate
   if(name.length > 128 || !name.replace(/\s/g, '').length) return { statusCode: 400, body: 'Invalid Name' };
@@ -55,5 +52,5 @@ export const sendMail = withHandler<sendMailParams>(async (e,c) => {
       <span>Time: ${new Date().toLocaleString()}
     `
   });
-  return { statusCode: 200, body: true }
+  return { statusCode: 200, body: x && x.accepted && x.accepted.length }
 });

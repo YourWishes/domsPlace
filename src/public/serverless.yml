@@ -3,6 +3,13 @@ service: domsplace
 
 frameworkVersion: ">=1.26.0"
 
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, "test"}
+  region: ap-southeast-2
+  memorySize: 512
+    
 package:
   excludeDevDependencies: false
   individually: true
@@ -16,6 +23,6 @@ plugins:
 custom:
   client:
     bucketName: domsplace-${self:provider.stage}-${self:provider.region}-public
-    distributionFolder: frontned/public/
+    distributionFolder: public/
     indexDocument: index.html
     errorDocument: index.html
