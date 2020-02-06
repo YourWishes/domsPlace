@@ -1,6 +1,6 @@
-import { Client } from "./Client";
+import { APIRequest } from "./APIRequest";
 
-export const sendMail = (name:string, email:string, message:string) => Client.post('mail/send', {
+export const sendMail = (name:string, email:string, message:string) => APIRequest('mail/send', {
   name, email, message
 });
 

@@ -7,7 +7,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "deploy": "serverless client deploy",
+    "deploy": "serverless client deploy --no-confirm",
     "clean": "gatsby clean"
   },
   "repository": {
@@ -27,7 +27,6 @@
   },
   "homepage": "https://domsplace.com",
   "dependencies": {
-    "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.39",
