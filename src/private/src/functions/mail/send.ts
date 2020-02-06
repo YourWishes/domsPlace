@@ -52,5 +52,5 @@ export const sendMail = withHandler<sendMailParams>(async (e,c) => {
       <span>Time: ${new Date().toLocaleString()}
     `
   });
-  return { statusCode: 200, body: x && x.accepted && x.accepted.length }
+  return { statusCode: 200, body: x && x.accepted && x.accepted.length ? true : false }
 });

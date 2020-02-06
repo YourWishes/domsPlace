@@ -47,8 +47,8 @@ export const withHandler = <T=any>(callable:APICallable<T>) => {
 
     return callable(event, context).then(d => {
       if(!callback) return d;
-      let contentType = (d.headers?d.headers['Content-Type']:null) ||'application/json';
-      let json = contentType.includes('application/json');
+      let contentType = (d.headers?d.headers['Content-Type']:null) || 'application/json';
+      let json = contentType.indexOf('application/json') !== -1;
 
       callback(null, {
         ...d,
