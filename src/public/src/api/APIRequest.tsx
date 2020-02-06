@@ -8,6 +8,3 @@ export const APIRequest = (url:string, body?:object) => {
     }
   }).then(e => e.json());
 }
-
-
-(globalThis as any)['APIRequest'] = APIRequest;
