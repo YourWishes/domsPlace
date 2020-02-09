@@ -1,5 +1,7 @@
 import { APIRequest } from "./APIRequest";
 
-export const sendMail = (name:string, email:string, message:string) => APIRequest('mail/send', {
-  name, email, message
-}).then(e => e.body);
+export interface SendMailParams {
+  name:string, email:string, message:string
+};
+
+export const sendMail = (data:SendMailParams) => APIRequest('mail/send', data).then(e => e.body);
