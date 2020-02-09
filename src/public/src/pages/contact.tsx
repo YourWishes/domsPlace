@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Layout } from '@components/Layout';
+import { PageWrapper } from '@components/page/PageWrapper';
 import { Title } from '@objects/typography/Title';
 import { SplitFrames } from '@components/sections/SplitFrames';
 import { Heading2 } from '@objects/typography/Heading';
 import { ContactForm } from '@components/forms/ContactForm';
 
 export default () => (
-  <Layout>
+  <PageWrapper title="Contact">
     <SplitFrames size="large"
       title={() => <Title large>Contact Me</Title>}
 
@@ -33,5 +33,5 @@ export default () => (
       rightOptions={{padded: true}}
       right={() => <ContactForm />}
     />
-  </Layout>
+  </PageWrapper>
 );

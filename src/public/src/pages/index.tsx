@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Layout } from '@components/Layout';
+import { PageWrapper } from '@components/page/PageWrapper';
 import { BannerImageSection } from '@components/sections/BannerImage';
 import { Title, Subtitle } from '@objects/typography/Title';
 import { SplitFrames } from '@components/sections/SplitFrames';
 import { Heading1, Heading2 } from '@objects/typography/Heading';
 import { Mosaic } from '@components/sections/Mosaic';
-import { graphql, Link } from 'gatsby';
-import { FluidImage, fluidImage } from '@objects/media/Image';
+import { graphql } from 'gatsby';
+import { FluidImage } from '@objects/media/Image';
 import { StackedMosaic } from '@components/sections/StackedMosaic';
 import { IconGrid } from '@components/sections/IconGrid';
 import { ButtonTitle } from '@components/sections/ButtonTitle';
@@ -36,9 +36,9 @@ export interface IndexPageProps {
 }
  
 export default ({ data }:IndexPageProps) => {
-  return <Layout>
+  return <PageWrapper title={null}>
     <BannerImageSection
-      title={() => <Title large="true">Dominic Masters</Title>}
+      title={() => <Title large>Dominic Masters</Title>}
       subtitle={() => <Subtitle>Developer, nerd, occasionally funny.</Subtitle>}
       body={() => <p>
         I'm just a nerd with a passion for coding, coffee, and video games.
@@ -103,7 +103,7 @@ export default ({ data }:IndexPageProps) => {
       images={[
         { to: "//www.kopalife.com/products/kube-customise", image: data.kopaImage.childImageSharp, delay: 'short' },
         { to: "//earjobs.com.au", image: data.earjobsImage.childImageSharp, delay: 'medium' },
-        { to: "//sol-invictus.com", image: data.solImage.childImageSharp, delay: 'long' }
+        { to: "//www.solinvictus.com.au", image: data.solImage.childImageSharp, delay: 'long' }
       ]}
       title={() => <Heading2>Full-Stack Web Dev</Heading2>}
       body={() => <>
@@ -121,6 +121,7 @@ export default ({ data }:IndexPageProps) => {
     } />
 
     <IconGrid
+      size="small"
       title={p => <Heading2 {...p}>Platforms I work with</Heading2>}
       icons={[
         /* First Row */
@@ -170,5 +171,5 @@ export default ({ data }:IndexPageProps) => {
       </p>}
       buttons={() => <Button to="/contact" theme="primary">Contact Me</Button> }
     />
-  </Layout>
+  </PageWrapper>
 }

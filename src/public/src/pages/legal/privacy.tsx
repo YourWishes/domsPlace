@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Layout } from '@components/Layout';
+import { PageWrapper } from '@components/page/PageWrapper';
 import { Boundary } from '@components/layout/Boundary';
 import { Title } from '@objects/typography/Title';
 import { Heading4, Heading3, Heading2 } from '@objects/typography/Heading';
 
 export default () => (
-  <Layout>
+  <PageWrapper title="Privacy Policy">
     <Boundary size="medium">
       <Title>Privacy Policy</Title>
       <p>Effective date: June 27, 2018</p>
@@ -160,5 +160,5 @@ export default () => (
         website: <a href="/contact">https://domsplace.com/contact</a>
       </p>
     </Boundary>
-  </Layout>
-)
+  </PageWrapper>
+);
