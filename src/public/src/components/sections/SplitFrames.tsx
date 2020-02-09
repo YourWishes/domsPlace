@@ -83,7 +83,7 @@ export const SplitFrames = (props:SplitFramesProps) => {
   }
 
   return (
-    <Boundary as={SplitFramesContainer}>
+    <Boundary {...props} as={SplitFramesContainer}>
       { header }
 
       <LeftSplit {...(props.leftOptions||{})}>

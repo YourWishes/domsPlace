@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ZIndex, Gutters } from '@settings/all';
+import { ZIndex, Gutters, MediaQueries, Colors } from '@settings/all';
 import { Boundary } from '../layout/Boundary';
 import { Logo } from '../../objects/branding/Logo';
 
@@ -8,8 +8,8 @@ const HeaderWrapper = styled.header`
   position: fixed;
   z-index: ${ZIndex.header};
   width: 100%;
-  top: 0;
   pointer-events: none;
+  top: 0;
 `;
 
 const HeaderInner = styled(Boundary)`
