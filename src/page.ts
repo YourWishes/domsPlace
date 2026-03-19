@@ -2,9 +2,10 @@ import { Request, Response } from 'express';
 import { SectionData, sectionRender } from "./section";
 import TemplateDefault from "./templates/default";
 import { templateRender } from './template';
+import { LocaleString } from './locale';
 
 export type Page = {
-  title?:string;
+  title?:LocaleString;
   sections:SectionData<any>[];
 }
 
