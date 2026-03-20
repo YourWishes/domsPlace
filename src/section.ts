@@ -1,6 +1,8 @@
 import { Request } from 'express';
 import HeroSection from './sections/hero';
 import { Template } from './template';
+import { LocaleLanguage } from './locale';
+import { Page } from './page';
 
 const SECTION_TYPES = <const>{
   'hero': HeroSection
@@ -8,7 +10,7 @@ const SECTION_TYPES = <const>{
 
 export type Section<P> = {
   properties:P;
-  render:(params:{ properties:P, template:Template }) => string;
+  validate:(properties:P) => P;
 };
 
 export type SectionType = keyof typeof SECTION_TYPES;
@@ -26,10 +28,30 @@ export type SectionData<T extends SectionType> = {
   properties:SectionProperties<T>;
 }
 
-export const sectionRender = async (p:{
-  request:Request,
-  section:SectionData<SectionType>;
+export type SectionRenderer<T extends SectionType> = (p:{
+  properties:SectionProperties<T>;
   template:Template;
+  language:LocaleLanguage;
+  request:Request;
+  page:Page;
+}) => Promise<string>;
+
+export const sectionRender = async <T extends SectionType>(p:{
+  request:Request,
+  section:SectionData<T>;
+  template:Template;
+  language:LocaleLanguage;
+  page:Page;
 }):Promise<string> => {
-  return '';
+  if(!p.template.sections[p.section.type]) {
+    console.warn(`No section renderer found for section type "${p.section.type}" in template "${p.template.name}".`);
+    return '';c
+  }
+
+  const renderer = p.template.sections[p.section.type] as SectionRenderer<T>;
+  const properties = p.section.properties;
+  return await renderer({
+    ...p,
+    properties: p.section.properties
+  });
 }

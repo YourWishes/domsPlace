@@ -11,11 +11,13 @@ export type Page = {
 
 export const pageRoute = (page:Page) => {
   return async (req:Request, res:Response) => {
+    console.log(`Got Request. Header Agent: ${req.headers['user-agent']}`);
     try {
       const content = await templateRender({
         page,
         template: TemplateDefault,
-        request: req
+        request: req,
+        language: 'en'
       });
 
       res.status(200).send(content);

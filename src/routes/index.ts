@@ -7,7 +7,16 @@ const HomePage:Page = {
     {
       type: 'hero',
       properties: {
-        title: 'Welcome to Dom\'s Place',
+        title: 'Dominic Masters\nSoftware Developer and Tinkerer.',
+        subtitle: `I develop all manner of things, and tinker with tech new and old.`,
+        buttonLeft: {
+          text: `View the blog`,
+          url: `/blog`
+        },
+        buttonRight: {
+          text: `About me`,
+          url: `/about`
+        }
       }
     }
   ]
