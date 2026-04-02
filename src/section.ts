@@ -45,7 +45,7 @@ export const sectionRender = async <T extends SectionType>(p:{
 }):Promise<string> => {
   if(!p.template.sections[p.section.type]) {
     console.warn(`No section renderer found for section type "${p.section.type}" in template "${p.template.name}".`);
-    return '';c
+    return '';
   }
 
   const renderer = p.template.sections[p.section.type] as SectionRenderer<T>;

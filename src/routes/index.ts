@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Page, pageRoute } from '../page';
-
+import BlogRoute from './blog';
 
 const HomePage:Page = {
   sections:[
@@ -26,5 +26,6 @@ const HomePage:Page = {
 const router = Router();
 
 router.get('/', pageRoute(HomePage));
+router.get('/blog', BlogRoute);
 
 export default router;
