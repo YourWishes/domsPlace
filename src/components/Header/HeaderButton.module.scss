@@ -1,0 +1,14 @@
+.HeaderButton {
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	border-radius: 999em;
+	background: var(--color-surface);
+	box-shadow: var(--box-shadow-raised-low);
+	border: 1px solid var(--color-neumorph-light);
+  transition: all 1s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--box-shadow-lowered-low);
+  }
+}
